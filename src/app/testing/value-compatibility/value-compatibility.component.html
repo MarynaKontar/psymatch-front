@@ -1,14 +1,14 @@
 
 
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <!-- our form array of checkboxes will go here -->
-  <label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">
-    <input type="radio" [formControlName]="i">
-    {{orders[i].name}}
-  </label>
+<!--<form [formGroup]="form" (ngSubmit)="submit()">-->
+  <!--&lt;!&ndash; our form array of checkboxes will go here &ndash;&gt;-->
+  <!--<label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">-->
+    <!--<input type="radio" [formControlName]="i">-->
+    <!--{{orders[i].name}}-->
+  <!--</label>-->
 
-  <button>submit</button>
-</form>
+  <!--<button>submit</button>-->
+<!--</form>-->
 
 
 <div *ngFor="let order of orders; let i = index">

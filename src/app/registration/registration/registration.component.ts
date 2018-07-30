@@ -9,7 +9,7 @@ import {RegistrationService} from '../registration.service';
 })
 export class RegistrationComponent implements OnInit {
   users: Array<User>;
-  registeredUser = {};
+  registeredUser = new User();
   constructor(private registrationService: RegistrationService) { }
 
   ngOnInit() {
