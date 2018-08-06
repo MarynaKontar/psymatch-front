@@ -1,15 +1,19 @@
-.test-container, form {
+.container.test, form {
   padding: 10% 10% 10% 10%;
 
-  .area-name {
+  .area.name {
     padding: 2% 0;
     font-size: 1.5em;
   }
-  .area-question {
+  .area.name.header{
+    font-size: 1.8em;
+    text-align: center;
+  }
+  .area.question {
     padding: 1% 0;
    font-size: 1.3em;
   }
-  .first-scale, .second-scale {
+  .scale.first, .scale.second {
     padding: 1% 0;
     font-size: 1.2em;
   }

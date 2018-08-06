@@ -1,121 +1,117 @@
 
-
-<!--<form [formGroup]="form" (ngSubmit)="submit()">-->
-  <!--&lt;!&ndash; our form array of checkboxes will go here &ndash;&gt;-->
-  <!--<label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">-->
-    <!--<input type="radio" [formControlName]="i">-->
-    <!--{{orders[i].name}}-->
-  <!--</label>-->
-
-  <!--<button>submit</button>-->
-<!--</form>-->
-
-
-<div *ngFor="let order of orders; let i = index">
-  <div class="area-name">{{ orders[i].name }}</div>
-  <div class="radiogroup">
-    <input type="radio" name="radiogroup"
-           [checked]="i === 0"
-           [value]="order.id"
-           (change)="onSelectionChange(order)">
-  </div>
-</div>
-
-
-
-<div *ngFor="let order of orders; let i = index">
-  <div class="area-name">{{ orders[i].name }}</div>
-  <div class="radiogroup">
-    <label>
-    <input type="radio" name="radiogroup"
-           [value]="order" [ngModel]="answer[i]" (change)="onSelection()" >
-    </label>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div *ngIf="tests" class="test-container">
-  <form action="">
-
-
-    <div *ngFor="let test of tests.goal">
-      <div class="area-name">{{ test.area.areaName }}</div>
-      <div class="area-question">{{ test.area.areaQuestion }}</div>
-      <div class="radiogroup">
-            <label class="first-scale">
-              <input type="radio" name="radio-stacked" [value]="test.chosenScale.scale">
-              {{ test.firstScale.scaleName }}
-            </label>
-            <label class="second-scale">
-              <input type="radio" name="radio-stacked">
-              {{ test.secondScale.scaleName }}
-            </label>
-      </div>
-
-
-
-
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="selector" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          {{ test.firstScale.scaleName }}
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="selector" id="exampleRadios2" value="option2">
-        <label class="form-check-label" for="exampleRadios2">
-          {{ test.firstScale.scaleName }}
-        </label>
-      </div>
-
-
-
+<div *ngIf="tests" class="container test" @test>
+  <div class="area name header">{{ tests.goal[0].area.areaName }}</div>
+  <!--<form>-->
+    <!--[value]="test.chosenScale"-->
+    <!--[(ngModel)]="test.chosenScale"-->
       <div class="form-group">
-        <div class="radio" *ngFor="let test of tests.goal; let i = index">
-          <div class="area-name">{{ test.area.areaName }}</div>
-          <div class="area-question">{{ test.area.areaQuestion }}</div>
-          <label class="first-scale">
-            <input type="radio" name="test.firstScale.scaleName" [(ngModel)]="test.firstScale.scaleName" [value]="test.firstScale.scaleName">
+        <div class="radiogroup" *ngFor="let test of tests.goal; let i = index">
+          <div class="area name">{{ test.area.areaName }}</div>
+          <div class="area question">{{ test.area.areaQuestion }}</div>
+          <label class="scale first">
+            <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName">
+            <!--<input type="radio" (change)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName" >-->
             {{ test.firstScale.scaleName }}
           </label>
-          <label class="second-scale">
-            <input type="radio" name="test.secondScale.scaleName" [(ngModel)]="test.secondScale.scaleName" [value]="test.secondScale.scaleName">
+          <label class="scale second">
+            <input type="radio" (click)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">
+            <!--<input type="radio" (change)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">-->
             {{ test.secondScale.scaleName }}
           </label>
         </div>
       </div>
-
-
-    </div>
-
-
-    <button type="submit" (click)="save(f.value, f.valid)">Submit</button>
-
-
-
-
-
-  </form>
-
-
-
-
-
-
-
-
-
-
+    <!--<button (click)="save(tests)"type="button" class="btn btn-primary float-right">Submit</button>-->
+    <button (click)="saveGoals()"type="button" class="btn btn-primary float-right">Зберегти</button>
+  <!--</form>-->
 </div>
+
+
+<div *ngIf="tests" class="container test">
+  <div class="area name header">{{ tests.state[0].area.areaName }}</div>
+  <!--<form>-->
+  <!--[value]="test.chosenScale"-->
+  <!--[(ngModel)]="test.chosenScale"-->
+  <div class="form-group">
+    <div class="radiogroup" *ngFor="let test of tests.state; let i = index">
+      <div class="area name">{{ test.area.areaName }}</div>
+      <div class="area question">{{ test.area.areaQuestion }}</div>
+      <label class="scale first">
+        <!--<input type="radio" (click)="setState(i, test.firstScale)" name="test.firstScale.scaleName">-->
+        <input type="radio" (change)="setState(i, test.firstScale)" name="test.firstScale.scaleName" >
+        {{ test.firstScale.scaleName }}
+      </label>
+      <label class="scale second">
+        <!--<input type="radio" (click)="setState(i, test.secondScale)" name="test.secondScale.scaleName">-->
+        <input type="radio" (change)="setState(i, test.secondScale)" name="test.secondScale.scaleName">
+        {{ test.secondScale.scaleName }}
+      </label>
+    </div>
+  </div>
+  <!--<button (click)="save(tests)"type="button" class="btn btn-primary float-right">Submit</button>-->
+  <button (click)="saveStates()"type="button" class="btn btn-primary float-right">Зберегти</button>
+  <!--</form>-->
+</div>
+
+
+<div *ngIf="tests" class="container test">
+  <div class="area name header">{{ tests.quality[0].area.areaName }}</div>
+  <!--<form>-->
+  <!--[value]="test.chosenScale"-->
+  <!--[(ngModel)]="test.chosenScale"-->
+  <div class="form-group">
+    <div class="radiogroup" *ngFor="let test of tests.state; let i = index">
+      <div class="area name">{{ test.area.areaName }}</div>
+      <div class="area question">{{ test.area.areaQuestion }}</div>
+      <label class="scale first">
+        <!--<input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleName">-->
+        <input type="radio" (change)="setQuality(i, test.firstScale)" name="test.firstScale.scaleName" >
+        {{ test.firstScale.scaleName }}
+      </label>
+      <label class="scale second">
+        <!--<input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleName">-->
+        <input type="radio" (change)="setQuality(i, test.secondScale)" name="test.secondScale.scaleName">
+        {{ test.secondScale.scaleName }}
+      </label>
+    </div>
+  </div>
+  <!--<button (click)="save(tests)"type="button" class="btn btn-primary float-right">Submit</button>-->
+  <button (click)="saveQualities()"type="button" class="btn btn-primary float-right">Зберегти</button>
+  <!--</form>-->
+</div>
+
+
+
+
+
+
+<!--<form [formGroup]="form" (ngSubmit)="submit()">-->
+<!--&lt;!&ndash; our form array of checkboxes will go here &ndash;&gt;-->
+<!--<label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">-->
+<!--<input type="radio" [formControlName]="i">-->
+<!--{{orders[i].name}}-->
+<!--</label>-->
+
+<!--<button>submit</button>-->
+<!--</form>-->
+
+
+<!--<div *ngFor="let order of orders; let i = index">-->
+<!--<div class="area-name">{{ orders[i].name }}</div>-->
+<!--<div class="radiogroup">-->
+<!--<input type="radio" name="radiogroup"-->
+<!--[checked]="i === 0"-->
+<!--[value]="order.id"-->
+<!--(change)="onSelectionChange(order)">-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<div *ngFor="let order of orders; let i = index">-->
+<!--<div class="area-name">{{ orders[i].name }}</div>-->
+<!--<div class="radiogroup">-->
+<!--<label>-->
+<!--<input type="radio" name="radiogroup"-->
+<!--[value]="order" [ngModel]="answer[i]" (change)="onSelection()" >-->
+<!--</label>-->
+<!--</div>-->
+<!--</div>-->

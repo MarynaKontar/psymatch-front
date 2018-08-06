@@ -12,6 +12,7 @@ import {LoginModule} from './login/login.module';
 import {TestingModule} from './testing/testing.module';
 import {MatchingModule} from './matching/matching.module';
 import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     RegistrationModule,
     ProfileModule,
     LoginModule,
