@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
 import {Scale, ValueCompatibilityAnswers} from './value-compatibility-answers';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {User} from '../../profile/user';
+import {test} from '../../../animations/testing-page-animation';
 
 
 @Component({
@@ -9,18 +12,31 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   templateUrl: './value-compatibility.component.html',
   styleUrls: ['./value-compatibility.component.scss'],
   animations: [
-    trigger('test', [
-      state('void', style({ opacity: 0 })), // полностью прозрачен в состоянии void
-      transition(':enter, :leave', [ // void <=> *
-        animate('3s ease-in-out')
-      ])
-    ])
+    test
   ]
 })
 export class ValueCompatibilityComponent implements OnInit {
   tests: ValueCompatibilityAnswers;
 
-  constructor(private valueCompatibilityService: ValueCompatibilityService) {
+  // form: FormGroup;
+  // orders = [
+  //   { id: 1, name: 'order 1' },
+  //   { id: 2, name: 'order 2' },
+  //   { id: 3, name: 'order 3' },
+  //   { id: 4, name: 'order 4' }
+  // ];
+  answer = [];
+  // data: Observable<ValueCompatibilityAnswers>;
+
+  constructor(private valueCompatibilityService: ValueCompatibilityService,
+              private formBuilder: FormBuilder) {
+    // Create a new array with a form control for each order
+    // const controls = this.orders.map(c => new FormControl(false));
+    // controls[0].setValue(true); // Set the first checkbox to true (checked)
+    //
+    // this.form = this.formBuilder.group({
+    //   orders: new FormArray(controls)
+    // });
   }
 
   ngOnInit() {
@@ -32,6 +48,26 @@ export class ValueCompatibilityComponent implements OnInit {
       );
   }
 
+
+  // submit() {
+  //
+  //   const selectedOrderIds = this.form.value.orders
+  //     .map((v, i) => v ? this.orders[i].id : null)
+  //     .filter(v => v !== null);
+  //   console.log(this.form.value);
+  //   console.log(selectedOrderIds);
+  // }
+  //
+  // onSelectionChange(order: any) {
+  //   if (!this.answer.includes(order)) {
+  //     this.answer.push(order);
+  //   }
+  //   console.log(this.answer);
+  // }
+  //
+  // onSelection() {
+  //   console.log(this.answer);
+  // }
 
   setGoal(i: number, scale: Scale) {
     this.tests.goal[i].chosenScale = scale;
@@ -45,6 +81,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.tests.quality[i].chosenScale = scale;
   }
 
+  // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
     this.valueCompatibilityService.saveGoalArray(this.tests.goal).subscribe(data =>
     console.log(data));
