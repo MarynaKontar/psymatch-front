@@ -4,7 +4,8 @@ import {Scale, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {User} from '../../profile/user';
-import {test} from '../../animations/test';
+import {test} from '../../animations/valueCompatibilityAnimations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 @Component({
@@ -12,7 +13,12 @@ import {test} from '../../animations/test';
   templateUrl: './value-compatibility.component.html',
   styleUrls: ['./value-compatibility.component.scss'],
   animations: [
-    test
+    trigger('test', [
+      state('void', style({ opacity: 0 })), // полностью прозрачен в состоянии void
+      transition(':enter, :leave', [ // void <=> *
+        animate('3s ease-in-out')
+      ])
+    ])
   ]
 })
 export class ValueCompatibilityComponent implements OnInit {
