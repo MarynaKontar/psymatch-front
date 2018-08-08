@@ -84,25 +84,25 @@ export class ValueCompatibilityComponent implements OnInit {
 
   // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
-    this.valueCompatibilityService.saveGoalArray(this.tests.goal).subscribe(data =>
+    // this.valueCompatibilityService.saveGoalArray(this.tests.goal).subscribe(data =>
     // console.log(data));
     // console.log(this.tests.goal);
-      console.log(this.tests));
+      console.log(this.tests);
   }
 
 
   saveStates() {
-    this.valueCompatibilityService.saveStateArray(this.tests.state).subscribe(data =>
+    // this.valueCompatibilityService.saveStateArray(this.tests.state).subscribe(data =>
       // console.log(data));
     // console.log(this.tests.state);
-    console.log(this.tests));
+    console.log(this.tests);
   }
 
   saveQualities() {
-    this.valueCompatibilityService.saveQualityArray(this.tests.quality).subscribe(data =>
+    // this.valueCompatibilityService.saveQualityArray(this.tests.quality).subscribe(data =>
       // console.log(data));
     // console.log(this.tests.quality);
-      console.log(this.tests));
+      console.log(this.tests);
   }
 
   isFirstTestItem(i): boolean {
