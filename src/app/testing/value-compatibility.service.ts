@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {GoalItem, QualityItem, StateItem, ValueCompatibilityAnswers} from './value-compatibility/value-compatibility-answers';
+import {GoalItem, QualityItem, StateItem, tests, ValueCompatibilityAnswers} from './value-compatibility/value-compatibility-answers';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({

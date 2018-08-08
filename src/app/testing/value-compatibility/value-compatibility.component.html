@@ -1,24 +1,37 @@
-
+<!--                                     GOALS                                      -->
 <div *ngIf="tests" class="container test" @test>
-  <div class="area name header">{{ tests.goal[0].area.areaName }}</div>
+  <div class="area name header">{{ tests.goal[0].area.areaName }} (GOAL)</div>
+  <div class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
   <!--<form>-->
     <!--[value]="test.chosenScale"-->
     <!--[(ngModel)]="test.chosenScale"-->
       <div class="form-group">
-        <div class="radiogroup" *ngFor="let test of tests.goal; let i = index">
-          <div class="area name">{{ test.area.areaName }}</div>
-          <div class="area question">{{ test.area.areaQuestion }}</div>
-          <label class="scale first">
-            <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName">
-            <!--<input type="radio" (change)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName" >-->
-            {{ test.firstScale.scaleName }}
-          </label>
-          <label class="scale second">
-            <input type="radio" (click)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">
-            <!--<input type="radio" (change)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">-->
-            {{ test.secondScale.scaleName }}
-          </label>
-        </div>
+        <mat-horizontal-stepper>
+          <div class="radiogroup" *ngFor="let test of tests.goal; let i = index">
+
+              <mat-step>
+
+                <!--step content-->
+                <label class="scale first">
+                  <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName">
+                  <!--<input type="radio" (change)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName" >-->
+                  {{ test.firstScale.scaleName }}
+                </label>
+                <label class="scale second">
+                  <input type="radio" (click)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">
+                  <!--<input type="radio" (change)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">-->
+                  {{ test.secondScale.scaleName }}
+                </label>
+
+                <div>
+                  <button mat-button matStepperPrevious [disabled]="isFirstTestItem(i)">Назад</button>
+                  <button mat-button matStepperNext [disabled]="isLastTestItem(i)">Вперед</button>
+                </div>
+
+              </mat-step>
+          </div>
+        </mat-horizontal-stepper>
+
       </div>
     <!--<button (click)="save(tests)"type="button" class="btn btn-primary float-right">Submit</button>-->
     <button (click)="saveGoals()"type="button" class="btn btn-primary float-right">Зберегти</button>
@@ -26,26 +39,40 @@
 </div>
 
 
-<div *ngIf="tests" class="container test">
-  <div class="area name header">{{ tests.state[0].area.areaName }}</div>
+<!--                                     STATES                                      -->
+<div *ngIf="tests" class="container test" @test>
+  <div class="area name header">{{ tests.state[0].area.areaName }} (STATE) </div>
+  <div class="area question">{{ tests.state[0].area.areaQuestion }}</div>
   <!--<form>-->
   <!--[value]="test.chosenScale"-->
   <!--[(ngModel)]="test.chosenScale"-->
   <div class="form-group">
-    <div class="radiogroup" *ngFor="let test of tests.state; let i = index">
-      <div class="area name">{{ test.area.areaName }}</div>
-      <div class="area question">{{ test.area.areaQuestion }}</div>
-      <label class="scale first">
-        <!--<input type="radio" (click)="setState(i, test.firstScale)" name="test.firstScale.scaleName">-->
-        <input type="radio" (change)="setState(i, test.firstScale)" name="test.firstScale.scaleName" >
-        {{ test.firstScale.scaleName }}
-      </label>
-      <label class="scale second">
-        <!--<input type="radio" (click)="setState(i, test.secondScale)" name="test.secondScale.scaleName">-->
-        <input type="radio" (change)="setState(i, test.secondScale)" name="test.secondScale.scaleName">
-        {{ test.secondScale.scaleName }}
-      </label>
-    </div>
+    <mat-horizontal-stepper>
+      <div class="radiogroup" *ngFor="let test of tests.state; let i = index">
+
+        <mat-step>
+
+          <!--step content-->
+          <label class="scale first">
+            <input type="radio" (click)="setState(i, test.firstScale)" name="test.firstScale.scaleName">
+            <!--<input type="radio" (change)="setState(i, test.firstScale)" name="test.firstScale.scaleName" >-->
+            {{ test.firstScale.scaleName }}
+          </label>
+          <label class="scale second">
+            <input type="radio" (click)="setState(i, test.secondScale)" name="test.secondScale.scaleName">
+            <!--<input type="radio" (change)="setState(i, test.secondScale)" name="test.secondScale.scaleName">-->
+            {{ test.secondScale.scaleName }}
+          </label>
+
+          <div>
+            <button mat-button matStepperPrevious [disabled]="isFirstTestItem(i)">Назад</button>
+            <button mat-button matStepperNext [disabled]="isLastTestItem(i)">Вперед</button>
+          </div>
+
+        </mat-step>
+      </div>
+    </mat-horizontal-stepper>
+
   </div>
   <!--<button (click)="save(tests)"type="button" class="btn btn-primary float-right">Submit</button>-->
   <button (click)="saveStates()"type="button" class="btn btn-primary float-right">Зберегти</button>
@@ -53,35 +80,45 @@
 </div>
 
 
-<div *ngIf="tests" class="container test">
-  <div class="area name header">{{ tests.quality[0].area.areaName }}</div>
+<!--                                     QUALITIES                                      -->
+<div *ngIf="tests" class="container test" @test>
+  <div class="area name header">{{ tests.quality[0].area.areaName }} (QUALITY) </div>
+  <div class="area question">{{ tests.quality[0].area.areaQuestion }}</div>
   <!--<form>-->
   <!--[value]="test.chosenScale"-->
   <!--[(ngModel)]="test.chosenScale"-->
   <div class="form-group">
-    <div class="radiogroup" *ngFor="let test of tests.state; let i = index">
-      <div class="area name">{{ test.area.areaName }}</div>
-      <div class="area question">{{ test.area.areaQuestion }}</div>
-      <label class="scale first">
-        <!--<input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleName">-->
-        <input type="radio" (change)="setQuality(i, test.firstScale)" name="test.firstScale.scaleName" >
-        {{ test.firstScale.scaleName }}
-      </label>
-      <label class="scale second">
-        <!--<input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleName">-->
-        <input type="radio" (change)="setQuality(i, test.secondScale)" name="test.secondScale.scaleName">
-        {{ test.secondScale.scaleName }}
-      </label>
-    </div>
+    <mat-horizontal-stepper>
+      <div class="radiogroup" *ngFor="let test of tests.quality; let i = index">
+
+        <mat-step>
+
+          <!--step content-->
+          <label class="scale first">
+            <input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleName">
+            <!--<input type="radio" (change)="setQuality(i, test.firstScale)" name="test.firstScale.scaleName" >-->
+            {{ test.firstScale.scaleName }}
+          </label>
+          <label class="scale second">
+            <input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleName">
+            <!--<input type="radio" (change)="setQuality(i, test.secondScale)" name="test.secondScale.scaleName">-->
+            {{ test.secondScale.scaleName }}
+          </label>
+
+          <div>
+            <button mat-button matStepperPrevious [disabled]="isFirstTestItem(i)">Назад</button>
+            <button mat-button matStepperNext [disabled]="isLastTestItem(i)">Вперед</button>
+          </div>
+
+        </mat-step>
+      </div>
+    </mat-horizontal-stepper>
+
   </div>
   <!--<button (click)="save(tests)"type="button" class="btn btn-primary float-right">Submit</button>-->
   <button (click)="saveQualities()"type="button" class="btn btn-primary float-right">Зберегти</button>
   <!--</form>-->
 </div>
-
-
-
-
 
 
 <!--<form [formGroup]="form" (ngSubmit)="submit()">-->

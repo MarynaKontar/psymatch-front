@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
-import {Scale, ValueCompatibilityAnswers} from './value-compatibility-answers';
+import {Scale, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {User} from '../../profile/user';
@@ -40,12 +40,13 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.valueCompatibilityService.getTestList()
-      .subscribe(data => {
-          console.log(data);
-          this.tests = data;
-        }
-      );
+    // this.valueCompatibilityService.getTestList()
+    //   .subscribe(data => {
+    //       console.log(data);
+    //       this.tests = data;
+    //     }
+    //   );
+    this.tests = tests;
   }
 
 
@@ -84,20 +85,33 @@ export class ValueCompatibilityComponent implements OnInit {
   // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
     this.valueCompatibilityService.saveGoalArray(this.tests.goal).subscribe(data =>
-    console.log(data));
-    console.log(this.tests.goal);
+    // console.log(data));
+    // console.log(this.tests.goal);
+      console.log(this.tests));
   }
+
 
   saveStates() {
     this.valueCompatibilityService.saveStateArray(this.tests.state).subscribe(data =>
-      console.log(data));
-    console.log(this.tests.state);
+      // console.log(data));
+    // console.log(this.tests.state);
+    console.log(this.tests));
   }
 
   saveQualities() {
     this.valueCompatibilityService.saveQualityArray(this.tests.quality).subscribe(data =>
-      console.log(data));
-    console.log(this.tests.quality);
+      // console.log(data));
+    // console.log(this.tests.quality);
+      console.log(this.tests));
+  }
+
+  isFirstTestItem(i): boolean {
+    if (i ===  0 ) { return true; }
+    return false;
+  }
+  isLastTestItem(i): boolean {
+    if (i === 14) { return true; }
+    return false;
   }
 
 }
