@@ -11,11 +11,59 @@
   }
   .area.question {
     padding: 1% 0;
-   font-size: 1.3em;
+    margin-bottom: 5%;
+    font-size: 1.3em;
     text-align: center;
+  }
+  .area.answer {
+    padding: 1% 0;
+    margin-bottom: -12%; // так как padding у .container.test = 10%
+    font-size: 1.4em;
+    text-align: center;
+    color: #05AE0E;
   }
   .scale.first, .scale.second {
     padding: 1% 0;
     font-size: 1.2em;
   }
+
+  //Testing card's animation
+  //http://tobiasahlin.com/blog/how-to-animate-box-shadow/
+  .card {
+    height: 15em;
+    border-radius: 5%;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .card::after {
+    content: "";
+    border-radius: 5%;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    z-index: -1; /* hide shadow behind image */
+    -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .card:hover {
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+    //background-color: darkseagreen;
+    //transition: box-shadow 5s;
+    //background-color: #b0b0b0;
+    //background-color: darkcyan;
+    //background-color: mediumaquamarine;
+    //background-color: #e0e0e1;
+    background-color: #f1f1f2;
+  }
+  .card:hover::after {
+    opacity: 1;
+  }
+
+  button {
+    margin-top: 10%;
+    //border-radius: 5%;
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
+  }
 }
+
