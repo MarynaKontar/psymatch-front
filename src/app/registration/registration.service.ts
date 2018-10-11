@@ -6,7 +6,7 @@ import {User} from '../profile/user';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    // 'Authorization': 'my-auth-token'
+    'AUTHORIZATION': localStorage.getItem('token')
   })
 };
 
@@ -17,15 +17,21 @@ export class RegistrationService {
   constructor(private http: HttpClient) {
   }
 
-  /** POST: add a new user to the server (database) */
+// TODO убрать (проверить, чтобы через интерсептор работало)
+  /** POST: add an anonim user (that has token) to the server (database) */
   add(user: User): Observable<User> {
-    const url = 'http://localhost:4200/api/user/add';
+    const url = 'http://localhost:4200/api/user';
+    // take token from localstorage and push it to backend to save new user data(email, password) for that anonim user
     return this.http.post<User>(url, user, httpOptions);
     // .pipe(
     //   catchError(this.handleError('add', user))
-  // .pipe(
-  //     catchError(this.handleError)
-  //   );
+    // ;
+  }
+
+  /** POST: add a fully new user to the server (database) */
+  addNewUser(user: User): Observable<User> {
+    const url = 'http://localhost:4200/api/user/save';
+    return this.http.post<User>(url, user);
   }
 
 
@@ -43,6 +49,6 @@ export class RegistrationService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 
 }

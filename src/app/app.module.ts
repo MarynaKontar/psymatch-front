@@ -13,7 +13,7 @@ import {TestingModule} from './testing/testing.module';
 import {MatchingModule} from './matching/matching.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import {MatButtonModule, MatStepperModule} from '@angular/material';
+import {httpInterceptorProviders} from './http-interceptors/interceptors';
 
 @NgModule({
   declarations: [
@@ -27,19 +27,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    // MatButtonModule,
-    // MatStepperModule,
     RegistrationModule,
     ProfileModule,
     LoginModule,
     TestingModule,
     MatchingModule
   ],
-  // exports: [
-  //   MatButtonModule,
-  //   MatStepperModule
-  // ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 export interface ValueCompatibilityAnswers {
   // id: string;
-  userName: string;
+  userId: string;
   goal: GoalItem[];
   quality: QualityItem[];
   state: StateItem[];
@@ -43,7 +43,7 @@ export interface Area {
 
 export let tests = {
   'id': null,
-  'userName': null,
+  'userId': null,
   'goal': [
     {
       'area': {
@@ -908,3 +908,13 @@ export let tests = {
   'passDate': null,
   'passed': false
 };
+
+
+export const valueProfiles = [
+    {'scale': 'TWO', 'scaleName': 'Комфорт', 'percentResult': 26.666666666666668},
+    {'scale': 'THREE', 'scaleName': 'Достижения', 'percentResult': 6.666666666666667},
+    {'scale': 'FIVE', 'scaleName': 'Творчество', 'percentResult': 13.333333333333334},
+    {'scale': 'FOUR', 'scaleName': 'Гармоничные отношения', 'percentResult': 26.666666666666668},
+    {'scale': 'SIX', 'scaleName': 'Развитие', 'percentResult': 13.333333333333334},
+    {'scale': 'ONE', 'scaleName': 'Безопасность', 'percentResult': 13.333333333333334}
+];

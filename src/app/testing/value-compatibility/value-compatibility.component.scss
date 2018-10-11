@@ -1,5 +1,5 @@
-.container.test, form {
-  padding: 10% 10% 10% 10%;
+.container.test, .container.links, form {
+  padding: 10% 10% 3% 10%;
 
   .area.name {
     padding: 2% 0;
@@ -25,6 +25,9 @@
   .scale.first, .scale.second {
     padding: 1% 0;
     font-size: 1.2em;
+  }
+  .links.header, .links {
+    text-align: center;
   }
 
   //Testing card's animation
@@ -65,5 +68,20 @@
     //border-radius: 5%;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
   }
+  input[type=radio] {
+    display: none;
+  }
+
+}
+.container.chart {
+  //padding: 10% 10% 10% 10%;
+  margin: 5% 10% 10% 10%;
+  //margin-bottom: 40%;
+  position: relative;
 }
 
+.container.links {
+  //padding: 10% 10% 10% 10%;
+  margin: 5% 10% 10% 10%;
+  //margin-bottom: 40%;
+}

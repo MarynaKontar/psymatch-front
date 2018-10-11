@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {RegistrationComponent} from './registration/registration/registration.component';
 import {HomeComponent} from './home/home.component';
 import {ValueCompatibilityComponent} from './testing/value-compatibility/value-compatibility.component';
+import {MatchValueCompatibilityComponent} from './matching/match-value-compatibility/match-value-compatibility.component';
+import {LoginComponent} from './login/login/login.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,11 @@ const routes: Routes = [
     component: RegistrationComponent
   },
 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+
   // {
   //   path: 'profile',
   //   component: UserComponent
@@ -33,6 +40,10 @@ const routes: Routes = [
     path: 'user-test',
     component: ValueCompatibilityComponent
   },
+  {
+    path: 'match',
+    component: MatchValueCompatibilityComponent
+  }
 ];
 
 @NgModule({

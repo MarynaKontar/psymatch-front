@@ -8,7 +8,6 @@ import {RegistrationService} from '../registration.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  users: Array<User>;
   registeredUser = new User();
   constructor(private registrationService: RegistrationService) { }
 
@@ -18,5 +17,14 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     this.registrationService.add(<User> this.registeredUser)
       .subscribe(data => this.registeredUser = data);
+  }
+
+  registerNewUser() {
+    this.registrationService.addNewUser(<User> this.registeredUser)
+      .subscribe(data => this.registeredUser = data);
+  }
+
+  isNew(): boolean {
+    return localStorage.getItem('token') == null;
   }
 }

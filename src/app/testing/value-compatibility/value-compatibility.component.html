@@ -14,7 +14,7 @@
             <label class="card scale first">
             <!--<div class="card">-->
               <div class="card-body text-xs-center">
-                    <input type="radio"  (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName">
+                    <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName">
                     <!--<input type="radio" (change)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName" >-->
                     {{ test.firstScale.scaleName }}
               </div>
@@ -41,7 +41,7 @@
   </div>
   </div>
 
-<div class="container test" [hidden] = "!isGoalsDone || (isStatesDone || isQualitiesDone)">
+<div class="container test" [hidden] = "!isGoalsDone || (isStatesDone || isQualitiesDone)" @vanish>
   <div class="area name answer">Вы успешно прошли тестирование "Жизненные цели".
     Осталось пройти тесты "Состояния" и "Личностные качества"</div>
 </div>
@@ -112,12 +112,46 @@
 </div>
 
 
-
-<div class="container test" [hidden] = "!isQualitiesDone || (!isGoalsDone || !isStatesDone)">
+<!--[hidden] = "!isQualitiesDone || (!isGoalsDone || !isStatesDone)"-->
+<div class="container test">
   <div class="area name answer">Вы успешно прошли тестирование!</div>
+  <div class="container test btn-group-vertical mr-4 btn-block" >
+    <button (click)="afterTestActions()" type="button" class="btn btn-success btn-lg">Посмотрите результаты теста</button>
+  </div>
+
+  <!--<div *ngIf="valueProfileBar" class="container chart">-->
+    <!--<canvas id="valueProfileBar">{{ valueProfileBar }}</canvas>-->
+  <!--</div>-->
+
+
 </div>
 
 
+
+
+<!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
+<div *ngIf="chartBar" class="container chart">
+  <canvas id="canvasBar">{{ chartBar }}</canvas>
+</div>
+
+<!--<div *ngIf="chartRadar" class="container chart">-->
+  <!--<canvas id="canvasRadar">{{ chartRadar }}</canvas>-->
+<!--</div>-->
+
+<!--<div *ngIf="chartDoughnut" class="container chart">-->
+  <!--<canvas id="canvasDoughnut">{{ chartDoughnut }}</canvas>-->
+<!--</div>-->
+
+<!--<div *ngIf="chartPolarArea" class="container chart">-->
+  <!--<canvas id="canvasPolarArea">{{ chartPolarArea }}</canvas>-->
+<!--</div>-->
+
+<div *ngIf="links" class="container links" [hidden] = "!isQualitiesDone || (!isGoalsDone || !isStatesDone)">
+  <div class="links header">Перешли эти ссылки троим друзьям и узнай, совместимы ли вы!</div>
+  <div class="links" *ngFor="let link of links; let i = index">
+    {{ link }}
+  </div>
+</div>
 
 
 

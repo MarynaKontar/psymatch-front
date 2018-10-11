@@ -2,16 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ValueCompatibilityComponent } from './value-compatibility/value-compatibility.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatButtonModule, MatStepperModule} from '@angular/material';
+import {ValueCompatibilityService} from './value-compatibility.service';
+// import {MatButtonModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatStepperModule
+    // MatButtonModule,
+    // MatStepperModule
   ],
-  declarations: [ValueCompatibilityComponent]
+  declarations: [ValueCompatibilityComponent],
+  providers: [ValueCompatibilityService]
 })
 export class TestingModule { }

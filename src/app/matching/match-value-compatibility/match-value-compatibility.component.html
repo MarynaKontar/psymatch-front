@@ -1,0 +1,11 @@
+
+
+<div class="container match" *ngIf="matchUser1User8" @fade>
+  <div class="match" *ngFor="let match of matchUser1User8.matches">
+    {{ match.area }} - {{ match.result.number }}
+  </div>
+  <!--For figures we need chart.js library (npm install chart.js and see match-value-compatibility.component.ts)-->
+  <div *ngIf='chart' class="chart">
+    <canvas id='canvas'>{{ chart }}</canvas>
+  </div>
+</div>

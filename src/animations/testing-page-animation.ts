@@ -29,3 +29,12 @@ export let slide = trigger('slide', [
     ]))
   )
 ]);
+
+export let vanish = trigger('vanish', [
+  transition('* => *',
+    animate('5s ease-in', keyframes([
+      style({opacity: 1, offset: 0}),
+      style({opacity: .5, offset: .3}),
+      style({opacity: 0, offset: 1})
+    ])))
+]);
