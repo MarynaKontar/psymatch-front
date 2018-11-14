@@ -1,3 +1,14 @@
+export interface AspectComments {
+  result: number;
+  aspect: string;
+  aspectDescription: string;
+  header: string;
+  foreword: string; // предисловие
+  accent: string; // то, что будем выделять (bold,...)
+  mainText: string;
+  level: string;
+}
+
 export let matchUser1User8 = {
 
 'users': [

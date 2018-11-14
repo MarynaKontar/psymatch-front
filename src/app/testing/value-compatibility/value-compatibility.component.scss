@@ -1,3 +1,6 @@
+.container-fluid.tests {
+  margin: 1%;
+}
 .container.test, .container.links, form {
   padding: 10% 10% 3% 10%;
 
@@ -36,17 +39,17 @@
     height: 15em;
     border-radius: 5%;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
-    -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    //-webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    //transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   .card::after {
     content: "";
     border-radius: 5%;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
-    opacity: 0;
+    //opacity: 0;
     z-index: -1; /* hide shadow behind image */
-    -webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    //-webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    //transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   .card:hover {
     -webkit-transform: scale(1.1, 1.1);
@@ -73,15 +76,81 @@
   }
 
 }
-.container.chart {
-  //padding: 10% 10% 10% 10%;
-  margin: 5% 10% 10% 10%;
-  //margin-bottom: 40%;
-  position: relative;
-}
-
+//.container-fluid.chart, .container.chart {
+//  //padding: 10% 10% 10% 10%;
+//  padding: -5%;
+//  margin: 0%;
+//  //margin-bottom: 40%;
+//  //position: relative;
+//  position: center;
+//}
+//
+//.container-fluid.chart.bar {
+//  padding: 3% 10% 3% 3%;
+//  margin: 1% 2% 1% 2%;
+//  //margin-bottom: 5%;
+//  position: relative;
+//}
+//
+//.container-fluid.value.profile {
+//  padding: 1%;
+//  margin: 2%;
+//}
 .container.links {
   //padding: 10% 10% 10% 10%;
   margin: 5% 10% 10% 10%;
   //margin-bottom: 40%;
+}
+
+//
+//li {
+//  list-style-type: none; /* Прячем исходные маркеры */
+//}
+////.li.commentOne, .li.commentTwo, .li.commentThree :before {
+////  color: red; /* Цвет маркера */
+////  content: " "; /* Сам маркер */
+////  padding-right: 10px; /* Расстояние от маркера до текста */
+////}
+//li:before {
+//  //color: rgba(255,223,186, 1);
+//  content: "• "; /* Сам маркер */
+//  //font-weight: 400;
+//  //width: 200px;
+//  //height: 200px;
+//  //border-color: black;
+//  font-size: 30px;
+//
+//  line-height: 12px;
+//  padding-right: 10px; /* Расстояние от маркера до текста */
+//}
+//
+//li.li.commentOne:before {
+//  color: rgba(255, 179, 186, 1);
+//}
+//li.li.commentTwo:before {
+//  color: rgba(255,223,186, 1);
+//}
+//li.li.commentThree:before {
+//  color: rgba(255,255,186, 1);
+//}
+//li.li.commentFour:before {
+//  color: rgba(186,255,201, 1);
+//}
+//li.li.commentFive:before {
+//  color: rgba(186,225,255, 1);
+//}
+//li.li.commentSix:before {
+//  color: rgba(201, 166, 220, 1);
+//}
+
+
+.absolute-center {
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-center{
+  text-align: center;
 }

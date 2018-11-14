@@ -5,6 +5,7 @@ import {HomeComponent} from './home/home.component';
 import {ValueCompatibilityComponent} from './testing/value-compatibility/value-compatibility.component';
 import {MatchValueCompatibilityComponent} from './matching/match-value-compatibility/match-value-compatibility.component';
 import {LoginComponent} from './login/login/login.component';
+import {ValueCompatibilityProfileComponent} from './testing/value-compatibility-profile/value-compatibility-profile.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path: 'user-test',
     component: ValueCompatibilityComponent
+  },
+  {
+    path: 'value-profile',
+    component: ValueCompatibilityProfileComponent
   },
   {
     path: 'match',

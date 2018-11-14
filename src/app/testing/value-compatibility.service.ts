@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {ValueCompatibilityAnswers} from './value-compatibility/value-compatibility-answers';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import {ValueProfile} from './value-compatibility-profile/value-profile';
+import {User} from '../profile/user';
 
 @Injectable({
   providedIn: 'root'
@@ -66,30 +68,17 @@ export class ValueCompatibilityService {
   saveQualityArray(qualities: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
     return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/quality', qualities);
     }
-  // saveQualityArray(qualities: ValueCompatibilityAnswers): Observable<HttpResponse<ValueCompatibilityAnswers>> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  //       'AUTHORIZATION': localStorage.getItem('token')}),
-  //     observe: 'response' as 'response'
-  //   };
-  //   return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/quality', qualities, httpOptions);
-  //   // .pipe(
-  //   //     catchError(this.handleError('getTestList', []))
-  //   //   );
-  // }
 
   /** Get value profile for last test for user from server */
-  getValueProfile() {
-    return this.http.get('http://localhost:4200/api/test/value-profile');
+  getValueProfile(user: User): Observable<ValueProfile> {
+    return this.http.post<ValueProfile>('http://localhost:4200/api/test/value-profile', user);
   }
-  // getValueProfile() {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'AUTHORIZATION': localStorage.getItem('token')}),
-  //     observe: 'response' as 'response'
-  //   };
-  //  return this.http.get('http://localhost:4200/api/test/value-profile', httpOptions);
-  // }
+
+  /** Get value profiles from server for last test for two users: principal and "user" */
+  getValueProfiles(user: User): Observable<ValueProfile[]> {
+    return this.http.post<ValueProfile[]>('http://localhost:4200/api/match/value-profile-for-matching', user);
+  }
+
   getLinksWithToken() {
     return this.http.get('http://localhost:4200/api/test/generateTokenList');
   }

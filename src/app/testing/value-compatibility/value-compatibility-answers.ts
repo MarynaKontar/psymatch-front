@@ -910,11 +910,11 @@ export let tests = {
 };
 
 
-export const valueProfiles = [
-    {'scale': 'TWO', 'scaleName': 'Комфорт', 'percentResult': 26.666666666666668},
-    {'scale': 'THREE', 'scaleName': 'Достижения', 'percentResult': 6.666666666666667},
-    {'scale': 'FIVE', 'scaleName': 'Творчество', 'percentResult': 13.333333333333334},
-    {'scale': 'FOUR', 'scaleName': 'Гармоничные отношения', 'percentResult': 26.666666666666668},
-    {'scale': 'SIX', 'scaleName': 'Развитие', 'percentResult': 13.333333333333334},
-    {'scale': 'ONE', 'scaleName': 'Безопасность', 'percentResult': 13.333333333333334}
-];
+// export const valueProfiles = [
+//     {'scale': 'TWO', 'scaleName': 'Комфорт', 'percentResult': 26.666666666666668},
+//     {'scale': 'THREE', 'scaleName': 'Достижения', 'percentResult': 6.666666666666667},
+//     {'scale': 'FIVE', 'scaleName': 'Творчество', 'percentResult': 13.333333333333334},
+//     {'scale': 'FOUR', 'scaleName': 'Гармоничные отношения', 'percentResult': 26.666666666666668},
+//     {'scale': 'SIX', 'scaleName': 'Развитие', 'percentResult': 13.333333333333334},
+//     {'scale': 'ONE', 'scaleName': 'Безопасность', 'percentResult': 13.333333333333334}
+// ];
