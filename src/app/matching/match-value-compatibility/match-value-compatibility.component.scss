@@ -8,17 +8,17 @@
       .container.match.content {
         padding: 0%;
         margin: 5% 1% 1% 1%;
-      .container.value-compatibility.report{
-        padding: 1%;
-        margin: 1% 1% 1% 1%;
-      }
+        .container.value-compatibility.report{
+          padding: 1%;
+          margin: 1% 1% 1% 1%;
+        }
       }
     }
   }
 }
 
 .container-fluid.online-advertising {
-  //border-left: 1px #05AE0E;
+  //border-left: solid 1px rgba(242, 242, 239, 1);
 }
 //@media (min-width: 1200px)
 .container {
@@ -36,24 +36,35 @@
 }
 .row.header {
   font-size: medium;
+  color: #3f51b5;
 }
 .row.aspect {
-  margin: 0.5%;
-  padding: 0.5%;
+  //margin: 0.5%;
+  //padding: 0.5%;
 }
-.aspect.label {
-  margin: 2% 0%;
-  padding: 1% 0% 0% 0%;
+.aspect.label, .scale.label {
+  margin: 0% 0%;
+  padding: 15% 0% 0% 0%;
   font-weight: bold;
+  font-size: larger;
+  text-transform: uppercase;
+}
+.scale.label {
+  text-align: center;
+}
+
+.container.chart {
+  padding: 5% 5% 0% 0%;;
 }
 .interpretation.text {
   text-align: justify;
+  margin: 1% 5% 0% 5%;
 }
 .container-fluid.value.profile {
   margin: 3%;
 }
 
-.accent {
+.accent, .comment.header {
   font-weight: bold;
 }
 //
@@ -77,3 +88,48 @@
 //.row.head, .row.header, .row.col-4 {
 //  //text-align: center;
 //}
+
+.btn {
+  margin: 1% 1% 5% 1%;
+}
+
+.container.rectangle {
+  border-radius: 20px;
+  text-align: center;
+  margin: 15% 5% 0% 15%;
+  width: 80%;
+  padding: 5% 0%;
+  //box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+  .level {
+    font-size: medium;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .head {
+    font-size: small;
+  }
+}
+.container.rectangle.scale {
+  border: solid rgba(75,172,198, 1);
+  background-color: rgba(248,242,236,0.1);
+  margin: 1% 5% 0% 15%;
+  .icon {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  //background-color: linearGradient;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+}
+.container.rectangle.area {
+  color: rgba(248,242,236,1);
+  .value {
+    font-size: x-large;
+    font-weight: bold;
+  }
+  //background: linear-gradient(rgba(155,187,89, 1), rgba(247,150,70, 1));
+}
+
+.row.aspect.development {
+  margin: 3% 0%;
+}
+

@@ -1,12 +1,59 @@
-export interface AspectComments {
-  result: number;
-  aspect: string;
+import {User} from '../../profile/user';
+import {ValueProfile} from '../../testing/value-compatibility-profile/value-profile';
+
+export interface UserMatch {
+  users: User[];
+  matches: Matching[];
+}
+
+export interface ValueProfileMatching {
+  valueProfiles: ValueProfile[];
+  valuesDifferencesComments: ValuesDifferencesComment[];
+}
+
+export interface AspectComment {
+  // result: number;
+  aspect: string; // Goal, Quality, State, Total
   aspectDescription: string;
-  header: string;
+  level: AspectLevel; // LOW, SUFFICIENT, GOOD, EXCELLENT
+  levelName: string;
+  header: string; // "Поздравляем!"
   foreword: string; // предисловие
   accent: string; // то, что будем выделять (bold,...)
   mainText: string;
-  level: string;
+}
+
+export enum AspectLevel {
+  LOW = 'LOW',
+  SUFFICIENT = 'SUFFICIENT',
+  GOOD = 'GOOD',
+  EXCELLENT = 'EXCELLENT'
+}
+
+export interface ValuesDifferencesComment {
+  result: number;
+  scale: string;
+  level: ScaleLevel; // FULL_MATCH, MINOR_DIFFERENCES, MODERATE_DIFFERENCES, STRONG_DIFFERENCES
+  levelName: string;
+  text: string[];
+}
+
+export enum ScaleLevel {
+  FULL_MATCH = 'FULL_MATCH',
+  MINOR_DIFFERENCES = 'MINOR_DIFFERENCES',
+  MODERATE_DIFFERENCES = 'MODERATE_DIFFERENCES',
+  STRONG_DIFFERENCES = 'STRONG_DIFFERENCES'
+}
+
+interface Matching {
+  matchMethod: string;
+  area: string;
+  result: Result;
+  userMatchComment: AspectComment;
+}
+
+interface Result {
+  number: number;
 }
 
 export let matchUser1User8 = {

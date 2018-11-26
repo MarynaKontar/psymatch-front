@@ -150,14 +150,15 @@
 
   <hr *ngIf="chartDoughnuts && comments">
   <div class="row">
-    <div class="col-12 col-sm-5 col-xl-3">
+    <div class="col-12 col-sm-5 col-xl-4">
       <div class="container chart">
         <canvas id="chartDoughnutSafety">{{ chartDoughnuts[0] }}</canvas>
+        <div class="head">{{ comments[5].head }}</div>
       </div>
     </div>
-    <div class="col-12 col-sm-7 col-xl-9">
+    <div class="col-12 col-sm-7 col-xl-8">
       <div *ngIf="comments" class="container comment">
-        <p><b>{{ comments[5].head }}</b> {{ comments[5].header }}
+        <p>{{ comments[5].header }}
           <!--<a data-toggle="collapse" href="#collapseCommentOne" aria-expanded="false" aria-controls="collapseCommentOne"> ... >></a>-->
         </p>
         <!--<div class="collapse"  id="collapseCommentOne">-->
@@ -171,14 +172,15 @@
 
   <hr *ngIf="chartDoughnuts && comments">
   <div class="row">
-    <div class="col-12 col-sm-5 col-xl-3">
+    <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
         <canvas id="chartDoughnutComfort">{{ chartDoughnuts[1] }}</canvas>
+        <div class="head">{{ comments[4].head }}</div>
       </div>
     </div>
-    <div class="col-12 col-sm-7 col-xl-9">
+    <div class="col-12 col-sm-7 col-xl-8">
       <div *ngIf="comments" class="container comment">
-        <p><b>{{ comments[4].head }}</b> {{ comments[4].header }}
+        <p>{{ comments[4].header }}
           <!--<a data-toggle="collapse" href="#collapseCommentTwo" aria-expanded="false" aria-controls="collapseCommentTwo"> ... >></a>-->
         </p>
         <!--<div class="collapse"  id="collapseCommentTwo">-->
@@ -192,14 +194,15 @@
 
   <hr *ngIf="chartDoughnuts && comments">
   <div class="row">
-    <div class="col-12 col-sm-5 col-xl-3">
+    <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
         <canvas id="chartDoughnutAchievements">{{ chartDoughnuts[2] }}</canvas>
+        <div class="head">{{ comments[3].head }}</div>
       </div>
     </div>
-    <div class="col-12 col-sm-7 col-xl-9">
+    <div class="col-12 col-sm-7 col-xl-8">
       <div *ngIf="comments" class="container comment">
-        <p><b>{{ comments[3].head }}</b> {{ comments[3].header }}
+        <p>{{ comments[3].header }}
           <!--<a data-toggle="collapse" href="#collapseCommentThree" aria-expanded="false" aria-controls="collapseCommentThree"> ... >></a>-->
         </p>
         <!--<div class="collapse"  id="collapseCommentThree">-->
@@ -216,11 +219,12 @@
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
         <canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnuts[3] }}</canvas>
+        <div class="head">{{ comments[2].head }}</div>
       </div>
     </div>
     <div class="col-12 col-sm-7 col-xl-8">
       <div *ngIf="comments" class="container comment">
-        <p><b>{{ comments[2].head }}</b> {{ comments[2].header }}</p>
+        <p>{{ comments[2].header }}</p>
         <div *ngFor="let list of comments[2].list">
           <li class="li commentFour">{{ list }}</li>
         </div>
@@ -233,11 +237,12 @@
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
         <canvas id="chartDoughnutCreativity">{{ chartDoughnuts[4] }}</canvas>
+        <div class="head">{{ comments[1].head }}</div>
       </div>
     </div>
     <div class="col-12 col-sm-7 col-xl-8">
       <div *ngIf="comments" class="container comment">
-        <p><b>{{ comments[1].head }}</b> {{ comments[1].header }}</p>
+        <p>{{ comments[1].header }}</p>
         <div *ngFor="let list of comments[1].list">
           <li class="li commentFive">{{ list }}</li>
         </div>
@@ -250,11 +255,12 @@
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
         <canvas id="chartDoughnutDevelopment">{{ chartDoughnuts[5] }}</canvas>
+        <div class="head">{{ comments[0].head }}</div>
       </div>
     </div>
     <div class="col-12 col-sm-7 col-xl-8">
       <div *ngIf="comments" class="container comment">
-        <p><b>{{ comments[0].head }}</b> {{ comments[0].header }}</p>
+        <p>{{ comments[0].header }}</p>
         <div *ngFor="let list of comments[0].list">
           <li class="li commentSix">{{ list }}</li>
         </div>

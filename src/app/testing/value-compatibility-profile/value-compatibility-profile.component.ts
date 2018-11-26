@@ -51,12 +51,13 @@ export class ValueCompatibilityProfileComponent implements OnInit {
     const labels: string[] = [];
     const match: number[] = [];
     this.valueProfile = this.valueCompatibilityService.getValueProfile(null).subscribe(response => {
-
-      response.valueProfileElements.forEach(valueProfileElement => {
+      console.log(response);
+      response.valueProfile.valueProfileElements.forEach(valueProfileElement => {
         labels.push(valueProfileElement.scaleName.toUpperCase());
         match.push( Math.round(valueProfileElement.percentResult / 5) * 5);
-        this.comments.push(valueProfileElement.comment);
+        // this.comments.push(valueProfileElement.comment);
       });
+      this.comments = response.valueProfileComments;
 
       console.log('response: ');
       console.log(response);
@@ -171,7 +172,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
             const txt = centerConfig.text;
             const textColor = centerConfig.color || '#000';
             const sidePadding = centerConfig.sidePadding || 20;
-            const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+            const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
             // Start with a base font of 30px
             ctx.font = '30px ' + fontStyle;
 

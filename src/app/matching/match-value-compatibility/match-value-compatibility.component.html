@@ -27,123 +27,154 @@
           </div>
           <hr>
 
-          <div class="row aspect goal">
-            <div class="col-sm-12 col-md-2 col-lg-3">
-              <div class="aspect label">
-                {{aspectComments[0].aspect}}
-                {{aspectLabelsConstant[0]}}
+          <div *ngFor="let match of aspectMatches; let i = index">
+            <div class="row aspect">
+              <div class="col-sm-12 col-md-2 col-lg-3">
+                <div class="aspect label">
+                  {{aspectComments[i].aspect}}
+                </div>
+                <div class="aspect description">
+                  {{aspectComments[i].aspectDescription}}
+                </div>
               </div>
-              <div class="aspect description">
-                {{aspectComments[0].aspectDescription}}
-                {{aspectDescription[0]}}
+              <div class="col-sm-12 col-md-5 col-lg-3">
+                <!--<div [style]="{'background-color':-->
+                <!--'linear-gradient(valueCompatibilityReportColor[1], valueCompatibilityReportColor[2])'}" class="container rectangle area">-->
+                  <div [style.background]="linearGradient[i]" [style.box-shadow]="boxShadow[i]" class="container rectangle area">
+                  <!--<div [style.background-color]="valueCompatibilityReportColors[4]" class="container rectangle area">-->
+                  <!--<div [style]="boxShaddow[i]" class="container rectangle area">-->
+                  <!--<div [style.background-color]='valueCompatibilityReportColor[i]' class="container rectangle area">-->
+                  <div class="head">Уровень совместимости</div>
+                  <div class="value">{{ match }}%</div>
+                  <!--<img class="icons" src={{image}}>-->
+                  <div class="level">{{aspectComments[i].levelName }}</div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-5 col-lg-6">
+                <div class="interpretation text">
+                  <span class="comment header">{{ aspectComments[i].header }}</span>
+                  {{aspectComments[i].foreword}}
+                  <span class="accent">{{aspectComments[i].accent}}</span>
+                  {{aspectComments[i].mainText}}
+                </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-5 col-lg-3">
-              <div class="container chart">
-                <canvas id="chartBarGOAL"></canvas>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-6">
-              <div class="interpretation text">
-                {{ aspectComments[0].header }}: {{aspectComments[0].foreword}}
-                <span class="accent">{{aspectComments[0].accent}}</span>.
-                {{aspectComments[0].mainText}}
-                Интерпретационный текст. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-            </div>
+            <hr *ngIf='i + 1'>
           </div>
-          <hr>
 
-          <div class="row aspect quality">
-            <div class="col-sm-12 col-md-2 col-lg-3">
-              <div class="aspect label">
-                {{aspectComments[1].aspect}}
-                {{aspectLabelsConstant[1]}}
-              </div>
-              <div class="aspect description">
-                {{aspectComments[1].aspectDescription}}
-                {{aspectDescription[1]}}
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-3">
-              <div class="container chart">
-                <canvas id="chartBarQUALITY"></canvas>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-6">
-              <div class="interpretation text">
-                {{ aspectComments[1].header }}: {{aspectComments[1].foreword}}
-                <span class="accent">{{aspectComments[1].accent}}</span>.
-                {{aspectComments[1].mainText}}
-                Интерпретационный текст. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-            </div>
-          </div>
-          <hr>
 
-          <div class="row aspect state">
-            <div class="col-sm-12 col-md-2 col-lg-3">
-              <div class="aspect label">
-                {{aspectComments[2].aspect}}
-                {{aspectLabelsConstant[2]}}
-              </div>
-              <div class="aspect description">
-                {{aspectComments[2].aspectDescription}}
-                {{aspectDescription[2]}}
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-3">
-              <div class="container chart">
-                <canvas id="chartBarSTATE"></canvas>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-6">
-              <div class="interpretation text">
-                {{ aspectComments[2].header }}: {{aspectComments[2].foreword}}
-                <span class="accent">{{aspectComments[2].accent}}</span>.
-                {{aspectComments[2].mainText}}
-                Интерпретационный текст. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-              </div>
-          </div>
-          <hr>
 
-          <div class="row aspect total">
-            <div class="col-sm-12 col-md-2 col-lg-3">
-              <div class="aspect label">
-                {{aspectComments[3].aspect}}
-                {{aspectLabelsConstant[3]}}
-              </div>
-              <div class="aspect description">
-                {{aspectComments[3].aspectDescription}}
-                {{aspectDescription[3]}}
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-3">
-              <div class="container chart">
-                <canvas id="chartBarTOTAL"></canvas>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-5 col-lg-6">
-              <div class="interpretation text">
-                {{ aspectComments[3].header }}: {{aspectComments[3].foreword}}
-                <span class="accent">{{aspectComments[3].accent}}</span>.
-                {{aspectComments[3].mainText}}
-                Интерпретационный текст. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-            </div>
-          </div>
+
+          <!--<div class="row aspect goal">-->
+            <!--<div class="col-sm-12 col-md-2 col-lg-3">-->
+              <!--<div class="aspect label">-->
+                <!--{{aspectComments[0].aspect}}-->
+              <!--</div>-->
+              <!--<div class="aspect description">-->
+                <!--{{aspectComments[0].aspectDescription}}-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-3">-->
+              <!--<div class="container chart">-->
+                <!--<canvas id="chartBarGOAL"></canvas>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-6">-->
+              <!--<div class="interpretation text">-->
+                <!--<span class="comment header">{{ aspectComments[0].header }}</span>-->
+                <!--{{aspectComments[0].foreword}}-->
+                <!--<span class="accent">{{aspectComments[0].accent}}</span>-->
+                <!--{{aspectComments[0].mainText}}-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<hr>-->
+
+          <!--<div class="row aspect quality">-->
+            <!--<div class="col-sm-12 col-md-2 col-lg-3">-->
+              <!--<div class="aspect label">-->
+                <!--{{aspectComments[1].aspect}}-->
+              <!--</div>-->
+              <!--<div class="aspect description">-->
+                <!--{{aspectComments[1].aspectDescription}}-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-3">-->
+              <!--<div class="container chart">-->
+                <!--<canvas id="chartBarQUALITY"></canvas>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-6">-->
+              <!--<div class="interpretation text">-->
+                <!--<span class="comment header">{{ aspectComments[1].header }}</span>-->
+                <!--{{aspectComments[1].foreword}}-->
+                <!--<span class="accent">{{aspectComments[1].accent}}</span>-->
+                <!--{{aspectComments[1].mainText}}-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<hr>-->
+
+          <!--<div class="row aspect state">-->
+            <!--<div class="col-sm-12 col-md-2 col-lg-3">-->
+              <!--<div class="aspect label">-->
+                <!--{{aspectComments[2].aspect}}-->
+              <!--</div>-->
+              <!--<div class="aspect description">-->
+                <!--{{aspectComments[2].aspectDescription}}-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-3">-->
+              <!--<div class="container chart">-->
+                <!--<canvas id="chartBarSTATE"></canvas>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-6">-->
+              <!--<div class="interpretation text">-->
+                <!--<span class="comment header">{{ aspectComments[2].header }}</span>-->
+                <!--{{aspectComments[2].foreword}}-->
+                <!--<span class="accent">{{aspectComments[2].accent}}</span>-->
+                <!--{{aspectComments[2].mainText}}-->
+              <!--</div>-->
+              <!--</div>-->
+          <!--</div>-->
+          <!--<hr>-->
+
+          <!--<div class="row aspect total">-->
+            <!--<div class="col-sm-12 col-md-2 col-lg-3">-->
+              <!--<div class="aspect label">-->
+                <!--{{aspectComments[3].aspect}}-->
+              <!--</div>-->
+              <!--<div class="aspect description">-->
+                <!--{{aspectComments[3].aspectDescription}}-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-3">-->
+              <!--<div class="container chart">-->
+                <!--<canvas id="chartBarTOTAL"></canvas>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12 col-md-5 col-lg-6">-->
+              <!--<div class="interpretation text">-->
+                <!--<span class="comment header">{{ aspectComments[3].header }}</span> {{aspectComments[3].foreword}}-->
+                <!--<span class="accent">{{aspectComments[3].accent}}</span>-->
+                <!--{{aspectComments[3].mainText}}-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
 
         </div>
 
-        <div class="btn-block" >
+        <div *ngIf="hiddenButton" class="btn-block" >
           <button (click)="match()" type="button" class="btn btn-light btn-m">Сравнить профили</button>
         </div>
 
-        <div class="container-fluid value profile" >
+
+        <div *ngIf="valueProfilesForMatching" class="container-fluid value profile" >
           <!--<div class="row">-->
             <!--<div class="col-12 col-xl-12">-->
               <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
+          <div class="match head" >Интерпретация различий в ценностях</div>
               <div *ngIf="chartBar" class="container-fluid chart bar">
                 <canvas id="canvasBar">{{ chartBar }}</canvas>
               </div>
@@ -151,7 +182,67 @@
           <!--</div>-->
         </div>
 
+
+
+        <div *ngIf="valueProfilesForMatching" class="container values-differences report">
+
+          <div class="row head">
+            <div class="col-12 col-xl-12">
+              Отчёт по различиям в ценностях
+              Оцениваемый партнёр: <span style="color: black" >{{usersForMatching[0].name}}</span>
+            </div>
+          </div>
+          <div class="row header">
+            <div class="col-sm-0 col-md-3 col-lg-3 col-xl-2">
+              Аспекты совместимости
+            </div>
+            <div class="col-sm-0 col-md-5 col-lg-4 col-xl-3">
+              Различие в ценности
+            </div>
+            <div class="col-sm-0 col-md-4 col-lg-5 col-xl-7">
+              Комментарий
+            </div>
+          </div>
+          <hr>
+
+
+          <div *ngFor="let scalesComment of scalesComments; let i = index;">
+            <div class="row aspect development">
+              <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2">
+                <div class="scale label">
+                  {{ scaleLabels[i] }}
+                </div>
+              </div>
+
+              <!--<div class="col-sm-12 col-md-5 col-lg-3">-->
+                <!--<div class="container chart">-->
+                  <!--<canvas id="chartBarDevelopment"></canvas>-->
+                <!--</div>-->
+              <!--</div>-->
+              <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3">
+                <div class="container rectangle scale"> <!--[style.border-color]='scaleColor[i]'-->
+                  <div class="head">Различия в ценности</div>
+                  <div [style.color]='scaleLevelColor[i]' class="icon">{{ icon[i] }}</div>
+                  <!--<img class="icons" src={{image}}>-->
+                  <div class="level">{{scalesComment.levelName }}</div>
+
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-md-4 col-lg-5 col-xl-7">
+                <div class="interpretation text">
+                  {{ scalesComments[0].text[0] }}
+                   <span class="accent">{{ scalesComment.text[1] }}</span>
+                  {{ scalesComment.text[2] }}
+                  {{ scalesComment.scale }} {{ scalesComment.text[3] }}
+                </div>
+              </div>
+            </div>
+
+            <hr *ngIf='i + 1'>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="col-sm-12 col-lg-2 ">
@@ -167,6 +258,18 @@
         Здест будет реклама
         <br>
         <br>
+        <p>
+          <img src="https://picsum.photos/200/300?image=1080">
+        </p>
+        <p>
+          <img src="https://picsum.photos/200/300?image=1083">
+        </p>
+        <p>
+          <img src="https://picsum.photos/200/300?image=1080">
+        </p>
+        <p>
+          <img src="https://picsum.photos/200/300?image=1083">
+        </p>
         <p>
           <img src="https://picsum.photos/200/300?image=1080">
         </p>

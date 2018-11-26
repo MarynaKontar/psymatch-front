@@ -3,8 +3,9 @@ import {Observable} from 'rxjs';
 import {ValueCompatibilityAnswers} from './value-compatibility/value-compatibility-answers';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
-import {ValueProfile} from './value-compatibility-profile/value-profile';
+import {ValueProfileIndividual} from './value-compatibility-profile/value-profile';
 import {User} from '../profile/user';
+import {ValueProfileMatching} from '../matching/match-value-compatibility/match-value-compatibility';
 
 @Injectable({
   providedIn: 'root'
@@ -70,13 +71,8 @@ export class ValueCompatibilityService {
     }
 
   /** Get value profile for last test for user from server */
-  getValueProfile(user: User): Observable<ValueProfile> {
-    return this.http.post<ValueProfile>('http://localhost:4200/api/test/value-profile', user);
-  }
-
-  /** Get value profiles from server for last test for two users: principal and "user" */
-  getValueProfiles(user: User): Observable<ValueProfile[]> {
-    return this.http.post<ValueProfile[]>('http://localhost:4200/api/match/value-profile-for-matching', user);
+  getValueProfile(user: User): Observable<ValueProfileIndividual> {
+    return this.http.post<ValueProfileIndividual>('http://localhost:4200/api/test/value-profile', user);
   }
 
   getLinksWithToken() {

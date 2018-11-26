@@ -219,7 +219,7 @@ export class ValueCompatibilityComponent implements OnInit {
 
   afterTestActions() {
     this.router.navigate(['value-profile']);
-    // this.getLinksWithToken();
+    this.getLinksWithToken();
   }
 
   private getLinksWithToken() {
