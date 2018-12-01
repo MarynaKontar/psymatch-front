@@ -25,7 +25,7 @@ export class ValueCompatibilityComponent implements OnInit {
   isNotPassed = true;
   itemState = [];
   token: string;
-  links;
+  public links;
   linkArray = [];
 
   /** For setTimeout. Нужна пауза, чтобы успела пройти анимация 'active => unactive' (пауза должна быть такой же как в анимации "slide") */
@@ -219,7 +219,7 @@ export class ValueCompatibilityComponent implements OnInit {
 
   afterTestActions() {
     this.router.navigate(['value-profile']);
-    this.getLinksWithToken();
+    // this.getLinksWithToken();
   }
 
   private getLinksWithToken() {

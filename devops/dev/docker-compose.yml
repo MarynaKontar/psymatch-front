@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  psycorp-frontend-dev:
+    container_name: psycorp-frontend-dev
+    build: ./
+    volumes:
+      - ../..:/app
+    restart: always
+
+  psycorp-nginx-dev:
+    container_name: psycorp-nginx-dev
+    image: nginx
+    ports:
+      - "80:4200"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ../../:/app
+    restart: always
+
+
+

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ValueProfileComment} from './value-profile';
 import {ValueCompatibilityService} from '../value-compatibility.service';
 import { Chart } from 'chart.js';
 import {Router} from '@angular/router';
+import {ValueCompatibilityComponent} from '../value-compatibility/value-compatibility.component';
 
 @Component({
   selector: 'app-value-compatibility-profile',
@@ -27,14 +28,17 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   comments: ValueProfileComment[] = [];
 
   links;
+  // @Input() valueCompatibilityComponent: ValueCompatibilityComponent;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.router.navigate(['value-profile']);
+    // this.links = this.valueCompatibilityComponent.links;
     this.plotValueProfileBar();
-    // this.getLinksWithToken();
+    this.getLinksWithToken();
   }
   private getLinksWithToken() {
     this.valueCompatibilityService.getLinksWithToken().subscribe(response => {

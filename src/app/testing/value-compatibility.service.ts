@@ -12,11 +12,13 @@ import {ValueProfileMatching} from '../matching/match-value-compatibility/match-
 })
 export class ValueCompatibilityService {
 
+  uri = 'http://localhost:4200/api';
+
   constructor(private http: HttpClient) { }
 
   /** GET tests list from the server */
   getTestList(): Observable<ValueCompatibilityAnswers> {
-    return this.http.get<ValueCompatibilityAnswers>('http://localhost:4200/api/test/initTest');
+    return this.http.get<ValueCompatibilityAnswers>(this.uri + '/test/initTest');
     // .pipe(
     //     catchError(this.handleError('getTestList', []))
     //   );
@@ -45,13 +47,13 @@ export class ValueCompatibilityService {
       headers: headers,
       observe: 'response' as 'response'
     };
-    return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/goal',
+    return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/goal',
       goals, httpOptions);
   }
 
   /** save states to server*/
   saveStateArray(states: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
-    return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/state', states);
+    return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/state', states);
   }
   // saveStateArray(states: ValueCompatibilityAnswers): Observable<HttpResponse<ValueCompatibilityAnswers>> {
   //   const httpOptions = {
@@ -67,15 +69,15 @@ export class ValueCompatibilityService {
 
   /** save qualities to server*/
   saveQualityArray(qualities: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
-    return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/quality', qualities);
+    return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/quality', qualities);
     }
 
   /** Get value profile for last test for user from server */
   getValueProfile(user: User): Observable<ValueProfileIndividual> {
-    return this.http.post<ValueProfileIndividual>('http://localhost:4200/api/test/value-profile', user);
+    return this.http.post<ValueProfileIndividual>(this.uri + '/test/value-profile', user);
   }
 
   getLinksWithToken() {
-    return this.http.get('http://localhost:4200/api/test/generateTokenList');
+    return this.http.get(this.uri + '/test/generateTokenList');
   }
 }
