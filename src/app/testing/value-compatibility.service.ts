@@ -6,15 +6,22 @@ import {ActivatedRoute} from '@angular/router';
 import {ValueProfileIndividual} from './value-compatibility-profile/value-profile';
 import {User} from '../profile/user';
 import {ValueProfileMatching} from '../matching/match-value-compatibility/match-value-compatibility';
+import {API_URL} from '../utils/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValueCompatibilityService {
 
-  uri = 'http://localhost:4200/api';
+  uri = `${API_URL}`;
 
   constructor(private http: HttpClient) { }
+
+  // getUser(id: number): Observable<DataStudent> {
+  //   return this.http.get<DataStudent>(`${API_URL}/student/${id}`, {
+  //     headers: this.headers
+  //   });
+  // }
 
   /** GET tests list from the server */
   getTestList(): Observable<ValueCompatibilityAnswers> {
@@ -28,7 +35,7 @@ export class ValueCompatibilityService {
   // TODO возвращаю Observable<HttpResponse<ValueCompatibilityAnswers>>, а не  Observable<ValueCompatibilityAnswers> потому, что надо
   // не только body, но и header ответа, в котором прийдет токен с бекенда (для записи в localStorage)
   // saveGoalArray(goals: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
-  //   return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/goal', goals);
+  //   return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/goal', goals);
   // }
   saveGoalArray(goals: ValueCompatibilityAnswers, token: string): Observable<HttpResponse<ValueCompatibilityAnswers>> {
     let headers: HttpHeaders;
@@ -61,7 +68,7 @@ export class ValueCompatibilityService {
   //       'AUTHORIZATION': localStorage.getItem('token')}),
   //     observe: 'response' as 'response'
   //   };
-  //   return this.http.post<ValueCompatibilityAnswers>('http://localhost:4200/api/test/state', states, httpOptions);
+  //   return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/state', states, httpOptions);
   //   // .pipe(
   //   //     catchError(this.handleError('getTestList', []))
   //   //   );

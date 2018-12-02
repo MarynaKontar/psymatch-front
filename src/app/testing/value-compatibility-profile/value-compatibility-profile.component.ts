@@ -4,6 +4,7 @@ import {ValueCompatibilityService} from '../value-compatibility.service';
 import { Chart } from 'chart.js';
 import {Router} from '@angular/router';
 import {ValueCompatibilityComponent} from '../value-compatibility/value-compatibility.component';
+import {URL} from '../../utils/config';
 
 @Component({
   selector: 'app-value-compatibility-profile',
@@ -11,7 +12,7 @@ import {ValueCompatibilityComponent} from '../value-compatibility/value-compatib
   styleUrls: ['./value-compatibility-profile.component.scss']
 })
 export class ValueCompatibilityProfileComponent implements OnInit {
-
+  uri = `${URL}`;
 
   //           VALUE PROFILE
   valueProfile;
@@ -44,8 +45,8 @@ export class ValueCompatibilityProfileComponent implements OnInit {
     this.valueCompatibilityService.getLinksWithToken().subscribe(response => {
       this.links = response;
       const l = response;
-      this.links = ['http://localhost:4200/user-test?token=' + l[0], 'http://localhost:4200/user-test?token=' + l[1],
-        'http://localhost:4200/user-test?token=' + l[2]];
+      this.links = [this.uri + '/user-test?token=' + l[0], this.uri + '/user-test?token=' + l[1],
+        this.uri + '/user-test?token=' + l[2]];
     });
   }
 

@@ -5,6 +5,7 @@ import {FormBuilder} from '@angular/forms';
 import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js';
+import {URL} from '../../utils/config';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class ValueCompatibilityComponent implements OnInit {
   token: string;
   public links;
   linkArray = [];
+  uri = `${URL}`;
 
   /** For setTimeout. Нужна пауза, чтобы успела пройти анимация 'active => unactive' (пауза должна быть такой же как в анимации "slide") */
   animationTime = 500;
@@ -64,13 +66,13 @@ export class ValueCompatibilityComponent implements OnInit {
 
   ngOnInit() {
     this.initRoute();
-    this.tests = tests; // TODO можно не ходить на сервер
-    // this.valueCompatibilityService.getTestList()
-    //   .subscribe(data => {
-    //     this.tests = data;
-    //     console.log(data);
-    //     }
-    //   );
+    // this.tests = tests; // TODO можно не ходить на сервер
+    this.valueCompatibilityService.getTestList()
+      .subscribe(data => {
+        this.tests = data;
+        console.log(data);
+        }
+      );
 
     for (let i = 0; i < 15; i++) {
       if (i === 0) {
@@ -226,8 +228,8 @@ export class ValueCompatibilityComponent implements OnInit {
     this.valueCompatibilityService.getLinksWithToken().subscribe(response => {
       this.links = response;
       const l = response;
-      this.links = ['http://localhost:4200/user-test?token=' + l[0], 'http://localhost:4200/user-test?token=' + l[1],
-        'http://localhost:4200/user-test?token=' + l[2]];
+      this.links = [this.uri + '/user-test?token=' + l[0], this.uri + '/user-test?token=' + l[1],
+        this.uri + '/user-test?token=' + l[2]];
     });
   }
 }

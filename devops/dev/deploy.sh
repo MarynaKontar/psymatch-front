@@ -1,4 +1,5 @@
 #! /bin/sh
 
 docker-compose stop
-docker-compose up -d
+docker container prune --force
+#! docker-compose up -d

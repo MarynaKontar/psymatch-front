@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {User} from '../profile/user';
+import {API_URL} from '../utils/config';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,15 +15,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RegistrationService {
+  uri = `${API_URL}`;
   constructor(private http: HttpClient) {
   }
 
 // TODO убрать (проверить, чтобы через интерсептор работало)
   /** POST: add an anonim user (that has token) to the server (database) */
   add(user: User): Observable<User> {
-    const url = 'http://localhost:4200/api/user';
     // take token from localstorage and push it to backend to save new user data(email, password) for that anonim user
-    return this.http.post<User>(url, user, httpOptions);
+    return this.http.post<User>(this.uri + '/user', user, httpOptions);
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
@@ -30,8 +31,7 @@ export class RegistrationService {
 
   /** POST: add a fully new user to the server (database) */
   addNewUser(user: User): Observable<User> {
-    const url = 'http://localhost:4200/api/user/save';
-    return this.http.post<User>(url, user);
+    return this.http.post<User>(this.uri + '/user/save', user);
   }
 
 
