@@ -41,6 +41,7 @@ export interface Area {
   areaQuestion: string;
 }
 
+export const animationTime = 500; // ms
 export let tests = {
   'id': null,
   'userId': null,

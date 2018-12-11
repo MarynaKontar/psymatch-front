@@ -15,23 +15,23 @@ export class MatchValueCompatibilityService {
   /** !!!  Поменять Вместо null - выбранного пользователя !!!
    * Match value-compatibility test for two users and save result to server **/
   matchPearson(): Observable<UserMatch> {
-    return this.http.post<UserMatch>(this.uri + '/match/Pearson', null);
+    return this.http.post<UserMatch>(this.uri + `/match/Pearson`, null);
   }
 
 
   /** !!!  Поменять !!!
    * Match value-compatibility test for two users and save result to server **/
   matchPercent(): Observable<UserMatch> {
-    return this.http.post<UserMatch>(this.uri + '/match/Percent', null);
+    return this.http.post<UserMatch>(this.uri + `/match/Percent`, null);
   }
 
   getUsersForMatching(): Observable<User[]> {
-    return this.http.get<User[]>(this.uri + '/match/getUsersForMatching');
+    return this.http.get<User[]>(this.uri + `/match/getUsersForMatching`);
   }
 
   /** Get value profiles from server for last test for two users: principal and "user" */
   getValueProfilesForMatching(user: User): Observable<ValueProfileMatching> {
-    return this.http.post<ValueProfileMatching>(this.uri + '/match/value-profile-for-matching', user);
+    return this.http.post<ValueProfileMatching>(this.uri + `/match/value-profile-for-matching`, user);
   }
 
 }

@@ -17,6 +17,6 @@ export class LoginService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response' as 'response'
     };
-    return this.http.post<User>(this.uri + '/auth/login', user, httpOptions);
+    return this.http.post<User>(this.uri + `/auth/login`, user, httpOptions);
   }
 }

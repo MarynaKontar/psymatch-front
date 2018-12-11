@@ -23,7 +23,7 @@ export class RegistrationService {
   /** POST: add an anonim user (that has token) to the server (database) */
   add(user: User): Observable<User> {
     // take token from localstorage and push it to backend to save new user data(email, password) for that anonim user
-    return this.http.post<User>(this.uri + '/user', user, httpOptions);
+    return this.http.post<User>(this.uri + `/user`, user, httpOptions);
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
@@ -31,7 +31,7 @@ export class RegistrationService {
 
   /** POST: add a fully new user to the server (database) */
   addNewUser(user: User): Observable<User> {
-    return this.http.post<User>(this.uri + '/user/save', user);
+    return this.http.post<User>(this.uri + `/user/save`, user);
   }
 
 

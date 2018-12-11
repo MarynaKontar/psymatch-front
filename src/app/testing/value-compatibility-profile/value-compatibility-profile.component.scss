@@ -42,10 +42,7 @@
   //font-size: 16px;
 }
 
-.container.links {
-  //padding: 10% 10% 10% 10%;
-  margin: 5% 10% 10% 10%;
-}
+
 
 
 li {
@@ -81,4 +78,14 @@ li.li.commentFive:before {
 }
 li.li.commentSix:before {
   color: rgba(201, 166, 220, 1);
+}
+
+.container.links {
+  //padding: 10% 10% 10% 10%;
+  margin: 5% 10% 10% 10%;
+  text-align: center;
+}
+
+.links.header{
+font-size: larger;
 }

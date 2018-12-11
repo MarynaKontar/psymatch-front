@@ -465,7 +465,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
                        'rgba(255,148,0, 1)',
                        'rgba(255,0,0, 1)'];
         const greyColor = 'rgba(242, 242, 239, 1)';
-        const fontSizeBar = 16;
+        const fontSizeBar = 18;
         //                    CANVASBAR
         this.chartBar = new Chart('canvasBar', {
           type: 'horizontalBar',

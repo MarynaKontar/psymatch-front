@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ValueProfileComment} from './value-profile';
 import {ValueCompatibilityService} from '../value-compatibility.service';
 import { Chart } from 'chart.js';
 import {Router} from '@angular/router';
-import {ValueCompatibilityComponent} from '../value-compatibility/value-compatibility.component';
 import {URL} from '../../utils/config';
+
 
 @Component({
   selector: 'app-value-compatibility-profile',
@@ -16,7 +16,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
 
   //           VALUE PROFILE
   valueProfile;
-  isValueProfileCanSee = true;
+  isValueProfileCanSee = false;
 
   //           FIGURES
   /** Arrays for different value-compatibility figures*/
@@ -28,26 +28,29 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   //          COMMENTS
   comments: ValueProfileComment[] = [];
 
+  // links = [this.uri + '/user-test?token=', this.uri + '/user-test?token=' ,
+  //   this.uri + '/user-test?token='];
   links;
-  // @Input() valueCompatibilityComponent: ValueCompatibilityComponent;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
               private router: Router) {
   }
 
   ngOnInit() {
-    this.router.navigate(['value-profile']);
+    // this.router.navigate(['value-profile']);
     // this.links = this.valueCompatibilityComponent.links;
-    this.plotValueProfileBar();
-    this.getLinksWithToken();
+    setTimeout(() => {
+      this.plotValueProfileBar();
+      this.getFriendsTokens();
+    }, 1000); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
   }
-  private getLinksWithToken() {
-    this.valueCompatibilityService.getLinksWithToken().subscribe(response => {
-      this.links = response;
-      const l = response;
-      this.links = [this.uri + '/user-test?token=' + l[0], this.uri + '/user-test?token=' + l[1],
-        this.uri + '/user-test?token=' + l[2]];
-    });
+
+  private getFriendsTokens() {
+    const tokens = this.valueCompatibilityService.getFriendsTokens();
+    if (tokens) {
+      this.links = [this.uri + '/user-test?token=' + tokens[0], this.uri + '/user-test?token=' + tokens[1],
+                    this.uri + '/user-test?token=' + tokens[2]];
+    }
   }
 
   //            !!!!!!!!!!! FIGURE !!!!!!!!!!!1
@@ -63,6 +66,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
         // this.comments.push(valueProfileElement.comment);
       });
       this.comments = response.valueProfileComments;
+      this.isValueProfileCanSee = true;
 
       console.log('response: ');
       console.log(response);
@@ -82,7 +86,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
       const greyColor = 'rgba(242, 242, 239, 1)';
       const blackColor = 'rgba(0, 0, 10, 1)';
       const fontSizeDoughnut = 16;
-      const fontSizeBar = 16;
+      const fontSizeBar = 18;
 
       // max value of x axe (ближайшее большее кратное 5)
       let maxXAxes = Math.ceil((Math.max.apply(null, match) + 0.5) / 10) * 10;

@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
-import {Scale, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
+import {animationTime, Scale, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormBuilder} from '@angular/forms';
 import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -26,12 +26,12 @@ export class ValueCompatibilityComponent implements OnInit {
   isNotPassed = true;
   itemState = [];
   token: string;
-  public links;
+  @Output() links;
   linkArray = [];
   uri = `${URL}`;
 
   /** For setTimeout. Нужна пауза, чтобы успела пройти анимация 'active => unactive' (пауза должна быть такой же как в анимации "slide") */
-  animationTime = 500;
+  animationTime = animationTime;
 
   // data: Observable<ValueCompatibilityAnswers>;
 
@@ -81,6 +81,7 @@ export class ValueCompatibilityComponent implements OnInit {
         this.itemState[i] = 'unactive';
       }
     }
+    // this.createLinksWithToken();
   }
 
 
@@ -220,16 +221,11 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
   afterTestActions() {
+    this.createFriendsTokens();
     this.router.navigate(['value-profile']);
-    // this.getLinksWithToken();
   }
 
-  private getLinksWithToken() {
-    this.valueCompatibilityService.getLinksWithToken().subscribe(response => {
-      this.links = response;
-      const l = response;
-      this.links = [this.uri + '/user-test?token=' + l[0], this.uri + '/user-test?token=' + l[1],
-        this.uri + '/user-test?token=' + l[2]];
-    });
+  private createFriendsTokens() {
+    this.valueCompatibilityService.createFriendsTokens();
   }
 }

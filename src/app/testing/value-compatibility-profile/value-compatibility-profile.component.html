@@ -1,143 +1,5 @@
 
-
-<!--<div *ngIf="isValueProfileCanSee" class="container-fluid value profile" >-->
-
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-xl-12">-->
-      <!--&lt;!&ndash;For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)&ndash;&gt;-->
-      <!--<div *ngIf="chartBar" class="container-fluid chart bar">-->
-        <!--<canvas id="canvasBar">{{ chartBar }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<hr>-->
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-sm-5 col-xl-3">-->
-      <!--<div *ngIf="chartDoughnutSafety" class="container chart">-->
-        <!--<canvas id="chartDoughnutSafety">{{ chartDoughnutSafety }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-sm-7 col-xl-9">-->
-      <!--<div *ngIf="commentOne" class="container comment">-->
-        <!--<p><b>{{ commentOne.head }}</b> {{ commentOne.header }}-->
-          <!--&lt;!&ndash;<a data-toggle="collapse" href="#collapseCommentOne" aria-expanded="false" aria-controls="collapseCommentOne"> ... >></a>&ndash;&gt;-->
-        <!--</p>-->
-        <!--&lt;!&ndash;<div class="collapse"  id="collapseCommentOne">&ndash;&gt;-->
-        <!--<div *ngFor="let list of commentOne.list">-->
-          <!--<li class="li commentOne">{{ list }}</li>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<hr>-->
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-sm-5 col-xl-3">-->
-      <!--<div *ngIf="chartDoughnutComfort" class="container chart">-->
-        <!--<canvas id="chartDoughnutComfort">{{chartDoughnutComfort }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-sm-7 col-xl-9">-->
-      <!--<div *ngIf="commentTwo" class="container comment">-->
-        <!--<p><b>{{ commentTwo.head }}</b> {{ commentTwo.header }}-->
-          <!--&lt;!&ndash;<a data-toggle="collapse" href="#collapseCommentTwo" aria-expanded="false" aria-controls="collapseCommentTwo"> ... >></a>&ndash;&gt;-->
-        <!--</p>-->
-        <!--&lt;!&ndash;<div class="collapse"  id="collapseCommentTwo">&ndash;&gt;-->
-        <!--<div *ngFor="let list of commentTwo.list">-->
-          <!--<li class="li commentTwo">{{ list }}</li>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<hr>-->
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-sm-5 col-xl-3">-->
-      <!--<div *ngIf="chartDoughnutAchievements" class="container chart">-->
-        <!--<canvas id="chartDoughnutAchievements">{{ chartDoughnutAchievements }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-sm-7 col-xl-9">-->
-      <!--<div *ngIf="commentThree" class="container comment">-->
-        <!--<p><b>{{ commentThree.head }}</b> {{ commentThree.header }}-->
-          <!--&lt;!&ndash;<a data-toggle="collapse" href="#collapseCommentThree" aria-expanded="false" aria-controls="collapseCommentThree"> ... >></a>&ndash;&gt;-->
-        <!--</p>-->
-        <!--&lt;!&ndash;<div class="collapse"  id="collapseCommentThree">&ndash;&gt;-->
-        <!--<div *ngFor="let list of commentThree.list">-->
-          <!--<li class="li commentThree">{{ list }}</li>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<hr>-->
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-sm-5 col-xl-4">-->
-      <!--<div *ngIf="chartDoughnutHarmoniousRelationship" class="container chart">-->
-        <!--<canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnutHarmoniousRelationship }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-sm-7 col-xl-8">-->
-      <!--<div *ngIf="commentFour" class="container comment">-->
-        <!--<p><b>{{ commentFour.head }}</b> {{ commentFour.header }}</p>-->
-        <!--<div *ngFor="let list of commentFour.list">-->
-          <!--<li class="li commentFour">{{ list }}</li>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<hr>-->
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-sm-5 col-xl-4">-->
-      <!--<div *ngIf="chartDoughnutCreativity" class="container chart">-->
-        <!--<canvas id="chartDoughnutCreativity">{{ chartDoughnutCreativity }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-sm-7 col-xl-8">-->
-      <!--<div *ngIf="commentFive" class="container comment">-->
-        <!--<p><b>{{ commentFive.head }}</b> {{ commentFive.header }}</p>-->
-        <!--<div *ngFor="let list of commentFive.list">-->
-          <!--<li class="li commentFive">{{ list }}</li>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<hr>-->
-  <!--<div class="row">-->
-    <!--<div class="col-12 col-sm-5 col-xl-4">-->
-      <!--<div *ngIf="chartDoughnutDevelopment" class="container chart">-->
-        <!--<canvas id="chartDoughnutDevelopment">{{ chartDoughnutDevelopment }}</canvas>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="col-12 col-sm-7 col-xl-8">-->
-      <!--<div *ngIf="commentSix" class="container comment">-->
-        <!--<p><b>{{ commentSix.head }}</b> {{ commentSix.header }}</p>-->
-        <!--<div *ngFor="let list of commentSix.list">-->
-          <!--<li class="li commentSix">{{ list }}</li>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-<!--</div>-->
-
-
-
-
-
-
-
-
-
-
-
-<div *ngIf="valueProfile" class="container-fluid value profile" >
+<div class="container-fluid value profile" >
 
   <div class="row">
     <div class="col-12 col-xl-12">
@@ -148,7 +10,7 @@
     </div>
   </div>
 
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
   <div class="row">
     <div class="col-12 col-sm-5 col-xl-4">
       <div class="container chart">
@@ -170,7 +32,7 @@
     </div>
   </div>
 
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
   <div class="row">
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
@@ -192,7 +54,7 @@
     </div>
   </div>
 
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
   <div class="row">
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
@@ -214,7 +76,7 @@
     </div>
   </div>
 
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
   <div class="row">
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
@@ -232,7 +94,7 @@
     </div>
   </div>
 
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
   <div class="row">
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
@@ -250,7 +112,7 @@
     </div>
   </div>
 
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
   <div class="row">
     <div class="col-12 col-sm-5 col-xl-4">
       <div *ngIf="chartDoughnuts" class="container chart">
@@ -267,7 +129,15 @@
       </div>
     </div>
   </div>
-  <hr *ngIf="chartDoughnuts && comments">
+  <hr *ngIf="valueProfile && chartDoughnuts && comments">
+
+
+  <div *ngIf="links" class="container links">
+    <div class="links header">Перешли эти ссылки троим друзьям и узнай, совместимы ли вы!</div>
+    <div class="links" *ngFor="let link of links; let i = index">
+      <a  href='{{link}}'>{{ link }}</a>
+    </div>
+  </div>
 
 </div>
 
@@ -306,9 +176,137 @@
 
 
 
-<div *ngIf="links" class="container links">
-  <div class="links header">Перешли эти ссылки троим друзьям и узнай, совместимы ли вы!</div>
-  <div class="links" *ngFor="let link of links; let i = index">
-    {{ link }}
-  </div>
-</div>
+
+
+
+
+
+
+
+<!--<div *ngIf="isValueProfileCanSee" class="container-fluid value profile" >-->
+
+<!--<div class="row">-->
+<!--<div class="col-12 col-xl-12">-->
+<!--&lt;!&ndash;For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)&ndash;&gt;-->
+<!--<div *ngIf="chartBar" class="container-fluid chart bar">-->
+<!--<canvas id="canvasBar">{{ chartBar }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-12 col-sm-5 col-xl-3">-->
+<!--<div *ngIf="chartDoughnutSafety" class="container chart">-->
+<!--<canvas id="chartDoughnutSafety">{{ chartDoughnutSafety }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-12 col-sm-7 col-xl-9">-->
+<!--<div *ngIf="commentOne" class="container comment">-->
+<!--<p><b>{{ commentOne.head }}</b> {{ commentOne.header }}-->
+<!--&lt;!&ndash;<a data-toggle="collapse" href="#collapseCommentOne" aria-expanded="false" aria-controls="collapseCommentOne"> ... >></a>&ndash;&gt;-->
+<!--</p>-->
+<!--&lt;!&ndash;<div class="collapse"  id="collapseCommentOne">&ndash;&gt;-->
+<!--<div *ngFor="let list of commentOne.list">-->
+<!--<li class="li commentOne">{{ list }}</li>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-12 col-sm-5 col-xl-3">-->
+<!--<div *ngIf="chartDoughnutComfort" class="container chart">-->
+<!--<canvas id="chartDoughnutComfort">{{chartDoughnutComfort }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-12 col-sm-7 col-xl-9">-->
+<!--<div *ngIf="commentTwo" class="container comment">-->
+<!--<p><b>{{ commentTwo.head }}</b> {{ commentTwo.header }}-->
+<!--&lt;!&ndash;<a data-toggle="collapse" href="#collapseCommentTwo" aria-expanded="false" aria-controls="collapseCommentTwo"> ... >></a>&ndash;&gt;-->
+<!--</p>-->
+<!--&lt;!&ndash;<div class="collapse"  id="collapseCommentTwo">&ndash;&gt;-->
+<!--<div *ngFor="let list of commentTwo.list">-->
+<!--<li class="li commentTwo">{{ list }}</li>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-12 col-sm-5 col-xl-3">-->
+<!--<div *ngIf="chartDoughnutAchievements" class="container chart">-->
+<!--<canvas id="chartDoughnutAchievements">{{ chartDoughnutAchievements }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-12 col-sm-7 col-xl-9">-->
+<!--<div *ngIf="commentThree" class="container comment">-->
+<!--<p><b>{{ commentThree.head }}</b> {{ commentThree.header }}-->
+<!--&lt;!&ndash;<a data-toggle="collapse" href="#collapseCommentThree" aria-expanded="false" aria-controls="collapseCommentThree"> ... >></a>&ndash;&gt;-->
+<!--</p>-->
+<!--&lt;!&ndash;<div class="collapse"  id="collapseCommentThree">&ndash;&gt;-->
+<!--<div *ngFor="let list of commentThree.list">-->
+<!--<li class="li commentThree">{{ list }}</li>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-12 col-sm-5 col-xl-4">-->
+<!--<div *ngIf="chartDoughnutHarmoniousRelationship" class="container chart">-->
+<!--<canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnutHarmoniousRelationship }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-12 col-sm-7 col-xl-8">-->
+<!--<div *ngIf="commentFour" class="container comment">-->
+<!--<p><b>{{ commentFour.head }}</b> {{ commentFour.header }}</p>-->
+<!--<div *ngFor="let list of commentFour.list">-->
+<!--<li class="li commentFour">{{ list }}</li>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-12 col-sm-5 col-xl-4">-->
+<!--<div *ngIf="chartDoughnutCreativity" class="container chart">-->
+<!--<canvas id="chartDoughnutCreativity">{{ chartDoughnutCreativity }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-12 col-sm-7 col-xl-8">-->
+<!--<div *ngIf="commentFive" class="container comment">-->
+<!--<p><b>{{ commentFive.head }}</b> {{ commentFive.header }}</p>-->
+<!--<div *ngFor="let list of commentFive.list">-->
+<!--<li class="li commentFive">{{ list }}</li>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr>-->
+<!--<div class="row">-->
+<!--<div class="col-12 col-sm-5 col-xl-4">-->
+<!--<div *ngIf="chartDoughnutDevelopment" class="container chart">-->
+<!--<canvas id="chartDoughnutDevelopment">{{ chartDoughnutDevelopment }}</canvas>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-12 col-sm-7 col-xl-8">-->
+<!--<div *ngIf="commentSix" class="container comment">-->
+<!--<p><b>{{ commentSix.head }}</b> {{ commentSix.header }}</p>-->
+<!--<div *ngFor="let list of commentSix.list">-->
+<!--<li class="li commentSix">{{ list }}</li>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+

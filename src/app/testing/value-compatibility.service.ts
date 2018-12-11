@@ -25,7 +25,7 @@ export class ValueCompatibilityService {
 
   /** GET tests list from the server */
   getTestList(): Observable<ValueCompatibilityAnswers> {
-    return this.http.get<ValueCompatibilityAnswers>(this.uri + '/test/initTest');
+    return this.http.get<ValueCompatibilityAnswers>(this.uri + `/test/initTest`);
     // .pipe(
     //     catchError(this.handleError('getTestList', []))
     //   );
@@ -54,13 +54,13 @@ export class ValueCompatibilityService {
       headers: headers,
       observe: 'response' as 'response'
     };
-    return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/goal',
+    return this.http.post<ValueCompatibilityAnswers>(this.uri + `/test/goal`,
       goals, httpOptions);
   }
 
   /** save states to server*/
   saveStateArray(states: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
-    return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/state', states);
+    return this.http.post<ValueCompatibilityAnswers>(this.uri + `/test/state`, states);
   }
   // saveStateArray(states: ValueCompatibilityAnswers): Observable<HttpResponse<ValueCompatibilityAnswers>> {
   //   const httpOptions = {
@@ -76,15 +76,25 @@ export class ValueCompatibilityService {
 
   /** save qualities to server*/
   saveQualityArray(qualities: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
-    return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/quality', qualities);
+    return this.http.post<ValueCompatibilityAnswers>(this.uri + `/test/quality`, qualities);
     }
 
   /** Get value profile for last test for user from server */
   getValueProfile(user: User): Observable<ValueProfileIndividual> {
-    return this.http.post<ValueProfileIndividual>(this.uri + '/test/value-profile', user);
+    return this.http.post<ValueProfileIndividual>(this.uri + `/test/value-profile`, user);
   }
 
-  getLinksWithToken() {
-    return this.http.get(this.uri + '/test/generateTokenList');
+  createFriendsTokens(): void {
+    this.http.get(this.uri + `/test/generateTokenList`).subscribe(
+      tokens => {
+        localStorage.setItem('friendsTokens', JSON.stringify(tokens));
+      }
+    );
+  }
+
+  getFriendsTokens() {
+    if (localStorage.getItem('friendsTokens')) {
+      return  JSON.parse(localStorage.getItem('friendsTokens'));
+    }
   }
 }
