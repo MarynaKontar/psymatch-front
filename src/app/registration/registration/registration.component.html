@@ -1,10 +1,16 @@
-<div class="row">
-  <div class="col-md-6 mx-auto">
-    <div class="card rounded-0">
-      <div class="card-header">
-        <h3 class="mb-0">Register</h3>
+<!----------MODAL--------->
+<button class="btn btn-primary" id="openModalRegistration" data-toggle="modal" #openModalRegistration data-toggle="modal" [hidden]="true" data-target="#registration">Зарегистрироваться</button>
+
+<div class="modal fade" id="registration" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registrationModalLabel">Registration</h5>
+        <!--<button type="button" class="close" aria-label="Close">-->
+        <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
       </div>
-      <div class="card-body">
+      <div class="modal-body">
         <form class="form" >
           <div class="form-group">
             <label for="name">Name</label>
@@ -18,10 +24,49 @@
             <label for="password">Password</label>
             <input [(ngModel)]="registeredUser.password" id="password" name="password" type="password" class="form-control rounded-0" placeholder="password">
           </div>
-          <button *ngIf="isNew()" (click)="registerNewUser()" type="button" class="btn btn-primary float-right">Register New</button>
-          <button *ngIf="!isNew()" (click)="registerUser()" type="button" class="btn btn-primary float-right">Register</button>
         </form>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <button (click)="registerUser()" type="button" data-dismiss="modal" class="btn btn-primary float-right">Register</button>
+        <!--<button *ngIf="isNew()" (click)="registerNewUser()" type="button" class="btn btn-primary float-right">Register New</button>-->
+        <!--<button *ngIf="!isNew()" (click)="registerUser()" type="button" class="btn btn-primary float-right">Register</button>-->
       </div>
     </div>
   </div>
 </div>
+
+
+
+<!----------NOT MODAL--------->
+<!--<div class="row">-->
+  <!--<div class="col-md-6 mx-auto">-->
+    <!--<div class="card rounded-0">-->
+      <!--<div class="card-header">-->
+        <!--<h3 class="mb-0">Register</h3>-->
+      <!--</div>-->
+      <!--<div class="card-body">-->
+        <!--<form class="form" >-->
+          <!--<div class="form-group">-->
+            <!--<label for="name">Name</label>-->
+            <!--<input [(ngModel)]="registeredUser.name" id="name" name="name" type="text" class="form-control rounded-0" required placeholder="name">-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="email">Email</label>-->
+            <!--<input [(ngModel)]="registeredUser.email" id="email" name="email" type="email" class="form-control rounded-0" required placeholder="email">-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label for="password">Password</label>-->
+            <!--<input [(ngModel)]="registeredUser.password" id="password" name="password" type="password" class="form-control rounded-0" placeholder="password">-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<button *ngIf="isNew()" (click)="registerNewUser()" type="button" class="btn btn-primary float-right">Register New</button>&ndash;&gt;-->
+          <!--&lt;!&ndash;<button *ngIf="!isNew()" (click)="registerUser()" type="button" class="btn btn-primary float-right">Register</button>&ndash;&gt;-->
+          <!--<button (click)="registerUser()" type="button" class="btn btn-primary float-right">Register</button>-->
+        <!--</form>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+

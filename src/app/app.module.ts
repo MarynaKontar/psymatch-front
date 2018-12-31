@@ -14,13 +14,22 @@ import {MatchingModule} from './matching/matching.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {httpInterceptorProviders} from './http-interceptors/interceptors';
+import { SendingTokensComponent } from './sending-tokens/sending-tokens.component';
+import { AboutProjectComponent } from './about-project/about-project.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    AboutProjectComponent,
+    HowItWorksComponent,
+    ErrorPageComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

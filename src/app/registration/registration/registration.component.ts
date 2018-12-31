@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../profile/user';
 import {RegistrationService} from '../registration.service';
 
@@ -8,23 +8,32 @@ import {RegistrationService} from '../registration.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild('openModalRegistration') openModal: ElementRef; // in html <button id="openModalAgeGenderRegistration" ...>
   registeredUser = new User();
+  isNeedToBeRegistered = false;
   constructor(private registrationService: RegistrationService) { }
 
   ngOnInit() {
+    console.log('isNeedToBeRegistered ngOnInit: ' + this.isNeedToBeRegistered);
+    if (this.isNew()) {
+      this.openModal.nativeElement.click(); // @ViewChild
+    }
   }
+
+  // registerNewUser() {
+  //   this.registrationService.registerNewUser(<User> this.registeredUser)
+  //     .subscribe(data => this.registeredUser = data);
+  // }
 
   registerUser() {
-    this.registrationService.add(<User> this.registeredUser)
+    this.registrationService.registerNewUser(<User> this.registeredUser)
       .subscribe(data => this.registeredUser = data);
-  }
-
-  registerNewUser() {
-    this.registrationService.addNewUser(<User> this.registeredUser)
-      .subscribe(data => this.registeredUser = data);
+    this.isNeedToBeRegistered = this.isNew();
+    console.log('isNeedToBeRegistered registerUser: ' + this.isNeedToBeRegistered);
   }
 
   isNew(): boolean {
-    return localStorage.getItem('token') == null;
+    console.log('isNew: ' + this.registrationService.isNew());
+    return this.registrationService.isNew();
   }
 }

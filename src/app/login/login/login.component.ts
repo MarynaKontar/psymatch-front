@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../profile/user';
 import {LoginService} from '../login.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RegistrationService} from '../../registration/registration.service';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +11,42 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
-  constructor(private loginService: LoginService, private router: Router) { }
+  returnUrl: string;
+  constructor(private loginService: LoginService,
+              private registrationService: RegistrationService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
+    // reset login status
+    this.logout();
     this.loginService.login(this.user)
       .subscribe(loggedUser => {
         this.user = loggedUser.body;
+        console.log(this.user);
+        console.log(loggedUser);
+
+        // TODO где лучше это делать? Здесь или в сервисе? В сервисе в методах надо subscribe, так что наверное лучше здесь.
         localStorage.setItem('token', loggedUser.headers.get('AUTHORIZATION'));
-        console.log('token', loggedUser.headers.get('AUTHORIZATION'));
-      });
-    this.router.navigate(['home']); // TODO возвращать на пред. стр.
+        localStorage.setItem('haveAgeAndGender', 'true');
+          this.registrationService.setIsRegistered();
+        // console.log('haveAgeAndGender: ', (this.user.age != null && this.user.gender != null) ? 'true' : 'false');
+        // console.log('token', loggedUser.headers.get('AUTHORIZATION'));
+      },
+        error => {
+          // login failed so display error
+
+        });
+    this.router.navigateByUrl(this.returnUrl); // TODO возвращать на пред. стр.
   }
 
   logout() {
-    localStorage.removeItem('token');
-    // localStorage.removeItem("expires_at");
+    this.loginService.logout();
   }
 
 }

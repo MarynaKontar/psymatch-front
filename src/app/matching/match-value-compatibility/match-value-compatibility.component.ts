@@ -7,6 +7,7 @@ import {ValueCompatibilityService} from '../../testing/value-compatibility.servi
 import {User} from '../../profile/user';
 import {AspectComment, ValuesDifferencesComment, ScaleLevel, AspectLevel} from './match-value-compatibility';
 import {DomSanitizer} from '@angular/platform-browser';
+import {LoginService} from '../../login/login.service';
 
 @Component({
   selector: 'app-match-value-compatibility',
@@ -89,13 +90,16 @@ export class MatchValueCompatibilityComponent implements OnInit {
 
   constructor(private matchValueCompatibilityService: MatchValueCompatibilityService,
               private valueCompatibilityService: ValueCompatibilityService,
+              private loginService: LoginService,
               private router: Router,
               private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    this.getUsersForMatching();
-    this.router.navigate(['match']);
-    this.plotRectangle();
+    if (this.loginService.ifHaveTokenInLocalStorage()) {
+      this.getUsersForMatching();
+      this.router.navigate(['match']);
+      this.plotRectangle();
+    }
   }
 
   private getUsersForMatching() {
@@ -145,8 +149,8 @@ export class MatchValueCompatibilityComponent implements OnInit {
                                    + this.valueCompatibilityReportColors[colorNumber] + ' 100%)');
         // sanitizer.bypassSecurityTrustStyle нужен для того, чтобы не выводило Warning о style security
 
-           this.boxShadow[i] = this.sanitizer.bypassSecurityTrustStyle(
-            '15px 15px 20px ' + this.valueCompatibilityReportColorsTransparent08[colorNumber]);
+       this.boxShadow[i] = this.sanitizer.bypassSecurityTrustStyle(
+        '15px 15px 20px ' + this.valueCompatibilityReportColorsTransparent08[colorNumber]);
 
       //   this.currentStyles[i] = {
       //     'backgroundColor': this.sanitizer.bypassSecurityTrustStyle(

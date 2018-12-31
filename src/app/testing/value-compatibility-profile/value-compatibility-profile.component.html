@@ -2,144 +2,150 @@
 <div class="container-fluid value profile" >
 
   <div class="row">
-    <div class="col-12 col-xl-12">
-      <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
-      <div *ngIf="chartBar" class="container-fluid chart bar">
-        <canvas id="canvasBar">{{ chartBar }}</canvas>
-      </div>
-    </div>
-  </div>
 
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-xl-4">
-      <div class="container chart">
-        <canvas id="chartDoughnutSafety">{{ chartDoughnuts[0] }}</canvas>
-        <div class="head">{{ comments[5].head }}</div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-7 col-xl-8">
-      <div *ngIf="comments" class="container comment">
-        <p>{{ comments[5].header }}
-          <!--<a data-toggle="collapse" href="#collapseCommentOne" aria-expanded="false" aria-controls="collapseCommentOne"> ... >></a>-->
-        </p>
-        <!--<div class="collapse"  id="collapseCommentOne">-->
-        <div *ngFor="let list of comments[5].list;">
-          <li class="li commentOne">{{ list }}</li>
+    <div class="col-sm-12 col-lg-7">
+      <div class="container value profile content">
+        <div class="row">
+          <div class="col-12 col-xl-12">
+            <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
+            <div *ngIf="chartBar" class="container-fluid chart bar">
+              <canvas id="canvasBar">{{ chartBar }}</canvas>
+            </div>
+          </div>
         </div>
-        <!--</div>-->
-      </div>
-    </div>
-  </div>
 
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-xl-4">
-      <div *ngIf="chartDoughnuts" class="container chart">
-        <canvas id="chartDoughnutComfort">{{ chartDoughnuts[1] }}</canvas>
-        <div class="head">{{ comments[4].head }}</div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-7 col-xl-8">
-      <div *ngIf="comments" class="container comment">
-        <p>{{ comments[4].header }}
-          <!--<a data-toggle="collapse" href="#collapseCommentTwo" aria-expanded="false" aria-controls="collapseCommentTwo"> ... >></a>-->
-        </p>
-        <!--<div class="collapse"  id="collapseCommentTwo">-->
-        <div *ngFor="let list of comments[4].list">
-          <li class="li commentTwo">{{ list }}</li>
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-xl-4">
+            <div class="container chart">
+              <canvas id="chartDoughnutSafety">{{ chartDoughnuts[0] }}</canvas>
+              <div class="head">{{ comments[5].head }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-xl-8">
+            <div *ngIf="comments" class="container comment">
+              <p>{{ comments[5].header }}
+                <!--<a data-toggle="collapse" href="#collapseCommentOne" aria-expanded="false" aria-controls="collapseCommentOne"> ... >></a>-->
+              </p>
+              <!--<div class="collapse"  id="collapseCommentOne">-->
+              <div *ngFor="let list of comments[5].list;">
+                <li class="li commentOne">{{ list }}</li>
+              </div>
+              <!--</div>-->
+            </div>
+          </div>
         </div>
-        <!--</div>-->
-      </div>
-    </div>
-  </div>
 
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-xl-4">
-      <div *ngIf="chartDoughnuts" class="container chart">
-        <canvas id="chartDoughnutAchievements">{{ chartDoughnuts[2] }}</canvas>
-        <div class="head">{{ comments[3].head }}</div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-7 col-xl-8">
-      <div *ngIf="comments" class="container comment">
-        <p>{{ comments[3].header }}
-          <!--<a data-toggle="collapse" href="#collapseCommentThree" aria-expanded="false" aria-controls="collapseCommentThree"> ... >></a>-->
-        </p>
-        <!--<div class="collapse"  id="collapseCommentThree">-->
-        <div *ngFor="let list of comments[3].list">
-          <li class="li commentThree">{{ list }}</li>
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-xl-4">
+            <div *ngIf="chartDoughnuts" class="container chart">
+              <canvas id="chartDoughnutComfort">{{ chartDoughnuts[1] }}</canvas>
+              <div class="head">{{ comments[4].head }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-xl-8">
+            <div *ngIf="comments" class="container comment">
+              <p>{{ comments[4].header }}
+                <!--<a data-toggle="collapse" href="#collapseCommentTwo" aria-expanded="false" aria-controls="collapseCommentTwo"> ... >></a>-->
+              </p>
+              <!--<div class="collapse"  id="collapseCommentTwo">-->
+              <div *ngFor="let list of comments[4].list">
+                <li class="li commentTwo">{{ list }}</li>
+              </div>
+              <!--</div>-->
+            </div>
+          </div>
         </div>
-        <!--</div>-->
-      </div>
-    </div>
-  </div>
 
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-xl-4">
-      <div *ngIf="chartDoughnuts" class="container chart">
-        <canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnuts[3] }}</canvas>
-        <div class="head">{{ comments[2].head }}</div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-7 col-xl-8">
-      <div *ngIf="comments" class="container comment">
-        <p>{{ comments[2].header }}</p>
-        <div *ngFor="let list of comments[2].list">
-          <li class="li commentFour">{{ list }}</li>
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-xl-4">
+            <div *ngIf="chartDoughnuts" class="container chart">
+              <canvas id="chartDoughnutAchievements">{{ chartDoughnuts[2] }}</canvas>
+              <div class="head">{{ comments[3].head }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-xl-8">
+            <div *ngIf="comments" class="container comment">
+              <p>{{ comments[3].header }}
+                <!--<a data-toggle="collapse" href="#collapseCommentThree" aria-expanded="false" aria-controls="collapseCommentThree"> ... >></a>-->
+              </p>
+              <!--<div class="collapse"  id="collapseCommentThree">-->
+              <div *ngFor="let list of comments[3].list">
+                <li class="li commentThree">{{ list }}</li>
+              </div>
+              <!--</div>-->
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-xl-4">
-      <div *ngIf="chartDoughnuts" class="container chart">
-        <canvas id="chartDoughnutCreativity">{{ chartDoughnuts[4] }}</canvas>
-        <div class="head">{{ comments[1].head }}</div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-7 col-xl-8">
-      <div *ngIf="comments" class="container comment">
-        <p>{{ comments[1].header }}</p>
-        <div *ngFor="let list of comments[1].list">
-          <li class="li commentFive">{{ list }}</li>
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-xl-4">
+            <div *ngIf="chartDoughnuts" class="container chart">
+              <canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnuts[3] }}</canvas>
+              <div class="head">{{ comments[2].head }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-xl-8">
+            <div *ngIf="comments" class="container comment">
+              <p>{{ comments[2].header }}</p>
+              <div *ngFor="let list of comments[2].list">
+                <li class="li commentFour">{{ list }}</li>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
-  <div class="row">
-    <div class="col-12 col-sm-5 col-xl-4">
-      <div *ngIf="chartDoughnuts" class="container chart">
-        <canvas id="chartDoughnutDevelopment">{{ chartDoughnuts[5] }}</canvas>
-        <div class="head">{{ comments[0].head }}</div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-7 col-xl-8">
-      <div *ngIf="comments" class="container comment">
-        <p>{{ comments[0].header }}</p>
-        <div *ngFor="let list of comments[0].list">
-          <li class="li commentSix">{{ list }}</li>
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-xl-4">
+            <div *ngIf="chartDoughnuts" class="container chart">
+              <canvas id="chartDoughnutCreativity">{{ chartDoughnuts[4] }}</canvas>
+              <div class="head">{{ comments[1].head }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-xl-8">
+            <div *ngIf="comments" class="container comment">
+              <p>{{ comments[1].header }}</p>
+              <div *ngFor="let list of comments[1].list">
+                <li class="li commentFive">{{ list }}</li>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <div class="row">
+          <div class="col-12 col-sm-5 col-xl-4">
+            <div *ngIf="chartDoughnuts" class="container chart">
+              <canvas id="chartDoughnutDevelopment">{{ chartDoughnuts[5] }}</canvas>
+              <div class="head">{{ comments[0].head }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-xl-8">
+            <div *ngIf="comments" class="container comment">
+              <p>{{ comments[0].header }}</p>
+              <div *ngFor="let list of comments[0].list">
+                <li class="li commentSix">{{ list }}</li>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr *ngIf="valueProfile && chartDoughnuts && comments">
       </div>
     </div>
-  </div>
-  <hr *ngIf="valueProfile && chartDoughnuts && comments">
 
-
-  <div *ngIf="links" class="container links">
-    <div class="links header">Перешли эти ссылки троим друзьям и узнай, совместимы ли вы!</div>
-    <div class="links" *ngFor="let link of links; let i = index">
-      <a  href='{{link}}'>{{ link }}</a>
+    <div *ngIf="isValueProfileCanSee" class="col-sm-12 col-lg-5">
+      <app-sending-tokens></app-sending-tokens>
     </div>
+
   </div>
+
 
 </div>
+<app-age-gender-registration></app-age-gender-registration>
 
 
 

@@ -1,4 +1,4 @@
-
+<app-registration></app-registration>
 <div class="container-fluid match" @fade>
 
   <div class="row">
@@ -165,7 +165,7 @@
 
         </div>
 
-        <div *ngIf="hiddenButton" class="btn-block" >
+        <div *ngIf="!hiddenButton" class="btn-block" >
           <button (click)="match()" type="button" class="btn btn-light btn-m">Сравнить профили</button>
         </div>
 
@@ -255,7 +255,7 @@
         <br>
         <br>
         <br>
-        Здест будет реклама
+        Здесь будет реклама
         <br>
         <br>
         <p>

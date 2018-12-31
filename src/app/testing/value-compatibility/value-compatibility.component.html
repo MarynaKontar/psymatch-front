@@ -1,3 +1,5 @@
+
+
 <div class="container-fluid tests">
   <!--                                     GOALS                                      -->
   <div *ngIf="tests" class="container test" @fade [hidden]="isGoalsDone">
@@ -125,3 +127,6 @@
     <!--{{ link }}-->
   <!--</div>-->
 <!--</div>-->
+<div class="test another-user">
+  <button (click)="testAnotherUser()" type="button" class="test-another-user btn btn-primary float-right">Протестировать своего друга/подругу </button>
+</div>

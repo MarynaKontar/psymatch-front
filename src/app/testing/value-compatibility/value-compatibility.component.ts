@@ -6,6 +6,7 @@ import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js';
 import {URL} from '../../utils/config';
+import {LoginService} from '../../login/login.service';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class ValueCompatibilityComponent implements OnInit {
   // data: Observable<ValueCompatibilityAnswers>;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
+              private loginService: LoginService,
               private formBuilder: FormBuilder,
               private router: Router, private route: ActivatedRoute) {
   }
@@ -45,13 +47,15 @@ export class ValueCompatibilityComponent implements OnInit {
     //  если приходит ссылка с токеном в параметрах, то вытаскиваем этот токен и засовываем его в хедер запроса на бекенд
     // (передаем в метод saveGoalArray), вызывая initRoute() в ngOnInit()
 
+    // Если кто-то прошел тест на своем компьютере, то на этом же компьютере может пройти тест кто-то другой по высланному токену
     // this.token = this.route.snapshot.queryParams.token;
-    if (localStorage.getItem('token')) {
-      this.token = localStorage.getItem('token');
+    if (this.route.snapshot.queryParamMap.has('token')) {
+      this.loginService.logout();
+      this.token = 'Bearer ' + this.route.snapshot.queryParamMap.get('token');
+      console.log(this.token);
     } else {
-      if (this.route.snapshot.queryParamMap.has('token')) {
-        this.token = 'Bearer ' + this.route.snapshot.queryParamMap.get('token');
-        console.log(this.token);
+      if (localStorage.getItem('token')) {
+        this.token = localStorage.getItem('token');
       }
     }
     // if (this.route.snapshot.queryParamMap.has('token')) {
@@ -127,7 +131,7 @@ export class ValueCompatibilityComponent implements OnInit {
 //        !!!!!!!!!!! GOAL !!!!!!!!!!
   // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
-    localStorage.clear();
+    // localStorage.clear();
     this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(data => {
         console.log(data);
         localStorage.setItem('token', data.headers.get('AUTHORIZATION'));
@@ -223,6 +227,11 @@ export class ValueCompatibilityComponent implements OnInit {
   afterTestActions() {
     this.createFriendsTokens();
     this.router.navigate(['value-profile']);
+  }
+
+  testAnotherUser() {
+    this.loginService.logout();
+    this.router.navigate(['user-test']);
   }
 
   private createFriendsTokens() {

@@ -4,6 +4,9 @@ import { ValueCompatibilityComponent } from './value-compatibility/value-compati
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ValueCompatibilityService} from './value-compatibility.service';
 import { ValueCompatibilityProfileComponent } from './value-compatibility-profile/value-compatibility-profile.component';
+import {SendingTokensComponent} from '../sending-tokens/sending-tokens.component';
+import {AgeSexRegistrationComponent} from '../registration/age-gender-registration/age-gender-registration.component';
+import {RegistrationModule} from '../registration/registration.module';
 // import {MatButtonModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
@@ -11,10 +14,11 @@ import { ValueCompatibilityProfileComponent } from './value-compatibility-profil
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RegistrationModule,
     // MatButtonModule,
     // MatStepperModule
   ],
-  declarations: [ValueCompatibilityComponent, ValueCompatibilityProfileComponent],
+  declarations: [ValueCompatibilityComponent, SendingTokensComponent, ValueCompatibilityProfileComponent],
   providers: [ValueCompatibilityService]
 })
 export class TestingModule { }

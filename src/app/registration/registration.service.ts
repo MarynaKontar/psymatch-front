@@ -20,20 +20,34 @@ export class RegistrationService {
   }
 
 // TODO убрать (проверить, чтобы через интерсептор работало)
-  /** POST: add an anonim user (that has token) to the server (database) */
-  add(user: User): Observable<User> {
+  /** POST: add a fully new user or add an anonim user to the server (database) */
+  registerNewUser(user: User): Observable<User> {
     // take token from localstorage and push it to backend to save new user data(email, password) for that anonim user
-    return this.http.post<User>(this.uri + `/user`, user, httpOptions);
+    const registeredUser: Observable<User> = this.http.post<User>(this.uri + `/registration`, user, httpOptions);
+    this.setIsRegistered();
+    return registeredUser;
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
   }
 
-  /** POST: add a fully new user to the server (database) */
-  addNewUser(user: User): Observable<User> {
-    return this.http.post<User>(this.uri + `/user/save`, user);
+  // /**  POST: add an anonim user (that has token) to the server (database) */
+  // registerAnonimUser(user: User): Observable<User> {
+  //   return this.http.post<User>(this.uri + `/registration/update`, user);
+  // }
+
+  /** POST: add an age and genger of user to the server (database) */
+  addAgeAndGender(user: User): Observable<User> {
+    return this.http.post<User>(this.uri + `/user/addAgeAndGender`, user, httpOptions);
   }
 
+  isNew(): boolean {
+    return localStorage.getItem('isRegistered') !== 'true';
+  }
+
+  setIsRegistered() {
+    localStorage.setItem('isRegistered', 'true');
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

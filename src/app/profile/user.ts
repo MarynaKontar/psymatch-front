@@ -3,7 +3,13 @@ export class User {
   name: string;
   email: string;
   age: number;
-  gender: string;
+  gender: Gender;
   password: string;
   constructor() { }
+}
+
+export enum Gender {
+  FEMALE = 'FEMALE',
+  MALE = 'MALE',
+  ANOTHER = 'ANOTHER',
 }
