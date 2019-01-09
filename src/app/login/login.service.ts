@@ -26,20 +26,35 @@ export class LoginService {
     return this.http.post<User>(this.uri + `/auth/login`, user, httpOptions);
   }
 
-  saveTokenToLocalStorage(userResponse: Observable<HttpResponse<User>>) {
-    userResponse.subscribe(response => {
-        localStorage.setItem('token', response.headers.get('AUTHORIZATION'));
-        console.log('token: ',  response.headers.get('AUTHORIZATION'));
-    });
+
+  saveTokenToLocalStorage(httpResponse: HttpResponse<User>) {
+    localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
+    console.log('token: ',  httpResponse.headers.get('AUTHORIZATION'));
   }
 
-  saveHaveAgeAndGenderToLocaleStorage(userResponse: Observable<HttpResponse<User>>) {
-    userResponse.subscribe(response => {
-      console.log(response.body);
-        localStorage.setItem('haveAgeAndGender', (response.body.age != null && response.body.gender != null) ? 'true' : 'false');
-        console.log('haveAgeAndGender:  ', (response.body.age != null && response.body.gender != null) ? 'true' : 'false');
-    });
+  setIsValueCompatibilityTestPassed(httpResponse: HttpResponse<User>) {
+    localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.headers.get('isValueCompatibilityTestPassed'));
+    console.log('isValueCompatibilityTestPassed: ',  httpResponse.headers.get('isValueCompatibilityTestPassed'));
   }
+
+  isValueCompatibilityTestPassed() {
+   return localStorage.getItem('isValueCompatibilityTestPassed') === 'true';
+  }
+
+  // saveTokenToLocalStorage(userResponse: Observable<HttpResponse<User>>) {
+  //   userResponse.subscribe(response => {
+  //       localStorage.setItem('token', response.headers.get('AUTHORIZATION'));
+  //       console.log('token: ',  response.headers.get('AUTHORIZATION'));
+  //   });
+  // }
+  //
+  // saveHaveAgeAndGenderToLocaleStorage(userResponse: Observable<HttpResponse<User>>) {
+  //   userResponse.subscribe(response => {
+  //     console.log(response.body);
+  //       localStorage.setItem('haveAgeAndGender', (response.body.age != null && response.body.gender != null) ? 'true' : 'false');
+  //       console.log('haveAgeAndGender:  ', (response.body.age != null && response.body.gender != null) ? 'true' : 'false');
+  //   });
+  // }
 
   logout() {
     localStorage.removeItem('token');
@@ -53,4 +68,5 @@ export class LoginService {
     return localStorage.getItem('token');
 
   }
+
 }

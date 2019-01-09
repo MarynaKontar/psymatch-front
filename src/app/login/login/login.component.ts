@@ -3,6 +3,8 @@ import {User} from '../../profile/user';
 import {LoginService} from '../login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RegistrationService} from '../../registration/registration.service';
+import {HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -32,9 +34,10 @@ export class LoginComponent implements OnInit {
         console.log(loggedUser);
 
         // TODO где лучше это делать? Здесь или в сервисе? В сервисе в методах надо subscribe, так что наверное лучше здесь.
-        localStorage.setItem('token', loggedUser.headers.get('AUTHORIZATION'));
-        localStorage.setItem('haveAgeAndGender', 'true');
-          this.registrationService.setIsRegistered();
+         this.saveTokenToLocalStorage(loggedUser);
+         this.setHaveAgeAndGender();
+         this.setIsRegistered();
+         this.isValueCompatibilityTestPassed(loggedUser);
         // console.log('haveAgeAndGender: ', (this.user.age != null && this.user.gender != null) ? 'true' : 'false');
         // console.log('token', loggedUser.headers.get('AUTHORIZATION'));
       },
@@ -43,6 +46,20 @@ export class LoginComponent implements OnInit {
 
         });
     this.router.navigateByUrl(this.returnUrl); // TODO возвращать на пред. стр.
+  }
+
+  private setHaveAgeAndGender() {
+    this.registrationService.setHaveAgeAndGender(this.user);
+  }
+  private saveTokenToLocalStorage(httpResponse: HttpResponse<User>) {
+    this.loginService.saveTokenToLocalStorage(httpResponse);
+  }
+  private setIsRegistered() {
+    this.registrationService.setIsRegistered();
+  }
+
+  private isValueCompatibilityTestPassed(loggedUser: HttpResponse<User>) {
+    return this.loginService.setIsValueCompatibilityTestPassed(loggedUser);
   }
 
   logout() {

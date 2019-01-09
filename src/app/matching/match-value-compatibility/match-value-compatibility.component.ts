@@ -99,6 +99,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
       this.getUsersForMatching();
       this.router.navigate(['match']);
       this.plotRectangle();
+      this.hiddenButton = false;
     }
   }
 
@@ -115,7 +116,6 @@ export class MatchValueCompatibilityComponent implements OnInit {
     // this.plotRectangle();
     // this.plotMatchDoughnut();
     this.plotValueProfilesMatching();
-    this.hiddenButton = false;
   }
 
   private plotRectangle() {

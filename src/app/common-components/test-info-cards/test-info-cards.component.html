@@ -1,0 +1,44 @@
+<div class="card-deck justify-content-center">
+
+  <a class="card bg-success text-white nondecorated link" routerLink="/value-compatibility-test">
+    <div *ngIf="isValueCompatibilityTestPassed" class="footer">{{valueCompatibilityTestPassed}}</div>
+    <div *ngIf="!isValueCompatibilityTestPassed" class="footer">{{valueCompatibilityTestIsNotPassed}}</div>
+    <div class="card-body">
+      <h2 class="card-title">{{value_compatibility_test_header}}</h2>
+      <p class="card-text">{{value_compatibility_test_description}}</p>
+    </div>
+  </a>
+
+  <a class="card bg-info text-white nondecorated link" routerLink="/error">
+    <div class="footer">Тест не пройден</div>
+    <div class="card-body">
+      <h2 class="card-title">{{role_compatibility_test_header}}</h2>
+      <p class="card-text">{{role_compatibility_test_description}}</p>
+    </div>
+  </a>
+
+  <a class="card bg-warning text-white nondecorated link" routerLink="/error">
+    <div class="footer">Тест не пройден</div>
+    <div class="card-body">
+      <h2 class="card-title">{{love_compatibility_test_header}}</h2>
+      <p class="card-text">{{love_compatibility_test_description1}}</p>
+      <p class="card-text">{{love_compatibility_test_description2}}</p>
+    </div>
+  </a>
+
+  <a class="card bg-danger text-white nondecorated link" routerLink="/error">
+    <div class="footer">Тест не пройден</div>
+    <div class="card-body">
+      <h2 class="card-title">{{sexual_compatibility_test_header}}</h2>
+      <p class="card-text">{{sexual_compatibility_test_description1}}</p>
+      <p class="card-text">{{sexual_compatibility_test_description2}}</p>
+    </div>
+
+    <!--<div class="card-footer">-->
+    <!--<div class="text-muted">-->
+    <!--<cite title="{{sexual_test_header}}">{{sexual_test_header}}</cite>-->
+    <!--</div>-->
+    <!--</div>-->
+  </a>
+
+</div><!-- end card-deck -->

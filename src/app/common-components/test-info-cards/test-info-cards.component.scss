@@ -1,0 +1,33 @@
+a.nondecorated.link:active, /* активная/посещенная ссылка */
+a.nondecorated.link:hover,  /* при наведении */
+a.nondecorated.link {
+  text-decoration: none;
+  //color: #666;
+}
+.card-deck {
+  margin: 4% 0;
+}
+.card {
+  background-color: #444444;
+  min-width: 540px;
+  max-width: 540px;
+  border-radius: 5%;
+  margin: 2%;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.4);
+}
+.card-body {
+  margin: 5% 0%;
+  font-size: larger;
+}
+.card-title {
+  margin: 10% 0;
+}
+.footer {
+  float: bottom;
+  text-align: end;
+  margin: 5%;
+  font-size: larger;
+}
+

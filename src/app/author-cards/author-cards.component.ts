@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {flip} from '../../animations/card-animation';
 import {
-  KONTAR_MARYNA_BOAST, KONTAR_MARYNA_EMAIL, KONTAR_MARYNA_FB, KONTAR_MARYNA_GITHUB, KONTAR_MARYNA_LIFE,
-  KONTAR_MARYNA_NAME, KONTAR_MARYNA_ROLE, KONTAR_MARYNA_WHY_IN_PROJECT,
-  PROSCKURA_VITALIY_BOAST, PROSCKURA_VITALIY_EMAIL, PROSCKURA_VITALIY_FB, PROSCKURA_VITALIY_GITHUB, PROSCKURA_VITALIY_LIFE,
-  PROSCKURA_VITALIY_NAME, PROSCKURA_VITALIY_ROLE, PROSCKURA_VITALIY_WHY_IN_PROJECT,
-  PROSCKURA_YURIY_BOAST, PROSCKURA_YURIY_EMAIL, PROSCKURA_YURIY_FB, PROSCKURA_YURIY_LIFE, PROSCKURA_YURIY_NAME, PROSCKURA_YURIY_ROLE,
-  PROSCKURA_YURIY_WHY_IN_PROJECT, VASYLENKO_SVETLANA_BOAST, VASYLENKO_SVETLANA_EMAIL, VASYLENKO_SVETLANA_FB, VASYLENKO_SVETLANA_LIFE,
-  VASYLENKO_SVETLANA_NAME,
-  VASYLENKO_SVETLANA_ROLE,
+  KONTAR_MARYNA_BOAST,
+  KONTAR_MARYNA_EMAIL, KONTAR_MARYNA_FB, KONTAR_MARYNA_GITHUB, KONTAR_MARYNA_LIFE, KONTAR_MARYNA_NAME, KONTAR_MARYNA_ROLE,
+  KONTAR_MARYNA_WHY_IN_PROJECT, PROSCKURA_VITALIY_BOAST,
+  PROSCKURA_VITALIY_EMAIL,
+  PROSCKURA_VITALIY_FB,
+  PROSCKURA_VITALIY_GITHUB,
+  PROSCKURA_VITALIY_LIFE, PROSCKURA_VITALIY_NAME, PROSCKURA_VITALIY_ROLE, PROSCKURA_VITALIY_WHY_IN_PROJECT, PROSCKURA_YURIY_BOAST,
+  PROSCKURA_YURIY_EMAIL,
+  PROSCKURA_YURIY_FB, PROSCKURA_YURIY_LIFE,
+  PROSCKURA_YURIY_NAME, PROSCKURA_YURIY_ROLE, PROSCKURA_YURIY_WHY_IN_PROJECT, VASYLENKO_SVETLANA_BOAST,
+  VASYLENKO_SVETLANA_EMAIL, VASYLENKO_SVETLANA_FB, VASYLENKO_SVETLANA_LIFE, VASYLENKO_SVETLANA_NAME, VASYLENKO_SVETLANA_ROLE,
   VASYLENKO_SVETLANA_WHY_IN_PROJECT
 } from '../about-project/about-project';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
-  animations: [
-    flip
-  ]
+  selector: 'app-author-cards',
+  templateUrl: './author-cards.component.html',
+  styleUrls: ['./author-cards.component.scss']
 })
-export class CardComponent implements OnInit {
-  // flip = 'inactive';
+export class AuthorCardsComponent implements OnInit {
 
   prosckura_yuriy_name = `${PROSCKURA_YURIY_NAME}`;
   prosckura_yuriy_role = `${PROSCKURA_YURIY_ROLE}`;
@@ -62,8 +60,4 @@ export class CardComponent implements OnInit {
   ngOnInit() {
   }
 
-  // для поворота карточек, если делать это с помощью TS. Но пока поворот сделан с помощью css и эта анимация не используется
-  // toggleFlip() {
-  //   this.flip = (this.flip === 'inactive') ? 'active' : 'inactive';
-  // }
 }

@@ -9,8 +9,9 @@ import {ValueCompatibilityProfileComponent} from './testing/value-compatibility-
 import {SendingTokensComponent} from './sending-tokens/sending-tokens.component';
 import {AgeSexRegistrationComponent} from './registration/age-gender-registration/age-gender-registration.component';
 import {AboutProjectComponent} from './about-project/about-project.component';
-import {ErrorPageComponent} from './error-page/error-page.component';
+import {ErrorPageComponent} from './common-components/error-page/error-page.component';
 import {CardComponent} from './card/card.component';
+import {TestHomePageComponent} from './testing/test-home-page/test-home-page.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
   //
   {
     path: 'user-test',
+    component: TestHomePageComponent
+  },
+  {
+    path: 'value-compatibility-test',
     component: ValueCompatibilityComponent
   },
   {

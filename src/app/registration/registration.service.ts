@@ -49,6 +49,10 @@ export class RegistrationService {
     localStorage.setItem('isRegistered', 'true');
   }
 
+  setHaveAgeAndGender(user: User) {
+    localStorage.setItem('haveAgeAndGender', (user.age != null && user.gender != null) ? 'true' : 'false');
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

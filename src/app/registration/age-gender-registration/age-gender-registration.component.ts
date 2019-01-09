@@ -34,7 +34,7 @@ export class AgeSexRegistrationComponent implements OnInit {
   }
 
   setHaveAgeAndGender() {
-    localStorage.setItem('haveAgeAndGender', (this.user.age != null && this.user.gender != null) ? 'true' : 'false');
+    this.registrationService.setHaveAgeAndGender(this.user);
   }
 
 }

@@ -10,3 +10,4 @@ export let flip = trigger('flip', [
     transition('active => inactive', animate('500ms ease-out')),
     transition('inactive => active', animate('500ms ease-in'))
   ]);
+// для поворота карточек, если делать это с помощью TS. Но пока поворот сделан с помощью css и эта анимация не используется

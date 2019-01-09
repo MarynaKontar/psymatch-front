@@ -17,8 +17,11 @@ import {httpInterceptorProviders} from './http-interceptors/interceptors';
 import { SendingTokensComponent } from './sending-tokens/sending-tokens.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
+import { ErrorPageComponent } from './common-components/error-page/error-page.component';
 import { CardComponent } from './card/card.component';
+import { AuthorCardsComponent } from './author-cards/author-cards.component';
+import {CommonComponentsModule} from './common-components/common-components.module';
+
 
 @NgModule({
   declarations: [
@@ -28,8 +31,8 @@ import { CardComponent } from './card/card.component';
     HomeComponent,
     AboutProjectComponent,
     HowItWorksComponent,
-    ErrorPageComponent,
     CardComponent,
+    AuthorCardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ import { CardComponent } from './card/card.component';
     ProfileModule,
     LoginModule,
     TestingModule,
-    MatchingModule
+    MatchingModule,
+    CommonComponentsModule,
   ],
   providers: [
     httpInterceptorProviders
