@@ -143,7 +143,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
-    this.router.navigate(['user-test']);
+    this.router.navigate(['value-compatibility-test']);
   }
 
   resetGoals() {
@@ -156,7 +156,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
-    this.router.navigate(['user-test']);
+    this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! STATE !!!!!!!!!!
@@ -168,7 +168,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
-    this.router.navigate(['user-test']);
+    this.router.navigate(['value-compatibility-test']);
   }
 
   resetStates() {
@@ -181,7 +181,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
-    this.router.navigate(['user-test']);
+    this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! QUALITIES !!!!!!!!!!
@@ -207,7 +207,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
-    this.router.navigate(['user-test']);
+    this.router.navigate(['value-compatibility-test']);
   }
 
   isFirstTestItem(i): boolean {
@@ -231,7 +231,7 @@ export class ValueCompatibilityComponent implements OnInit {
 
   testAnotherUser() {
     this.loginService.logout();
-    this.router.navigate(['user-test']);
+    this.router.navigate(['value-compatibility-test']);
   }
 
   private createFriendsTokens() {
