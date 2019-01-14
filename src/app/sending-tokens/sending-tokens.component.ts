@@ -27,8 +27,9 @@ export class SendingTokensComponent implements OnInit {
   private getFriendsTokens() {
     const tokens = this.valueCompatibilityService.getFriendsTokens();
     if (tokens) {
-      this.links = [this.uri + '/user-test?token=' + tokens[0], this.uri + '/user-test?token=' + tokens[1],
-        this.uri + '/user-test?token=' + tokens[2]];
+      this.links = [this.uri + '/value-compatibility-test?token=' + tokens[0],
+                    this.uri + '/value-compatibility-test?token=' + tokens[1],
+                    this.uri + '/value-compatibility-test?token=' + tokens[2]];
     }
   }
 
@@ -50,8 +51,8 @@ export class SendingTokensComponent implements OnInit {
       const exp2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
       element.innerHTML = text1.replace(exp2, '$1<a target="_blank" href="http://$2">$2</a>');
 
-      element.select();
-      this.dom.execCommand('copy');
+      element.select(); // выделяет текст
+      this.dom.execCommand('copy'); // копирует выделенный текст
       console.log(element);
       console.log(element.value);
     }

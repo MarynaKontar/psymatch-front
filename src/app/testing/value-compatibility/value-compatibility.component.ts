@@ -33,6 +33,7 @@ export class ValueCompatibilityComponent implements OnInit {
 
   /** For setTimeout. Нужна пауза, чтобы успела пройти анимация 'active => unactive' (пауза должна быть такой же как в анимации "slide") */
   animationTime = animationTime;
+  userId: string;
 
   // data: Observable<ValueCompatibilityAnswers>;
 
@@ -132,10 +133,11 @@ export class ValueCompatibilityComponent implements OnInit {
   // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
     // localStorage.clear();
-    this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(data => {
-        console.log(data);
-        localStorage.setItem('token', data.headers.get('AUTHORIZATION'));
-        console.log('token', data.headers.get('AUTHORIZATION'));
+    this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(httpResponse => {
+        localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
+        localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.passed === true ? 'true' : 'false');
+        console.log('token', httpResponse.headers.get('AUTHORIZATION'));
+        this.userId = httpResponse.body.userId;
       }
     );
     console.log(this.tests.goal);
@@ -161,8 +163,10 @@ export class ValueCompatibilityComponent implements OnInit {
 
 //        !!!!!!!!!!! STATE !!!!!!!!!!
   saveStates() {
-    this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data =>
-      console.log(data));
+    this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data => {
+      console.log('saveState: ' + data);
+      localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
+    });
     console.log(this.tests.state);
     this.isStatesDone = true;
     this.itemState[0] = 'active';
@@ -186,8 +190,10 @@ export class ValueCompatibilityComponent implements OnInit {
 
 //        !!!!!!!!!!! QUALITIES !!!!!!!!!!
   saveQualities() {
-    this.valueCompatibilityService.saveQualityArray(this.tests).subscribe(data =>
-      console.log(data));
+    this.valueCompatibilityService.saveQualityArray(this.tests).subscribe(data => {
+      console.log(data);
+      localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
+    });
     console.log(this.tests.quality);
     this.isQualitiesDone = true;
     this.itemState[0] = 'active';

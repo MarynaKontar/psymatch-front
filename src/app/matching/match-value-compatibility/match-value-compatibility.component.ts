@@ -115,6 +115,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
   private match() {
     // this.plotRectangle();
     // this.plotMatchDoughnut();
+    console.log('came to match()');
     this.plotValueProfilesMatching();
   }
 
@@ -410,7 +411,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
 
     this.valueProfilesForMatching = this.matchValueCompatibilityService.getValueProfilesForMatching(this.usersForMatching[0])
       .subscribe(response => {
-        console.log(response);
+        console.log('plotValueProfilesMatching: ' + response);
 
         response.valueProfiles.forEach(valueProfile => {
           if (valueProfile.isPrincipalUser) {

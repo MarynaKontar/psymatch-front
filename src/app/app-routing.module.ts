@@ -7,7 +7,7 @@ import {MatchValueCompatibilityComponent} from './matching/match-value-compatibi
 import {LoginComponent} from './login/login/login.component';
 import {ValueCompatibilityProfileComponent} from './testing/value-compatibility-profile/value-compatibility-profile.component';
 import {SendingTokensComponent} from './sending-tokens/sending-tokens.component';
-import {AgeSexRegistrationComponent} from './registration/age-gender-registration/age-gender-registration.component';
+import {AgeGenderRegistrationComponent} from './registration/age-gender-registration/age-gender-registration.component';
 import {AboutProjectComponent} from './about-project/about-project.component';
 import {ErrorPageComponent} from './common-components/error-page/error-page.component';
 import {CardComponent} from './card/card.component';
@@ -69,7 +69,7 @@ const routes: Routes = [
   },
   {
     path: 'age-gender-registration',
-    component: AgeSexRegistrationComponent
+    component: AgeGenderRegistrationComponent
   },
   {
     path: 'error',

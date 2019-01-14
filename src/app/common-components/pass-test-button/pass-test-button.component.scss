@@ -1,13 +1,14 @@
 .card {
-  min-width: 240px;
+  //min-width: 240px;
   //max-width: 240px;
+  width: 240px;
   height: 240px;
   //weight: 120px;
   border-radius: 50%;
   background-color: #3f51b5;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.4);
   font-size: xx-large;
-  margin: 2%;
+  margin: 0% 2% 2% 0%;
   animation: blink 3s ease-in-out infinite;
 }
 .card:hover {

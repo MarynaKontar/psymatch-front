@@ -38,6 +38,7 @@ export class RegistrationService {
 
   /** POST: add an age and genger of user to the server (database) */
   addAgeAndGender(user: User): Observable<User> {
+    console.log('addAgeAndGender'  + user);
     return this.http.post<User>(this.uri + `/user/addAgeAndGender`, user, httpOptions);
   }
 
@@ -50,6 +51,7 @@ export class RegistrationService {
   }
 
   setHaveAgeAndGender(user: User) {
+    console.log('setHaveAgeAndGender'  + user);
     localStorage.setItem('haveAgeAndGender', (user.age != null && user.gender != null) ? 'true' : 'false');
   }
 

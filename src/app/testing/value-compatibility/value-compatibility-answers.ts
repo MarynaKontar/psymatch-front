@@ -1,10 +1,10 @@
 export interface ValueCompatibilityAnswers {
-  // id: string;
+  id: string;
   userId: string;
   goal: GoalItem[];
   quality: QualityItem[];
   state: StateItem[];
-  // passDate: Date;
+  passDate: Date;
   passed: boolean;
 }
 

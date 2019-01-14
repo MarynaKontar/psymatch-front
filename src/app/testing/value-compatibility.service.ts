@@ -34,16 +34,10 @@ export class ValueCompatibilityService {
   /** save goals to server*/
   // TODO возвращаю Observable<HttpResponse<ValueCompatibilityAnswers>>, а не  Observable<ValueCompatibilityAnswers> потому, что надо
   // не только body, но и header ответа, в котором прийдет токен с бекенда (для записи в localStorage)
-  // saveGoalArray(goals: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
-  //   return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/goal', goals);
-  // }
   saveGoalArray(goals: ValueCompatibilityAnswers, token: string): Observable<HttpResponse<ValueCompatibilityAnswers>> {
     let headers: HttpHeaders;
     if (token) {
       console.log('ValueCompatibilityService saveGoalArray: ' + token);
-      // TODO если в localStorage в это время лежит другой токен, то во время перехвата этого запроса interceptor в 'Authorization'
-      // вставится именно токен из localStorage. Т.е. если какой-то залогиненный пользователь зайдет по ссылке с токеном, то все равно
-      // все будет сохраняться ему, а не на "новый токен"
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'Authorization': token});
     } else {
@@ -81,6 +75,7 @@ export class ValueCompatibilityService {
 
   /** Get value profile for last test for user from server */
   getValueProfile(user: User): Observable<ValueProfileIndividual> {
+    console.log('came to getValueProfile:' + user);
     return this.http.post<ValueProfileIndividual>(this.uri + `/test/value-profile`, user);
   }
 
@@ -92,7 +87,7 @@ export class ValueCompatibilityService {
     );
   }
 
-  getFriendsTokens() {
+                                            getFriendsTokens() {
     if (localStorage.getItem('friendsTokens')) {
       return  JSON.parse(localStorage.getItem('friendsTokens'));
     }

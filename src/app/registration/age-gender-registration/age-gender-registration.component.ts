@@ -7,7 +7,7 @@ import {User} from '../../profile/user';
   templateUrl: './age-gender-registration.component.html',
   styleUrls: ['./age-gender-registration.component.scss']
 })
-export class AgeSexRegistrationComponent implements OnInit {
+export class AgeGenderRegistrationComponent implements OnInit {
   @ViewChild('openModalAgeGenderRegistration') openModal: ElementRef; // in html <button id="openModalAgeGenderRegistration" ...>
   user = new User();
   isUserHaveAgeAndGender = false;
@@ -22,6 +22,7 @@ export class AgeSexRegistrationComponent implements OnInit {
   saveAgeAndGender() {
     this.registrationService.addAgeAndGender(<User> this.user)
       .subscribe(data => {
+        console.log('saveAgeAndGender'  + data);
         this.user = data;
         this.setHaveAgeAndGender();
       });
@@ -29,7 +30,7 @@ export class AgeSexRegistrationComponent implements OnInit {
   }
 
   isHaveAgeAndGender(): boolean {
-    if (localStorage.getItem('token') === null) { return true; }
+    if (localStorage.getItem('token') === null) { return false; }
     if (localStorage.getItem('haveAgeAndGender') === 'true') { return true; }
   }
 
