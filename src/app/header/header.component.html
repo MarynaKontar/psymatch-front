@@ -1,67 +1,68 @@
 
 <!--Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top" role="navigation">
   <!--You can change background color of navbar by adding style="background-color: #e3f2fd;" and deleting bg-dark: <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #e3f2fd;" >-->
 
-  <!--Brand-->
-  <a class="navbar-brand" href="#">Совместимость</a>
+      <!--Collapse button-->
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#dropdownMenu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--Collapse button-->
 
-  <!--Collapse button-->
-  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!--Collapse button-->
+      <!--Brand-->
+      <a class="navbar-brand" href="#">Совместимость</a>
+      <!--Brand-->
 
-  <!--Collapsed navbar-->
-  <div class="navbar-collapse collapse" id="menu">
+    <!--Collapsed navbar-->
+    <div class="collapse navbar-collapse" id="dropdownMenu">
 
-    <!--Right navbar-->
-    <div class="nav navbar-nav navbar-right">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLink="/user-test" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Тест
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="/value-compatibility-test" routerLinkActive="active">Ценностная совместимость (тест)</a>
-          <a class="dropdown-item" href="/error">Сексуальная совместимость</a>
-          <a class="dropdown-item" href="/error">Психологическая совместимость</a>
-          <a class="dropdown-item" href="/error">Симейная  совместимость</a>
+      <!--Left navbar-->
+      <div class="nav navbar-nav mr-auto">
+        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLink="/user-test" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Тест
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/value-compatibility-test" routerLinkActive="active">Ценностная совместимость (тест)</a>
+            <a class="dropdown-item" href="/error">Сексуальная совместимость</a>
+            <a class="dropdown-item" href="/error">Психологическая совместимость</a>
+            <a class="dropdown-item" href="/error">Симейная  совместимость</a>
+          </div>
         </div>
+        <a class="nav-item nav-link" routerLink="/value-profile">Ценностный профиль</a>
+        <a class="nav-item nav-link" routerLink="/match">Сравнить профили</a>
       </div>
-      <a class="nav-item nav-link" routerLink="/value-profile">Ценностный профиль</a>
-      <a class="nav-item nav-link" routerLink="/match">Сравнить профили</a>
+      <!--Left navbar-->
+
+      <!--Right navbar-->
+      <div class="nav navbar-nav mr-2">
+        <!--<ul class="navbar-nav nav-flex-icons">-->
+        <!--<li class="nav-item waves-light" mdbRippleRadius>-->
+        <!--<a class="nav-link"><i class="fa fa-facebook"></i></a>-->
+        <!--</li>-->
+        <!--<li class="nav-item waves-light" mdbRippleRadius>-->
+        <!--<a class="nav-link"><i class="fa fa-twitter"></i></a>-->
+        <!--</li>-->
+        <!--<li class="nav-item waves-light" mdbRippleRadius>-->
+        <!--<a class="nav-link"><i class="fa fa-instagram"></i></a>-->
+        <!--</li>-->
+        <!--</ul>-->
+
+        <!--<a class="nav-item nav-link my-2 my-lg-0" href="#"><i class="fa fa-facebook"></i></a>-->
+
+        <a class="nav-item nav-link my-2 my-lg-0" routerLink="about-project">About</a>
+        <a class="nav-item nav-link my-2 my-lg-0" routerLink="tokens">Send an invitation to friends</a>
+        <!--<a class="nav-item nav-link  my-2 my-lg-0" routerLink="age-gender-registration">Age/Sex registration</a>-->
+        <!--<a class="nav-item nav-link  my-2 my-lg-0" routerLink="card">card</a>-->
+        <a class="nav-item nav-link my-2 my-lg-0" href="#">Account</a>
+        <a class="nav-item nav-link my-2 my-lg-0" routerLink="/login">Login</a>
+        <a class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/register" routerLinkActive="active">Register</a>
+      </div>
+      <!--Right navbar-->
+
     </div>
-    <!--Right navbar-->
-
-    <!--Left navbar-->
-    <div class="nav navbar-nav ml-auto">
-      <!--<ul class="navbar-nav nav-flex-icons">-->
-      <!--<li class="nav-item waves-light" mdbRippleRadius>-->
-      <!--<a class="nav-link"><i class="fa fa-facebook"></i></a>-->
-      <!--</li>-->
-      <!--<li class="nav-item waves-light" mdbRippleRadius>-->
-      <!--<a class="nav-link"><i class="fa fa-twitter"></i></a>-->
-      <!--</li>-->
-      <!--<li class="nav-item waves-light" mdbRippleRadius>-->
-      <!--<a class="nav-link"><i class="fa fa-instagram"></i></a>-->
-      <!--</li>-->
-      <!--</ul>-->
-
-      <!--<a class="nav-item nav-link my-2 my-lg-0" href="#"><i class="fa fa-facebook"></i></a>-->
-
-      <a class="nav-item nav-link  my-2 my-lg-0" routerLink="about-project">About</a>
-      <a class="nav-item nav-link  my-2 my-lg-0" routerLink="tokens">Send an invitation to friends</a>
-      <!--<a class="nav-item nav-link  my-2 my-lg-0" routerLink="age-gender-registration">Age/Sex registration</a>-->
-      <!--<a class="nav-item nav-link  my-2 my-lg-0" routerLink="card">card</a>-->
-      <a class="nav-item nav-link  my-2 my-lg-0" href="#">Account</a>
-      <a class="nav-item nav-link  my-2 my-lg-0" routerLink="/login">Login</a>
-      <a class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/register" routerLinkActive="active">Register</a>
-    </div>
-    <!--Left navbar-->
-
-  </div>
-  <!--Collapsed navbar-->
+    <!--Collapsed navbar-->
 
 </nav>
 <!--Navigation-->

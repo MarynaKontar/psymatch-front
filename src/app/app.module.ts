@@ -14,7 +14,7 @@ import {MatchingModule} from './matching/matching.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {httpInterceptorProviders} from './http-interceptors/interceptors';
-import { SendingTokensComponent } from './sending-tokens/sending-tokens.component';
+import { SendingTokensComponent } from './common-components/sending-tokens/sending-tokens.component';
 import { AboutProjectComponent } from './about-project/about-project.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { ErrorPageComponent } from './common-components/error-page/error-page.component';

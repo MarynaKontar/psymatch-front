@@ -4,7 +4,6 @@ import { ValueCompatibilityComponent } from './value-compatibility/value-compati
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ValueCompatibilityService} from './value-compatibility.service';
 import { ValueCompatibilityProfileComponent } from './value-compatibility-profile/value-compatibility-profile.component';
-import {SendingTokensComponent} from '../sending-tokens/sending-tokens.component';
 import {RegistrationModule} from '../registration/registration.module';
 import { TestHomePageComponent } from './test-home-page/test-home-page.component';
 import {CommonComponentsModule} from '../common-components/common-components.module';
@@ -20,7 +19,7 @@ import {CommonComponentsModule} from '../common-components/common-components.mod
     // MatButtonModule,
     // MatStepperModule
   ],
-  declarations: [ValueCompatibilityComponent, SendingTokensComponent, ValueCompatibilityProfileComponent, TestHomePageComponent],
+  declarations: [ValueCompatibilityComponent, ValueCompatibilityProfileComponent, TestHomePageComponent],
   providers: [ValueCompatibilityService]
 })
 export class TestingModule { }

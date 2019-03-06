@@ -18,7 +18,7 @@
               <legend class="col-form-label col-sm-2">Возраст:</legend>
               <div class="col-sm-10">
                 <!--<label for="age" class="col-formlabel"></label>-->
-                <input [(ngModel)]="user.age" name="age" id="age" type="number" class="form-control" required placeholder="возраст">
+                <input [(ngModel)]="user.age" name="age" id="age" type="number" class="form-control" required autofocus placeholder="возраст">
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@
             <div class="row">
               <legend class="col-form-label col-sm-2 pt-0">Пол</legend>
               <div class="col-sm-10">
-                <!--<div class="row">-->
+                <div class="form-group">
                   <div class="form-check">
                     <input class="form-check-input" type="radio" [(ngModel)]="user.gender" name="gender" id="male" value="MALE" checked>
                     <label class="form-check-label" for="male">
@@ -46,7 +46,7 @@
                       Другой
                     </label>
                   </div>
-                <!--</div>-->
+                </div>
               </div>
             </div>
           </fieldset>

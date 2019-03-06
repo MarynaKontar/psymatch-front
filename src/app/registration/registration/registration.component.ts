@@ -8,7 +8,7 @@ import {RegistrationService} from '../registration.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  @ViewChild('openModalRegistration') openModal: ElementRef; // in html <button id="openModalAgeGenderRegistration" ...>
+  @ViewChild('openModalRegistration') openModal: ElementRef; // in html <button id="openModalRegistration" ...>
   registeredUser = new User();
   isNeedToBeRegistered = false;
   constructor(private registrationService: RegistrationService) { }

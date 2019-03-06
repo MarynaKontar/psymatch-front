@@ -1,0 +1,49 @@
+
+<!----------MODAL--------->
+<button class="btn btn-primary" id="openModalRegistration" data-toggle="modal" #openModalSendTokens data-toggle="modal" [hidden]="true" data-target="#sendTokens">Пригласите друга</button>
+
+<div class="modal fade" id="sendTokens" tabindex="-1" role="dialog" aria-labelledby="sendTokensModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title tokens header" id="sendTokensModalLabel">Перешли эти сообшения троим друзьям и узнай, совместимы ли вы!</h5>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="links" class="container-fluid tokens">
+          <div class="links" *ngFor="let link of links; let i = index">
+            <div class="row justify-content-md-center">
+              <div class="col-md-auto col-sm-11 col-sm-11">
+        <textarea [id]="link">Привет! Тут есть один интересный тест, который измеряет психологическую совместимость. Предлагаю тебе тоже его пройти, и тогда мы сможем узнать наш совместный результат – насколько мы с тобой психологически совместимы и насколько совпадают наши жизненные цели и приоритеты. Для того чтобы пройти тестирование и увидеть результаты, тебе необходимо просто перейти по данной ссылке:
+{{link}}</textarea>
+              </div>
+              <div class="col col-lg-1 col-sm-1 col-sm-1">
+                <button (click)="copyElementText(link)"><i class="fa fa-copy"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!----------NOT MODAL--------->
+<!--<div *ngIf="links" class="container-fluid tokens">-->
+  <!--<div class="tokens header">Перешли эти сообшения троим друзьям и узнай, совместимы ли вы!</div>-->
+  <!--<div class="links" *ngFor="let link of links; let i = index">-->
+    <!--&lt;!&ndash;<div class="token-value">&ndash;&gt;-->
+    <!--&lt;!&ndash;<a  href='{{link}}'>{{ link }}</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<div class="row justify-content-md-center">-->
+      <!--<div class="col-md-auto col-sm-11 col-sm-11">-->
+        <!--<textarea [id]="link">Привет! Тут есть один интересный тест, который измеряет психологическую совместимость. Предлагаю тебе тоже его пройти, и тогда мы сможем узнать наш совместный результат – насколько мы с тобой психологически совместимы и насколько совпадают наши жизненные цели и приоритеты. Для того чтобы пройти тестирование и увидеть результаты, тебе необходимо просто перейти по данной ссылке:-->
+<!--{{link}}</textarea>-->
+      <!--</div>-->
+      <!--<div class="col col-lg-1 col-sm-1 col-sm-1">-->
+        <!--<button (click)="copyElementText(link)"><i class="fa fa-copy"></i></button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

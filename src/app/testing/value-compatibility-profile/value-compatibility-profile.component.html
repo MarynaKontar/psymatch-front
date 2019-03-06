@@ -3,9 +3,9 @@
 
   <div class="row justify-content-center">
 
-    <div class="col-sm-12 col-lg-7 justify-content-center">
+    <div class="col-sm-12 col-lg-10 justify-content-center">
       <div class="container value profile content">
-        <div class="row">
+        <div class="row align-items-center justify-content-center">
           <div class="col-12 col-xl-12">
             <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
             <div *ngIf="chartBar" class="container-fluid chart bar justify-content-center">
@@ -15,7 +15,7 @@
         </div>
 
         <hr *ngIf="valueProfile && chartDoughnuts && comments">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-12 col-sm-5 col-xl-4">
             <div class="container chart">
               <canvas id="chartDoughnutSafety">{{ chartDoughnuts[0] }}</canvas>
@@ -37,7 +37,7 @@
         </div>
 
         <hr *ngIf="valueProfile && chartDoughnuts && comments">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-12 col-sm-5 col-xl-4">
             <div *ngIf="chartDoughnuts" class="container chart">
               <canvas id="chartDoughnutComfort">{{ chartDoughnuts[1] }}</canvas>
@@ -59,7 +59,7 @@
         </div>
 
         <hr *ngIf="valueProfile && chartDoughnuts && comments">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-12 col-sm-5 col-xl-4">
             <div *ngIf="chartDoughnuts" class="container chart">
               <canvas id="chartDoughnutAchievements">{{ chartDoughnuts[2] }}</canvas>
@@ -81,7 +81,7 @@
         </div>
 
         <hr *ngIf="valueProfile && chartDoughnuts && comments">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-12 col-sm-5 col-xl-4">
             <div *ngIf="chartDoughnuts" class="container chart">
               <canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnuts[3] }}</canvas>
@@ -99,7 +99,7 @@
         </div>
 
         <hr *ngIf="valueProfile && chartDoughnuts && comments">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-12 col-sm-5 col-xl-4">
             <div *ngIf="chartDoughnuts" class="container chart">
               <canvas id="chartDoughnutCreativity">{{ chartDoughnuts[4] }}</canvas>
@@ -117,7 +117,7 @@
         </div>
 
         <hr *ngIf="valueProfile && chartDoughnuts && comments">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-12 col-sm-5 col-xl-4">
             <div *ngIf="chartDoughnuts" class="container chart">
               <canvas id="chartDoughnutDevelopment">{{ chartDoughnuts[5] }}</canvas>
@@ -137,15 +137,17 @@
       </div>
     </div>
 
-    <div *ngIf="isValueProfileCanSee" class="col-sm-12 col-lg-5">
-      <app-sending-tokens></app-sending-tokens>
+    <div *ngIf="isValueProfileCanSee" class="col-sm-12 col-lg-2">
+
     </div>
 
   </div>
 
 
 </div>
+
 <app-age-gender-registration></app-age-gender-registration>
+<app-sending-tokens></app-sending-tokens>
 
 
 

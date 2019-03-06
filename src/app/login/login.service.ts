@@ -57,11 +57,15 @@ export class LoginService {
   // }
 
   logout() {
+    // localStorage.clear();
     localStorage.removeItem('token');
     localStorage.removeItem('haveAgeAndGender');
     localStorage.removeItem('isRegistered');
     localStorage.removeItem('friendsTokens');
     localStorage.removeItem('isValueCompatibilityTestPassed');
+    localStorage.removeItem('isGoalsDone');
+    localStorage.removeItem('isStatesDone');
+    localStorage.removeItem('isQualitiesDone');
   }
 
   ifHaveTokenInLocalStorage() {

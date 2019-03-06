@@ -100,6 +100,9 @@ export class MatchValueCompatibilityComponent implements OnInit {
       this.router.navigate(['match']);
       this.plotRectangle();
       this.hiddenButton = false;
+      setTimeout(() => {
+        this.match();
+      }, 1000); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
     }
   }
 

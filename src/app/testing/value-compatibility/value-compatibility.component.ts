@@ -71,11 +71,19 @@ export class ValueCompatibilityComponent implements OnInit {
 
   ngOnInit() {
     this.initRoute();
+
+    this.isGoalsDone = localStorage.getItem('isGoalsDone') === 'true';
+    console.log('this.isGoalsDone ' + this.isGoalsDone );
+    this.isStatesDone = localStorage.getItem('isStatesDone') === 'true';
+    console.log('this.isStatesDone ' + this.isStatesDone );
+    this.isQualitiesDone = localStorage.getItem('isQualitiesDone') === 'true';
+
+
     // this.tests = tests; // TODO можно не ходить на сервер
     this.valueCompatibilityService.getTestList()
       .subscribe(data => {
-        this.tests = data;
-        console.log(data);
+          this.tests = data;
+          console.log(data);
         }
       );
 
@@ -86,9 +94,7 @@ export class ValueCompatibilityComponent implements OnInit {
         this.itemState[i] = 'unactive';
       }
     }
-    // this.createLinksWithToken();
   }
-
 
   isActive(i: number) {
     return i === this.ind;
@@ -142,9 +148,11 @@ export class ValueCompatibilityComponent implements OnInit {
     );
     console.log(this.tests.goal);
     this.isGoalsDone = true;
+    localStorage.setItem('isGoalsDone', 'true');
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
+    this.setPossibilityToPassTestsagain();
     this.router.navigate(['value-compatibility-test']);
   }
 
@@ -169,9 +177,11 @@ export class ValueCompatibilityComponent implements OnInit {
     });
     console.log(this.tests.state);
     this.isStatesDone = true;
+    localStorage.setItem('isStatesDone', 'true');
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
+    this.setPossibilityToPassTestsagain();
     this.router.navigate(['value-compatibility-test']);
   }
 
@@ -196,10 +206,11 @@ export class ValueCompatibilityComponent implements OnInit {
     });
     console.log(this.tests.quality);
     this.isQualitiesDone = true;
+    localStorage.setItem('isQualitiesDone', 'true');
     this.itemState[0] = 'active';
     this.ind = 0;
     this.isNotPassed = true;
-    // this.router.navigate(['user-test']);
+    this.setPossibilityToPassTestsagain();
     this.afterTestActions();
   }
 
@@ -228,6 +239,15 @@ export class ValueCompatibilityComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  setPossibilityToPassTestsagain() {
+
+    if (this.isGoalsDone === true && this.isStatesDone === true && this.isQualitiesDone === true) {
+      localStorage.setItem('isGoalsDone', 'false');
+      localStorage.setItem('isStatesDone', 'false');
+      localStorage.setItem('isQualitiesDone', 'false');
+    }
   }
 
   afterTestActions() {

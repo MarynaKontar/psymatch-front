@@ -87,7 +87,7 @@ export class ValueCompatibilityService {
     );
   }
 
-                                            getFriendsTokens() {
+  getFriendsTokens() {
     if (localStorage.getItem('friendsTokens')) {
       return  JSON.parse(localStorage.getItem('friendsTokens'));
     }

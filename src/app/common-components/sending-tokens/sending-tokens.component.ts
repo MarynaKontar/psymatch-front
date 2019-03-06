@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ValueCompatibilityService} from '../testing/value-compatibility.service';
-import {URL} from '../utils/config';
+import {Component, Inject, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {URL} from '../../utils/config';
 import {DOCUMENT} from '@angular/common';
+import {ValueCompatibilityService} from '../../testing/value-compatibility.service';
 
 @Component({
   selector: 'app-sending-tokens',
@@ -9,6 +9,7 @@ import {DOCUMENT} from '@angular/common';
   styleUrls: ['./sending-tokens.component.scss']
 })
 export class SendingTokensComponent implements OnInit {
+  @ViewChild('openModalSendTokens') openModal: ElementRef; // in html <button id="openModalSendTokens" ...>
 
   private dom: Document;
   private uri = `${URL}`;
@@ -22,6 +23,9 @@ export class SendingTokensComponent implements OnInit {
 
   ngOnInit() {
     this.getFriendsTokens();
+    if (true) {
+      this.openModal.nativeElement.click(); // @ViewChild
+    }
   }
 
   private getFriendsTokens() {

@@ -6,7 +6,7 @@ import {ValueCompatibilityComponent} from './testing/value-compatibility/value-c
 import {MatchValueCompatibilityComponent} from './matching/match-value-compatibility/match-value-compatibility.component';
 import {LoginComponent} from './login/login/login.component';
 import {ValueCompatibilityProfileComponent} from './testing/value-compatibility-profile/value-compatibility-profile.component';
-import {SendingTokensComponent} from './sending-tokens/sending-tokens.component';
+import {SendingTokensComponent} from './common-components/sending-tokens/sending-tokens.component';
 import {AgeGenderRegistrationComponent} from './registration/age-gender-registration/age-gender-registration.component';
 import {AboutProjectComponent} from './about-project/about-project.component';
 import {ErrorPageComponent} from './common-components/error-page/error-page.component';

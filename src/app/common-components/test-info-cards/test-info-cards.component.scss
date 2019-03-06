@@ -7,6 +7,12 @@ a.nondecorated.link {
 .card-deck {
   margin: 4% 0;
 }
+@media(max-width:768px) {
+  .card-deck {
+    margin: 0;
+  }
+}
+
 .card {
   background-color: #444444;
   min-width: 540px;
@@ -23,6 +29,12 @@ a.nondecorated.link {
 }
 .card-title {
   margin: 10% 0;
+}
+.card-main-text{
+
+}
+.card-text {
+  text-align: justify;
 }
 .footer {
   float: bottom;
