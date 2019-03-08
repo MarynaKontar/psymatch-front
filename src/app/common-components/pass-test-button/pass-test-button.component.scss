@@ -1,27 +1,57 @@
 .card {
-  //min-width: 240px;
-  //max-width: 240px;
   width: 240px;
   height: 240px;
-  //weight: 120px;
   border-radius: 50%;
   background-color: #3f51b5;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.4);
   font-size: xx-large;
-  margin: 0% 2% 2% 0%;
+  margin: 5% 2% 2% 83%; //button is on the right
   animation: blink 3s ease-in-out infinite;
+  //top: 0;
+  //right: 0;
+  //position: fixed;
+  //float: right;
 }
 .card:hover {
   width: 260px;
   height: 260px;
   box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.4);
 }
+@media(max-width:1200px) {
+  .card {
+    margin: 8% 2% 2% 78%;
+  }
+}
+@media(max-width:992px) {
+  .card {
+    width: 200px;
+    height: 200px;
+    font-size: x-large;
+    margin: 8% 2% 2% 78%;
+  }
+  .card:hover {
+    width: 210px;
+    height: 210px;
+  }
+}
+@media(max-width:768px) {
+  .card {
+    width: 170px;
+    height: 170px;
+    font-size: x-large;
+    margin: 8% 2% 2% 73%;
+  }
+  .card:hover {
+    width: 200px;
+    height: 200px;
+  }
+}
 
 
 @keyframes blink{
-  0%{opacity: .0;}
-  //50%{opacity: .5;}
-  100%{opacity: 1;}
+  0%{opacity: .5;}
+  50%{opacity: 1;}
+  100%{opacity: 0.5;}
 
   //10%{opacity: .1;}
   //20%{opacity: .6;}
