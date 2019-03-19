@@ -31,14 +31,31 @@ export interface QualityItem {
 }
 
 export interface Scale {
-  scale: string;
-  scaleName: string;
+  scale: ScaleEnum;
+  scaleHeader: string;
+  scaleDescription: string;
+  scaleColor: string;
 }
 
 export interface Area {
   area: string;
   areaName: string;
   areaQuestion: string;
+}
+
+export enum AreaEnum {
+   GOAL = 'GOAL',
+   QUALITY = 'QUALITY',
+   STATE = 'STATE',
+   TOTAL = 'TOTAL',
+}
+export enum ScaleEnum {
+   ONE = 'ONE',
+   TWO = 'TWO',
+   THREE = 'THREE',
+   FOUR = 'FOUR',
+   FIVE = 'FIVE',
+   SIX = 'SIX'
 }
 
 export const animationTime = 500; // ms

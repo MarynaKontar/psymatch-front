@@ -1,138 +1,228 @@
+<!--В первых двух тестах в модальном окне при нажатии на текст или "Пройти тест"
+переходит на сам тест, а в третьем и четвертом - при нажатии на текст переходит обратно
+ на список тестов, а при нажатии на "Пройти тест" - на тест-->
+
 <!-- Tests card-deck -->
 <div class="card-deck justify-content-center">
 
-  <!-- Value compatibility test Card-->
+  <!-- VALUE COMPATIBILITY test Card-->
   <div class="card bg-success text-white">
-    <div *ngIf="isValueCompatibilityTestPassed" class="footer">{{valueCompatibilityTestPassed}}</div>
-    <div *ngIf="!isValueCompatibilityTestPassed" class="footer">{{valueCompatibilityTestIsNotPassed}}</div>
+    <div *ngIf="isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestPassed}}</div>
+    <div *ngIf="!isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestIsNotPassed}}</div>
     <div class="card-body">
-      <a class="card-content nondecorated link text-white" routerLink="/value-compatibility-test">
+      <a class="card-content customDecorated1" routerLink="/value-compatibility-test">
         <h2 class="card-title">{{value_compatibility_test_header}}</h2>
-        <p class="card-main-text">{{value_compatibility_test_main_text}}</p>
+        <p class="card-text">{{value_compatibility_test_main_text}}</p>
       </a>
-
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-link nondecorated text-white" data-toggle="modal" data-target="#modalCenterValueCompatibilityTest">
-        Подробнее...
-      </button>
-      <!-- Modal -->
-      <div class="modal fade" id="modalCenterValueCompatibilityTest" tabindex="-1" aria-labelledby="modalCenterValueCompatibilityTestTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <a class="modal-content card bg-success text-white nondecorated link" data-dismiss="modal" routerLink="/value-compatibility-test">
-            <div class="card-body">
-                <div class="card-title">{{value_compatibility_test_header}}</div>
-                <div class="card-text">{{value_compatibility_test_description1}}</div>
-                <div class="card-text">{{value_compatibility_test_description2}}</div>
-                <div class="card-text footer">Пройти тест</div>
-            </div>
-          </a>
-        </div>
-      </div><!--end Modal -->
-
     </div><!--end card-body -->
-  </div><!--end card -->
-  <!--end Value compatibility test Card-->
-
-
-  <!-- Role compatibility test Card-->
-  <div class="card bg-info text-white">
-    <!--<div *ngIf="isRoleCompatibilityTestPassed" class="footer">{{roleCompatibilityTestPassed}}</div>-->
-    <!--<div *ngIf="!isRoleCompatibilityTestPassed" class="footer">{{roleCompatibilityTestIsNotPassed}}</div>-->
-    <div class="footer">Тест не пройден</div>
-    <div class="card-body">
-      <a class="card-content nondecorated link text-white" routerLink="/error">
-        <h2 class="card-title">{{role_compatibility_test_header}}</h2>
-        <p class="card-main-text">{{role_compatibility_test_main_text}}</p>
-      </a>
-
+    <div class="card-footer">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-link nondecorated text-white" data-toggle="modal" data-target="#modalCenterRoleCompatibilityTest">
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalValueCompatibilityTest">
         Подробнее...
       </button>
-      <!-- Modal -->
-      <div class="modal fade" id="modalCenterRoleCompatibilityTest" tabindex="-1" aria-labelledby="modalCenterRoleCompatibilityTestTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <a class="modal-content card bg-info text-white nondecorated link" data-dismiss="modal" routerLink="/error">
+    </div>
+  </div><!--end card -->
+
+    <!-- Modal -->
+  <div class="modal fade" id="modalValueCompatibilityTest" tabindex="-1" aria-labelledby="modalValueCompatibilityTestTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-success" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h3 class="modal-title">{{value_compatibility_test_header}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="modal-body customDecorated" routerLink="/value-compatibility-test">
+          <div class="card bg-success">
             <div class="card-body">
-              <div class="card-title">{{role_compatibility_test_header}}</div>
+              <div class="card-text">{{value_compatibility_test_description1}}</div>
+              <div class="card-text">{{value_compatibility_test_description2}}</div>
+              <div class="card-text footer">Пройти тест</div>
+            </div><!--end card-body -->
+          </div><!--end card -->
+        </a><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end VALUE COMPATIBILITY test Card-->
+
+
+
+  <!-- ROLE COMPATIBILITY test Card-->
+  <div class="card bg-info text-white">
+    <!--<div *ngIf="isRoleCompatibilityTestPassed" class="card-header">{{roleCompatibilityTestPassed}}</div>-->
+    <!--<div *ngIf="!isRoleCompatibilityTestPassed" class="card-header">{{roleCompatibilityTestIsNotPassed}}</div>-->
+    <div class="card-header">Тест не пройден</div>
+    <div class="card-body">
+      <a class="card-content customDecorated1" routerLink="/error">
+        <h2 class="card-title">{{role_compatibility_test_header}}</h2>
+        <p class="card-text">{{role_compatibility_test_main_text}}</p>
+      </a>
+    </div><!--end card-body -->
+    <div class="card-footer">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalRoleCompatibilityTest">
+        Подробнее...
+      </button>
+    </div>
+  </div><!--end card -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalRoleCompatibilityTest" tabindex="-1" aria-labelledby="modalRoleCompatibilityTestTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-info" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h3 class="modal-title">{{role_compatibility_test_header}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="modal-body customDecorated" routerLink="/error">
+          <div class="card bg-info">
+            <div class="card-body">
               <div class="card-text">{{role_compatibility_test_description1}}</div>
               <div class="card-text">{{role_compatibility_test_description2}}</div>
               <div class="card-text footer">Пройти тест</div>
-            </div>
-          </a>
-        </div>
-      </div><!--end Modal -->
+            </div><!--end card-body -->
+          </div><!--end card -->
+        </a><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end ROLE COMPATIBILITY test Card-->
 
-    </div><!--end card-body -->
-  </div><!--end card -->
-  <!--end Role compatibility test Card-->
 
 
-  <!-- Love compatibility test Card-->
-  <div class="card bg-warning text-white">
-    <!--<div *ngIf="isLoveCompatibilityTestPassed" class="footer">{{loveCompatibilityTestPassed}}</div>-->
-    <!--<div *ngIf="!isLoveCompatibilityTestPassed" class="footer">{{loveCompatibilityTestIsNotPassed}}</div>-->
-    <div class="footer">Тест не пройден</div>
+  <!-- LOVE COMPATIBILITY test Card-->
+  <div class="card background-yellow text-white">
+    <!--<div *ngIf="isLoveCompatibilityTestPassed" class="card-header">{{loveCompatibilityTestPassed}}</div>-->
+    <!--<div *ngIf="!isLoveCompatibilityTestPassed" class="card-header">{{loveCompatibilityTestIsNotPassed}}</div>-->
+    <div class="card-header">Тест не пройден</div>
     <div class="card-body">
-      <a class="card-content nondecorated link text-white" routerLink="/error">
+      <a class="card-content customDecorated1" routerLink="/error">
         <h2 class="card-title">{{love_compatibility_test_header}}</h2>
-        <p class="card-main-text">{{love_compatibility_test_main_text}}</p>
+        <p class="card-text">{{love_compatibility_test_main_text}}</p>
       </a>
-
+    </div><!--end card-body -->
+    <div class="card-footer">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-link nondecorated text-white" data-toggle="modal" data-target="#modalCenterLoveCompatibilityTest">
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalLoveCompatibilityTest">
         Подробнее...
       </button>
-      <!-- Modal -->
-      <div class="modal fade" id="modalCenterLoveCompatibilityTest" tabindex="-1" aria-labelledby="modalCenterLoveCompatibilityTestTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <a class="modal-content card bg-warning text-white nondecorated link" data-dismiss="modal" routerLink="/error">
+    </div>
+  </div><!--end card -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalLoveCompatibilityTest" tabindex="-1" aria-labelledby="modalCenterLoveCompatibilityTestTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content background-yellow" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h3 class="modal-title">{{love_compatibility_test_header}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body customDecorated" >
+          <div class="card background-yellow">
             <div class="card-body">
-              <div class="card-title">{{love_compatibility_test_header}}</div>
               <div class="card-text">{{love_compatibility_test_description1}}</div>
               <div class="card-text">{{love_compatibility_test_description2}}</div>
               <div class="card-text">{{love_compatibility_test_description3}}</div>
-              <div class="card-text footer">Пройти тест</div>
-            </div>
-          </a>
-        </div>
-      </div><!--end Modal -->
-    </div><!--end card-body -->
-  </div><!--end card -->
-  <!--end Love compatibility test Card-->
+              <a class="card-text footer customDecorated" routerLink="/error">Пройти тест</a>
+            </div><!--end card-body -->
+          </div><!--end card -->
+        </div><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end LOVE COMPATIBILITY test Card-->
 
 
-  <!-- Sexual compatibility test Card-->
+
+  <!-- SEXUAL COMPATIBILITY test Card-->
   <div class="card bg-danger text-white">
-    <!--<div *ngIf="isSexualCompatibilityTestPassed" class="footer">{{sexualCompatibilityTestPassed}}</div>-->
-    <!--<div *ngIf="!isSexualCompatibilityTestPassed" class="footer">{{sexualCompatibilityTestIsNotPassed}}</div>-->
-    <div class="footer">Тест не пройден</div>
+    <!--<div *ngIf="isSexualCompatibilityTestPassed" class="card-header">{{sexualCompatibilityTestPassed}}</div>-->
+    <!--<div *ngIf="!isSexualCompatibilityTestPassed" class="card-header">{{sexualCompatibilityTestIsNotPassed}}</div>-->
+    <div class="card-header">Тест не пройден</div>
     <div class="card-body">
-      <a class="card-content nondecorated link text-white" routerLink="/error">
+      <a class="card-content customDecorated" routerLink="/error">
         <h2 class="card-title">{{sexual_compatibility_test_header}}</h2>
-        <p class="card-main-text">{{sexual_compatibility_test_main_text}}</p>
+        <p class="card-text">{{sexual_compatibility_test_main_text}}</p>
       </a>
-
+    </div><!--end card-body -->
+    <div class="card-footer">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-link nondecorated text-white" data-toggle="modal" data-target="#modalCenterSexualCompatibilityTest">
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalSexualCompatibilityTest">
         Подробнее...
       </button>
-      <!-- Modal -->
-      <div class="modal fade" id="modalCenterSexualCompatibilityTest" tabindex="-1" aria-labelledby="modalCenterSexualCompatibilityTestTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <a class="modal-content card bg-danger text-white nondecorated link" data-dismiss="modal" routerLink="/error">
+    </div>
+  </div><!--end card -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalSexualCompatibilityTest" tabindex="-1" aria-labelledby="modalSexualCompatibilityTestTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-danger" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h3 class="modal-title">{{sexual_compatibility_test_header}}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body customDecorated" >
+          <div class="card bg-danger">
             <div class="card-body">
-              <div class="card-title">{{sexual_compatibility_test_header}}</div>
               <div class="card-text">{{sexual_compatibility_test_description1}}</div>
               <div class="card-text">{{sexual_compatibility_test_description2}}</div>
-
-            </div>
-            <div class="card-text footer">Пройти тест</div>
-          </a>
-        </div>
-      </div><!--end Modal -->
-    </div><!--end card-body -->
-  </div><!--end card -->
-  <!--end Sexual compatibility test Card-->
+              <a class="card-text footer customDecorated" routerLink="/error">Пройти тест</a>
+            </div><!--end card-body -->
+          </div><!--end card -->
+        </div><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end LOVE COMPATIBILITY test Card-->
 
 </div><!-- end Tests card-deck -->
+
+

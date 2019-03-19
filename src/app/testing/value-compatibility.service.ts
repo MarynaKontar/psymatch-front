@@ -41,7 +41,8 @@ export class ValueCompatibilityService {
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'Authorization': token});
     } else {
-      headers = new HttpHeaders({ 'Content-Type': 'application/json'});
+      headers = new HttpHeaders({ 'Content-Type': 'application/json',
+        'userForMatchingToken': localStorage.getItem('userForMatchingToken')});
     }
 
     const httpOptions = {

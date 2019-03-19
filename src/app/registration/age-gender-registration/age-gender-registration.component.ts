@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {RegistrationService} from '../registration.service';
 import {User} from '../../profile/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-age-gender-registration',
@@ -11,10 +12,11 @@ export class AgeGenderRegistrationComponent implements OnInit {
   @ViewChild('openModalAgeGenderRegistration') openModal: ElementRef; // in html <button id="openModalAgeGenderRegistration" ...>
   user = new User();
   isUserHaveAgeAndGender = false;
-  constructor(private registrationService: RegistrationService) { }
+  constructor(private registrationService: RegistrationService,
+              private router: Router) { }
 
   ngOnInit() {
-    if (!this.isHaveAgeAndGender()) {
+    if (!this.registrationService.isHaveAgeAndGender()) {
       this.openModal.nativeElement.click(); // @ViewChild
     }
   }
@@ -22,16 +24,12 @@ export class AgeGenderRegistrationComponent implements OnInit {
   saveAgeAndGender() {
     this.registrationService.addAgeAndGender(<User> this.user)
       .subscribe(data => {
-        console.log('saveAgeAndGender'  + data);
+        console.log('saveAgeAndGender' + data);
         this.user = data;
         this.setHaveAgeAndGender();
       });
-    this.isUserHaveAgeAndGender = this.isHaveAgeAndGender();
-  }
-
-  isHaveAgeAndGender(): boolean {
-    if (localStorage.getItem('token') === null) { return false; }
-    if (localStorage.getItem('haveAgeAndGender') === 'true') { return true; }
+    this.isUserHaveAgeAndGender = this.registrationService.isHaveAgeAndGender();
+    this.router.navigate(['value-profile']); // обновить страничку value-profile, чтобы появилость окно tokens. НЕ ОБНОВЛЯЕТСЯ
   }
 
   setHaveAgeAndGender() {

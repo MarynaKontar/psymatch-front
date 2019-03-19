@@ -1,71 +1,156 @@
 .card-deck {
-  margin: 2% 0;
+  margin: 0% 0;
 }
-@media(max-width:1200px) {
+@media(max-width:1199.98px) {
   .card-deck{
     margin: 5% 0;
   }
 }
-@media(max-width:992px) {
+@media(max-width:991.98px) {
   .card-deck{
     margin: 2% 0;
   }
 }
-@media(max-width:768px) {
+@media(max-width:767.98px) {
   .card-deck, .modal {
-    margin: 5% 0;
+    margin: 15% 0;
   }
 }
-
 .card {
-  background-color: #444444;
-  min-width: 300px;
+  min-width: 335px;
   max-width: 400px;
-  border-radius: 5%;
+  //height: 500px;
   margin: 2%;
   text-align: center;
-  display: inline-block;
+}
+.card:hover{
+  transform: scale(1.1);
+}
+
+.card, .modal-content {
+  border-radius: 5%;
+  border-color:  rgba(255,255,255,0);;
   box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.4);
 }
-.card-body {
-  margin: 1% 1% 5% 1%;
+.card-header {
+  text-align: end;
   font-size: larger;
 }
-.card-title {
-  margin: 0% 1% 6% 1%;
-}
-.card-main-text{
-
-}
-.card-text {
-  text-align: justify;
-  font-size: medium;
-}
-
-.card-text.footer {
-  text-align: center;
-  font-size: larger;
-  float: bottom;
-}
-.footer {
+.header {
   float: bottom;
   text-align: end;
   margin: 5% 5% 0% 5%;
   font-size: larger;
 }
-.btn-link {
+.card-body {
+  margin: 0% 1% 5% 1%;
   font-size: larger;
-  margin-top: 10%;
 }
-a.nondecorated:active, /* активная/посещенная ссылка */
-a.nondecorated:hover,  /* при наведении */
-a.nondecorated{
+//.card-title {
+//  margin: 0% 1% 6% 1%;
+//  font-size: xx-large;
+//}
+.card-text {
+  text-align: justify;
+  font-size: larger;
+}
+
+.btn-link {
+  font-size: x-large;
+  //margin-top: 10%;
+  //float: bottom;
+}
+.btn-link.example {
+  margin-top: 15%;
+  float: bottom;
+}
+
+.modal-dialog, .modal-content, .modal-body {
+  width: 800px;
+  min-width: 800px;
+  max-width: 800px;
+}
+@media(max-width:768px) {
+  .modal-dialog, .modal-content, .modal-body {
+    width: 500px;
+    min-width: 500px;
+    max-width: 500px;
+  }
+}
+//.modal-content { // фоновая картинка в модальном окне
+//  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Abstract-Artwork-_1331.jpg');
+//  background-repeat: no-repeat;
+//  background-size: cover;
+//}
+
+.modal-body { // если писать .modal-body.card, то в данном случае не перезаписывает .card
+  .card {
+    width: 750px;
+    min-width: 750px;
+    max-width: 750px;
+    margin: 0;
+    box-shadow: none;
+    transform: none;
+    cursor: pointer;
+  }
+}
+@media(max-width:767.98px) {
+  .modal-body { // если писать .modal-body.card, то в данном случае не перезаписывает .card
+    .card {
+      width: 450px;
+      min-width: 450px;
+      max-width: 450px;
+    }
+  }
+}
+
+.modal-header {
+  border-bottom: none;
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 0;
+}
+.modal-title, .close {
+  font-size: xx-large;
+  color:white;
+}
+.card-text.footer {
+  text-align: center;
+  font-size: xx-large;
+  float: bottom;
+  margin: 10% 5% 0% 5%;
+}
+
+.customDecorated:active, /* активная/посещенная ссылка */
+.customDecorated:hover,  /* при наведении */
+.customDecorated{
   text-decoration: none;
-  //color: #666;
 }
-button.nondecorated:active, /* активная/посещенная ссылка */
-button.nondecorated:hover,  /* при наведении */
-button.nondecorated{
+.customDecorated, .customDecorated1{
+  color: white;
   text-decoration: none;
-  //color: #666;
 }
+.background-yellow {
+  //background-color: rgba(247, 202, 24, 1);//+-
+  //background-color: rgb(246,205,139);//-
+  background-color: rgb(254, 132, 14);//+
+  //background-color: rgb(214, 156, 47);//темноват
+  //background-color: rgb(255, 214, 98);//-
+  //background-color: rgb(236, 219, 84);//-
+  //background-color: rgb(246, 209, 85);//-
+  //background-color: rgb(250, 224, 60);//-
+  //background-color: rgb(239, 192, 80);//+-
+  //background-color: rgb(246, 209, 85);
+}
+.card-content.customDecorated1:hover{
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+.card-content.customDecorated:hover,
+.btn.customDecorated:hover,
+.card-text.footer:hover {
+  transform: scale(1.1);
+  color: rgba(0,0,170, 0.6);
+}
+

@@ -55,6 +55,11 @@ export class RegistrationService {
     localStorage.setItem('haveAgeAndGender', (user.age != null && user.gender != null) ? 'true' : 'false');
   }
 
+  isHaveAgeAndGender(): boolean {
+    if (localStorage.getItem('token') === null) { return false; }
+    if (localStorage.getItem('haveAgeAndGender') === 'true') { return true; }
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

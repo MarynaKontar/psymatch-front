@@ -1,54 +1,56 @@
 .card {
-  width: 240px;
-  height: 240px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background-color: #3f51b5;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.4);
-  font-size: xx-large;
-  margin: 5% 2% 2% 83%; //button is on the right
+  font-size: x-large;
+  margin: 3% 2% 2% 87%; //button is on the right
   animation: blink 3s ease-in-out infinite;
-  //top: 0;
-  //right: 0;
-  //position: fixed;
-  //float: right;
 }
 .card:hover {
-  width: 260px;
-  height: 260px;
   box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.4);
+  -webkit-transform: scale(1.15, 1.15);
+  transform: scale(1.15, 1.15);
 }
-@media(max-width:1200px) {
+@media (min-width: 1500px) {
   .card {
-    margin: 8% 2% 2% 78%;
+    margin: 4% 2% 2% 89%;
   }
 }
-@media(max-width:992px) {
+@media(max-width:1199.98px) {
   .card {
-    width: 200px;
-    height: 200px;
+    margin: 4% 2% 2% 84%;
     font-size: x-large;
-    margin: 8% 2% 2% 78%;
-  }
-  .card:hover {
-    width: 210px;
-    height: 210px;
-  }
-}
-@media(max-width:768px) {
-  .card {
-    width: 170px;
-    height: 170px;
-    font-size: x-large;
-    margin: 8% 2% 2% 73%;
-  }
-  .card:hover {
-    width: 200px;
-    height: 200px;
   }
 }
 
+@media(max-width:991.98px) {
+  .card {
+    width: 160px;
+    height: 160px;
+    margin: 5% 2% 2% 83%;
+  }
+}
+@media(max-width:767.98px) {
+  .card {
+    display: none;
+    width: 160px;
+    height: 160px;
+    font-size: x-large;
+    margin: 6% 2% 2% 73%;
+  }
+}
+@media(max-width:575.98px) {
+  .card {
+    width: 140px;
+    height: 140px;
+    font-size: large;
+    margin: 6% 2% 2% 70%;
+  }
+}
 
-@keyframes blink{
+@keyframes blink{ // мигание кнопки
   0%{opacity: .5;}
   50%{opacity: 1;}
   100%{opacity: 0.5;}

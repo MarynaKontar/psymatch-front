@@ -2,6 +2,7 @@ import {Component, Inject, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {URL} from '../../utils/config';
 import {DOCUMENT} from '@angular/common';
 import {ValueCompatibilityService} from '../../testing/value-compatibility.service';
+import {RegistrationService} from '../../registration/registration.service';
 
 @Component({
   selector: 'app-sending-tokens',
@@ -17,13 +18,14 @@ export class SendingTokensComponent implements OnInit {
   private isTokenLinkVisible = false;
 
   constructor(@Inject(DOCUMENT) dom: Document,
-              private valueCompatibilityService: ValueCompatibilityService) {
+              private valueCompatibilityService: ValueCompatibilityService,
+              private registrationService: RegistrationService) {
     this.dom = dom;
   }
 
   ngOnInit() {
     this.getFriendsTokens();
-    if (true) {
+    if (this.registrationService.isHaveAgeAndGender()) {
       this.openModal.nativeElement.click(); // @ViewChild
     }
   }

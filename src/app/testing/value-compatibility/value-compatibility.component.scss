@@ -1,84 +1,138 @@
 .container-fluid.tests {
-  margin: 1%;
+  margin: 4% 1% 1% 1%;
+}
+@media(max-width:575.98px) {
+  .container-fluid.tests  {
+    margin: 6% 1% 1% 1%;
+  }
 }
 .test-another-user{
   margin: 5% 10% 10% 10% ;
 }
+
 .container.test, .container.links, form {
   padding: 10% 10% 3% 10%;
-
-  .area.name {
-    padding: 2% 0;
-    font-size: 1.5em;
-  }
-  .area.name.header{
-    font-size: 1.8em;
-    text-align: center;
-  }
-  .area.question {
-    padding: 1% 0;
-    margin-bottom: 5%;
-    font-size: 1.3em;
-    text-align: center;
-  }
-  .area.answer {
-    padding: 1% 0;
-    margin-bottom: -12%; // так как padding у .container.test = 10%
-    font-size: 1.4em;
-    text-align: center;
-    color: #05AE0E;
-  }
-  .scale.first, .scale.second {
-    padding: 1% 0;
-    font-size: 1.2em;
-  }
-  .links.header, .links {
-    text-align: center;
-  }
-
-  //Testing card's animation
-  //http://tobiasahlin.com/blog/how-to-animate-box-shadow/
-  .card {
-    height: 15em;
-    border-radius: 5%;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
-    //-webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-    //transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-  .card::after {
-    content: "";
-    border-radius: 5%;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
-    //opacity: 0;
-    z-index: -1; /* hide shadow behind image */
-    //-webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-    //transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-  }
-  .card:hover {
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-    //background-color: darkseagreen;
-    //transition: box-shadow 5s;
-    //background-color: #b0b0b0;
-    //background-color: darkcyan;
-    //background-color: mediumaquamarine;
-    //background-color: #e0e0e1;
-    background-color: #f1f1f2;
-  }
-  .card:hover::after {
-    opacity: 1;
-  }
-
-  button {
-    margin-top: 10%;
-    //border-radius: 5%;
-    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
-  }
-  input[type=radio] {
-    display: none;
-  }
-
 }
+.area.name {
+  padding: 1% 0;
+  font-size: x-large;
+}
+.area.name.header{
+  font-size: xx-large;
+  text-align: center;
+}
+.area.question {
+  padding: 1% 0;
+  margin-bottom: 0%;
+  font-size: x-large;
+  text-align: center;
+}
+.area.answer {
+  padding: 1% 0;
+  margin-bottom: -12%; // так как padding у .container.test = 10%
+  font-size: x-large;
+  text-align: center;
+  color: #05AE0E;
+}
+.scale.first, .scale.second {
+  padding: 0% 0;
+  font-size: x-large;
+}
+.links.header, .links {
+  text-align: center;
+}
+
+//Testing card's animation
+//http://tobiasahlin.com/blog/how-to-animate-box-shadow/
+.card {
+  font-size: x-large;
+  //font-weight: bold;
+  //display: flex;
+  margin-top: 5%;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
+  height: 450px;
+  min-height: 400px;
+  max-height: 450px;
+  border-radius: 20px;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+  //-webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  //transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+@media(max-width:767.98px) {
+  .card {
+    //font-size: large;
+    //width: 340px;
+    //min-width: 315px;
+    //max-width: 340px;
+    //height: 325px;
+    //min-height: 325px;
+    //max-height: 350px;
+  }
+}
+@media(max-width:575.98px) {
+  .card {
+    font-size: medium;
+    width: 315px;
+    min-width: 315px;
+    max-width: 315px;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+  }
+}
+.card-body {
+  text-align: justify;
+  margin: 5%;
+}
+.card-header {
+  text-align: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  font-size: xx-large;
+  font-weight: bold;
+  background-color: rgba(218, 238, 243, 1);
+}
+.card::after {
+  content: "";
+  border-radius: 5%;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+  //opacity: 0;
+  z-index: -1; /* hide shadow behind image */
+  //-webkit-transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  //transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.card:hover {
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+  //background-color: darkseagreen;
+  //transition: box-shadow 5s;
+  //background-color: #b0b0b0;
+  //background-color: darkcyan;
+  //background-color: mediumaquamarine;
+  //background-color: #e0e0e1;
+  background-color: #f1f1f2;
+}
+.card:hover::after {
+  opacity: 1;
+}
+
+button {
+  margin-top: 10%;
+  //border-radius: 5%;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
+}
+input[type=radio] {
+  display: none;
+}
+
+
+
+
+
 //.container-fluid.chart, .container.chart {
 //  //padding: 10% 10% 10% 10%;
 //  padding: -5%;
