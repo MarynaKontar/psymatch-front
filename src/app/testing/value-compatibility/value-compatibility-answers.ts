@@ -31,7 +31,7 @@ export interface QualityItem {
 }
 
 export interface Scale {
-  scale: string;
+  scale: ScaleEnum;
   scaleHeader: string;
   scaleDescription: string;
   scaleColor: string;

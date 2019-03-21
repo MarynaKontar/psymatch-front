@@ -2,104 +2,41 @@
 <div class="container-fluid tests">
 
   <!--                                     GOALS                                      -->
-  <!--<div *ngIf="tests" class="container-fluid test" @fade [hidden]="isGoalsDone">-->
-    <!--<div class="area header">{{ tests.goal[0].area.areaName }} (GOAL) </div>-->
-    <!--<div class="area question">{{ tests.goal[0].area.areaQuestion }}</div>-->
-    <!--<div class="card-deck justify-content-center align-items-center"-->
-         <!--*ngFor="let test of tests.goal; let i = index"-->
-         <!--[@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">-->
-      <!--{{ test.firstScale.scaleHeader }} +++-->
-      <!--{{ test.firstScale.scaleDescription }}+++-->
-      <!--<label class="card d-flex justify-content-center">-->
-        <!--<input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleHeader">-->
-        <!--<div class="card-header">-->
-          <!--&lt;!&ndash;[ngStyle]="{'background-color': test.firstScale.scaleColor}">&ndash;&gt;-->
-          <!--{{ test.firstScale.scaleHeader }}-->
-        <!--</div>-->
-        <!--<div class="card-body align-items-center d-flex">-->
-          <!--&lt;!&ndash;<div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>&ndash;&gt;-->
-           <!--{{ test.firstScale.scaleDescription }}-->
-        <!--</div>-->
-      <!--</label>-->
-      <!--<label class="card d-flex justify-content-center">-->
-        <!--<div class="card-header">-->
-          <!--&lt;!&ndash;[ngStyle]="{'background-color': test.secondScale.scaleColor}">&ndash;&gt;-->
-          <!--{{ test.secondScale.scaleHeader }}-->
-        <!--</div>-->
-        <!--<div class="card-body align-items-center d-flex">-->
-          <!--<input type="radio" (click)="setGoal(i, test.secondScale)" name="test.secondScale.scaleHeader">-->
-          <!--<div class="card-text scaleDescription"> {{ test.secondScale.scaleDescription }} </div>-->
-        <!--</div>-->
-      <!--</label>-->
-    <!--</div>-->
-    <!--<div class="btn-group-vertical mr-4 btn-block" >-->
-      <!--<button (click)="saveGoals()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">ЗБЕРЕГТИ</button>-->
-      <!--<button (click)="resetGoals()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест знову</button>-->
-    <!--</div>-->
-  <!--</div>-->
-
-  <!--<div [hidden] = "!isGoalsDone || (isStatesDone || isQualitiesDone)" @vanish>-->
-    <!--<div class="area answer">Вы успешно прошли тестирование "Жизненные цели".-->
-      <!--Осталось пройти тесты "Состояния" и "Личностные качества"</div>-->
-  <!--</div>-->
-
-
-  <div *ngIf="tests" class="container test" @fade [hidden]="isGoalsDone">
-    <div class="area name header">{{ tests.goal[0].area.areaName }} (GOAL) </div>
+  <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isGoalsDone">
+    <div class="area header">{{ tests.goal[0].area.areaName }} (GOAL) </div>
     <div class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
-    <!--<div class="form-group">-->
-    <!--<div class="radiogroup" *ngFor="let test of tests.goal; let i = index">-->
-    <!--<div class="row">-->
-    <!--<div class="col-6">-->
-    <!-- -xs-12 col-sm-8 col-md-6-->
-    <!--@slide="'activated'"-->
-    <div class="card-deck" *ngFor="let test of tests.goal; let i = index"
+    <div class="card-deck justify-content-center align-items-center"
+         *ngFor="let test of tests.goal; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
-      <!--[activePane]="isNotPassed ? 'activated' : 'unactivated'"-->
-      <label class="card ">
-        <div class="card-header" >
-          {{ test.firstScale.scaleHeader }}
+      <label class="card d-flex justify-content-center">
+        <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleHeader">
+        <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
+        {{ test.firstScale.scaleHeader }}
         </div>
-        <div class="card-body ">
-          <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName">
-          <!--<input type="radio" (change)="setGoal(i, test.firstScale)" name="test.firstScale.scaleName" >-->
+        <div class="card-body align-items-center d-flex">
           <div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>
-          <!--{{ test.firstScale.scaleHeader }}-->
-          <!--{{ test.firstScale.scaleDescription }}-->
         </div>
       </label>
-      <!--<div class="col-6">-->
-      <label class="card scale second">
-        <!--<div class="card">-->
-        <div class="card-body text-xs-center">
-          <input type="radio" (click)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">
-          <!--<input type="radio" (change)="setGoal(i, test.secondScale)" name="test.secondScale.scaleName">-->
+      <label class="card d-flex justify-content-center">
+        <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
           {{ test.secondScale.scaleHeader }}
-          {{ test.secondScale.scaleDescription }}
         </div>
-        <!--</div>-->
+        <div class="card-body align-items-center d-flex">
+          <input type="radio" (click)="setGoal(i, test.secondScale)" name="test.secondScale.scaleHeader">
+          <div class="card-text scaleDescription"> {{ test.secondScale.scaleDescription }} </div>
+        </div>
       </label>
     </div>
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
     <div class="btn-group-vertical mr-4 btn-block" >
       <button (click)="saveGoals()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">ЗБЕРЕГТИ</button>
       <button (click)="resetGoals()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест знову</button>
     </div>
   </div>
-  <div class="container test" [hidden] = "!isGoalsDone || (isStatesDone || isQualitiesDone)" @vanish>
-    <div class="area name answer">Вы успешно прошли тестирование "Жизненные цели".
+
+  <div [hidden] = "!isGoalsDone || (isStatesDone || isQualitiesDone)" @vanish>
+    <div class="area answer">Вы успешно прошли тестирование "Жизненные цели".
       Осталось пройти тесты "Состояния" и "Личностные качества"</div>
   </div>
-
-
-
-
-
-
-
 
 
   <!--                                     STATES                                      -->
@@ -108,22 +45,17 @@
     <div class="area question">{{ tests.state[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center" *ngFor="let test of tests.state; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
-      <!--{{ test.firstScale.scaleHeader }} +++-->
-      <!--{{ test.firstScale.scaleDescription }}+++-->
       <label class="card d-flex justify-content-center">
-        <div class="card-header" >
-             <!--[ngStyle]="{'background-color': test.firstScale.scaleColor}">-->
+        <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
           <input type="radio" (click)="setState(i, test.firstScale)" name="test.firstScale.scaleHeader">
-          <!--<div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>-->
-          {{ test.firstScale.scaleDescription }}
+          <div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>
         </div>
       </label>
       <label class="card d-flex justify-content-center">
-        <div class="card-header">
-          <!--[ngStyle]="{'background-color': test.secondScale.scaleColor}">-->
+        <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
           {{ test.secondScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -154,8 +86,7 @@
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
         <input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleHeader">
-        <div class="card-header">
-          <!--[ngStyle]="{'background-color': test.firstScale.scaleColor}">-->
+        <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -164,13 +95,11 @@
       </label>
       <label class="card d-flex justify-content-center">
         <input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleHeader">
-        <div class="card-header">
-          <!--[ngStyle]="{'background-color': test.secondScale.scaleColor}">-->
+        <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
           {{ test.secondScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
-          <!--<div class="card-text scaleDescription"> {{ test.secondScale.scaleDescription }} </div>-->
-          {{ test.secondScale.scaleDescription }}
+          <div class="card-text scaleDescription"> {{ test.secondScale.scaleDescription }} </div>
         </div>
       </label>
     </div>

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
-import {animationTime, Scale, ValueCompatibilityAnswers} from './value-compatibility-answers';
+import {animationTime, Scale, ScaleEnum, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormBuilder} from '@angular/forms';
 import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -87,18 +87,18 @@ export class ValueCompatibilityComponent implements OnInit {
           this.tests = data;
           console.log(data);
 
-        // this.tests.goal.forEach(goal => {
-        //     goal.firstScale.scaleColor = this.setScaleColor(goal.firstScale.scale);
-        //     goal.secondScale.scaleColor = this.setScaleColor(goal.secondScale.scale);
-        // });
-        // this.tests.quality.forEach(quality => {
-        //   quality.firstScale.scaleColor = this.setScaleColor(quality.firstScale.scale);
-        //   quality.secondScale.scaleColor = this.setScaleColor(quality.secondScale.scale);
-        // });
-        // this.tests.state.forEach(state => {
-        //   state.firstScale.scaleColor = this.setScaleColor(state.firstScale.scale);
-        //   state.secondScale.scaleColor = this.setScaleColor(state.secondScale.scale);
-        // });
+        this.tests.goal.forEach(goal => {
+            goal.firstScale.scaleColor = this.setScaleColor(goal.firstScale.scale);
+            goal.secondScale.scaleColor = this.setScaleColor(goal.secondScale.scale);
+        });
+        this.tests.quality.forEach(quality => {
+          quality.firstScale.scaleColor = this.setScaleColor(quality.firstScale.scale);
+          quality.secondScale.scaleColor = this.setScaleColor(quality.secondScale.scale);
+        });
+        this.tests.state.forEach(state => {
+          state.firstScale.scaleColor = this.setScaleColor(state.firstScale.scale);
+          state.secondScale.scaleColor = this.setScaleColor(state.secondScale.scale);
+        });
       }
       );
 
@@ -282,29 +282,29 @@ export class ValueCompatibilityComponent implements OnInit {
     this.valueCompatibilityService.createFriendsTokens();
   }
 
-  // private setScaleColor(scale: ScaleEnum): string {
-  //   switch (scale) {
-  //     case ScaleEnum.ONE: {
-  //       return this.scaleColor[0];
-  //     }
-  //     case ScaleEnum.TWO: {
-  //       return this.scaleColor[1];
-  //     }
-  //     case ScaleEnum.THREE: {
-  //       return this.scaleColor[2];
-  //     }
-  //     case ScaleEnum.FOUR: {
-  //       return this.scaleColor[3];
-  //     }
-  //     case ScaleEnum.FIVE: {
-  //       return this.scaleColor[4];
-  //     }
-  //     case ScaleEnum.SIX: {
-  //       return this.scaleColor[5];
-  //     }
-  //     default: {
-  //       return this.scaleColor[0];
-  //     }
-  //   }
-  // }
+  private setScaleColor(scale: ScaleEnum): string {
+    switch (scale) {
+      case ScaleEnum.ONE: {
+        return this.scaleColor[0];
+      }
+      case ScaleEnum.TWO: {
+        return this.scaleColor[1];
+      }
+      case ScaleEnum.THREE: {
+        return this.scaleColor[2];
+      }
+      case ScaleEnum.FOUR: {
+        return this.scaleColor[3];
+      }
+      case ScaleEnum.FIVE: {
+        return this.scaleColor[4];
+      }
+      case ScaleEnum.SIX: {
+        return this.scaleColor[5];
+      }
+      default: {
+        return this.scaleColor[0];
+      }
+    }
+  }
 }
