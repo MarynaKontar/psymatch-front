@@ -1,6 +1,3 @@
-<!--В первых двух тестах в модальном окне при нажатии на текст или "Пройти тест"
-переходит на сам тест, а в третьем и четвертом - при нажатии на текст переходит обратно
- на список тестов, а при нажатии на "Пройти тест" - на тест-->
 
 <!-- Tests card-deck -->
 <div class="card-deck justify-content-center">
@@ -10,7 +7,7 @@
     <div *ngIf="isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestPassed}}</div>
     <div *ngIf="!isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestIsNotPassed}}</div>
     <div class="card-body">
-      <a class="card-content customDecorated1" routerLink="/value-compatibility-test">
+      <a class="card-content customDecorated" routerLink="/value-compatibility-test">
         <h2 class="card-title">{{value_compatibility_test_header}}</h2>
         <p class="card-text">{{value_compatibility_test_main_text}}</p>
       </a>
@@ -43,15 +40,17 @@
             </div>
           </div>
         </div>
-        <a class="modal-body customDecorated" routerLink="/value-compatibility-test">
+        <div class="modal-body customDecorated">
           <div class="card bg-success">
             <div class="card-body">
               <div class="card-text">{{value_compatibility_test_description1}}</div>
               <div class="card-text">{{value_compatibility_test_description2}}</div>
-              <div class="card-text footer">Пройти тест</div>
             </div><!--end card-body -->
           </div><!--end card -->
-        </a><!--end modal-body -->
+        </div><!--end modal-body -->
+        <div class="modal-footer justify-content-center">
+          <a class="footer customDecorated" routerLink="/value-compatibility-test">Пройти тест</a>
+        </div><!--end modal-footer -->
       </div><!--end modal-content -->
     </div><!--end modal-dialog-->
   </div><!--end Modal -->
@@ -65,7 +64,7 @@
     <!--<div *ngIf="!isRoleCompatibilityTestPassed" class="card-header">{{roleCompatibilityTestIsNotPassed}}</div>-->
     <div class="card-header">Тест не пройден</div>
     <div class="card-body">
-      <a class="card-content customDecorated1" routerLink="/error">
+      <a class="card-content customDecorated" routerLink="/error">
         <h2 class="card-title">{{role_compatibility_test_header}}</h2>
         <p class="card-text">{{role_compatibility_test_main_text}}</p>
       </a>
@@ -98,15 +97,17 @@
             </div>
           </div>
         </div>
-        <a class="modal-body customDecorated" routerLink="/error">
+        <div class="modal-body customDecorated">
           <div class="card bg-info">
             <div class="card-body">
               <div class="card-text">{{role_compatibility_test_description1}}</div>
               <div class="card-text">{{role_compatibility_test_description2}}</div>
-              <div class="card-text footer">Пройти тест</div>
             </div><!--end card-body -->
           </div><!--end card -->
-        </a><!--end modal-body -->
+        </div><!--end modal-body -->
+        <div class="modal-footer justify-content-center">
+          <a class="footer customDecorated" routerLink="/error">Пройти тест</a>
+        </div><!--end modal-footer -->
       </div><!--end modal-content -->
     </div><!--end modal-dialog-->
   </div><!--end Modal -->
@@ -120,7 +121,7 @@
     <!--<div *ngIf="!isLoveCompatibilityTestPassed" class="card-header">{{loveCompatibilityTestIsNotPassed}}</div>-->
     <div class="card-header">Тест не пройден</div>
     <div class="card-body">
-      <a class="card-content customDecorated1" routerLink="/error">
+      <a class="card-content customDecorated" routerLink="/error">
         <h2 class="card-title">{{love_compatibility_test_header}}</h2>
         <p class="card-text">{{love_compatibility_test_main_text}}</p>
       </a>
@@ -159,10 +160,12 @@
               <div class="card-text">{{love_compatibility_test_description1}}</div>
               <div class="card-text">{{love_compatibility_test_description2}}</div>
               <div class="card-text">{{love_compatibility_test_description3}}</div>
-              <a class="card-text footer customDecorated" routerLink="/error">Пройти тест</a>
             </div><!--end card-body -->
           </div><!--end card -->
         </div><!--end modal-body -->
+        <div class="modal-footer justify-content-center">
+          <a class="footer customDecorated" routerLink="/error">Пройти тест</a>
+        </div><!--end modal-footer -->
       </div><!--end modal-content -->
     </div><!--end modal-dialog-->
   </div><!--end Modal -->
@@ -214,10 +217,12 @@
             <div class="card-body">
               <div class="card-text">{{sexual_compatibility_test_description1}}</div>
               <div class="card-text">{{sexual_compatibility_test_description2}}</div>
-              <a class="card-text footer customDecorated" routerLink="/error">Пройти тест</a>
             </div><!--end card-body -->
           </div><!--end card -->
         </div><!--end modal-body -->
+        <div class="modal-footer justify-content-center">
+          <a class="footer customDecorated" routerLink="/error">Пройти тест</a>
+        </div><!--end modal-footer -->
       </div><!--end modal-content -->
     </div><!--end modal-dialog-->
   </div><!--end Modal -->

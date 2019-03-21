@@ -282,7 +282,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.valueCompatibilityService.createFriendsTokens();
   }
 
-  private setScaleColor(scale: string): string {
+  private setScaleColor(scale: ScaleEnum): string {
     switch (scale) {
       case ScaleEnum.ONE: {
         return this.scaleColor[0];
