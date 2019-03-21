@@ -8,13 +8,16 @@
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.goal; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
+      {{ test.firstScale.scaleHeader }} +++
+      {{ test.firstScale.scaleDescription }}+++
       <label class="card d-flex justify-content-center">
+        <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleHeader">
         <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
-          <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleHeader">
-          <div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>
+          <!--<div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>-->
+           {{ test.firstScale.scaleDescription }}
         </div>
       </label>
       <label class="card d-flex justify-content-center">
@@ -47,13 +50,16 @@
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.state; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
+      {{ test.firstScale.scaleHeader }} +++
+      {{ test.firstScale.scaleDescription }}+++
       <label class="card d-flex justify-content-center">
         <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
           <input type="radio" (click)="setState(i, test.firstScale)" name="test.firstScale.scaleHeader">
-          <div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>
+          <!--<div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>-->
+          {{ test.firstScale.scaleDescription }}
         </div>
       </label>
       <label class="card d-flex justify-content-center">
@@ -87,21 +93,22 @@
          *ngFor="let test of tests.quality; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
+        <input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleHeader">
         <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
-          <input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleHeader">
           <div class="card-text scaleDescription"> {{ test.firstScale.scaleDescription }} </div>
         </div>
       </label>
       <label class="card d-flex justify-content-center">
+        <input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleHeader">
         <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
           {{ test.secondScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
-          <input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleHeader">
-          <div class="card-text scaleDescription"> {{ test.secondScale.scaleDescription }} </div>
+          <!--<div class="card-text scaleDescription"> {{ test.secondScale.scaleDescription }} </div>-->
+          {{ test.secondScale.scaleDescription }}
         </div>
       </label>
     </div>
