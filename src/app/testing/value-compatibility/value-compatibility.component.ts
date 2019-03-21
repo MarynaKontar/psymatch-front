@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
-import {animationTime, Scale, ScaleEnum, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
+import {animationTime, Scale, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormBuilder} from '@angular/forms';
 import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
