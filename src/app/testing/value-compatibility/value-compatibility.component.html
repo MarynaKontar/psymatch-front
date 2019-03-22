@@ -10,7 +10,7 @@
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
         <input type="radio" (click)="setGoal(i, test.firstScale)" name="test.firstScale.scaleHeader">
-        <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
+        <div class="card-header">
         {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -18,7 +18,7 @@
         </div>
       </label>
       <label class="card d-flex justify-content-center">
-        <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
+        <div class="card-header">
           {{ test.secondScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -46,7 +46,7 @@
     <div class="card-deck justify-content-center align-items-center" *ngFor="let test of tests.state; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
-        <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
+        <div class="card-header">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -55,7 +55,7 @@
         </div>
       </label>
       <label class="card d-flex justify-content-center">
-        <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
+        <div class="card-header">
           {{ test.secondScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -86,7 +86,7 @@
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
         <input type="radio" (click)="setQuality(i, test.firstScale)" name="test.firstScale.scaleHeader">
-        <div class="card-header" [ngStyle]="{'background-color': test.firstScale.scaleColor}">
+        <div class="card-header">
           {{ test.firstScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">
@@ -95,7 +95,7 @@
       </label>
       <label class="card d-flex justify-content-center">
         <input type="radio" (click)="setQuality(i, test.secondScale)" name="test.secondScale.scaleHeader">
-        <div class="card-header" [ngStyle]="{'background-color': test.secondScale.scaleColor}">
+        <div class="card-header">
           {{ test.secondScale.scaleHeader }}
         </div>
         <div class="card-body align-items-center d-flex">

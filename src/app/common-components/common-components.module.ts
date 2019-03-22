@@ -5,13 +5,14 @@ import {ErrorPageComponent} from './error-page/error-page.component';
 import {AppRoutingModule} from '../app-routing.module';
 import { PassTestButtonComponent } from './pass-test-button/pass-test-button.component';
 import {SendingTokensComponent} from './sending-tokens/sending-tokens.component';
+import { HomeHeaderComponent } from './home-header/home-header.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
   ],
-  exports: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent, SendingTokensComponent],
-  declarations: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent, SendingTokensComponent]
+  exports: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent, SendingTokensComponent, HomeHeaderComponent],
+  declarations: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent, SendingTokensComponent, HomeHeaderComponent]
 })
 export class CommonComponentsModule { }

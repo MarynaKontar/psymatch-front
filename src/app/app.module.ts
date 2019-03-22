@@ -21,6 +21,7 @@ import { ErrorPageComponent } from './common-components/error-page/error-page.co
 import { CardComponent } from './card/card.component';
 import { AuthorCardsComponent } from './author-cards/author-cards.component';
 import {CommonComponentsModule} from './common-components/common-components.module';
+import { PsychologicalCompatibilityInfoComponent } from './psychological-compatibility-info/psychological-compatibility-info.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {CommonComponentsModule} from './common-components/common-components.modu
     HowItWorksComponent,
     CardComponent,
     AuthorCardsComponent,
+    PsychologicalCompatibilityInfoComponent,
   ],
   imports: [
     BrowserModule,

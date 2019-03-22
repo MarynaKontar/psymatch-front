@@ -1,6 +1,6 @@
 // first card view
 .card-deck {
-  margin: 2% 2% 2% 5%;
+  margin: 2%;
 }
 .card {
   cursor: pointer; // курсор у вигляді руки з вказывним пальцем
@@ -53,10 +53,10 @@
   color: white;
 }
 .card-footer {
-    position: fixed;
-    //height: 60px;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  //height: 60px;
+  bottom: 0;
+  width: 100%;
 }
 .card:hover > .front{
   transform: perspective(600px) rotateY(-180deg);

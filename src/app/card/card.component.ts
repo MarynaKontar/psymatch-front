@@ -10,7 +10,7 @@ import {
   VASYLENKO_SVETLANA_NAME,
   VASYLENKO_SVETLANA_ROLE,
   VASYLENKO_SVETLANA_WHY_IN_PROJECT
-} from '../about-project/about-project';
+} from '../author-cards/author-cards';
 
 @Component({
   selector: 'app-card',

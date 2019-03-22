@@ -12,6 +12,7 @@ import {AboutProjectComponent} from './about-project/about-project.component';
 import {ErrorPageComponent} from './common-components/error-page/error-page.component';
 import {CardComponent} from './card/card.component';
 import {TestHomePageComponent} from './testing/test-home-page/test-home-page.component';
+import {PsychologicalCompatibilityInfoComponent} from './psychological-compatibility-info/psychological-compatibility-info.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path: 'card',
     component: CardComponent
+  },
+  {
+    path: 'psychological-compatibility-info',
+    component: PsychologicalCompatibilityInfoComponent
   }
 ];
 

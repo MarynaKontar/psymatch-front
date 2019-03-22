@@ -1,0 +1,56 @@
+.psychological-compatibility-info {
+  padding: 2% 10%;
+  background-color: whitesmoke;
+}
+@media (max-width: 559.98px) {
+  .psychological-compatibility-info {
+    padding: 5% 2%;
+  }
+}
+.block {
+  margin: 5% 2%;
+}
+.head {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 2% 0;
+  text-align: center;
+}
+.epigraph {
+  text-align: end;
+}
+.signature {
+  font-weight: bold;
+}
+.header {
+  font-size: larger;
+  font-weight: bold;
+  margin: 1%;
+}
+.description, .footer {
+  text-align: justify;
+  font-size: larger;
+}
+ul {
+  text-align: start;
+  font-size: larger;
+}
+
+//.carousel .carousel-item {
+//  height: 600px;
+//}
+//
+//.carousel-item img {
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  height: inherit;
+//  min-height: 400px;
+//}
+//.font-dark {
+//  //color: #333333;
+//  color: #444444;
+//}
+//.font-light {
+//  color: whitesmoke;
+//}
