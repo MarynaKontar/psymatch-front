@@ -79,7 +79,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isStatesDone = localStorage.getItem('isStatesDone') === 'true';
     console.log('this.isStatesDone ' + this.isStatesDone );
     this.isQualitiesDone = localStorage.getItem('isQualitiesDone') === 'true';
-
+    console.log('this.isQualitiesDone ' + this.isQualitiesDone );
 
     // this.tests = tests; // TODO можно не ходить на сервер
     this.valueCompatibilityService.getTestList()
@@ -120,6 +120,7 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
   setGoal(i: number, scale: Scale) {
+    console.log('setGoal ' + i);
     this.itemState[i] = 'unactive';
     this.tests.goal[i].chosenScale = scale;
     this.setTimeout(i);

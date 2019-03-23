@@ -35,6 +35,7 @@ export class ValueCompatibilityService {
   // TODO возвращаю Observable<HttpResponse<ValueCompatibilityAnswers>>, а не  Observable<ValueCompatibilityAnswers> потому, что надо
   // не только body, но и header ответа, в котором прийдет токен с бекенда (для записи в localStorage)
   saveGoalArray(goals: ValueCompatibilityAnswers, token: string): Observable<HttpResponse<ValueCompatibilityAnswers>> {
+   console.log('SERVICE saveGoalArray', goals);
     let headers: HttpHeaders;
     if (token) {
       console.log('ValueCompatibilityService saveGoalArray: ' + token);
