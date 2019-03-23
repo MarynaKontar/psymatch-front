@@ -27,9 +27,11 @@ export class AgeGenderRegistrationComponent implements OnInit {
         console.log('saveAgeAndGender' + data);
         this.user = data;
         this.setHaveAgeAndGender();
+        location.reload();
       });
     this.isUserHaveAgeAndGender = this.registrationService.isHaveAgeAndGender();
-    this.router.navigate(['value-profile']); // обновить страничку value-profile, чтобы появилость окно tokens. НЕ ОБНОВЛЯЕТСЯ
+    // this.router.navigate(['value-profile']); // обновить страничку value-profile, чтобы появилость окно tokens. НЕ ОБНОВЛЯЕТСЯ
+
   }
 
   setHaveAgeAndGender() {

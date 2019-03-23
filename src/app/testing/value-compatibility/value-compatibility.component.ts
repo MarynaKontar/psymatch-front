@@ -171,6 +171,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isNotPassed = true;
     this.setPossibilityToPassTestsagain();
     this.router.navigate(['value-compatibility-test']);
+    // location.reload();
   }
 
   resetGoals() {

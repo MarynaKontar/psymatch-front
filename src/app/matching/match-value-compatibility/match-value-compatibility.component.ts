@@ -98,6 +98,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
     if (this.loginService.ifHaveTokenInLocalStorage()) {
       this.getUsersForMatching();
       this.router.navigate(['match']);
+      // location.reload();
       this.plotRectangle();
       this.hiddenButton = false;
       setTimeout(() => {
