@@ -40,9 +40,11 @@ export class ValueCompatibilityService {
       console.log('ValueCompatibilityService saveGoalArray: ' + token);
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'Authorization': token});
-    } else {
+    } else if (localStorage.getItem('userForMatchingToken')) {
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'userForMatchingToken': localStorage.getItem('userForMatchingToken')});
+    } else {
+      headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     }
 
     const httpOptions = {

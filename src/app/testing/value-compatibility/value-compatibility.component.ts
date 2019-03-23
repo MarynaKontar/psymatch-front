@@ -154,6 +154,7 @@ export class ValueCompatibilityComponent implements OnInit {
   // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
     // localStorage.clear();
+    console.log('saveGoals(): ', this.token);
     this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(httpResponse => {
         localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
         localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.passed === true ? 'true' : 'false');
