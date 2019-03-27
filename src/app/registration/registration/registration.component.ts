@@ -33,7 +33,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   isNew(): boolean {
-    console.log('isNew: ' + this.registrationService.isNew());
-    return this.registrationService.isNew();
+    console.log('isNew: ' + !this.registrationService.isRegistered());
+    return !this.registrationService.isRegistered();
   }
 }

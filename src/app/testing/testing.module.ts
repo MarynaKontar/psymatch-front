@@ -7,6 +7,7 @@ import { ValueCompatibilityProfileComponent } from './value-compatibility-profil
 import {RegistrationModule} from '../registration/registration.module';
 import { TestHomePageComponent } from './test-home-page/test-home-page.component';
 import {CommonComponentsModule} from '../common-components/common-components.module';
+import {AppRoutingModule} from '../app-routing.module';
 // import {MatButtonModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
@@ -16,10 +17,12 @@ import {CommonComponentsModule} from '../common-components/common-components.mod
     ReactiveFormsModule,
     RegistrationModule,
     CommonComponentsModule,
+    AppRoutingModule,
     // MatButtonModule,
     // MatStepperModule
   ],
   declarations: [ValueCompatibilityComponent, ValueCompatibilityProfileComponent, TestHomePageComponent],
+  exports: [TestHomePageComponent],
   providers: [ValueCompatibilityService]
 })
 export class TestingModule { }

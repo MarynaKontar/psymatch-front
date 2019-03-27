@@ -171,7 +171,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isNotPassed = true;
     this.setPossibilityToPassTestsagain();
     this.router.navigate(['value-compatibility-test']);
-    // location.reload();
+    location.reload();
   }
 
   resetGoals() {
@@ -201,6 +201,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isNotPassed = true;
     this.setPossibilityToPassTestsagain();
     this.router.navigate(['value-compatibility-test']);
+    location.reload();
   }
 
   resetStates() {

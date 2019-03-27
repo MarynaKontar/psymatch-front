@@ -3,9 +3,16 @@
 }
 @media(max-width:575.98px) {
   .container-fluid.tests  {
-    margin: 6% 1% 1% 1%;
+    margin: 6% 0 0 0 ;
+  }
+  .area.header {
+    font-size: smaller;
+  }
+  .area.question {
+    font-size: small;
   }
 }
+
 .test-another-user{
   margin: 5% 10% 10% 10% ;
 }
@@ -16,12 +23,21 @@
 .area.header{
   font-size: xx-large;
   text-align: center;
+  font-weight: bold;
 }
 .area.question {
   padding: 1% 0;
   margin-bottom: 0%;
   font-size: x-large;
   text-align: center;
+}
+@media(max-width:575.98px) {
+  .area.header {
+    font-size: x-large;
+  }
+  .area.question {
+    font-size: larger;
+  }
 }
 .area.answer {
   padding: 1% 0;
@@ -117,10 +133,18 @@
 .card:hover::after {
   opacity: 1;
 }
-
+.buttons {
+  margin-top: 15%;
+}
 button {
-  margin-top: 10%;
+  margin: 15% auto;
   //border-radius: 5%;
+  padding: 5%;
+  font-size: x-large;
+  text-align: center;
+  width: 320px;
+  max-width: 320px;
+  min-width: 320px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
 }
 input[type=radio] {

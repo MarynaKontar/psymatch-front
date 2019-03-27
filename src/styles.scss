@@ -4,9 +4,21 @@ body{
   padding-bottom: 1%;
   //background-image: url("/assets/images/tests_list_background.jpg");
 }
-@media(max-width:992px) {
+@media(max-width:991.98px) {
   body {
     padding-top: 4%;
     padding-bottom: 4%;
   }
 }
+@media(max-width:575.98px) {
+  body {
+    padding-top: 8%;
+    padding-bottom: 4%;
+  }
+}
+//@media(max-width:319.98px) {
+//  body {
+//    padding-top: 12%;
+//    padding-bottom: 4%;
+//  }
+//}

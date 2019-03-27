@@ -3,9 +3,27 @@
   margin: 2% 0.5%;
 }
 
-//.row {
-//  margin: 0% 0% 0% 0%;
-//}
+.container-fluid.online-advertising {
+  margin: 2% 0.5%;
+}
+
+@media(max-width:1199.98px) {
+  .container-fluid.value.profile,
+  .container-fluid.online-advertising {
+    margin: 5% 0 5% 0;
+  }
+}
+@media(max-width:991.98px) {
+  .container-fluid.value.profile,
+  .container-fluid.online-advertising {
+    margin: 5% 0 5% 0;
+  }
+}
+@media(max-width:767.98px){
+  .container-fluid.online-advertising {
+    margin: 3% 0 5% 0;
+  }
+}
 
 .container-fluid.chart.bar {
   //padding: 0% 5% 3% 5%;
@@ -29,7 +47,7 @@
   text-align: center;
   margin: 3% 0% 0% 0%;
   text-transform: uppercase;
-  font-size: small;
+  font-size: medium;
 }
 
 .container.comment {
@@ -81,12 +99,4 @@ li.li.commentSix:before {
   color: rgba(201, 166, 220, 1);
 }
 
-.container.links {
-  //padding: 10% 10% 10% 10%;
-  margin: 5% 10% 10% 10%;
-  text-align: center;
-}
 
-.links.header{
-font-size: larger;
-}

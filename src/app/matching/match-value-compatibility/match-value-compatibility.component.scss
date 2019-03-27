@@ -9,10 +9,13 @@
   .container-fluid.online-advertising {
     margin: 1% 0 5% 0;
   }
+  .container-fluid.test-not-passed {
+    margin: 3% 0 0 0;
+  }
 }
 @media(max-width:768px){
   .container-fluid.match {
-    margin: 1% 0 1% 0;
+    margin: 3% 0 1% 0;
   }
   .container-fluid.online-advertising {
     margin: 1% 0 5% 0;
@@ -80,7 +83,8 @@ a.nav-link.active {
 //}
 
 .container-fluid.chart {
-  //padding: 5% 5% 0% 0%;;
+  padding: 0;
+  min-width: 800px;
 }
 .interpretation.text {
   text-align: justify;
@@ -141,6 +145,10 @@ hr {
   .container-fluid.match{
     font-size: 95%;
   }
+}
 
-
+.scroll {
+  position: relative;
+  overflow-y: scroll;
+  height: 200vh;
 }

@@ -37,16 +37,38 @@
     <div class="psychological-compatibility header">{{psychological_compatibility_can_be_measured_header}}</div>
     <div class="psychological-compatibility description">{{psychological_compatibility_can_be_measured_description}}</div>
     <ul>
-      <li><a routerLink="/value-compatibility-test" routerLinkActive="active">{{psychological_compatibility_can_be_measured_list11}}</a>{{psychological_compatibility_can_be_measured_list12}}</li>
-      <li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list21}}</a>{{psychological_compatibility_can_be_measured_list22}}</li>
-      <li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list31}}</a>{{psychological_compatibility_can_be_measured_list32}}</li>
-      <li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list41}}</a>{{psychological_compatibility_can_be_measured_list42}}</li>
+      <!-- Route to tests description (modal window)-->
+      <!--  Modal #modalValueCompatibilityTest,#modalRoleCompatibilityTest, ... are in test-info-cards.component.html. And we can see they here by id (#) -->
+      <li><a href="#modalValueCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalValueCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list11}}</a>
+        {{psychological_compatibility_can_be_measured_list12}}
+      </li>
+      <li><a href="#modalRoleCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalRoleCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list21}}</a>
+        {{psychological_compatibility_can_be_measured_list22}}
+      </li>
+      <li><a href="#modalLoveCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalLoveCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list31}}</a>
+        {{psychological_compatibility_can_be_measured_list32}}
+      </li>
+      <li><a href="#modalSexualCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalSexualCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list41}}</a>
+        {{psychological_compatibility_can_be_measured_list42}}
+      </li>
+      <!-- Route directly to tests-->
+      <!--<li><a routerLink="/value-compatibility-test" routerLinkActive="active">{{psychological_compatibility_can_be_measured_list11}}</a>{{psychological_compatibility_can_be_measured_list12}}</li>-->
+      <!--<li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list21}}</a>{{psychological_compatibility_can_be_measured_list22}}</li>-->
+      <!--<li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list31}}</a>{{psychological_compatibility_can_be_measured_list32}}</li>-->
+      <!--<li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list41}}</a>{{psychological_compatibility_can_be_measured_list42}}</li>-->
     </ul>
     <div class="psychological-compatibility footer">{{psychological_compatibility_can_be_measured_footer}}</div>
   </div>
+  <div class="tests-list d-flex align-items-sm-stretch align-items-md-center justify-content-center">
+    <app-test-info-cards></app-test-info-cards>
+  </div>
+  <!--<app-test-home-page></app-test-home-page>-->
 
 </div>
-
 
 
 

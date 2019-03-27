@@ -4,6 +4,7 @@ import {ValueCompatibilityService} from '../value-compatibility.service';
 import { Chart } from 'chart.js';
 import {Router} from '@angular/router';
 import {URL} from '../../utils/config';
+import {LoginService} from '../../login/login.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
 
   //           VALUE PROFILE
   valueProfile;
-  isValueProfileCanSee = false;
+  isValueCompatibilityTestPassed: boolean;
 
   //           FIGURES
   /** Arrays for different value-compatibility figures*/
@@ -33,12 +34,14 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   links;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
+              private loginService: LoginService,
               private router: Router) {
   }
 
   ngOnInit() {
     // this.router.navigate(['value-profile']);
     // this.links = this.valueCompatibilityComponent.links;
+    this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
     setTimeout(() => {
       this.plotValueProfileBar();
       this.getFriendsTokens();
@@ -66,7 +69,6 @@ export class ValueCompatibilityProfileComponent implements OnInit {
         // this.comments.push(valueProfileElement.comment);
       });
       this.comments = response.valueProfileComments;
-      this.isValueProfileCanSee = true;
 
       console.log('response: ');
       console.log(response);
@@ -76,16 +78,16 @@ export class ValueCompatibilityProfileComponent implements OnInit {
       const title = 'Ваш индивидуальный ценностный профиль';
       const xLabel = 'Значимость ценности';
       // пастельная радуга
-      // const color = ['rgba(201,166,220,1)', 'rgba(186,225,255, 1)', 'rgba(186,255,201, 1)',
-      //   'rgba(255,255,186, 1)', 'rgba(255,223,186, 1)', 'rgba(255,179,186, 1)'];
-      const color = ['rgba(108,88,255,1)', 'rgba(0,240,255,1)', 'rgba(113,218,0, 1)',
-        'rgba(255,237,0, 1)', 'rgba(255,148,0, 1)', 'rgba(255,0,0, 1)'];
+      const color = ['rgba(201,166,220,1)', 'rgba(186,225,255, 1)', 'rgba(186,255,201, 1)',
+        'rgba(255,255,186, 1)', 'rgba(255,223,186, 1)', 'rgba(255,179,186, 1)'];
+      // const color = ['rgba(108,88,255,1)', 'rgba(0,240,255,1)', 'rgba(113,218,0, 1)',
+      //   'rgba(255,237,0, 1)', 'rgba(255,148,0, 1)', 'rgba(255,0,0, 1)'];
       // const greyColor = 'rgba(201,166,220,1)';
       // const greyColor = 'rgba(186,225,255, 1)';
       // const greyColor = 'rgba(186,255,201, 1)';
       const greyColor = 'rgba(242, 242, 239, 1)';
       const blackColor = 'rgba(0, 0, 10, 1)';
-      const fontSizeDoughnut = 16;
+      const fontSizeDoughnut = 24;
       const fontSizeBar = 18;
 
       // max value of x axe (ближайшее большее кратное 5)
@@ -101,7 +103,15 @@ export class ValueCompatibilityProfileComponent implements OnInit {
       this.chartBar = new Chart('canvasBar', {
         type: 'horizontalBar',
         data: {
-          labels: labels,
+          // labels: labels,
+          labels: [
+            labels[0],
+            labels[1],
+            labels[2].split(' '),
+            labels[3],
+            labels[4],
+            labels[5],
+            ],
           datasets: [{
             data: match,
             backgroundColor: [
@@ -141,6 +151,8 @@ export class ValueCompatibilityProfileComponent implements OnInit {
               },
             }],
             yAxes: [{
+              barPercentage: 1.2,
+              // barThickness: 50,
               ticks: {
                 fontSize: fontSizeBar,
               },
@@ -290,378 +302,6 @@ export class ValueCompatibilityProfileComponent implements OnInit {
         });
         console.log(this.chartDoughnuts[i]);
       }
-
-
-// TODO создаем 6 doughnuts не в цикле, а в отдельных переменных (chartDoughnutSafety, chartDoughnutComfort, ...)
-      // this.chartDoughnutSafety = new Chart('chartDoughnutSafety', {
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [labels[5]],
-      //     datasets: [{
-      //       data: [match[5], 100 - match[5]],
-      //       backgroundColor: [
-      //         color[5],
-      //         'rgba(230, 230, 224, 1)',
-      //       ],
-      //       borderColor: [
-      //         color[5],
-      //         'rgba(230, 230, 224, 1)',
-      //       ],
-      //     }]
-      //   },
-      //   options: {
-      //     // cutoutPercentage: 20,
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         boxWidth: 0,
-      //         fontSize: fontSizeDoughnut,
-      //         fontStyle: 'bold',
-      //       }
-      //     },
-      //     elements: {
-      //       center: {
-      //         text: match[5] + '%',
-      //         color: blackColor,
-      //         fontStyle: 'Helvetica', //Default Arial
-      //         // sidePadding: 15 //Default 20 (as a percentage)
-      //       }
-      //     },
-      //     plugins: {
-      //       datalabels: {
-      //         display: false,
-      //         align: 'start',
-      //         anchor: 'start',
-      //         font: {
-      //           size: fontSizeDoughnut,
-      //           weight: 'bold'
-      //         },
-      //         formatter: function(value, context) {
-      //           return value === match[5] ? value + '%' : '';
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
-      //
-      // this.chartDoughnutComfort = new Chart('chartDoughnutComfort', {
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [labels[4]],
-      //     datasets: [{
-      //       data: [match[4], 100 - match[4]],
-      //       backgroundColor: [
-      //         color[4],
-      //         greyColor,
-      //       ],
-      //       borderColor: [
-      //         color[4],
-      //         greyColor,
-      //       ],
-      //     }]
-      //   },
-      //   options: {
-      //     // cutoutPercentage: 20,
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         boxWidth: 0,
-      //         fontSize: fontSizeDoughnut,
-      //         fontStyle: 'bold',
-      //       }
-      //     },
-      //     elements: {
-      //       center: {
-      //         text: match[4] + '%',
-      //         color: color[4],
-      //       }
-      //     },
-      //     plugins: {
-      //       datalabels: {
-      //         display: false,
-      //         align: 'start',
-      //         anchor: 'start',
-      //         font: {
-      //           size: fontSizeDoughnut,
-      //           weight: 'bold'
-      //         },
-      //         formatter: function(value, context) {
-      //           return value === match[4] ? value + '%' : '';
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
-      //
-      // this.chartDoughnutAchievements = new Chart('chartDoughnutAchievements', {
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [labels[3]],
-      //     datasets: [{
-      //       data: [match[3], 100 - match[3]],
-      //       backgroundColor: [
-      //         color[3],
-      //         greyColor,
-      //       ],
-      //       borderColor: [
-      //         color[3],
-      //         greyColor,
-      //       ],
-      //     }]
-      //   },
-      //   options: {
-      //     // cutoutPercentage: 20,
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         boxWidth: 0,
-      //         fontSize: fontSizeDoughnut,
-      //         fontStyle: 'bold',
-      //       }
-      //     },
-      //     elements: {
-      //       center: {
-      //         text: match[3] + '%',
-      //         color: color[3],
-      //       }
-      //     },
-      //     plugins: {
-      //       datalabels: {
-      //         display: false,
-      //         align: 'start',
-      //         anchor: 'start',
-      //         font: {
-      //           size: fontSizeDoughnut,
-      //           weight: 'bold'
-      //         },
-      //         formatter: function(value, context) {
-      //           return value === match[3] ? value + '%' : '';
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
-      //
-      // this.chartDoughnutHarmoniousRelationship = new Chart('chartDoughnutHarmoniousRelationship', {
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [labels[2].slice(0, 11) + '\n' + labels[2].slice(11, 21) ],
-      //     datasets: [{
-      //       data: [match[2], 100 - match[2]],
-      //       backgroundColor: [
-      //         color[2],
-      //         greyColor,
-      //       ],
-      //       borderColor: [
-      //         color[2],
-      //         greyColor,
-      //       ],
-      //     }]
-      //   },
-      //   options: {
-      //     // cutoutPercentage: 20,
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         boxWidth: 0,
-      //         fontSize: fontSizeDoughnut,
-      //         fontStyle: 'bold',
-      //       }
-      //     },
-      //     elements: {
-      //       center: {
-      //         text: match[2] + '%',
-      //         color: color[2],
-      //       }
-      //     },
-      //     plugins: {
-      //       datalabels: {
-      //         display: false,
-      //         align: 'start',
-      //         anchor: 'start',
-      //         font: {
-      //           size: fontSizeDoughnut,
-      //           weight: 'bold'
-      //         },
-      //         formatter: function(value, context) {
-      //           return value === match[2] ? value + '%' : '';
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
-      //
-      // this.chartDoughnutCreativity = new Chart('chartDoughnutCreativity', {
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [labels[1]],
-      //     datasets: [{
-      //       data: [match[1], 100 - match[1]],
-      //       backgroundColor: [
-      //         color[1],
-      //         greyColor,
-      //       ],
-      //       borderColor: [
-      //         color[1],
-      //         greyColor,
-      //       ],
-      //     }]
-      //   },
-      //   options: {
-      //     // cutoutPercentage: 20,
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         boxWidth: 0,
-      //         fontSize: fontSizeDoughnut,
-      //         fontStyle: 'bold',
-      //       }
-      //     },
-      //     elements: {
-      //       center: {
-      //         text: match[1] + '%',
-      //         color: color[1],
-      //       }
-      //     },
-      //     plugins: {
-      //       datalabels: {
-      //         display: false,
-      //         align: 'start',
-      //         anchor: 'start',
-      //         font: {
-      //           size: fontSizeDoughnut,
-      //           weight: 'bold'
-      //         },
-      //         formatter: function(value, context) {
-      //           return value === match[1] ? value + '%' : '';
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
-      //
-      // this.chartDoughnutDevelopment = new Chart('chartDoughnutDevelopment', {
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [labels[0]],
-      //     datasets: [{
-      //       data: [match[0], 100 - match[0]],
-      //       backgroundColor: [
-      //         color[0],
-      //         greyColor,
-      //       ],
-      //       borderColor: [
-      //         color[0],
-      //         greyColor,
-      //       ],
-      //     }]
-      //   },
-      //   options: {
-      //     // cutoutPercentage: 20,
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         boxWidth: 0,
-      //         fontSize: fontSizeDoughnut,
-      //         fontStyle: 'bold',
-      //       }
-      //     },
-      //     elements: {
-      //       center: {
-      //         text: match[0] + '%',
-      //         color: color[0],
-      //       }
-      //     },
-      //     plugins: {
-      //       datalabels: {
-      //         display: false,
-      //         align: 'start',
-      //         anchor: 'start',
-      //         font: {
-      //           size: fontSizeDoughnut,
-      //           weight: 'bold'
-      //         },
-      //         formatter: function(value, context) {
-      //           return value === match[0] ? value + '%' : '';
-      //         }
-      //       }
-      //     }
-      //   }
-      // });
-
-
-      //                    CANVASRADAR
-      // this.chartRadar = new Chart('canvasRadar', {
-      //     type: 'radar',
-      //     data: {
-      //       labels: labels,
-      //       datasets: [{
-      //         data: match,
-      //         backgroundColor: [
-      //           'rgba(75, 192, 192, 0.4)',
-      //         ],
-      //         borderColor: [
-      //           'rgba(75, 192, 192, 1)',
-      //         ],
-      //         borderWidth: 1
-      //       }]
-      //     },
-      //     options: {
-      //       legend: {
-      //         display: false
-      //       },
-      //       scale: {
-      //         ticks: {
-      //           max: maxXAxes,
-      //           min: 0,
-      //           // suggestedMin: 0,
-      //           // suggestedMax: 80
-      //         }
-      //       }
-      //     }
-      //   });
-
-      //                   CANVASPOLARAREA
-      // this.chartPolarArea = new Chart('canvasPolarArea', {
-      //     type: 'polarArea',
-      //     data: {
-      //       labels: labels,
-      //       datasets: [{
-      //         data: match,
-      //         backgroundColor: [
-      //           'rgba(75, 0, 130, 1)',
-      //           'rgba(0, 0, 255, 1)',
-      //           'rgba(0, 255, 0, 1)',
-      //           'rgba(255, 255, 0, 1)',
-      //           'rgba(255, 127, 0, 1)',
-      //           'rgba(255, 0 , 0, 1)',
-      //         ],
-      //         borderColor: [
-      //           'rgba(75, 0, 130, 1)',
-      //           'rgba(0, 0, 255, 1)',
-      //           'rgba(0, 255, 0, 1)',
-      //           'rgba(255, 255, 0, 1)',
-      //           'rgba(255, 127, 0, 1)',
-      //           'rgba(255, 0 , 0, 1)',
-      //         ],
-      //         // borderWidth: 1
-      //       }]
-      //     },
-      //     options: {
-      //       scale: {
-      //         scaleLabel: {
-      //           display: true
-      //         },
-      //         ticks: {
-      //           max: maxXAxes,
-      //           min: 0,
-      //           // suggestedMin: 0,
-      //           // suggestedMax: 80
-      //         }
-      //       }
-      //       // cutoutPercentage: 20
-      //     }
-      //   });
 
     });
   }

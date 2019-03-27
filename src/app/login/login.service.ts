@@ -70,7 +70,7 @@ export class LoginService {
 
   ifHaveTokenInLocalStorage() {
     console.log(localStorage.getItem('token'));
-    return localStorage.getItem('token');
+    return localStorage.getItem('token') != null;
 
   }
   getToken() {

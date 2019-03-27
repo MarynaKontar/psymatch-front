@@ -42,8 +42,8 @@ export class RegistrationService {
     return this.http.post<User>(this.uri + `/user/addAgeAndGender`, user, httpOptions);
   }
 
-  isNew(): boolean {
-    return localStorage.getItem('isRegistered') !== 'true';
+  isRegistered(): boolean {
+    return localStorage.getItem('isRegistered') === 'true';
   }
 
   setIsRegistered() {

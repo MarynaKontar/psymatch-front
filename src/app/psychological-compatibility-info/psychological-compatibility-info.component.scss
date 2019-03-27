@@ -8,7 +8,7 @@
   }
 }
 .block {
-  margin: 5% 2%;
+  margin: 3% 2% 2% 2%;
 }
 .head {
   font-size: x-large;
@@ -35,6 +35,26 @@ ul {
   text-align: start;
   font-size: larger;
 }
+
+//.tests-list{
+//  //width: 100vw;
+//  //height: 100vh; // 100vh - полная (100%) высота экрана
+//  margin-top: 2%;
+//  background-repeat: no-repeat;
+//  background-size: cover;
+//}
+//@media(max-width:1199.98px) {
+//  .tests-list {
+//    margin-top: 3%;
+//  }
+//}
+//@media(max-width:991.98px) {
+//  .tests-list {
+//    margin-top: 2%;
+//  }
+//}
+
+
 
 //.carousel .carousel-item {
 //  height: 600px;

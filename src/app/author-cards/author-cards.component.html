@@ -1,7 +1,7 @@
 
 <div class="card-deck justify-content-center">
 
-  <!--PROSCKURA YURIY -->
+  <!-- PROSCKURA YURIY -->
   <div class="card bg-info text-white ">
       <div class="card-header text-center">
         <div class="author-image d-flex justify-content-center">
@@ -12,6 +12,14 @@
       </div>
       <div class="card-body">
         <div class="card-text text-center role">{{prosckura_yuriy_role}}</div>
+        <a href="{{prosckura_yuriy_link_psymetrics}}" target="_blank">{{ prosckura_yuriy_link_name_psymetrics }}</a>
+        <a href="{{prosckura_yuriy_link_test_constructor}}" target="_blank">{{ prosckura_yuriy_link_name_test_constructor }}</a>
+
+        <div class="sm text-center">
+          <a href="{{prosckura_yuriy_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <!--<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>-->
+          <a href="mailto:{{prosckura_yuriy_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>
+        </div>
       </div>
       <div class="card-footer">
         <!-- Button trigger modal -->
@@ -19,20 +27,6 @@
           Подробнее...
         </button>
       </div>
-    <!--<div class="back text-white bg-info text-center">-->
-      <!--<div class="card-body">-->
-        <!--<div class="back-content">-->
-          <!--<p class="card-text text-center">{{prosckura_yuriy_life}}</p>-->
-          <!--<p class="card-text text-center">{{prosckura_yuriy_why_in_project}}</p>-->
-          <!--<b class="card-text text-dark text-center">{{prosckura_yuriy_email}}</b>-->
-          <!--<div class="sm text-center">-->
-            <!--<a href="{{prosckura_yuriy_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>-->
-            <!--<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>-->
-            <!--<a href="mailto:{{prosckura_yuriy_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>&lt;!&ndash; end back panel &ndash;&gt;-->
   </div><!-- end card -->
 
   <!-- Modal -->
@@ -48,41 +42,389 @@
                 </button>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <h3 class="modal-title">{{ prosckura_yuriy_name }}</h3>
-                <br>
-                <div class="author-image d-flex justify-content-center">
-                  <img class="img-circle" src="assets/images/PosckuraYuriy_small.jpg" alt="ProsckuraYuriy"/>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
-        <div class="modal-body customDecorated">
-          <div class="card bg-info">
-            <div class="card-body">
-              <div class="card-text role">{{prosckura_yuriy_role}}</div>
-              <div class="card-text">{{prosckura_yuriy_boast}}</div>
-              <div class="card-text">{{ prosckura_yuriy_life }}</div>
-              <div class="card-text">{{ prosckura_yuriy_why_in_project }}</div>
-              <p></p>
-              <b class="card-text email text-dark text-center">{{ prosckura_yuriy_email }}</b>
-
-            </div><!--end card-body -->
-          </div><!--end card -->
+        <div class="modal-body customDecorated d-flex justify-content-center">
+          <div class="row align-items-center">
+            <div class="col-md-5 d-none d-sm-none d-md-block">
+              <div class="author-image modal d-flex align-items-center">
+                <img class="img-circle" src="assets/images/PosckuraYuriy.jpg"
+                    id="imageProsckuraYuriy" alt="ProsckuraYuriy"/>
+              </div>
+            </div><!-- end col -->
+            <div class="col-md-7">
+              <h3 class="modal-title">{{ prosckura_yuriy_name }}</h3>
+              <br>
+              <ul>
+                <li class="card-text role">
+                  <span class="li-header">{{role_header}}</span>
+                  {{prosckura_yuriy_role}}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{boast_header}}</span>
+                  {{prosckura_yuriy_boast1}}
+                  <a href="{{prosckura_yuriy_link_upa}}" target="_blank">{{ prosckura_yuriy_link_name_upa }}</a>
+                  {{prosckura_yuriy_boast2}}
+                  <a href="{{prosckura_yuriy_link_psymetrics}}" target="_blank">{{ prosckura_yuriy_link_name_psymetrics }}</a>
+                  {{prosckura_yuriy_boast3}}
+                  <a href="{{prosckura_yuriy_link_test_constructor}}" target="_blank">{{ prosckura_yuriy_link_name_test_constructor }}</a>
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{life_header}}</span>
+                  {{ prosckura_yuriy_life }}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{why_in_project_header}}</span>
+                  {{ prosckura_yuriy_why_in_project }}
+                </li>
+              </ul>
+            </div><!-- end col -->
+          </div><!-- end row -->
         </div><!--end modal-body -->
-        <div class="modal-footer justify-content-center">
-          <div class="sm text-center">
-            <a href="{{prosckura_yuriy_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:{{prosckura_yuriy_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>
-          </div>
-
-        </div><!--end modal-footer -->
+        <!--<div class="modal-footer justify-content-center">-->
+        <!--</div>&lt;!&ndash;end modal-footer &ndash;&gt;-->
       </div><!--end modal-content -->
     </div><!--end modal-dialog-->
   </div><!--end Modal -->
+  <!--end card-->
+  <!-- PROSCKURA YURIY -->
+
+
+
+  <!--KONTAR MARYNA -->
+  <div class="card bg-info text-white ">
+    <div class="card-header text-center">
+      <div class="author-image d-flex justify-content-center">
+        <img class="img-circle" src="assets/images/kontar_maryna_small.jpg" alt="KontarMaryna"/>
+      </div>
+      <br>
+      <h3>{{ kontar_maryna_name }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="card-text text-center role">{{kontar_maryna_role}}</div>
+
+      <div class="sm text-center">
+        <a href="{{kontar_maryna_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="{{kontar_maryna_github}}" target="_blank"><i class="fab fa-github"></i></a>
+        <!--<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>-->
+        <a href="mailto:{{kontar_maryna_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>
+      </div>
+    </div>
+    <div class="card-footer">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalKontarMaryna">
+        Подробнее...
+      </button>
+    </div>
+  </div><!-- end card -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalKontarMaryna" tabindex="-1" aria-labelledby="modalKontarMarynaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-info" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-body customDecorated d-flex justify-content-center">
+          <div class="row align-items-center">
+            <div class="col-md-5 d-none d-sm-none d-md-block">
+              <div class="author-image modal d-flex align-items-center">
+                <img class="img-circle" src="assets/images/kontar_maryna_small.jpg" id="imageKontarMaryna" alt="KontarMaryna"/>
+              </div>
+            </div><!-- end col -->
+            <div class="col-md-7">
+              <h3 class="modal-title">{{ kontar_maryna_name }}</h3>
+              <br>
+              <ul>
+                <li class="card-text role">
+                  <span class="li-header">{{role_header}}</span>
+                  {{kontar_maryna_role}}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{boast_header}}</span>
+                  {{kontar_maryna_boast}}
+                  </li>
+                <li class="card-text">
+                  <span class="li-header">{{life_header}}</span>
+                  {{ kontar_maryna_life }}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{why_in_project_header}}</span>
+                  {{ kontar_maryna_why_in_project }}
+                </li>
+              </ul>
+            </div><!-- end col -->
+          </div><!-- end row -->
+        </div><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end card-->
+  <!-- KONTAR MARYNA -->
+
+
+
+  <!--PROSCKURA VITALIY -->
+  <div class="card bg-info text-white ">
+    <div class="card-header text-center">
+      <div class="author-image d-flex justify-content-center">
+        <img class="img-circle" src="assets/images/prosckura_vitaliy_small.jpg" alt="KontarMaryna"/>
+      </div>
+      <br>
+      <h3>{{ prosckura_vitaliy_name }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="card-text text-center role">{{prosckura_vitaliy_role}}</div>
+
+      <div class="sm text-center">
+        <a href="{{prosckura_vitaliy_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="{{prosckura_vitaliy_github}}" target="_blank"><i class="fab fa-github"></i></a>
+        <!--<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>-->
+        <a href="mailto:{{prosckura_vitaliy_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>
+      </div>
+    </div>
+    <div class="card-footer">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalProsckuraVitaliy">
+        Подробнее...
+      </button>
+    </div>
+  </div><!-- end card -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalProsckuraVitaliy" tabindex="-1" aria-labelledby="modalProsckuraVitaliyTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-info" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-body customDecorated d-flex justify-content-center">
+          <div class="row align-items-center">
+            <div class="col-md-5 d-none d-sm-none d-md-block">
+              <div class="author-image modal d-flex align-items-center">
+                <img class="img-circle" src="assets/images/prosckura_vitaliy_small.jpg" id="imageProsckuraVitaliy" alt="ProsckuraVitaliy"/>
+              </div>
+            </div><!-- end col -->
+            <div class="col-md-7">
+              <h3 class="modal-title">{{ prosckura_vitaliy_name }}</h3>
+              <br>
+              <ul>
+                <li class="card-text role">
+                  <span class="li-header">{{role_header}}</span>
+                  {{prosckura_vitaliy_role}}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{boast_header}}</span>
+                  {{prosckura_vitaliy_boast}}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{life_header}}</span>
+                  {{ prosckura_vitaliy_life }}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{why_in_project_header}}</span>
+                  {{ prosckura_vitaliy_why_in_project }}
+                </li>
+              </ul>
+            </div><!-- end col -->
+          </div><!-- end row -->
+        </div><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end card-->
+
+
+
+  <!-- VASYLENKO SVETLANA -->
+  <div class="card bg-info text-white ">
+    <div class="card-header text-center">
+      <div class="author-image d-flex justify-content-center">
+        <img class="img-circle" src="assets/images/vasylenko_svetlana_small.jpg" alt="VasylenkoSvetlana"/>
+      </div>
+      <br>
+      <h3>{{ vasylenko_svetlana_name }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="card-text text-center role">{{vasylenko_svetlana_role}}</div>
+
+      <div class="sm text-center">
+        <a href="{{vasylenko_svetlana_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <!--<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>-->
+        <a href="mailto:{{vasylenko_svetlana_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>
+      </div>
+    </div>
+    <div class="card-footer">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-link customDecorated" data-toggle="modal" data-target="#modalVasylenkoSvetlana">
+        Подробнее...
+      </button>
+    </div>
+  </div><!-- end card -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalVasylenkoSvetlana" tabindex="-1" aria-labelledby="modalVasylenkoSvetlanaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content bg-info" data-dismiss="modal">
+        <div class="modal-header">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  &times;
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-body customDecorated d-flex justify-content-center">
+          <div class="row align-items-center">
+            <div class="col-md-5 d-none d-sm-none d-md-block">
+              <div class="author-image modal d-flex align-items-center">
+                <img class="img-circle" src="assets/images/vasylenko_svetlana_small.jpg" id="imageVasylenkoSvetlana" alt="VasylenkoSvetlana"/>
+              </div>
+            </div><!-- end col -->
+            <div class="col-md-7">
+              <h3 class="modal-title">{{ vasylenko_svetlana_name }}</h3>
+              <br>
+              <ul>
+                <li class="card-text role">
+                  <span class="li-header">{{role_header}}</span>
+                  {{vasylenko_svetlana_role}}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{boast_header}}</span>
+                  {{vasylenko_svetlana_boast}}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{life_header}}</span>
+                  {{ vasylenko_svetlana_life }}
+                </li>
+                <li class="card-text">
+                  <span class="li-header">{{why_in_project_header}}</span>
+                  {{ vasylenko_svetlana_why_in_project }}
+                </li>
+              </ul>
+            </div><!-- end col -->
+          </div><!-- end row -->
+        </div><!--end modal-body -->
+      </div><!--end modal-content -->
+    </div><!--end modal-dialog-->
+  </div><!--end Modal -->
+  <!--end card-->
+  <!-- VASYLENKO SVETLANA -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Modal MODAL WITH VERTICAL ELEMENTS -->
+  <!--<div class="modal fade" id="modalProsckuraYuriy" tabindex="-1" aria-labelledby="modalProsckuraYuriyTitle" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+      <!--<div class="modal-content bg-info" data-dismiss="modal">-->
+        <!--<div class="modal-header">-->
+          <!--<div class="container-fluid">-->
+            <!--<div class="row">-->
+              <!--<div class="col">-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                  <!--&times;-->
+                <!--</button>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row">-->
+              <!--<div class="col">-->
+                <!--<h3 class="modal-title">{{ prosckura_yuriy_name }}</h3>-->
+                <!--<br>-->
+                <!--<div class="author-image d-flex justify-content-center">-->
+                  <!--<img class="img-circle" src="assets/images/PosckuraYuriy_small.jpg" alt="ProsckuraYuriy"/>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="modal-body customDecorated d-flex justify-content-center">-->
+          <!--<div class="card bg-info">-->
+            <!--<div class="card-body">-->
+              <!--<ul>-->
+                <!--<li class="card-text role">-->
+                  <!--<span class="li-header">{{role_header}}</span>-->
+                  <!--{{prosckura_yuriy_role}}-->
+                <!--</li>-->
+                <!--<li class="card-text">-->
+                  <!--<span class="li-header">{{boast_header}}</span>-->
+                  <!--{{prosckura_yuriy_boast1}}-->
+                  <!--<a href="{{prosckura_yuriy_link_upa}}" target="_blank">{{ prosckura_yuriy_link_name_upa }}</a>-->
+                  <!--{{prosckura_yuriy_boast2}}-->
+                  <!--<a href="{{prosckura_yuriy_link_psymetrics}}" target="_blank">{{ prosckura_yuriy_link_name_psymetrics }}</a>-->
+                  <!--{{prosckura_yuriy_boast3}}-->
+                  <!--<a href="{{prosckura_yuriy_link_test_constructor}}" target="_blank">{{ prosckura_yuriy_link_name_test_constructor }}</a>-->
+                <!--</li>-->
+                <!--<li class="card-text">-->
+                  <!--<span class="li-header">{{life_header}}</span>-->
+                  <!--{{ prosckura_yuriy_life }}-->
+                <!--</li>-->
+                <!--<li class="card-text">-->
+                  <!--<span class="li-header">{{why_in_project_header}}</span>-->
+                  <!--{{ prosckura_yuriy_why_in_project }}-->
+                <!--</li>-->
+              <!--</ul>-->
+              <!--&lt;!&ndash;<a href="http://example.com" target="_top">Example</a>&ndash;&gt;-->
+              <!--&lt;!&ndash;<a class="btn btn-primary" id="google.com" href="http://www.google.com/" data-window="external" data-dismiss="modal">Go there</a>&ndash;&gt;-->
+              <!--&lt;!&ndash;<button onclick="myFunction()">Try it</button>&ndash;&gt;-->
+              <!--&lt;!&ndash;<b class="card-text email text-dark text-center">{{ prosckura_yuriy_email }}</b>&ndash;&gt;-->
+
+            <!--</div>&lt;!&ndash;end card-body &ndash;&gt;-->
+          <!--</div>&lt;!&ndash;end card &ndash;&gt;-->
+        <!--</div>&lt;!&ndash;end modal-body &ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal-footer justify-content-center">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="sm text-center">&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="{{prosckura_yuriy_fb}}" target="_blank"><i class="fab fa-facebook-f"></i></a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="#" target="_blank"><i class="fab fa-twitter"></i></a>&ndash;&gt;-->
+            <!--&lt;!&ndash;<a href="mailto:{{prosckura_yuriy_email}}?subject=Question about psymatch"><i class="fas fa-at"></i></a>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;end modal-footer &ndash;&gt;&ndash;&gt;-->
+      <!--</div>&lt;!&ndash;end modal-content &ndash;&gt;-->
+    <!--</div>&lt;!&ndash;end modal-dialog&ndash;&gt;-->
+  <!--</div>&lt;!&ndash;end Modal &ndash;&gt;-->
   <!--end card-->
 
 
@@ -174,7 +516,7 @@
     <!--<div class="front text-white bg-info">-->
       <!--<div class="card-header text-center">-->
         <!--<div class="author-image">-->
-          <!--<img class="img-circle" src="assets/images/vasylenko_svetlana_small.jpg" alt="PosckuraYuriy"/>-->
+          <!--<img class="img-circle" src="assets/images/vasylenko_svetlana_small.jpg" alt="VasylenkoSvetlana"/>-->
         <!--</div>-->
         <!--<h5 class="card-title">{{vasylenko_svetlana_name}}</h5>-->
       <!--</div>-->
@@ -204,3 +546,18 @@
 
 </div><!-- end card-deck -->
 
+<script>
+  // function myFunction1() {
+  //   document.getElementById("google.com").on('click',"a[data-window='external']", function() {
+  //     window.open($(this).attr('href'));
+  //     return false;
+  // });
+  // }
+  $('#modalProsckuraYuriy').on('click',"a[data-window='external']", function() {
+    window.open($(this).attr('href'));
+    return false;
+  });
+  // function myFunction() {
+  //   window.open("https://www.w3schools.com");
+  // }
+</script>

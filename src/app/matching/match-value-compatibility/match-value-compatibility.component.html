@@ -1,10 +1,45 @@
 <app-registration></app-registration>
+
+<!--<div class="scroll" data-spy="scroll" data-target=".navbar" data-offset="50">-->
+  <!--<nav id="navbar-example2" class="navbar navbar-light bg-light">-->
+    <!--<a class="navbar-brand" href="#">Navbar</a>-->
+    <!--<ul class="nav nav-pills">-->
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link" href="#fat">@fat</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link" href="#mdo">@mdo</a>-->
+      <!--</li>-->
+      <!--<li class="nav-item dropdown">-->
+        <!--<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+        <!--<div class="dropdown-menu">-->
+          <!--<a class="dropdown-item" href="#one">one</a>-->
+          <!--<a class="dropdown-item" href="#two">two</a>-->
+          <!--<div role="separator" class="dropdown-divider"></div>-->
+          <!--<a class="dropdown-item" href="#three">three</a>-->
+        <!--</div>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</nav>-->
+  <!--<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">-->
+    <!--<h4 id="fat">@fat</h4>-->
+    <!--<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>-->
+    <!--<h4 id="mdo">@mdo</h4>-->
+    <!--<p>Veniam marfa mustache skateboard, adipisicing fugiat velit pitchfork beard. Freegan beard aliqua cupidatat mcsweeney's vero. Cupidatat four loko nisi, ea helvetica nulla carles. Tattooed cosby sweater food truck, mcsweeney's quis non freegan vinyl. Lo-fi wes anderson +1 sartorial. Carles non aesthetic exercitation quis gentrify. Brooklyn adipisicing craft beer vice keytar deserunt.</p>-->
+    <!--<h4 id="one">one</h4>-->
+    <!--<p>Occaecat commodo aliqua delectus. Fap craft beer deserunt skateboard ea. Lomo bicycle rights adipisicing banh mi, velit ea sunt next level locavore single-origin coffee in magna veniam. High life id vinyl, echo park consequat quis aliquip banh mi pitchfork. Vero VHS est adipisicing. Consectetur nisi DIY minim messenger bag. Cred ex in, sustainable delectus consectetur fanny pack iphone.</p>-->
+    <!--<h4 id="two">two</h4>-->
+    <!--<p>...</p>-->
+    <!--<h4 id="three">three</h4>-->
+    <!--<p>...</p>-->
+  <!--</div>-->
+<!--</div>-->
+
 <div class="container-fluid match" @fade>
 
   <div class="row">
-    <div class="col-sm-12 col-lg-10">
+    <div class="col-sm-12 col-lg-10" [hidden]="!isValueCompatibilityTestPassed">
       <div class="container match content">
-
         <div class="row">
           <div class="col-sm-12 col-lg-12">
             <!--Navigation-->
@@ -79,7 +114,7 @@
               </div>
               <!--End Value Compatibility Matches-->
 
-              <!--Value Profiles For Matching-->
+              <!--Value Profiles For Matching d-none d-sm-block-->
               <div class="tab-pane fade" id="valueProfilesForMatching" role="tabpanel" aria-labelledby="valueProfilesForMatching-tab">
                 <div *ngIf="valueProfilesForMatching" class="container-fluid value profile">
                 <!--<div class="row">-->
@@ -164,34 +199,16 @@
 
       </div>
     </div>
-
+    <div class="col-sm-12 col-lg-10" [hidden]="isValueCompatibilityTestPassed">
+        <app-test-not-passed></app-test-not-passed>
+    </div>
     <div class="col-lg-2 ">
       <div class="container-fluid online-advertising">
-
-        Здесь будет реклама
-        <br>
-        <br>
-        <p>
-          <img src="https://picsum.photos/200/300?image=1080">
-        </p>
-        <p>
-          <img src="https://picsum.photos/200/300?image=1083">
-        </p>
-        <p>
-          <img src="https://picsum.photos/200/300?image=1080">
-        </p>
-        <p>
-          <img src="https://picsum.photos/200/300?image=1083">
-        </p>
-        <p>
-          <img src="https://picsum.photos/200/300?image=1080">
-        </p>
-        <p>
-          <img src="https://picsum.photos/200/300?image=1083">
-        </p>
+        <app-online-advertising></app-online-advertising>
       </div>
     </div>
 
   </div>
 </div>
+
 

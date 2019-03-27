@@ -20,7 +20,7 @@ import {LoginService} from '../../login/login.service';
    ]
 })
 export class MatchValueCompatibilityComponent implements OnInit {
-
+  isValueCompatibilityTestPassed: boolean;
   usersForMatching: User[] = [];
   matches;
   valueProfilesForMatching;
@@ -71,13 +71,13 @@ export class MatchValueCompatibilityComponent implements OnInit {
     'rgba(242, 242, 239, 0.75)' // grey
   ];
   valueCompatibilityReportColor: string[] = [];
-  scaleColor = [
-    'rgba(108,88,255,1)',
-    'rgba(0,240,255,1)',
-    'rgba(113,218,0, 1)',
-    'rgba(255,237,0, 1)',
-    'rgba(255,148,0, 1)',
-    'rgba(255,0,0, 1)'];
+  // scaleColor = [
+  //   'rgba(108,88,255,1)',
+  //   'rgba(0,240,255,1)',
+  //   'rgba(113,218,0, 1)',
+  //   'rgba(255,237,0, 1)',
+  //   'rgba(255,148,0, 1)',
+  //   'rgba(255,0,0, 1)'];
   scaleLevelColors = [
     'red', // red
     'rgba(75,172,198, 1)', // blue
@@ -95,7 +95,10 @@ export class MatchValueCompatibilityComponent implements OnInit {
               private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    if (this.loginService.ifHaveTokenInLocalStorage()) {
+    if (this.loginService.ifHaveTokenInLocalStorage() &&
+      this.loginService.isValueCompatibilityTestPassed()) {
+      this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
+
       this.getUsersForMatching();
       this.router.navigate(['match']);
       // location.reload();
@@ -456,32 +459,42 @@ export class MatchValueCompatibilityComponent implements OnInit {
         // max value of x axe (ближайшее большее, кратное 5)
         let maxXAxes = Math.ceil((Math.max(Math.max(...userForMatchingMatch), Math.max(...principalMatch)) + 0.5) / 10) * 10;
         if ( maxXAxes >= 100 ) { maxXAxes = 100; }
-        //
+
         // let maxXAxes = Math.ceil((Math.max.apply(null, match) + 0.5) / 10) * 10;
         // if ( maxXAxes > 100 ) { maxXAxes = 100; }
 
         // Chart.defaults.global.defaultFontSize = 14;
-        // const color = ['rgba(201,166,220, 1)',
-        //                'rgba(186,225,255, 1)',
-        //                'rgba(186,255,201, 1)',
-        //                'rgba(255,255,186, 1)',
-        //                'rgba(255,223,186, 1)',
-        //                'rgba(255,179,186, 1)'];
-        const color = ['rgba(108,88,255,1)',
-                       'rgba(0,240,255,1)',
-                       'rgba(113,218,0, 1)',
-                       'rgba(255,237,0, 1)',
-                       'rgba(255,148,0, 1)',
-                       'rgba(255,0,0, 1)'];
+        const color = ['rgba(201,166,220, 1)',
+                       'rgba(186,225,255, 1)',
+                       'rgba(186,255,201, 1)',
+                       'rgba(255,255,186, 1)',
+                       'rgba(255,223,186, 1)',
+                       'rgba(255,179,186, 1)'];
+        // const color = ['rgba(108,88,255,1)',
+        //                'rgba(0,240,255,1)',
+        //                'rgba(113,218,0, 1)',
+        //                'rgba(255,237,0, 1)',
+        //                'rgba(255,148,0, 1)',
+        //                'rgba(255,0,0, 1)'];
         const greyColor = 'rgba(242, 242, 239, 1)';
         const fontSizeBar = 18;
         //                    CANVASBAR
         this.chartBar = new Chart('canvasBar', {
           type: 'horizontalBar',
           data: {
-            labels: this.scaleLabels,
+            // labels: this.scaleLabels,
+            labels: [
+              this.scaleLabels[0],
+              this.scaleLabels[1],
+              this.scaleLabels[2].split(' '),
+              this.scaleLabels[3],
+              this.scaleLabels[4],
+              this.scaleLabels[5],
+            ],
             datasets: [
               {
+                // label: userForMatchingStick,
+                label: 'Твой партнер',
                 data: userForMatchingMatch,
                 borderColor: [
                   color[0],
@@ -502,6 +515,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
                 borderWidth: 3,
               },
               {
+                label: 'Ты',
                 data: principalMatch,
                 backgroundColor: [
                   color[0],
@@ -511,7 +525,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
                   color[4],
                   color[5],
                 ],
-                // borderWidth: 1
+                borderWidth: 0
               },
             ]
           },
@@ -542,13 +556,17 @@ export class MatchValueCompatibilityComponent implements OnInit {
                 },
               }],
               yAxes: [{
+                // barPercentage: 1.1,
                 ticks: {
                   fontSize: fontSizeBar,
                 },
               }],
             },
             legend: {
-              display: false
+              display: true,
+              labels: {
+                text: 'rgb(255, 99, 132)'
+              }
             },
             // tooltips: { // Всплывающие подписи
             //   callbacks: {
