@@ -38,6 +38,7 @@ export class ValueCompatibilityComponent implements OnInit {
   userId: string;
 
   // data: Observable<ValueCompatibilityAnswers>;
+  private retrieveDataResolver;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
               private loginService: LoginService,
@@ -152,26 +153,10 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
 //        !!!!!!!!!!! GOAL !!!!!!!!!!
-  // saveGoals(tests: ValueCompatibilityAnswers): void {
   saveGoals() {
-    // localStorage.clear();
-    console.log('saveGoals(): ', this.token);
-    this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(httpResponse => {
-        localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
-        localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.passed === true ? 'true' : 'false');
-        console.log('token', httpResponse.headers.get('AUTHORIZATION'));
-        this.userId = httpResponse.body.userId;
-      }
-    );
-    console.log(this.tests.goal);
-    this.isGoalsDone = true;
-    localStorage.setItem('isGoalsDone', 'true');
-    this.itemState[0] = 'active';
-    this.ind = 0;
-    this.isNotPassed = true;
-    this.setPossibilityToPassTestsagain();
-    this.router.navigate(['value-compatibility-test']);
-    location.reload();
+    // SYNCHRONOUS: doing a serial sequence of async tasks with PROMISE, using chaining "then" calls.
+    // without Promise, all commands async, and there is can be "navigate" before retrieve data from server
+    this.retrieveGoalPromise().then(() => { this.afterSaveGoalActions(); });
   }
 
   resetGoals() {
@@ -181,27 +166,13 @@ export class ValueCompatibilityComponent implements OnInit {
           this.tests.goal = data.goal;
         }
       );
-    this.itemState[0] = 'active';
-    this.ind = 0;
-    this.isNotPassed = true;
+    this.resetItemsAfterSaveAreaArrays();
     this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! STATE !!!!!!!!!!
   saveStates() {
-    this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data => {
-      console.log('saveState: ' + data);
-      localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
-    });
-    console.log(this.tests.state);
-    this.isStatesDone = true;
-    localStorage.setItem('isStatesDone', 'true');
-    this.itemState[0] = 'active';
-    this.ind = 0;
-    this.isNotPassed = true;
-    this.setPossibilityToPassTestsagain();
-    this.router.navigate(['value-compatibility-test']);
-    location.reload();
+    this.retrieveStatePromise().then(() => { this.afterSaveStateActions(); });
   }
 
   resetStates() {
@@ -211,26 +182,13 @@ export class ValueCompatibilityComponent implements OnInit {
           this.tests.state = data.state;
         }
       );
-    this.itemState[0] = 'active';
-    this.ind = 0;
-    this.isNotPassed = true;
+    this.resetItemsAfterSaveAreaArrays();
     this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! QUALITIES !!!!!!!!!!
   saveQualities() {
-    this.valueCompatibilityService.saveQualityArray(this.tests).subscribe(data => {
-      console.log(data);
-      localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
-    });
-    console.log(this.tests.quality);
-    this.isQualitiesDone = true;
-    localStorage.setItem('isQualitiesDone', 'true');
-    this.itemState[0] = 'active';
-    this.ind = 0;
-    this.isNotPassed = true;
-    this.setPossibilityToPassTestsagain();
-    this.afterTestActions();
+    this.retrieveQualityPromise().then(() => { this.afterSaveQualityActions(); });
   }
 
   resetQualities() {
@@ -240,9 +198,7 @@ export class ValueCompatibilityComponent implements OnInit {
           this.tests.quality = data.quality;
         }
       );
-    this.itemState[0] = 'active';
-    this.ind = 0;
-    this.isNotPassed = true;
+    this.resetItemsAfterSaveAreaArrays();
     this.router.navigate(['value-compatibility-test']);
   }
 
@@ -260,7 +216,7 @@ export class ValueCompatibilityComponent implements OnInit {
     return false;
   }
 
-  setPossibilityToPassTestsagain() {
+  private setPossibilityToPassTestsAgain() {
 
     if (this.isGoalsDone === true && this.isStatesDone === true && this.isQualitiesDone === true) {
       localStorage.setItem('isGoalsDone', 'false');
@@ -269,10 +225,103 @@ export class ValueCompatibilityComponent implements OnInit {
     }
   }
 
-  afterTestActions() {
-    this.createFriendsTokens();
-    this.router.navigate(['value-profile']);
+ private afterTestActions() {
+    if (localStorage.getItem('friendsTokens') === null) {
+      this.createFriendsTokens();
+    }
+   this.router.navigate(['value-profile']);
+    // setTimeout(() => {
+    //   this.router.navigate(['value-profile']);
+    //   },
+    // 200
+    //   );
   }
+
+
+
+//        !!!!!!!!!!!!!!!!!!!! SYNCHRONIZE RETRIEVING DATA FROM SERVER !!!!!!!!!!!!!!!!!!
+//        !!!!!!!!!!! GOAL !!!!!!!!!!
+  private afterSaveGoalActions(): void {
+    console.log('2. DISPLAYING DATA');
+    console.log(this.tests.goal);
+    this.resetItemsAfterSaveAreaArrays();
+    this.setPossibilityToPassTestsAgain();
+    this.router.navigate(['value-compatibility-test']);
+  }
+  private saveGoalArray(): void {
+    // your async retrieval data logic goes here
+    console.log('1. GETTING DATA FROM SERVER');
+      this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(httpResponse => {
+          localStorage.setItem('token', httpResponse.headers.get('Authorization'));
+          localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.passed === true ? 'true' : 'false');
+          localStorage.setItem('isGoalsDone', 'true');
+          this.userId = httpResponse.body.userId;
+          this.isGoalsDone = true;
+          console.log('token', httpResponse.headers.get('Authorization'));
+          console.log('token', this.userId);
+          this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
+        }
+      );
+  }
+  private retrieveGoalPromise(): Promise<any> {
+    return new Promise((resolve) => {
+      this.retrieveDataResolver = resolve;
+      this.saveGoalArray();
+    });
+  }
+
+//        !!!!!!!!!!! STATE !!!!!!!!!!
+  private afterSaveStateActions(): void {
+    console.log(this.tests.state);
+    this.resetItemsAfterSaveAreaArrays();
+    this.setPossibilityToPassTestsAgain();
+    this.router.navigate(['value-compatibility-test']);
+  }
+  private saveStateArray(): void {
+    this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data => {
+      console.log('saveState: ' + data);
+      localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
+      localStorage.setItem('isStatesDone', 'true');
+      this.isStatesDone = true;
+      this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
+      }
+    );
+  }
+  private retrieveStatePromise(): Promise<any> {
+    return new Promise((resolve) => {
+      this.retrieveDataResolver = resolve;
+      this.saveStateArray();
+    });
+  }
+
+//        !!!!!!!!!!! QUALITIES !!!!!!!!!!
+  private afterSaveQualityActions(): void {
+    console.log(this.tests.quality);
+    this.resetItemsAfterSaveAreaArrays();
+    this.setPossibilityToPassTestsAgain();
+    this.afterTestActions();
+  }
+  private saveQualityArray(): void {
+    this.valueCompatibilityService.saveQualityArray(this.tests).subscribe(data => {
+      console.log('saveQuality: ' + data);
+      localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
+      localStorage.setItem('isQualitiesDone', 'true');
+      this.isQualitiesDone = true;
+      this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
+    });
+  }
+  private retrieveQualityPromise(): Promise<any> {
+    return new Promise((resolve) => {
+      this.retrieveDataResolver = resolve;
+      this.saveQualityArray();
+    });
+  }
+  private resetItemsAfterSaveAreaArrays(): void {
+    this.itemState[0] = 'active';
+    this.ind = 0;
+    this.isNotPassed = true;
+  }
+
 
   testAnotherUser() {
     const token = this.loginService.getToken();

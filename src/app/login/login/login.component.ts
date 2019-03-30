@@ -13,40 +13,54 @@ import {Observable} from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
-  returnUrl: string;
+  retrieveDataResolver;
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
+  // !!!!!!!!!!!!!!!!!!!! sequential (последовательное) execution of functions loginPromise() and afterLoginActions() !!!!!!!!!!!!!!!!!!
   login() {
+    // SYNCHRONOUS: doing a serial sequence of async tasks with PROMISE, using chaining "then" calls.
+    // without Promise, all commands async, and there is can be "reload" before retrieve data from server
+    this.loginPromise().then(() => { this.afterLoginActions(); });
+  }
+
+  private afterLoginActions(): void {
+    console.log('afterLoginActions');
+    location.reload(); // need to reload because there will be seen Login and Register on header without reload
+  }
+  private loginServer(): void {
     // reset login status
     this.logout();
     this.loginService.login(this.user)
       .subscribe(loggedUser => {
-        this.user = loggedUser.body;
-        console.log(this.user);
-        console.log(loggedUser);
-
-        // TODO где лучше это делать? Здесь или в сервисе? В сервисе в методах надо subscribe, так что наверное лучше здесь.
-         this.saveTokenToLocalStorage(loggedUser);
-         this.setHaveAgeAndGender();
-         this.setIsRegistered();
-         this.isValueCompatibilityTestPassed(loggedUser);
-        // console.log('haveAgeAndGender: ', (this.user.age != null && this.user.gender != null) ? 'true' : 'false');
-        // console.log('token', loggedUser.headers.get('AUTHORIZATION'));
-      },
+          this.user = loggedUser.body;
+          console.log(this.user);
+          console.log(loggedUser);
+          this.saveTokenToLocalStorage(loggedUser);
+          this.setHaveAgeAndGender();
+          this.setIsRegistered();
+          this.isValueCompatibilityTestPassed(loggedUser);
+          this.router.navigate(['']); // if replace to afterLoginActions(), reload to login page? not to home page
+          this.retrieveDataResolver();
+        },
         error => {
           // login failed so display error
 
         });
-    this.router.navigateByUrl(this.returnUrl); // TODO возвращать на пред. стр.
   }
+  private loginPromise(): Promise<any> {
+    return new Promise((resolve) => {
+      this.retrieveDataResolver = resolve;
+      this.loginServer();
+    });
+  }
+
+
 
   private setHaveAgeAndGender() {
     this.registrationService.setHaveAgeAndGender(this.user);
@@ -55,7 +69,7 @@ export class LoginComponent implements OnInit {
     this.loginService.saveTokenToLocalStorage(httpResponse);
   }
   private setIsRegistered() {
-    this.registrationService.setIsRegistered();
+    this.registrationService.setIsRegistered(this.user);
   }
 
   private isValueCompatibilityTestPassed(loggedUser: HttpResponse<User>) {

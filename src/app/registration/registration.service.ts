@@ -4,12 +4,17 @@ import {Observable, throwError} from 'rxjs';
 import {User} from '../profile/user';
 import {API_URL} from '../utils/config';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'AUTHORIZATION': localStorage.getItem('token')
-  })
-};
+// const httpOptions = (localStorage.getItem('token')) ?
+//   { headers: new HttpHeaders({
+//     'Content-Type':  'application/json',
+//     'AUTHORIZATION': localStorage.getItem('token')
+//   })} :
+//   {headers: new HttpHeaders({
+//       'Content-Type':  'application/json',
+//     })};
+const httpOptions = { headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    })};
 
 @Injectable({
   providedIn: 'root'
@@ -22,21 +27,15 @@ export class RegistrationService {
 // TODO убрать (проверить, чтобы через интерсептор работало)
   /** POST: add a fully new user or add an anonim user to the server (database) */
   registerNewUser(user: User): Observable<User> {
-    // take token from localstorage and push it to backend to save new user data(email, password) for that anonim user
-    const registeredUser: Observable<User> = this.http.post<User>(this.uri + `/registration`, user, httpOptions);
-    this.setIsRegistered();
-    return registeredUser;
+    console.log('registerNewUser(): ');
+    // take token (if it is in localStorage) from localstorage (throw token-interceptor) and push it to backend to save new user data(email, password) for that anonim user
+    return this.http.post<User>(this.uri + `/registration`, user, httpOptions);
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
   }
 
-  // /**  POST: add an anonim user (that has token) to the server (database) */
-  // registerAnonimUser(user: User): Observable<User> {
-  //   return this.http.post<User>(this.uri + `/registration/update`, user);
-  // }
-
-  /** POST: add an age and genger of user to the server (database) */
+  /** POST: add an age and gender of user to the server (database) */
   addAgeAndGender(user: User): Observable<User> {
     console.log('addAgeAndGender'  + user);
     return this.http.post<User>(this.uri + `/user/addAgeAndGender`, user, httpOptions);
@@ -46,8 +45,9 @@ export class RegistrationService {
     return localStorage.getItem('isRegistered') === 'true';
   }
 
-  setIsRegistered() {
-    localStorage.setItem('isRegistered', 'true');
+  setIsRegistered(user: User) {
+    // предполагаем, что пользователь зарегестрирован, если у него есть name и email
+    localStorage.setItem('isRegistered', (user.name != null && user.email != null) ? 'true' : 'false');
   }
 
   setHaveAgeAndGender(user: User) {

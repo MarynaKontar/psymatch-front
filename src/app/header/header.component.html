@@ -44,8 +44,8 @@
         <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="/card">Авторы</a>-->
         <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="tokens">Send an invitation to friends</a>-->
         <!--<a class="nav-item nav-link my-2 my-lg-0" href="#">Account</a>-->
-        <a *ngIf="!isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/login">Войти</a>
-        <a *ngIf="!isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/register" routerLinkActive="active">Register</a>
+        <a *ngIf="!isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/login" [hidden]="isLogin">Войти</a>
+        <a *ngIf="!isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/register" routerLinkActive="active" [hidden]="isRegistered">Register</a>
 
         <!--<ul class="navbar-nav nav-flex-icons">-->
           <!--<li class="nav-item waves-light">-->

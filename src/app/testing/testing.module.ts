@@ -8,14 +8,16 @@ import {RegistrationModule} from '../registration/registration.module';
 import { TestHomePageComponent } from './test-home-page/test-home-page.component';
 import {CommonComponentsModule} from '../common-components/common-components.module';
 import {AppRoutingModule} from '../app-routing.module';
+import {LoginModule} from '../login/login.module';
 // import {MatButtonModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     RegistrationModule,
+    LoginModule,
     CommonComponentsModule,
     AppRoutingModule,
     // MatButtonModule,

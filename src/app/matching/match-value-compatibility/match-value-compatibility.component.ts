@@ -106,7 +106,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
       this.hiddenButton = false;
       setTimeout(() => {
         this.match();
-      }, 1000); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
+      }, 500); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
     }
   }
 
@@ -476,7 +476,8 @@ export class MatchValueCompatibilityComponent implements OnInit {
         //                'rgba(255,237,0, 1)',
         //                'rgba(255,148,0, 1)',
         //                'rgba(255,0,0, 1)'];
-        const greyColor = 'rgba(242, 242, 239, 1)';
+        // const greyColor = 'rgba(242, 242, 239, 1)';
+        const greyColor = 'rgba(245,245,245,0.4)';
         const fontSizeBar = 18;
         //                    CANVASBAR
         this.chartBar = new Chart('canvasBar', {
@@ -494,7 +495,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
             datasets: [
               {
                 // label: userForMatchingStick,
-                label: 'Твой партнер',
+                label: 'Ваш партнер',
                 data: userForMatchingMatch,
                 borderColor: [
                   color[0],
@@ -515,7 +516,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
                 borderWidth: 3,
               },
               {
-                label: 'Ты',
+                label: 'Вы',
                 data: principalMatch,
                 backgroundColor: [
                   color[0],

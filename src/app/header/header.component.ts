@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   isRegistered: boolean;
   isLogin: boolean;
   isValueCompatibilityTestPassed: boolean;
+
   constructor(private registrationService: RegistrationService,
               private loginService: LoginService) { }
 

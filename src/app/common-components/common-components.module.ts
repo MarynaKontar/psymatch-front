@@ -8,11 +8,13 @@ import {SendingTokensComponent} from './sending-tokens/sending-tokens.component'
 import { HomeHeaderComponent } from './home-header/home-header.component';
 import { OnlineAdvertisingComponent } from './online-advertising/online-advertising.component';
 import { TestNotPassedComponent } from './test-not-passed/test-not-passed.component';
+import {LoginModule} from '../login/login.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
+    LoginModule
   ],
   exports: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
     SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent, TestNotPassedComponent],

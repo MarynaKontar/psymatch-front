@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ValueProfileComment} from './value-profile';
 import {ValueCompatibilityService} from '../value-compatibility.service';
 import { Chart } from 'chart.js';
-import {Router} from '@angular/router';
 import {URL} from '../../utils/config';
 import {LoginService} from '../../login/login.service';
+import {doughnutCenterTextColor, doughnutsBorderColor, stateColor} from '../../../assets/colorStyle';
 
 
 @Component({
@@ -21,6 +21,10 @@ export class ValueCompatibilityProfileComponent implements OnInit {
 
   //           FIGURES
   /** Arrays for different value-compatibility figures*/
+  // пастельная радуга
+  stateColors: string[] = `${stateColor}`.split(' ');
+  doughnutsBorderColor = `${doughnutsBorderColor}`;
+  doughnutCenterTextColor = `${doughnutCenterTextColor}`;
   chartBar: Chart = [];
   chartDoughnuts: Chart[] = [];
   canvasId: string[] = [];
@@ -29,23 +33,24 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   //          COMMENTS
   comments: ValueProfileComment[] = [];
 
-  // links = [this.uri + '/user-test?token=', this.uri + '/user-test?token=' ,
-  //   this.uri + '/user-test?token='];
   links;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
-              private loginService: LoginService,
-              private router: Router) {
+              private loginService: LoginService) {
   }
 
   ngOnInit() {
-    // this.router.navigate(['value-profile']);
-    // this.links = this.valueCompatibilityComponent.links;
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
-    setTimeout(() => {
-      this.plotValueProfileBar();
+    console.log('ValueCompatibilityProfileComponent');
+    if (this.loginService.ifHaveTokenInLocalStorage() && this.loginService.isValueCompatibilityTestPassed()) {
+      console.log('isValueCompatibilityTestPassed: ', this.isValueCompatibilityTestPassed);
+      this.plotValueProfileBar(); // не могу под if внести, так как в этом случае ссылка в <app-test-not-passed></app-test-not-passed> не активна, пока не знаю почему
       this.getFriendsTokens();
-    }, 1000); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
+    }
+    // setTimeout(() => {
+    //   this.plotValueProfileBar();
+    //   this.getFriendsTokens();
+    // }, 1000); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
   }
 
   private getFriendsTokens() {
@@ -57,7 +62,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   }
 
   //            !!!!!!!!!!! FIGURE !!!!!!!!!!!1
-  plotValueProfileBar() {
+  private plotValueProfileBar() {
 
     const labels: string[] = [];
     const match: number[] = [];
@@ -77,16 +82,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
 
       const title = 'Ваш индивидуальный ценностный профиль';
       const xLabel = 'Значимость ценности';
-      // пастельная радуга
-      const color = ['rgba(201,166,220,1)', 'rgba(186,225,255, 1)', 'rgba(186,255,201, 1)',
-        'rgba(255,255,186, 1)', 'rgba(255,223,186, 1)', 'rgba(255,179,186, 1)'];
-      // const color = ['rgba(108,88,255,1)', 'rgba(0,240,255,1)', 'rgba(113,218,0, 1)',
-      //   'rgba(255,237,0, 1)', 'rgba(255,148,0, 1)', 'rgba(255,0,0, 1)'];
-      // const greyColor = 'rgba(201,166,220,1)';
-      // const greyColor = 'rgba(186,225,255, 1)';
-      // const greyColor = 'rgba(186,255,201, 1)';
-      const greyColor = 'rgba(242, 242, 239, 1)';
-      const blackColor = 'rgba(0, 0, 10, 1)';
+      const color: string[] = this.stateColors;
       const fontSizeDoughnut = 24;
       const fontSizeBar = 18;
 
@@ -255,15 +251,15 @@ export class ValueCompatibilityProfileComponent implements OnInit {
           data: {
             labels: [labels[i]],
             datasets: [{
-              data: [match[i], 100 - match[i]],
+              data: [match[i], 100 - match[i]], // две части "бублика"
               backgroundColor: [
                 color[i],
-                // greyColor,
+                // doughnutsBorder,
                 // gradient,
               ],
               borderColor: [
                 color[i],
-                greyColor,
+                this.doughnutsBorderColor,
               ],
             }]
           },
@@ -281,7 +277,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
             elements: {
               center: {
                 text: match[i] + '%',
-                color: blackColor,
+                color: this.doughnutCenterTextColor,
               }
             },
             plugins: {

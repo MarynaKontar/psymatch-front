@@ -26,7 +26,6 @@ export class LoginService {
     return this.http.post<User>(this.uri + `/auth/login`, user, httpOptions);
   }
 
-
   saveTokenToLocalStorage(httpResponse: HttpResponse<User>) {
     localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
     console.log('token: ',  httpResponse.headers.get('AUTHORIZATION'));
@@ -69,7 +68,7 @@ export class LoginService {
   }
 
   ifHaveTokenInLocalStorage() {
-    console.log(localStorage.getItem('token'));
+    console.log('ifHaveTokenInLocalStorage(): ', localStorage.getItem('token'));
     return localStorage.getItem('token') != null;
 
   }

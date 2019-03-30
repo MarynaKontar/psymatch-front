@@ -1,11 +1,16 @@
 
 <div class="container-fluid value profile" >
 
-  <div class="row justify-content-center">
+  <div class="row">
 
+    <div class="col-sm-12 col-lg-10 justify-content-center" [hidden]="isValueCompatibilityTestPassed">
+      <app-test-not-passed></app-test-not-passed>
+    </div>
     <div class="col-sm-12 col-lg-10 justify-content-center" [hidden]="!isValueCompatibilityTestPassed">
-      <div class="container value profile content">
-        <div class="row d-none d-sm-none d-md-block align-items-center justify-content-center">
+
+      <div class="container value profile content" [hidden]="!isValueCompatibilityTestPassed">
+        <!--<div class="row d-none d-sm-none d-md-block align-items-center justify-content-center">-->
+        <div class="row align-items-center justify-content-center">
           <div class="col-12 col-xl-12">
             <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
             <div *ngIf="chartBar" class="container-fluid chart bar justify-content-center">
@@ -14,7 +19,7 @@
           </div>
         </div>
 
-        <hr *ngIf="valueProfile && chartDoughnuts && comments" class="d-none d-sm-none d-md-block">
+        <hr class="d-none d-sm-none d-md-block">
         <div class="row align-items-center">
           <div class="col-md-6 col-lg-5">
             <div class="container chart">
@@ -36,7 +41,7 @@
           </div>
         </div>
 
-        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <hr>
         <div class="row align-items-center">
           <div class="col-md-6 col-lg-5">
             <div *ngIf="chartDoughnuts" class="container chart">
@@ -58,7 +63,7 @@
           </div>
         </div>
 
-        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <hr>
         <div class="row align-items-center">
           <div class="col-md-6 col-lg-5">
             <div *ngIf="chartDoughnuts" class="container chart">
@@ -80,7 +85,7 @@
           </div>
         </div>
 
-        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <hr>
         <div class="row align-items-center">
           <div class="col-md-6 col-lg-5">
             <div *ngIf="chartDoughnuts" class="container chart">
@@ -98,7 +103,7 @@
           </div>
         </div>
 
-        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <hr>
         <div class="row align-items-center">
           <div class="col-md-6 col-lg-5">
             <div *ngIf="chartDoughnuts" class="container chart">
@@ -116,7 +121,7 @@
           </div>
         </div>
 
-        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <hr>
         <div class="row align-items-center">
           <div class="col-md-6 col-lg-5">
             <div *ngIf="chartDoughnuts" class="container chart">
@@ -133,27 +138,19 @@
             </div>
           </div>
         </div>
-        <hr *ngIf="valueProfile && chartDoughnuts && comments">
+        <hr>
       </div>
     </div>
-    <div class="col-sm-12 col-lg-10 justify-content-center" [hidden]="isValueCompatibilityTestPassed">
-      <app-test-not-passed></app-test-not-passed>
-    </div>
-
     <div class="col-lg-2">
         <div class="container-fluid online-advertising">
           <app-online-advertising></app-online-advertising>
         </div>
     </div>
-
   </div>
-
-
 </div>
 
 <app-age-gender-registration></app-age-gender-registration>
 <app-sending-tokens></app-sending-tokens>
-
 
 
 

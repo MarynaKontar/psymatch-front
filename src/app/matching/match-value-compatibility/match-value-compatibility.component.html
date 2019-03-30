@@ -38,6 +38,9 @@
 <div class="container-fluid match" @fade>
 
   <div class="row">
+    <div class="col-sm-12 col-lg-10" [hidden]="isValueCompatibilityTestPassed">
+      <app-test-not-passed></app-test-not-passed>
+    </div>
     <div class="col-sm-12 col-lg-10" [hidden]="!isValueCompatibilityTestPassed">
       <div class="container match content">
         <div class="row">
@@ -121,7 +124,7 @@
                   <!--<div class="col-12 col-xl-12">-->
                     <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
                 <div class="match head" >Интерпретация различий в ценностях</div>
-                    <div *ngIf="chartBar" class="container-fluid chart bar">
+                    <div *ngIf="chartBar" class="container-fluid chart-bar">
                       <canvas id="canvasBar">{{ chartBar }}</canvas>
                     </div>
                   <!--</div>-->
@@ -162,7 +165,7 @@
                     </div>
 
                     <!--<div class="col-sm-12 col-md-5 col-lg-3">-->
-                      <!--<div class="container chart">-->
+                      <!--<div class="container chart-bar">-->
                         <!--<canvas id="chartBarDevelopment"></canvas>-->
                       <!--</div>-->
                     <!--</div>-->
@@ -199,15 +202,11 @@
 
       </div>
     </div>
-    <div class="col-sm-12 col-lg-10" [hidden]="isValueCompatibilityTestPassed">
-        <app-test-not-passed></app-test-not-passed>
-    </div>
     <div class="col-lg-2 ">
       <div class="container-fluid online-advertising">
         <app-online-advertising></app-online-advertising>
       </div>
     </div>
-
   </div>
 </div>
 
