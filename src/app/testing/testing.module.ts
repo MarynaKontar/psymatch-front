@@ -14,8 +14,8 @@ import {LoginModule} from '../login/login.module';
 @NgModule({
   imports: [
     CommonModule,
-    // FormsModule,
-    // ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     RegistrationModule,
     LoginModule,
     CommonComponentsModule,
