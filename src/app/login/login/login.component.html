@@ -7,6 +7,7 @@
       <div class="card-body">
         <form class="form" >
           <div class="form-group">
+            <h5 [hidden]="!isLoginError" style="color: red">Имя(email) или пароль не верны</h5>
             <label for="name">Name or Email</label>
             <input [(ngModel)]="user.name" id="name" name="name" type="text" class="form-control rounded-0" required placeholder="name or email">
           </div>

@@ -14,6 +14,7 @@ import {Observable} from 'rxjs';
 export class LoginComponent implements OnInit {
   user: User = new User();
   retrieveDataResolver;
+  isLoginError;
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
               private router: Router,
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
           this.retrieveDataResolver();
         },
         error => {
+        this.isLoginError = true;
           // login failed so display error
 
         });

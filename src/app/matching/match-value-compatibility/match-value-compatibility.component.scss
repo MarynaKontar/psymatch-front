@@ -1,11 +1,7 @@
 .container-fluid.match, .container-fluid.online-advertising {
   margin: 4% 1% 5% 1%;
 }
-
-.container.match.content {
-  margin: 0%;
-}
-@media(max-width:992px) {
+@media(max-width:991.98px) {
   .container-fluid.online-advertising {
     margin: 1% 0 5% 0;
   }
@@ -13,7 +9,7 @@
     margin: 3% 0 0 0;
   }
 }
-@media(max-width:768px){
+@media(max-width:767.98px){
   .container-fluid.match {
     margin: 3% 0 1% 0;
   }
@@ -22,13 +18,14 @@
   }
   .container.match.content {
     margin: 5% 0 0 0;
+    padding: 0;
   }
 }
 .container {
   max-width: 1500px;
 }
 
-.nav {
+nav {
   margin: 2% 0;
   background-color: rgba(123, 124, 145, .5);
 }
@@ -36,6 +33,13 @@ a.nav-link {
   font-size: x-large;
   font-weight: bold;
   color: white;
+}
+@media(max-width:767.98px) {
+  a.nav-link {
+    font-size: medium;
+    margin: 0;
+    padding: 1%;
+  }
 }
 a.nav-link.active {
   background-color: rgba(123, 124, 145, .5);
@@ -49,15 +53,21 @@ a.nav-link.active {
 }
 .match.head.main {
   font-size: xx-large;
+  margin-bottom: 0;
 }
-@media(max-width:768px){
+@media(max-width:767.98px){
   .match.head.main {
     font-size: x-large;
   }
 }
 
-.row.head {
-  font-size: large;
+.row.head, .match.head {
+  font-size: x-large;
+}
+@media (max-width: 767.98px) {
+  .row.head, .match.head {
+    font-size: large;
+  }
 }
 .row.header {
   font-size: medium;
@@ -83,23 +93,51 @@ a.nav-link.active {
 //}
 
 .container-fluid.chart-bar {
-  padding: 0;
+  //padding: 5% 0 0;
   min-width: 800px;
 }
 .interpretation.text {
   text-align: justify;
   //margin: 1% 5% 0% 5%;
 }
-.container-fluid.value.profile {
-  margin: 3% 0;
+
+.container.value-compatibility.matches,
+.container-fluid.value.profile,
+.container.values-differences.report {
+  padding-top: 4%;
+  margin: 0;
+}
+@media(max-width:991.98px) {
+  .container-fluid.value.profile,
+  .container.values-differences.report {
+    padding-top: 5%;
+    margin: 1% 0;
+  }
+}
+@media(max-width:767.98px) {
+  .container.value-compatibility.matches,
+  .container-fluid.value.profile,
+  .container.values-differences.report {
+    padding-top: 8%;
+    margin: 0 0;
+  }
+}
+@media(max-width:575.98px) {
+  .container.value-compatibility.matches,
+  .container-fluid.value.profile,
+  .container.values-differences.report {
+    padding-top: 12%;
+    padding-left: 1;
+    padding-right: 1;
+    margin: 1% 0;
+  }
+  .col-sm-12 {
+    padding: 5px;
+  }
 }
 
 .accent, .comment.header {
   font-weight: bold;
-}
-
-.btn {
-  margin: 1% 1% 5% 1%;
 }
 
 .container.rectangle {
@@ -147,8 +185,8 @@ hr {
   }
 }
 
-.scroll {
+.scroll-spy {
   position: relative;
-  overflow-y: scroll;
-  height: 200vh;
+  //overflow-y: scroll;
+  //height: 100vh;
 }
