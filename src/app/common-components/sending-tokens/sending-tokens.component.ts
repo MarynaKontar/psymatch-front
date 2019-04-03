@@ -15,6 +15,7 @@ export class SendingTokensComponent implements OnInit {
 
   private dom: Document;
   private uri = `${URL}`;
+  tokens: string[];
   links: string[];
   private isTokenLinkVisible = false;
 
@@ -27,7 +28,8 @@ export class SendingTokensComponent implements OnInit {
 
   ngOnInit() {
     console.log('SendingTokensComponent');
-    this.isTokenLinkVisible = this.loginService.isValueCompatibilityTestPassed();
+    this.tokens = this.valueCompatibilityService.getFriendsTokens();
+    this.isTokenLinkVisible = this.loginService.isValueCompatibilityTestPassed() && (this.tokens != null);
     if (this.registrationService.isHaveAgeAndGender() && this.isTokenLinkVisible) {
       console.log('SendingTokensComponent visible');
       this.getFriendsTokens();
@@ -36,11 +38,10 @@ export class SendingTokensComponent implements OnInit {
   }
 
   private getFriendsTokens() {
-    const tokens = this.valueCompatibilityService.getFriendsTokens();
-    if (tokens) {
-      this.links = [this.uri + '/value-compatibility-test?token=' + tokens[0],
-                    this.uri + '/value-compatibility-test?token=' + tokens[1],
-                    this.uri + '/value-compatibility-test?token=' + tokens[2]];
+       if (this.tokens) {
+      this.links = [this.uri + '/value-compatibility-test?token=' + this.tokens[0],
+                    this.uri + '/value-compatibility-test?token=' + this.tokens[1],
+                    this.uri + '/value-compatibility-test?token=' + this.tokens[2]];
     }
   }
 
