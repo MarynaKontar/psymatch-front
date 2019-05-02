@@ -83,18 +83,4 @@ export class ValueCompatibilityService {
     console.log('came to getValueProfile:' + user);
     return this.http.post<ValueProfileIndividual>(this.uri + `/test/value-profile`, user);
   }
-
-  createFriendsTokens(): void {
-    this.http.get(this.uri + `/test/generateTokenList`).subscribe(
-      tokens => {
-        localStorage.setItem('friendsTokens', JSON.stringify(tokens));
-      }
-    );
-  }
-
-  getFriendsTokens() {
-    if (localStorage.getItem('friendsTokens')) {
-      return  JSON.parse(localStorage.getItem('friendsTokens'));
-    }
-  }
 }

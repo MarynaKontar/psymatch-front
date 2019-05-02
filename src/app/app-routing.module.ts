@@ -13,6 +13,8 @@ import {ErrorPageComponent} from './common-components/error-page/error-page.comp
 import {CardComponent} from './card/card.component';
 import {TestHomePageComponent} from './testing/test-home-page/test-home-page.component';
 import {PsychologicalCompatibilityInfoComponent} from './psychological-compatibility-info/psychological-compatibility-info.component';
+import {UserAccountService} from './profile/user-account.service';
+import {UserAccountComponent} from './profile/user-account/user-account.component';
 
 const routes: Routes = [
   {
@@ -43,11 +45,11 @@ const routes: Routes = [
     component: LoginComponent
   },
 
-  // {
-  //   path: 'profile',
-  //   component: UserComponent
-  // },
-  //
+  {
+    path: 'account',
+    component: UserAccountComponent
+  },
+
   {
     path: 'user-test',
     component: TestHomePageComponent

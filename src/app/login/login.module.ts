@@ -4,14 +4,15 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {RegistrationModule} from '../registration/registration.module';
 import {LoginService} from './login.service';
+import {ProfileModule} from '../profile/profile.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RegistrationModule
+    RegistrationModule,
   ],
   declarations: [LoginComponent],
-  providers: [LoginService]
+  providers: [LoginService],
 })
 export class LoginModule { }

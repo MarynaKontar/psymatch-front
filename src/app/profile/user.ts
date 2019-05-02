@@ -13,3 +13,9 @@ export enum Gender {
   MALE = 'MALE',
   // ANOTHER = 'ANOTHER',
 }
+
+export class UserAccount {
+  user: User;
+  isValueCompatibilityTestPassed: boolean;
+  inviteTokens: string[];
+}

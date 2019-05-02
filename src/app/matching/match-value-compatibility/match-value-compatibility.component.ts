@@ -95,7 +95,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
               private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    if (this.loginService.ifHaveTokenInLocalStorage() &&
+    if (this.loginService.isLogin() &&
       this.loginService.isValueCompatibilityTestPassed()) {
       this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
 

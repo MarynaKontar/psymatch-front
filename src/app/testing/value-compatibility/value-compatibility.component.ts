@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import 'chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js';
 import {URL} from '../../utils/config';
 import {LoginService} from '../../login/login.service';
+import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class ValueCompatibilityComponent implements OnInit {
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
               private loginService: LoginService,
+              private sendingTokensService: SendingTokensService,
               private formBuilder: FormBuilder,
               private router: Router, private route: ActivatedRoute) {
   }
@@ -332,7 +334,7 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
   private createFriendsTokens() {
-    this.valueCompatibilityService.createFriendsTokens();
+    this.sendingTokensService.createFriendsTokens();
   }
 
   // private setScaleColor(scale: ScaleEnum): string {

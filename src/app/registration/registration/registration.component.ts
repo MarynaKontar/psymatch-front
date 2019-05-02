@@ -3,7 +3,6 @@ import {User} from '../../profile/user';
 import {RegistrationService} from '../registration.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../login/login.service';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-registration',
@@ -19,8 +18,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private registrationService: RegistrationService,
               private router: Router,
               private route: ActivatedRoute,
-              private loginService: LoginService,
-              private location: Location) { }
+              private loginService: LoginService) { }
 
   ngOnInit() {
     if (this.isNew()) {
@@ -54,7 +52,7 @@ export class RegistrationComponent implements OnInit {
         this.registeredUser = data;
         this.isNeedToBeRegistered = this.isNew();
 
-        if (this.loginService.ifHaveTokenInLocalStorage()) {
+        if (this.loginService.isLogin()) {
           this.router.navigateByUrl(this.returnUrl);
         } else { this.router.navigate(['login']); }
 

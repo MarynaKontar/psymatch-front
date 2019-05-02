@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SendingTokensComponent} from '../common-components/sending-tokens/sending-tokens.component';
+import { UserAccountComponent } from './user-account/user-account.component';
+import {UserAccountService} from './user-account.service';
+import {FormsModule} from '@angular/forms';
+import {CommonComponentsModule} from '../common-components/common-components.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    CommonComponentsModule
   ],
-  declarations: []
+  declarations: [UserAccountComponent],
+  // providers: [UserAccountService]
 })
 export class ProfileModule { }

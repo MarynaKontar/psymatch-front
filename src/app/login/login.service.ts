@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {User} from '../profile/user';
+import {User, UserAccount} from '../profile/user';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {API_URL} from '../utils/config';
 import {RegistrationService} from '../registration/registration.service';
+import {UserAccountService} from '../profile/user-account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,10 @@ import {RegistrationService} from '../registration/registration.service';
 export class LoginService {
   uri = `${API_URL}`;
 
-  constructor(private http: HttpClient, private registrationService: RegistrationService) { }
+  constructor(private http: HttpClient,
+              private userAccountService: UserAccountService) { }
 
-  login(user: User): Observable<HttpResponse<User>> {
+  login(user: User): Observable<HttpResponse<UserAccount>> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response' as 'response'
@@ -23,16 +25,21 @@ export class LoginService {
     // this.saveTokenToLocalStorage(loggedUser);
     // this.saveHaveAgeAndGenderToLocaleStorage(loggedUser);
     // this.registrationService.setIsRegistered();
-    return this.http.post<User>(this.uri + `/auth/login`, user, httpOptions);
+    return this.http.post<UserAccount>(this.uri + `/auth/login`, user, httpOptions);
   }
 
-  saveTokenToLocalStorage(httpResponse: HttpResponse<User>) {
+  setUserAccount(userAccount: UserAccount) {
+    this.userAccountService.setUserAccount(userAccount);
+  }
+
+  saveTokenToLocalStorage(httpResponse: HttpResponse<UserAccount>) {
     localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
     console.log('token: ',  httpResponse.headers.get('AUTHORIZATION'));
   }
 
-  setIsValueCompatibilityTestPassed(httpResponse: HttpResponse<User>) {
-    localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.headers.get('isValueCompatibilityTestPassed'));
+  setIsValueCompatibilityTestPassed(httpResponse: HttpResponse<UserAccount>) {
+    localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.isValueCompatibilityTestPassed.toString());
+    // headers.get('isValueCompatibilityTestPassed'));
     console.log('isValueCompatibilityTestPassed: ',  httpResponse.headers.get('isValueCompatibilityTestPassed'));
   }
 
@@ -57,6 +64,7 @@ export class LoginService {
 
   logout() {
     // localStorage.clear();
+    sessionStorage.clear();
     localStorage.removeItem('token');
     localStorage.removeItem('haveAgeAndGender');
     localStorage.removeItem('isRegistered');
@@ -65,10 +73,11 @@ export class LoginService {
     localStorage.removeItem('isGoalsDone');
     localStorage.removeItem('isStatesDone');
     localStorage.removeItem('isQualitiesDone');
+    localStorage.removeItem('userAccount');
   }
 
-  ifHaveTokenInLocalStorage() {
-    console.log('ifHaveTokenInLocalStorage(): ', localStorage.getItem('token'));
+  isLogin() {
+    console.log('isLogin(): ', localStorage.getItem('token'));
     return localStorage.getItem('token') != null;
 
   }

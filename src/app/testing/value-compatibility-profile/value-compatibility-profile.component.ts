@@ -5,6 +5,7 @@ import { Chart } from 'chart.js';
 import {URL} from '../../utils/config';
 import {LoginService} from '../../login/login.service';
 import {doughnutCenterTextColor, doughnutsBorderColor, stateColor} from '../../../assets/colorStyle';
+import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 
 
 @Component({
@@ -36,13 +37,14 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   links;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
-              private loginService: LoginService) {
+              private loginService: LoginService,
+              private sendingTokensService: SendingTokensService) {
   }
 
   ngOnInit() {
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
     console.log('ValueCompatibilityProfileComponent');
-    if (this.loginService.ifHaveTokenInLocalStorage() && this.loginService.isValueCompatibilityTestPassed()) {
+    if (this.loginService.isLogin() && this.loginService.isValueCompatibilityTestPassed()) {
       console.log('isValueCompatibilityTestPassed: ', this.isValueCompatibilityTestPassed);
       this.plotValueProfileBar(); // не могу под if внести, так как в этом случае ссылка в <app-test-not-passed></app-test-not-passed> не активна, пока не знаю почему
       this.getFriendsTokens();
@@ -54,7 +56,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   }
 
   private getFriendsTokens() {
-    const tokens = this.valueCompatibilityService.getFriendsTokens();
+    const tokens = this.sendingTokensService.getFriendsTokens();
     if (tokens) {
       this.links = [this.uri + '/user-test?token=' + tokens[0], this.uri + '/user-test?token=' + tokens[1],
                     this.uri + '/user-test?token=' + tokens[2]];

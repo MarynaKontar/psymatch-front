@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isRegistered = this.registrationService.isRegistered();
-    this.isLogin = this.loginService.ifHaveTokenInLocalStorage();
+    this.isLogin = this.loginService.isLogin();
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
   }
 

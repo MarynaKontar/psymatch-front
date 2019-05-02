@@ -19,6 +19,7 @@ import {LoginModule} from '../login/login.module';
   exports: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
     SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent, TestNotPassedComponent],
   declarations: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
-    SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent, TestNotPassedComponent]
+    SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent, TestNotPassedComponent],
+  providers: [SendingTokensComponent]
 })
 export class CommonComponentsModule { }

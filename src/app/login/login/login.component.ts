@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../profile/user';
+import {User, UserAccount} from '../../profile/user';
 import {LoginService} from '../login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RegistrationService} from '../../registration/registration.service';
 import {HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,12 @@ import {Observable} from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
+  userAccount: UserAccount = new UserAccount();
   retrieveDataResolver;
   isLoginError;
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
+              private sendingTokensService: SendingTokensService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -32,21 +35,23 @@ export class LoginComponent implements OnInit {
 
   private afterLoginActions(): void {
     console.log('afterLoginActions');
-    location.reload(); // need to reload because there will be seen Login and Register on header without reload
+    // location.reload(); // need to reload because there will be seen Login and Register on header without reload
+    this.router.navigate(['']); // if replace to afterLoginActions(), reload to login page? not to home page
+    console.log(this.userAccount);
   }
   private loginServer(): void {
     // reset login status
     this.logout();
     this.loginService.login(this.user)
-      .subscribe(loggedUser => {
-          this.user = loggedUser.body;
-          console.log(this.user);
-          console.log(loggedUser);
-          this.saveTokenToLocalStorage(loggedUser);
+      .subscribe(userAccount => {
+          this.userAccount = userAccount.body;
+          console.log(userAccount);
+          this.loginService.setUserAccount(userAccount.body);
+          this.saveTokenToLocalStorage(userAccount);
           this.setHaveAgeAndGender();
           this.setIsRegistered();
-          this.isValueCompatibilityTestPassed(loggedUser);
-          this.router.navigate(['']); // if replace to afterLoginActions(), reload to login page? not to home page
+          this.isValueCompatibilityTestPassed(userAccount);
+          this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
           this.retrieveDataResolver();
         },
         error => {
@@ -65,17 +70,17 @@ export class LoginComponent implements OnInit {
 
 
   private setHaveAgeAndGender() {
-    this.registrationService.setHaveAgeAndGender(this.user);
+    this.registrationService.setHaveAgeAndGender(this.userAccount.user);
   }
-  private saveTokenToLocalStorage(httpResponse: HttpResponse<User>) {
+  private saveTokenToLocalStorage(httpResponse: HttpResponse<UserAccount>) {
     this.loginService.saveTokenToLocalStorage(httpResponse);
   }
   private setIsRegistered() {
-    this.registrationService.setIsRegistered(this.user);
+    this.registrationService.setIsRegistered(this.userAccount.user);
   }
 
-  private isValueCompatibilityTestPassed(loggedUser: HttpResponse<User>) {
-    return this.loginService.setIsValueCompatibilityTestPassed(loggedUser);
+  private isValueCompatibilityTestPassed(userAccount: HttpResponse<UserAccount>) {
+    return this.loginService.setIsValueCompatibilityTestPassed(userAccount);
   }
 
   logout() {
@@ -84,48 +89,3 @@ export class LoginComponent implements OnInit {
 
 }
 
-
-
-// @Injectable()
-// export class AuthInterceptor implements HttpInterceptor {
-//
-//   intercept(req: HttpRequest<any>,
-//             next: HttpHandler): Observable<HttpEvent<any>> {
-//
-//     let idToken: string = null;
-//     if (req.params.has('token')) {
-//       idToken = req.params.get('token');
-//     } else {
-//       idToken = localStorage.getItem('token');
-//     }
-//
-//     if (idToken) {
-//       const cloned = req.clone({
-//         headers: req.headers.set('Authorization',
-//           idToken)
-//       });
-//
-//       return next.handle(cloned);
-//     } else {
-//       return next.handle(req);
-//     }
-
-
-
-
-// //т.к HttpInterceptor перехватывает абсолютно все запросы мы должны гарантировать, что Authorization заголовок будет
-//добавлен только к запросам на наш API
-// if (!req.url.includes('api/')) {
-//   return next.handle(req);
-// }
-//
-// //клонироуем запрос, что бы добавить новый заголовок
-// const authReq = req.clone({
-//   headers: req.headers.set('Authorization', this.auth.authHeader)
-// });
-// //передаем клонированный запрос место ориганального
-// return next.handle(authReq);
-
-
-// }
-// }
