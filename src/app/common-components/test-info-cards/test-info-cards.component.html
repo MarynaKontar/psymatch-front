@@ -5,12 +5,16 @@
   <!-- VALUE COMPATIBILITY test Card-->
   <div class="card bg-success text-white">
     <div *ngIf="isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestPassed}}</div>
-    <div *ngIf="!isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestIsNotPassed}}</div>
+    <div *ngIf="!isValueCompatibilityTestPassed" class="card-header">
+      <a class="customDecorated" routerLink="/value-compatibility-test">{{valueCompatibilityTestIsNotPassed}}</a>
+    </div>
+    <!--<div *ngIf="!isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestIsNotPassed}}</div>-->
     <div class="card-body">
-      <a class="card-content customDecorated" routerLink="/value-compatibility-test">
+      <!--<a class="card-content customDecorated" routerLink="/value-compatibility-test">-->
+      <div class="card-content">
         <h2 class="card-title">{{value_compatibility_test_header}}</h2>
         <p class="card-text">{{value_compatibility_test_main_text}}</p>
-      </a>
+      </div>
     </div><!--end card-body -->
     <div class="card-footer">
       <!-- Button trigger modal -->
@@ -61,13 +65,15 @@
   <!-- ROLE COMPATIBILITY test Card-->
   <div class="card bg-info text-white">
     <!--<div *ngIf="isRoleCompatibilityTestPassed" class="card-header">{{roleCompatibilityTestPassed}}</div>-->
+    <!--<div *ngIf="!isRoleCompatibilityTestPassed" class="card-header"><a class="customDecorated" routerLink="/error">{{roleCompatibilityTestIsNotPassed}}</a></div>-->
     <!--<div *ngIf="!isRoleCompatibilityTestPassed" class="card-header">{{roleCompatibilityTestIsNotPassed}}</div>-->
-    <div class="card-header">Тест не пройден</div>
+    <div class="card-header"><a class="customDecorated" routerLink="/error">{{roleCompatibilityTestIsNotPassed}}</a></div>
     <div class="card-body">
-      <a class="card-content customDecorated" routerLink="/error">
+      <div class="card-content">
+      <!--<a class="card-content customDecorated" routerLink="/error">-->
         <h2 class="card-title">{{role_compatibility_test_header}}</h2>
         <p class="card-text">{{role_compatibility_test_main_text}}</p>
-      </a>
+      </div>
     </div><!--end card-body -->
     <div class="card-footer">
       <!-- Button trigger modal -->
@@ -118,13 +124,15 @@
   <!-- LOVE COMPATIBILITY test Card-->
   <div class="card background-yellow text-white">
     <!--<div *ngIf="isLoveCompatibilityTestPassed" class="card-header">{{loveCompatibilityTestPassed}}</div>-->
+    <!--<div *ngIf="!isLoveCompatibilityTestPassed" class="card-header"><a class="customDecorated" routerLink="/error">{{loveCompatibilityTestIsNotPassed}}</a></div>-->
     <!--<div *ngIf="!isLoveCompatibilityTestPassed" class="card-header">{{loveCompatibilityTestIsNotPassed}}</div>-->
-    <div class="card-header">Тест не пройден</div>
+    <div class="card-header"><a class="customDecorated" routerLink="/error">{{loveCompatibilityTestIsNotPassed}}</a></div>
     <div class="card-body">
-      <a class="card-content customDecorated" routerLink="/error">
+      <div class="card-content">
+      <!--<a class="card-content customDecorated" routerLink="/error">-->
         <h2 class="card-title">{{love_compatibility_test_header}}</h2>
         <p class="card-text">{{love_compatibility_test_main_text}}</p>
-      </a>
+      </div>
     </div><!--end card-body -->
     <div class="card-footer">
       <!-- Button trigger modal -->
@@ -176,13 +184,15 @@
   <!-- SEXUAL COMPATIBILITY test Card-->
   <div class="card bg-danger text-white">
     <!--<div *ngIf="isSexualCompatibilityTestPassed" class="card-header">{{sexualCompatibilityTestPassed}}</div>-->
+    <!--<div *ngIf="!isSexualCompatibilityTestPassed" class="card-header"><a class="customDecorated" routerLink="/error">{{sexualCompatibilityTestIsNotPassed}}</a></div>-->
     <!--<div *ngIf="!isSexualCompatibilityTestPassed" class="card-header">{{sexualCompatibilityTestIsNotPassed}}</div>-->
-    <div class="card-header">Тест не пройден</div>
+    <div class="card-header"><a class="customDecorated" routerLink="/error">{{sexualCompatibilityTestIsNotPassed}}</a></div>
     <div class="card-body">
-      <a class="card-content customDecorated" routerLink="/error">
+      <div class="card-content">
+      <!--<a class="card-content customDecorated" routerLink="/error">-->
         <h2 class="card-title">{{sexual_compatibility_test_header}}</h2>
         <p class="card-text">{{sexual_compatibility_test_main_text}}</p>
-      </a>
+      </div>
     </div><!--end card-body -->
     <div class="card-footer">
       <!-- Button trigger modal -->

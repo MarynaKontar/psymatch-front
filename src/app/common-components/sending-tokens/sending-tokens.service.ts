@@ -27,30 +27,30 @@ export class SendingTokensService {
       localStorage.setItem('friendsTokens', JSON.stringify(tokens));
     }
   }
-  howManyTimesOpenInviteTokenLinks(): number {
-    return +sessionStorage.getItem('howManyTimesOpenInviteTokenLinks');
-  }
-  setHowManyTimesOpenInviteTokenLinks(): number {
-    const t = sessionStorage.getItem('howManyTimesOpenInviteTokenLinks');// null 1
-    console.log('t: ', t);
-    const k = this.getIfNotChangeHowManyTimesOpenInviteTokenLinks() ? 1 : 0;
-    console.log('k: ', k);
-
-    // if (t != null && !isNaN(+t) && k === 1) {
-
-    // }
-    const n = (t != null && !isNaN(+t)) ? +t + 1 - k : 1 - k;
-    console.log('n: ', n);
-    sessionStorage.setItem('howManyTimesOpenInviteTokenLinks', n.toString());
-    return n;
-  }
-  setIfNotChangeHowManyTimesOpenInviteTokenLinks(ifNotChange: boolean) {
-    if (ifNotChange) {
-      sessionStorage.setItem('ifNotChangeHowManyTimesOpenInviteTokenLinks', 'true');
-    } else { sessionStorage.removeItem('ifNotChangeHowManyTimesOpenInviteTokenLinks'); }
-    console.log('setIfNotChangeHowManyTimesOpenInviteTokenLinks: ', sessionStorage.getItem('ifNotChangeHowManyTimesOpenInviteTokenLinks'));
-  }
-  getIfNotChangeHowManyTimesOpenInviteTokenLinks(): boolean {
-    return sessionStorage.getItem('ifNotChangeHowManyTimesOpenInviteTokenLinks') === 'true';
-  }
+  // howManyTimesOpenInviteTokenLinks(): number {
+  //   return +sessionStorage.getItem('howManyTimesOpenInviteTokenLinks');
+  // }
+  // setHowManyTimesOpenInviteTokenLinks(): number {
+  //   const t = sessionStorage.getItem('howManyTimesOpenInviteTokenLinks'); // null 1
+  //   console.log('t: ', t);
+  //   const k = this.getIfNotChangeHowManyTimesOpenInviteTokenLinks() ? 1 : 0;
+  //   console.log('k: ', k);
+  //
+  //   // if (t != null && !isNaN(+t) && k === 1) {
+  //
+  //   // }
+  //   const n = (t != null && !isNaN(+t)) ? +t + 1 - k : 1 - k;
+  //   console.log('n: ', n);
+  //   sessionStorage.setItem('howManyTimesOpenInviteTokenLinks', n.toString());
+  //   return n;
+  // }
+  // setIfNotChangeHowManyTimesOpenInviteTokenLinks(ifNotChange: boolean) {
+  //   if (ifNotChange) {
+  //     sessionStorage.setItem('ifNotChangeHowManyTimesOpenInviteTokenLinks', 'true');
+  //   } else { sessionStorage.removeItem('ifNotChangeHowManyTimesOpenInviteTokenLinks'); }
+  //   console.log('setIfNotChangeHowManyTimesOpenInviteTokenLinks: ', sessionStorage.getItem('ifNotChangeHowManyTimesOpenInviteTokenLinks'));
+  // }
+  // getIfNotChangeHowManyTimesOpenInviteTokenLinks(): boolean {
+  //   return sessionStorage.getItem('ifNotChangeHowManyTimesOpenInviteTokenLinks') === 'true';
+  // }
 }

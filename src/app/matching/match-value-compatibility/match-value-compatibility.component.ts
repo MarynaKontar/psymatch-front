@@ -5,7 +5,7 @@ import {MatchValueCompatibilityService} from '../match-value-compatibility.servi
 import {ActivatedRoute, Router} from '@angular/router';
 import {ValueCompatibilityService} from '../../testing/value-compatibility.service';
 import {User} from '../../profile/user';
-import {AspectComment, ValuesDifferencesComment, ScaleLevel, AspectLevel} from './match-value-compatibility';
+import {AspectComment, ValuesDifferencesComment, ScaleLevel, AspectLevel, UserMatch} from './match-value-compatibility';
 import {DomSanitizer} from '@angular/platform-browser';
 import {LoginService} from '../../login/login.service';
 
@@ -87,6 +87,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
   hiddenButton = true;
   linearGradient = [];
   boxShadow = [];
+  userMatch: UserMatch;
 
   constructor(private matchValueCompatibilityService: MatchValueCompatibilityService,
               private valueCompatibilityService: ValueCompatibilityService,
@@ -103,7 +104,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
       this.router.navigate(['match']);
       // location.reload();
       this.plotRectangle();
-      this.hiddenButton = false;
+      // this.hiddenButton = false;
       setTimeout(() => {
         this.match();
       }, 500); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
@@ -129,6 +130,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
   private plotRectangle() {
     this.matches = this.matchValueCompatibilityService.matchPercent().
     subscribe(data => {
+      this.userMatch = data;
       console.log('matchPercent: ');
       console.log(data);
 
@@ -495,7 +497,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
             datasets: [
               {
                 // label: userForMatchingStick,
-                label: 'Ваш партнер',
+                label: userForMatchingName, // your partner name
                 data: userForMatchingMatch,
                 borderColor: [
                   color[0],
@@ -516,7 +518,7 @@ export class MatchValueCompatibilityComponent implements OnInit {
                 borderWidth: 3,
               },
               {
-                label: 'Вы',
+                label: this.userMatch.users[1].name,
                 data: principalMatch,
                 backgroundColor: [
                   color[0],

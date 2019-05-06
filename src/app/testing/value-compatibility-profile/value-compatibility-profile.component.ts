@@ -44,6 +44,7 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   ngOnInit() {
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
     console.log('ValueCompatibilityProfileComponent');
+    console.log('isValueCompatibilityTestPassed: ', this.isValueCompatibilityTestPassed);
     if (this.loginService.isLogin() && this.loginService.isValueCompatibilityTestPassed()) {
       console.log('isValueCompatibilityTestPassed: ', this.isValueCompatibilityTestPassed);
       this.plotValueProfileBar(); // не могу под if внести, так как в этом случае ссылка в <app-test-not-passed></app-test-not-passed> не активна, пока не знаю почему

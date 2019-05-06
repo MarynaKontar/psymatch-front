@@ -22,6 +22,8 @@ import { CardComponent } from './card/card.component';
 import { AuthorCardsComponent } from './author-cards/author-cards.component';
 import {CommonComponentsModule} from './common-components/common-components.module';
 import { PsychologicalCompatibilityInfoComponent } from './psychological-compatibility-info/psychological-compatibility-info.component';
+import {AuthGuard} from './auth.guard';
+import {LoginService} from './login/login.service';
 
 
 @NgModule({
@@ -49,7 +51,7 @@ import { PsychologicalCompatibilityInfoComponent } from './psychological-compati
     CommonComponentsModule,
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

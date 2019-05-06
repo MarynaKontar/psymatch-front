@@ -45,7 +45,7 @@ export class ValueCompatibilityService {
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'userForMatchingToken': localStorage.getItem('userForMatchingToken')});
     } else {
-      console.log('ValueCompatibilityService saveGoalArray: no token' )
+      console.log('ValueCompatibilityService saveGoalArray: no token' );
       headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     }
 

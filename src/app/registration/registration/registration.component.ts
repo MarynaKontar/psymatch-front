@@ -48,9 +48,10 @@ export class RegistrationComponent implements OnInit {
     console.log('saveUser()');
     this.registrationService.registerNewUser(<User> this.registeredUser)
       .subscribe(data => {
-        this.registrationService.setIsRegistered(data);
-        this.registeredUser = data;
+        this.registrationService.setIsRegistered(data.user);
+        this.registeredUser = data.user;
         this.isNeedToBeRegistered = this.isNew();
+        this.loginService.setUserAccount(data);
 
         if (this.loginService.isLogin()) {
           this.router.navigateByUrl(this.returnUrl);

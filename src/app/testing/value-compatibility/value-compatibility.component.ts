@@ -324,7 +324,6 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isNotPassed = true;
   }
 
-
   testAnotherUser() {
     const token = this.loginService.getToken();
     // this.router.navigate(['error']);

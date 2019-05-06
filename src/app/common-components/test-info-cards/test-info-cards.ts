@@ -46,5 +46,5 @@ export const SEXUAL_COMPATIBILITY_TEST_DESCRIPTION2 = `У каждого чел�
   готовы «пойти навстречу» сексуальным предпочтениям партнера.`;
 
 export const TEST_IS_PASSED = `Тест пройден`;
-export const TEST_ISNT_PASSED = `Тест не пройден`;
+export const TEST_ISNT_PASSED = `Пройти тест`;
 

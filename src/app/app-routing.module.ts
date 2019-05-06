@@ -7,14 +7,17 @@ import {MatchValueCompatibilityComponent} from './matching/match-value-compatibi
 import {LoginComponent} from './login/login/login.component';
 import {ValueCompatibilityProfileComponent} from './testing/value-compatibility-profile/value-compatibility-profile.component';
 import {SendingTokensComponent} from './common-components/sending-tokens/sending-tokens.component';
-import {AgeGenderRegistrationComponent} from './registration/age-gender-registration/age-gender-registration.component';
 import {AboutProjectComponent} from './about-project/about-project.component';
 import {ErrorPageComponent} from './common-components/error-page/error-page.component';
 import {CardComponent} from './card/card.component';
 import {TestHomePageComponent} from './testing/test-home-page/test-home-page.component';
 import {PsychologicalCompatibilityInfoComponent} from './psychological-compatibility-info/psychological-compatibility-info.component';
-import {UserAccountService} from './profile/user-account.service';
 import {UserAccountComponent} from './profile/user-account/user-account.component';
+import {AnonimRegistrationComponent} from './registration/anonim-registration/anonim-registration.component';
+import {TestFriendComponent} from './common-components/test-friend/test-friend.component';
+import {AuthGuard} from './auth.guard';
+import {RegistrationGuard} from './guard/registration.guard';
+import {AnonimRegistrationGuard} from './guard/anonim-registration.guard';
 
 const routes: Routes = [
   {
@@ -47,7 +50,8 @@ const routes: Routes = [
 
   {
     path: 'account',
-    component: UserAccountComponent
+    component: UserAccountComponent,
+    canActivate: [AuthGuard]
   },
 
   {
@@ -60,19 +64,27 @@ const routes: Routes = [
   },
   {
     path: 'value-profile',
-    component: ValueCompatibilityProfileComponent
+    component: ValueCompatibilityProfileComponent,
+    canActivate: [AnonimRegistrationGuard]
   },
   {
     path: 'match',
-    component: MatchValueCompatibilityComponent
+    component: MatchValueCompatibilityComponent,
+    canActivate: [AuthGuard, RegistrationGuard]
   },
   {
     path: 'tokens',
-    component: SendingTokensComponent
+    component: SendingTokensComponent,
+    canActivate: [AnonimRegistrationGuard]
   },
   {
-    path: 'age-gender-registration',
-    component: AgeGenderRegistrationComponent
+    path: 'test-friend',
+    component: TestFriendComponent,
+    canActivate: [AnonimRegistrationGuard]
+  },
+  {
+    path: 'anonim-registration',
+    component: AnonimRegistrationComponent
   },
   {
     path: 'error',

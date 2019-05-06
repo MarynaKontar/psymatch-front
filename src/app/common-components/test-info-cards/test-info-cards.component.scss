@@ -34,7 +34,7 @@
 }
 .card-header {
   text-align: end;
-  font-size: larger;
+  font-size: x-large;
 }
 .card-body {
   margin: 0 1%;
@@ -120,11 +120,15 @@
   text-decoration: none;
 }
 .card-content.customDecorated:hover,
+a.customDecorated:hover,
 .btn.customDecorated:hover,
 .footer:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
   color: rgba(0,0,170, 0.6);
+}
+.card-content.customDecorated:hover {
+  color: white;
 }
 .background-yellow {
   //background-color: rgba(247, 202, 24, 1);//+-

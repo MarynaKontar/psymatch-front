@@ -1,0 +1,53 @@
+
+.container-fluid.online-advertising {
+  margin: 2% 0.5%;
+}
+.container-fluid.test-friend {
+  height: 60vh;
+  margin: 5% 0.5%;
+}
+button {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  width: 500px;
+  height: 200px;
+  padding: 25px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  border-color: #F137A6;
+  box-shadow: 10px 10px 80px 80px #F137A6 inset;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: xx-large;
+  letter-spacing: 2px;
+  color: white;
+  cursor: pointer;
+  transition: .15s ease-in-out;
+}
+button:hover {
+  box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
+  color: #F137A6;
+  background-color: #FFFFFF;
+}
+
+@media(max-width: 1199.98px)  {
+  button {
+    font-size: x-large;
+    padding: 15px 15px;
+  }
+}
+@media(max-width: 575.98px)  {
+  button {
+    font-size: large;
+    padding: 15px 15px;
+    width: 300px;
+  }
+}
+@media(max-width: 319.98px)  {
+  button {
+    font-size: medium;
+    width: 250px;
+  }
+}

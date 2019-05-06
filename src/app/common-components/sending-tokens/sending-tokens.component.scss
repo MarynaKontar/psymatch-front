@@ -1,12 +1,15 @@
+.container-fluid {
+  margin: 5%;
+}
 textarea{
   padding: 4%;
   border-color: cadetblue;
   border-radius: 10px;
   border-width: 2px;
-  min-width: 400px;
+  min-width: 530px;
   min-height: 350px;
   //width: fit-content;
-  //height: content-box;
+  //height: fit-content;
   font-size: larger;
   text-align: justify;
 }
@@ -48,12 +51,22 @@ textarea{
 }
 button {
   margin: 2%;
-  min-width: 30px;
-  min-height: 30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 25%;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  background-color: cadetblue;
+  //background-color: teal;
 }
-button.close {
-  box-shadow: none;
+//button.close {
+//  box-shadow: none;
+//}
+
+.container-fluid.online-advertising {
+  margin: 2% 0.5%;
 }
-
-
+.error {
+  font-size: x-large;
+  text-align: center;
+}

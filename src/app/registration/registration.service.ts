@@ -26,20 +26,20 @@ export class RegistrationService {
 
 // TODO убрать (проверить, чтобы через интерсептор работало)
   /** POST: add a fully new user or add an anonim user to the server (database) */
-  registerNewUser(user: User): Observable<User> {
+  registerNewUser(user: User): Observable<UserAccount> {
     // registerNewUser(user: User): Observable<HttpResponse<UserAccount>> {
     console.log('registerNewUser(): ');
     // take token (if it is in localStorage) from localstorage (throw token-interceptor) and push it to backend to save new user data(email, password) for that anonim user
-    return this.http.post<User>(this.uri + `/registration`, user);
+    return this.http.post<UserAccount>(this.uri + `/registration`, user);
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
   }
 
-  /** POST: add an age and gender of user to the server (database) */
-  addAgeAndGender(user: User): Observable<User> {
-    console.log('addAgeAndGender'  + user);
-    return this.http.post<User>(this.uri + `/user/addAgeAndGender`, user);
+  /** POST: register anonim user with a name, age and gender */
+  anonimRegistration(user: User): Observable<User> {
+    console.log('addNameAgeAndGender'  + user);
+    return this.http.post<User>(this.uri + `/user/anonimRegistration`, user);
   }
 
   isRegistered(): boolean {
@@ -51,14 +51,15 @@ export class RegistrationService {
     localStorage.setItem('isRegistered', (user.name != null && user.email != null) ? 'true' : 'false');
   }
 
-  setHaveAgeAndGender(user: User) {
-    console.log('setHaveAgeAndGender'  + user);
-    localStorage.setItem('haveAgeAndGender', (user.age != null && user.gender != null) ? 'true' : 'false');
+  setIsAnonimRegistered(user: User) {
+    console.log('setIsAnonimRegistered'  + user);
+    localStorage.setItem('isAnonimRegistered', (user.name != null && user.age != null && user.gender != null) ? 'true' : 'false');
   }
 
-  isHaveAgeAndGender(): boolean {
+  isAnonimRegistered(): boolean {
     if (localStorage.getItem('token') === null) { return false; }
-    if (localStorage.getItem('haveAgeAndGender') === 'true') { return true; }
+    if (localStorage.getItem('isAnonimRegistered') === 'true') { return true; }
+    return false;
   }
 
   private handleError(error: HttpErrorResponse) {

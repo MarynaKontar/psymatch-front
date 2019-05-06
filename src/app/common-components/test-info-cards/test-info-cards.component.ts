@@ -34,6 +34,9 @@ import {LoginService} from '../../login/login.service';
 export class TestInfoCardsComponent implements OnInit {
 
   isValueCompatibilityTestPassed = false;
+  isRoleCompatibilityTestPassed = false;
+  isLoveCompatibilityTestPassed = false;
+  isSexualCompatibilityTestPassed = false;
 
   value_compatibility_test_header = `${VALUE_COMPATIBILITY_TEST_HEADER}`;
   value_compatibility_test_main_text = `${VALUE_COMPATIBILITY_TEST_MAIN_TEXT}`;
@@ -58,6 +61,15 @@ export class TestInfoCardsComponent implements OnInit {
 
   valueCompatibilityTestPassed = `${TEST_IS_PASSED}`;
   valueCompatibilityTestIsNotPassed = `${TEST_ISNT_PASSED}`;
+
+  roleCompatibilityTestPassed = `${TEST_IS_PASSED}`;
+  roleCompatibilityTestIsNotPassed = `${TEST_ISNT_PASSED}`;
+
+  loveCompatibilityTestPassed = `${TEST_IS_PASSED}`;
+  loveCompatibilityTestIsNotPassed = `${TEST_ISNT_PASSED}`;
+
+  sexualCompatibilityTestPassed = `${TEST_IS_PASSED}`;
+  sexualCompatibilityTestIsNotPassed = `${TEST_ISNT_PASSED}`;
 
   constructor(private loginService: LoginService) { }
 

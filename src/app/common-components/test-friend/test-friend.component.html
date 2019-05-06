@@ -1,0 +1,26 @@
+
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="container-fluid test-friend d-flex justify-content-center align-items-center">
+        <div class="row">
+          <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
+            <button routerLink="/tokens" class="d-flex align-items-center">Выслать другу приглашение протестироваться</button>
+          </div>
+          <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
+            <button (click)="testAnotherUser()" class="d-flex align-items-center">Протестировать друга/подругу на этом же устройстве</button>
+          </div>
+        </div><!-- end row -->
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-2">
+      <div class="container-fluid online-advertising d-flex justify-content-center">
+        <app-online-advertising></app-online-advertising>
+      </div>
+    </div>
+  </div><!-- end row -->
+</div><!-- end container-fluid -->
+
+
+<!--<app-sending-tokens></app-sending-tokens>-->

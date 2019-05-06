@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegistrationComponent } from './registration/registration.component';
 import {FormsModule} from '@angular/forms';
-import { AgeGenderRegistrationComponent } from './age-gender-registration/age-gender-registration.component';
 import {RegistrationService} from './registration.service';
+import { AnonimRegistrationComponent } from './anonim-registration/anonim-registration.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule
   ],
-  exports: [RegistrationComponent, AgeGenderRegistrationComponent],
-  declarations: [RegistrationComponent, AgeGenderRegistrationComponent],
+  exports: [RegistrationComponent, AnonimRegistrationComponent],
+  declarations: [RegistrationComponent, AnonimRegistrationComponent, AnonimRegistrationComponent],
   providers: [RegistrationService]
 })
 export class RegistrationModule { }

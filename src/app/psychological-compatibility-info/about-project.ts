@@ -36,7 +36,7 @@ export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_DESCRIPTION = ` И эт
     существующих отношений. Они позволят вам быстро и комплексно выяснить, насколько вы с партнером психологически совместимы по многим
     интересующим вас аспектам. С помощью наших тестов вы сможете определить:`;
 export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_LIST11 = `личностную совместимость`;
-export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_LIST12 = ` (согласованность ценностей и жизненныхприоритетов),`;
+export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_LIST12 = ` (согласованность ценностей и жизненных приоритетов),`;
 export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_LIST21 = `ролевую совместимость`;
 export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_LIST22 = ` (согласованность ролей в отношениях),`;
 export const PSYCHOLOGICAL_COMPATIBILITY_CAN_BE_MEASURED_LIST31 = `любовную совместимость`;

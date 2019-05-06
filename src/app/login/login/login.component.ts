@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   userAccount: UserAccount = new UserAccount();
   retrieveDataResolver;
   isLoginError;
+  returnUrl: string;
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
               private sendingTokensService: SendingTokensService,
@@ -24,6 +25,8 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if (this.loginService.isLogin()) {this.router.navigate(['/'])}
   }
 
   // !!!!!!!!!!!!!!!!!!!! sequential (последовательное) execution of functions loginPromise() and afterLoginActions() !!!!!!!!!!!!!!!!!!
@@ -36,7 +39,8 @@ export class LoginComponent implements OnInit {
   private afterLoginActions(): void {
     console.log('afterLoginActions');
     // location.reload(); // need to reload because there will be seen Login and Register on header without reload
-    this.router.navigate(['']); // if replace to afterLoginActions(), reload to login page? not to home page
+    console.log('returnUrl: ', this.returnUrl);
+    this.router.navigateByUrl(this.returnUrl); // if replace to afterLoginActions(), reload to login page? not to home page
     console.log(this.userAccount);
   }
   private loginServer(): void {
@@ -48,7 +52,7 @@ export class LoginComponent implements OnInit {
           console.log(userAccount);
           this.loginService.setUserAccount(userAccount.body);
           this.saveTokenToLocalStorage(userAccount);
-          this.setHaveAgeAndGender();
+          this.setIsAnonimRegistered();
           this.setIsRegistered();
           this.isValueCompatibilityTestPassed(userAccount);
           this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
@@ -69,8 +73,8 @@ export class LoginComponent implements OnInit {
 
 
 
-  private setHaveAgeAndGender() {
-    this.registrationService.setHaveAgeAndGender(this.userAccount.user);
+  private setIsAnonimRegistered() {
+    this.registrationService.setIsAnonimRegistered(this.userAccount.user);
   }
   private saveTokenToLocalStorage(httpResponse: HttpResponse<UserAccount>) {
     this.loginService.saveTokenToLocalStorage(httpResponse);
