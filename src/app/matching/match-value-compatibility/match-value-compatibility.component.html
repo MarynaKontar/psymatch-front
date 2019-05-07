@@ -22,6 +22,10 @@
           <div class="row">
             <div class="col-sm-12 col-lg-12">
               <div class="match head main">ОТЧЁТ ПО СОВМЕСТИМОСТИ</div>
+              <br>
+              <div *ngIf="ifUserForMatchingToken" class="d-flex justify-content-end">
+                <button (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
+              </div>
                 <!--Value compatibility report-->
                   <!--Value Compatibility Matches-->
                   <div *ngIf="matches" id="valueCompatibilityMatches" class="container value-compatibility matches">

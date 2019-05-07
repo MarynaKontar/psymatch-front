@@ -28,6 +28,19 @@ export class LoginService {
     return this.http.post<UserAccount>(this.uri + `/auth/login`, user, httpOptions);
   }
 
+  returnToFriendAccount(): Observable<HttpResponse<UserAccount>> {
+    const userForMatchingToken = localStorage.getItem('userForMatchingToken');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'userForMatchingToken': userForMatchingToken}),
+      observe: 'response' as 'response'
+    };
+    this.logout();
+    return this.http.post<UserAccount>(this.uri + `/auth/loginFriendAccount`, null, httpOptions);
+
+  }
+
   setUserAccount(userAccount: UserAccount) {
     this.userAccountService.setUserAccount(userAccount);
   }
@@ -74,6 +87,7 @@ export class LoginService {
     localStorage.removeItem('isStatesDone');
     localStorage.removeItem('isQualitiesDone');
     localStorage.removeItem('userAccount');
+    localStorage.removeItem('userForMatchingToken');
   }
 
   isLogin() {

@@ -18,6 +18,7 @@ import {TestFriendComponent} from './common-components/test-friend/test-friend.c
 import {AuthGuard} from './auth.guard';
 import {RegistrationGuard} from './guard/registration.guard';
 import {AnonimRegistrationGuard} from './guard/anonim-registration.guard';
+import {CanDeactivateGuard} from './guard/can-deactivate.guard';
 
 const routes: Routes = [
   {
@@ -70,7 +71,8 @@ const routes: Routes = [
   {
     path: 'match',
     component: MatchValueCompatibilityComponent,
-    canActivate: [AuthGuard, RegistrationGuard]
+    canActivate: [AuthGuard, RegistrationGuard],
+    // canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'tokens',

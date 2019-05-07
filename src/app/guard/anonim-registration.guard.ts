@@ -13,7 +13,8 @@ export class AnonimRegistrationGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.registrationService.isRegistered() && this.registrationService.isAnonimRegistered()) {
+    // if (this.registrationService.isRegistered() && this.registrationService.isAnonimRegistered()) {
+    if (this.registrationService.isAnonimRegistered()) {
       return true;
     } else {
       this.router.navigate(['anonim-registration'], { queryParams: { returnUrl: state.url }});
