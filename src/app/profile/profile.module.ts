@@ -13,6 +13,6 @@ import {CommonComponentsModule} from '../common-components/common-components.mod
     CommonComponentsModule
   ],
   declarations: [UserAccountComponent],
-  // providers: [UserAccountService]
+  providers: [UserAccountService]
 })
 export class ProfileModule { }

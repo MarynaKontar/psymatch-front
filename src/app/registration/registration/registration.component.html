@@ -21,7 +21,7 @@
             <label for="email">Email</label>
             <input [(ngModel)]="registeredUser.email" id="email" name="email" type="email"
                    class="form-control rounded-0" required placeholder="email" #email="ngModel"
-                   pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" />
+                   pattern="[a-zA-Z_.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}" />
             <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
               Некорректный email
             </div>

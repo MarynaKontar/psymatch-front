@@ -11,11 +11,19 @@ export class User {
 export enum Gender {
   FEMALE = 'FEMALE',
   MALE = 'MALE',
-  // ANOTHER = 'ANOTHER',
+}
+
+export enum AccountType {
+  OPEN = 'OPEN',
+  CLOSE = 'CLOSE'
 }
 
 export class UserAccount {
   user: User;
+  accountType: AccountType;
   isValueCompatibilityTestPassed: boolean;
   inviteTokens: string[];
+  usersForMatching: User[];
+  usersWhoYouInvite: User[];
+  usersWhoInvitedYou: User[];
 }

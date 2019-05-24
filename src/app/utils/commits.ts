@@ -13,3 +13,5 @@
 // !!!!!!!!!!!!!!!--BACKEND--!!!!!!!!!!!!!!!!!!!
 // add UserAccount, UserAccoutService, UserAccounDto, UserAccountDtoConverter and change in /login controller method ResponseEntity from SimpleUserDto to UserAccountDto. Now can return after login not only user info, but what test is passed, invite tokens (write method UserAccount getUserAccount(User user));
 // change endpoint /addAgeAndGender to /anonimRegistration, where save/update not only age and gender, but name too; /registration endpoint return ResponseEntity<UserAccountDto> (before was ResponseEntity<SimpleUserDto>); addUserForMatching method (ValueCompatibilityAnswersServiceImpl): add userForMatching to both users;
+// change all @DbRef to manual references (https://docs.mongodb.com/manual/reference/database-references/); add UserAccountEntity to store to db;
+// NO COMMIT save userAccount when register

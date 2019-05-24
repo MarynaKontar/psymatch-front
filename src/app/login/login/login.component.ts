@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           this.saveTokenToLocalStorage(userAccount);
           this.setIsAnonimRegistered();
           this.setIsRegistered();
-          this.isValueCompatibilityTestPassed(userAccount);
+          this.isValueCompatibilityTestPassed(userAccount.body);
           this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
           this.retrieveDataResolver();
         },
@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
     this.registrationService.setIsRegistered(this.userAccount.user);
   }
 
-  private isValueCompatibilityTestPassed(userAccount: HttpResponse<UserAccount>) {
+  private isValueCompatibilityTestPassed(userAccount: UserAccount) {
     return this.loginService.setIsValueCompatibilityTestPassed(userAccount);
   }
 

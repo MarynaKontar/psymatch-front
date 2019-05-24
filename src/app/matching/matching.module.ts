@@ -5,14 +5,17 @@ import {MatchValueCompatibilityService} from './match-value-compatibility.servic
 import {RegistrationModule} from '../registration/registration.module';
 import {CommonComponentsModule} from '../common-components/common-components.module';
 import { MatchHomePageComponent } from './match-home-page/match-home-page.component';
+import {ProfileModule} from '../profile/profile.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RegistrationModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    ProfileModule
   ],
   declarations: [MatchValueCompatibilityComponent, MatchHomePageComponent],
+  // exports: [MatchHomePageComponent],
   providers: [MatchValueCompatibilityService]
 })
 export class MatchingModule { }

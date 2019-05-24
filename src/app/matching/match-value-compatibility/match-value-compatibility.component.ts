@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {fade} from '../../../animations/testing-page-animation';
 import { Chart } from 'chart.js';
 import {MatchValueCompatibilityService} from '../match-value-compatibility.service';
@@ -12,6 +12,7 @@ import {DeactivationGuarded} from '../../guard/can-deactivate.guard';
 import {Observable} from 'rxjs';
 import {RegistrationService} from '../../registration/registration.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
+import {MatchHomePageComponent} from '../match-home-page/match-home-page.component';
 
 @Component({
   selector: 'app-match-value-compatibility',
@@ -23,8 +24,8 @@ import {SendingTokensService} from '../../common-components/sending-tokens/sendi
      fade
    ]
 })
-export class MatchValueCompatibilityComponent implements OnInit, DeactivationGuarded {
-
+export class MatchValueCompatibilityComponent extends DeactivationGuarded implements OnInit {
+  userForMatching: User;
   isValueCompatibilityTestPassed: boolean;
   usersForMatching: User[] = [];
   matches;
@@ -96,9 +97,10 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
 
   // RETURN TO FRIEND TOKEN
   ifUserForMatchingToken;
-  private retrieveDataResolver;
+  retrieveDataResolver;
   isLoginError: boolean;
   private returnUrl: string;
+  private isCanDeactivate: boolean;
 
   constructor(private matchValueCompatibilityService: MatchValueCompatibilityService,
               private valueCompatibilityService: ValueCompatibilityService,
@@ -107,76 +109,93 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
               private sendingTokensService: SendingTokensService,
               private router: Router,
               private route: ActivatedRoute,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer) {
+    super();
+  }
+
 
   ngOnInit() {
+    console.log('MVCC-GET-USER-FOR-MATCHING');
 
-    // RETURN TO FRIEND TOKEN
+    // RETURN TO FRIEND ACCOUNT
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/match';
-    this.ifUserForMatchingToken = localStorage.getItem('userForMatchingToken') !== null && localStorage.getItem('userForMatchingToken').length !== 0;
+    this.ifUserForMatchingToken = localStorage.getItem('userForMatchingToken') !== null
+                               && localStorage.getItem('userForMatchingToken').length !== 0;
 
     if (this.loginService.isLogin() &&
       this.loginService.isValueCompatibilityTestPassed()) {
       this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
 
       this.getUsersForMatching();
-      this.router.navigate(['match']);
-      // location.reload();
-      this.plotRectangle();
-      // this.hiddenButton = false;
+      console.log('MVCC-onInit-userForMatching: ', this.usersForMatching);
+      this.plotRectangle(this.userForMatching);
       setTimeout(() => {
-        this.match();
-      }, 500); // set timeout because after testing we navigate to value-profile, but we need time to save test to db
+        this.match(this.userForMatching);
+      }, 500); // set timeout because we need time to save match to db
     }
   }
 
-  // TODO dont work navigate
+
+  // CANDEACTIVATE
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    console.log('canDeact');
-    if (confirm('Leave and logout ?')) {
-      if (!this.registrationService.isRegistered()) {
-        this.router.navigate(['register']);
-        return false;
-      } else { return true; }
+    if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
+      console.log('match CanDeactivate true');
+      return true;
     } else {
-      return false;
+      console.log('match CanDeactivate false');
+      // if (!confirm('If you are not registered and will leave the application, your data will be lost. Click Cancel to go to Registration page.')) {
+      if (!confirm('Если вы не зарегестрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
+        console.log('press Cancel');
+        this.retrieve().then(() => this.afterPromise());
+        return this.isCanDeactivate;
+      } else {
+        console.log('press Ok');
+        return true; }
     }
   }
-
-  // private retrieve(): Promise<any> {
-  //     return new Promise((resolve) => {
-  //       console.log('retrieve');
-  //       this.retrieveDataResolver = resolve;
-  //       // return this.navigate();
-  //       return this.router.navigate(['anonim-registration']);
-  //     });
-  //   }
-  //   private navigate(): void {
-  //   console.log('navigate');
-  //     this.router.navigate(['anonim-registration']);
-  //     console.log('after navigate');
-  //     this.retrieveDataResolver();
-  //   }
-
+  private retrieve(): Promise<any> {
+      return new Promise((resolve) => {
+        this.retrieveDataResolver = resolve;
+        this.setIsCanDeactivate();
+      });
+    }
+  private setIsCanDeactivate(): void {
+    this.isCanDeactivate = true;
+    this.retrieveDataResolver();
+  }
+  private afterPromise() {
+    this.router.navigate(['register']);
+  }
+// End CANDEACTIVATE
 
   private getUsersForMatching() {
-    this.matchValueCompatibilityService.getUsersForMatching()
-      .subscribe(data => {
-        this.usersForMatching = data;
-        console.log('getUsersForMatching(): ');
-        console.log(data);
-        console.log(this.usersForMatching);
-      });
+
+    this.userForMatching = this.matchValueCompatibilityService.getUserForMatching();
+    console.log('MVCC-GET-USER-FOR-MATCHING: ', this.userForMatching);
+    if (this.userForMatching === undefined || this.userForMatching === null ) {
+      console.log('MVCC-USERFORMATCHING: ', this.userForMatching);
+      this.matchValueCompatibilityService.getUsersForMatching()
+        .subscribe(data => {
+          this.usersForMatching = data;
+          this.userForMatching = this.usersForMatching[0];
+          console.log('getUsersForMatching(): ');
+          console.log(data);
+          console.log(this.userForMatching);
+        });
+    } else  { // если есть выбранный пользователь, то создаем массив this.usersForMatchingId с одним значением
+      this.usersForMatching = new Array<User>(this.userForMatching);
+    }
+    console.log('MVCC-USERFORMATCHING: ', this.userForMatching);
+    console.log('MVCC-USERsFORMATCHING: ', this.usersForMatching);
   }
-  private match() {
-    // this.plotRectangle();
-    // this.plotMatchDoughnut();
+  private match(userForMatching: User) {
     console.log('came to match()');
-    this.plotValueProfilesMatching();
+    this.plotValueProfilesMatching(userForMatching);
   }
 
-  private plotRectangle() {
-    this.matches = this.matchValueCompatibilityService.matchPercent().
+  private plotRectangle(userForMatching: User) {
+    console.log('MVCC-PLOT-RECTANGLE: ', userForMatching);
+    this.matches = this.matchValueCompatibilityService.matchPercent(userForMatching).
     subscribe(data => {
       this.userMatch = data;
       console.log('matchPercent: ');
@@ -379,94 +398,16 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
     });
   }
 
-//   private plotMatchDoughnut() {
-//     this.matchValueCompatibilityService.matchPercent().
-//     subscribe(data => {
-//       console.log(data);
-//
-//       this.aspectLabels = data['matches'].map(res => res.area);
-//       this.aspectMatches = data['matches'].map(res => Math.round(res.result.number / 5) * 5);
-//       // this.users = data['users'];
-//
-//       const valueCompotibilityReportColor = [
-//         'rgba(255,69,0, 1)', // red
-//         'rgba(255,215,0, 1)', // yellow
-//         'rgba(255,165,0, 1)', // orange
-//         'rgba(173,255,47, 1)', // green
-//       ];
-//       const greyColor = 'rgba(242, 242, 239, 1)';
-//       const blackColor = 'rgba(0, 0, 10, 1)';
-//       const fontSizeDoughnut = 16;
-//
-//
-//       this.chart = new Chart('canvas', {
-//         type: 'doughnut',
-//         data: {
-//           labels: this.aspectLabels,
-//           datasets: [
-//             {
-//             data: this.aspectMatches,
-//             // backgroundColor: backgroundColorPlugin,
-//           }]
-//         },
-//
-//         options: {
-//           // cutoutPercentage: 20,
-//           legend: {
-//             display: true,
-//             labels: {
-//               boxWidth: 5,
-//               fontSize: fontSizeDoughnut,
-//               fontStyle: 'bold',
-//               // valueCompotibilityReportColor: [
-//               //   valueCompotibilityReportColor[0],
-//               //   valueCompotibilityReportColor[1],
-//               //   valueCompotibilityReportColor[2],
-//               //   valueCompotibilityReportColor[3],
-//               // ]
-//             }
-//           },
-//           colorChange: {
-//             backgroundColor: blackColor,
-//             // borderColor: greyColor,
-//           },
-//           // зарегестрировала новый сервис (chart.config.options.elements.center) в Chart.pluginService.register({...
-//           elements: {
-//             center: {
-//               // text: this.aspectMatches[3] + '%',
-//               color: blackColor,
-//               // fontStyle: 'Helvetica', // Default Arial
-//               // sidePadding: 15 //Default 20 (as a percentage)
-//             }
-//           },
-//
-//           plugins: {
-//             datalabels: {
-//               display: true,
-//               align: 'center',
-//               anchor: 'center',
-//               font: {
-//                 size: fontSizeDoughnut,
-//                 weight: 'bold'
-//               },
-//               formatter: function(value) {
-//                 return value + '%';
-//               }
-//             }
-//           }
-//         }
-//       });
-//       console.log(this.chart);
-//     });
-//   }
 
-  private plotValueProfilesMatching() {
+
+  private plotValueProfilesMatching(userForMatching: User) {
+    console.log('MVCC-PLOT-VALUE-PROFILE-MATCHING');
     const principalMatch = [];
     // const userForMatchingLabels: string[] = [];
     const userForMatchingMatch = [];
     let userForMatchingStick;
 
-    this.valueProfilesForMatching = this.matchValueCompatibilityService.getValueProfilesForMatching(this.usersForMatching[0])
+    this.valueProfilesForMatching = this.matchValueCompatibilityService.getValueProfilesForMatching(userForMatching.id)
       .subscribe(response => {
         console.log('plotValueProfilesMatching: ' + response);
 
@@ -482,7 +423,7 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
               // userForMatchingLabels.push(valueProfileElement.scaleName.toUpperCase());
               userForMatchingMatch.push(Math.round(valueProfileElement.percentResult / 5) * 5);
             });
-            userForMatchingStick = this.usersForMatching[0].name;
+            userForMatchingStick = this.userForMatching.name;
           }
         });
 
@@ -504,7 +445,7 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
 
         const title = 'Сопоставление ценностных профилей';
         const xLabel = 'Значимость ценности';
-        const userForMatchingName = this.usersForMatching[0].name;
+        const userForMatchingName = this.userForMatching.name;
 
         // max value of x axe (ближайшее большее, кратное 5)
         let maxXAxes = Math.ceil((Math.max(Math.max(...userForMatchingMatch), Math.max(...principalMatch)) + 0.5) / 10) * 10;
@@ -728,6 +669,7 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
 
   // RETURN TO FRIEND ACCOUNT
   returnToFriendAccount() {
+    console.log('RETURN TO FRIEND ACCOUNT');
     this.returnToFriendAccountPromise().then(() => { this.aftereturnToFriendAccountActions(); });
   }
 
@@ -741,12 +683,13 @@ export class MatchValueCompatibilityComponent implements OnInit, DeactivationGua
   private returnToFriendAccountServer() {
     this.loginService.returnToFriendAccount()
       .subscribe(userAccount => {
+          this.loginService.logout();
           this.loginService.setUserAccount(userAccount.body);
           this.loginService.saveTokenToLocalStorage(userAccount);
           const user: User = userAccount.body.user;
           this.registrationService.setIsAnonimRegistered(user);
           this.registrationService.setIsRegistered(user);
-          this.loginService.setIsValueCompatibilityTestPassed(userAccount);
+          this.loginService.setIsValueCompatibilityTestPassed(userAccount.body);
           this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
           this.retrieveDataResolver();
         },

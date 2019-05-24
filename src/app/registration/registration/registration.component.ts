@@ -3,6 +3,8 @@ import {User} from '../../profile/user';
 import {RegistrationService} from '../registration.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../login/login.service';
+import {DeactivationGuarded} from '../../guard/can-deactivate.guard';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-registration',
@@ -49,6 +51,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationService.registerNewUser(<User> this.registeredUser)
       .subscribe(data => {
         this.registrationService.setIsRegistered(data.user);
+        this.loginService.setIsValueCompatibilityTestPassed(data);
         this.registeredUser = data.user;
         this.isNeedToBeRegistered = this.isNew();
         this.loginService.setUserAccount(data);

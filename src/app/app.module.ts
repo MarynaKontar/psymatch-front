@@ -44,10 +44,10 @@ import {LoginService} from './login/login.service';
     HttpClientModule,
     BrowserAnimationsModule,
     RegistrationModule,
-    ProfileModule,
     LoginModule,
     TestingModule,
     MatchingModule,
+    ProfileModule,
     CommonComponentsModule,
   ],
   providers: [

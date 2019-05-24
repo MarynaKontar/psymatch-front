@@ -2,6 +2,7 @@ import {User} from '../../profile/user';
 import {ValueProfile} from '../../testing/value-compatibility-profile/value-profile';
 
 export interface UserMatch {
+  id: string;
   users: User[];
   matches: Matching[];
 }

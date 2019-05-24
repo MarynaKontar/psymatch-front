@@ -36,7 +36,6 @@ export class LoginService {
         'userForMatchingToken': userForMatchingToken}),
       observe: 'response' as 'response'
     };
-    this.logout();
     return this.http.post<UserAccount>(this.uri + `/auth/loginFriendAccount`, null, httpOptions);
 
   }
@@ -50,10 +49,8 @@ export class LoginService {
     console.log('token: ',  httpResponse.headers.get('AUTHORIZATION'));
   }
 
-  setIsValueCompatibilityTestPassed(httpResponse: HttpResponse<UserAccount>) {
-    localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.isValueCompatibilityTestPassed.toString());
-    // headers.get('isValueCompatibilityTestPassed'));
-    console.log('isValueCompatibilityTestPassed: ',  httpResponse.headers.get('isValueCompatibilityTestPassed'));
+  setIsValueCompatibilityTestPassed(userAccount: UserAccount) {
+    localStorage.setItem('isValueCompatibilityTestPassed', userAccount.isValueCompatibilityTestPassed.toString());
   }
 
   isValueCompatibilityTestPassed() {

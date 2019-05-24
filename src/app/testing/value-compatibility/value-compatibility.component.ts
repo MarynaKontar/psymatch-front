@@ -231,12 +231,12 @@ export class ValueCompatibilityComponent implements OnInit {
     if (localStorage.getItem('friendsTokens') === null) {
       this.createFriendsTokens();
     }
-   this.router.navigate(['value-profile']);
-    // setTimeout(() => {
-    //   this.router.navigate(['value-profile']);
-    //   },
-    // 200
-    //   );
+   // this.router.navigate(['value-profile']);
+    setTimeout(() => {
+      this.router.navigate(['value-profile']);
+      },
+    200
+      );
   }
 
 
@@ -332,7 +332,7 @@ export class ValueCompatibilityComponent implements OnInit {
     this.router.navigate(['value-compatibility-test']);
   }
 
-  private createFriendsTokens() {
+  public createFriendsTokens() {
     this.sendingTokensService.createFriendsTokens();
   }
 
