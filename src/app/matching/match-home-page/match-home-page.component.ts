@@ -33,7 +33,7 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
 
   ngOnInit() {
     // this.getAll(1, 2);
-    this.setPage(1);
+    this.setPage(1, 2);
   }
   // // if the user is not registered, warn that some information may not be saved (see unloadNotification method in DeactivationGuard)
   // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
