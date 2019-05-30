@@ -64,13 +64,18 @@
 //  //height: 80px;
 //  //max-height: 150px;
 //}
-a {
-  cursor: pointer;
-}
+
 li {
+  padding: .1% .1%;
   margin: 1% 1%;
+  border-radius: 10%;
 }
 ul {
   text-align: center;
-  margin: 2% 1%;
+  margin: 4% 1%;
+}
+
+.active {
+  background-color: #666;
+  color: white;
 }

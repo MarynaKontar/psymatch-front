@@ -55,17 +55,17 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   }
 
 
-  setPage(page: number) {
-    this.getAll(page, 2);
+  setPage(page: number, pageSize: number = 2) {
+    this.getAll(page, pageSize);
     // get pagination object from service
     setTimeout(() => {
       console.log('SETPAGE1');
-      this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page);
+      this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page, pageSize);
       console.log('SETPAGE2: ', this.pagination);
       // get current page of items
       this.pagedItems = this.pageUserAccount.content.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
       console.log('SETPAGE3: ', this.pagedItems);
-    }, 500);
+    }, 100);
   }
 
 
