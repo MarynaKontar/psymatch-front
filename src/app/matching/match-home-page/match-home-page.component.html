@@ -5,7 +5,7 @@
       <!--<app-test-not-passed></app-test-not-passed>-->
     <!--</div>-->
     <div class="col-sm-12 col-lg-10">
-      <div  *ngFor="let account of userAccounts; let i = index">
+      <div  *ngFor="let account of pageUserAccount.content; let i = index">
         <!--<div class="col-lg-3"></div>-->
         <div class="col-lg-4 offset-lg-4 justify-content-center">
           <div class="card">
@@ -21,8 +21,34 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-3"></div>
+        <!--<div class="col-lg-3"></div>-->
       </div>
+      <!--<nav aria-label="..." class="d-flex justify-content-center">-->
+        <!--<ul class="pagination"  *ngIf="pageUserAccount?.content" >-->
+          <!--<li *ngFor="let page of ' '.repeat(pageUserAccount.totalPages).split(''), let i = index "-->
+              <!--[class.active]="i === selectedPage" class="page-item">-->
+            <!--<a class="page-link" (click)="onSelect(i)" >{{i}}</a>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</nav>-->
+      <!-- pagination -->
+      <ul *ngIf="pagination.pages && pagination.pages.length" class="pagination d-flex justify-content-center">
+        <li >
+          <a (click)="setPage(1)">First</a>
+        </li>
+        <li >
+          <a (click)="setPage(pagination.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pagination.pages; let i= index">
+          <a (click)="setPage(page)" [class.active]="i === pagination.currentPage">{{page}}</a>
+        </li>
+        <li >
+          <a (click)="setPage(pagination.currentPage + 1)">Next</a>
+        </li>
+        <li >
+          <a (click)="setPage(pagination.totalPages)">Last</a>
+        </li>
+      </ul>
     </div><!-- End col-10 -->
 
     <div class="col-lg-2">

@@ -1,25 +1,78 @@
 import {Component, OnInit} from '@angular/core';
 import {MatchValueCompatibilityService} from '../match-value-compatibility.service';
 import {UserAccountService} from '../../profile/user-account.service';
-import {User, UserAccount} from '../../profile/user';
+import {PageUserAccount, User, UserAccount} from '../../profile/user';
 import {Router} from '@angular/router';
+import {PaginationService} from '../../pagination/pagination.service';
+import {DeactivationGuarded, DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
+import {Observable} from 'rxjs';
+import {LoginService} from '../../login/login.service';
+import {RegistrationService} from '../../registration/registration.service';
 
 @Component({
   selector: 'app-match-home-page',
   templateUrl: './match-home-page.component.html',
   styleUrls: ['./match-home-page.component.scss']
 })
-export class MatchHomePageComponent implements OnInit {
+export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded implements OnInit {
   userAccounts: UserAccount[];
+  pageUserAccount: PageUserAccount;
+  // pagination object
+  pagination: any = {};
+  // paged items
+  pagedItems: any[];
+  selectedPage = 0;
   constructor(private userAccountService: UserAccountService,
-    private router: Router,
-    private matchValueCompatibilityService: MatchValueCompatibilityService) { }
+              loginService: LoginService,
+              registrationService: RegistrationService,
+              router: Router,
+              private matchValueCompatibilityService: MatchValueCompatibilityService,
+              private paginationService: PaginationService) {
+    super(loginService, registrationService, router);
+  }
 
   ngOnInit() {
-    this.userAccountService.getAll()
+    // this.getAll(1, 2);
+    this.setPage(1);
+  }
+  // // if the user is not registered, warn that some information may not be saved (see unloadNotification method in DeactivationGuard)
+  // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+  //   return this.loginService.isLogin() && this.registrationService.isRegistered();
+  // }
+
+  getAll(page: number, size: number) {
+    console.log('MHomePC-GET-ALL: ' + page + ':' + size.toString());
+    this.userAccountService.getAll(page, size)
       .subscribe(data => {
-        this.userAccounts = data;
+        console.log('GETALL-DATA: ', data);
+        this.pageUserAccount = data;
+        this.userAccounts = data.content;
+        // initialize to page 1
+        // this.setPage(page);
+
       });
+      console.log('MHomePC-GET-ALL2');
+  }
+
+
+  setPage(page: number) {
+    this.getAll(page, 2);
+    // get pagination object from service
+    setTimeout(() => {
+      console.log('SETPAGE1');
+      this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page);
+      console.log('SETPAGE2: ', this.pagination);
+      // get current page of items
+      this.pagedItems = this.pageUserAccount.content.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
+      console.log('SETPAGE3: ', this.pagedItems);
+    }, 500);
+  }
+
+
+  onSelect(page: number): void {
+    console.log('selected page : ' + page);
+    this.selectedPage = page;
+    this.getAll(page, 3);
   }
 
   public match(user: User): void {
@@ -37,7 +90,7 @@ export class MatchHomePageComponent implements OnInit {
     //     userAccountForInvite = userAccount;
     //   }
     // });
-    userAccountForInvite = this.userAccounts[2];
+    // userAccountForInvite = this.userAccounts[2];
     // userAccountForInvite = this.userAccounts.find(userAccount1 => userAccount1.user.id === id);
     console.log('invite: ', userAccountForInvite);
     this.matchValueCompatibilityService.inviteForMatching(userAccountForInvite).subscribe(

@@ -6,6 +6,9 @@ import {URL} from '../../utils/config';
 import {LoginService} from '../../login/login.service';
 import {doughnutCenterTextColor, doughnutsBorderColor, stateColor} from '../../../assets/colorStyle';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
+import {DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
+import {RegistrationService} from '../../registration/registration.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +16,7 @@ import {SendingTokensService} from '../../common-components/sending-tokens/sendi
   templateUrl: './value-compatibility-profile.component.html',
   styleUrls: ['./value-compatibility-profile.component.scss']
 })
-export class ValueCompatibilityProfileComponent implements OnInit {
+export class ValueCompatibilityProfileComponent extends DeactivationLoginRegistrationGuarded implements OnInit {
   uri = `${URL}`;
 
   //           VALUE PROFILE
@@ -37,8 +40,11 @@ export class ValueCompatibilityProfileComponent implements OnInit {
   links;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
-              private loginService: LoginService,
-              private sendingTokensService: SendingTokensService) {
+              loginService: LoginService,
+              registrationService: RegistrationService,
+              private sendingTokensService: SendingTokensService,
+              router: Router) {
+    super(loginService, registrationService, router);
   }
 
   ngOnInit() {

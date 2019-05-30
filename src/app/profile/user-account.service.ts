@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {User, UserAccount} from './user';
+import {PageUserAccount, User, UserAccount} from './user';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {API_URL} from '../utils/config';
@@ -23,9 +23,9 @@ export class UserAccountService {
     return this.http.put<UserAccount>(this.uri + `/account`, userAccount);
   }
 
-  getAll(): Observable<UserAccount[]> {
+  getAll(page: number, size: number): Observable<PageUserAccount> {
     console.log(this.uri + `/account/getAll`);
-    return this.http.get<UserAccount[]>(this.uri + `/account/getAll`);
+    return this.http.get<PageUserAccount>(this.uri + `/account/getAllUsers` + `?page=` + page + `&size=` + size);
   }
 
   inviteForMatching(userAccountForInvite: UserAccount): Observable<UserAccount> {

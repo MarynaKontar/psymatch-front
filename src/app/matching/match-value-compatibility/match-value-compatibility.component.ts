@@ -8,7 +8,7 @@ import {User} from '../../profile/user';
 import {AspectComment, ValuesDifferencesComment, ScaleLevel, AspectLevel, UserMatch} from './match-value-compatibility';
 import {DomSanitizer} from '@angular/platform-browser';
 import {LoginService} from '../../login/login.service';
-import {DeactivationGuarded} from '../../guard/can-deactivate.guard';
+import {DeactivationGuarded, DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
 import {Observable} from 'rxjs';
 import {RegistrationService} from '../../registration/registration.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
@@ -24,7 +24,7 @@ import {MatchHomePageComponent} from '../match-home-page/match-home-page.compone
      fade
    ]
 })
-export class MatchValueCompatibilityComponent extends DeactivationGuarded implements OnInit {
+export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrationGuarded implements OnInit {
   userForMatching: User;
   isValueCompatibilityTestPassed: boolean;
   usersForMatching: User[] = [];
@@ -99,18 +99,18 @@ export class MatchValueCompatibilityComponent extends DeactivationGuarded implem
   ifUserForMatchingToken;
   retrieveDataResolver;
   isLoginError: boolean;
-  private returnUrl: string;
-  private isCanDeactivate: boolean;
+  returnUrl: string;
+  // private isCanDeactivate: boolean;
 
   constructor(private matchValueCompatibilityService: MatchValueCompatibilityService,
               private valueCompatibilityService: ValueCompatibilityService,
-              private loginService: LoginService,
-              private registrationService: RegistrationService,
+              loginService: LoginService,
+              registrationService: RegistrationService,
               private sendingTokensService: SendingTokensService,
-              private router: Router,
+              router: Router,
               private route: ActivatedRoute,
               private sanitizer: DomSanitizer) {
-    super();
+    super( loginService, registrationService, router);
   }
 
 
@@ -136,37 +136,37 @@ export class MatchValueCompatibilityComponent extends DeactivationGuarded implem
   }
 
 
-  // CANDEACTIVATE
-  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
-      console.log('match CanDeactivate true');
-      return true;
-    } else {
-      console.log('match CanDeactivate false');
-      // if (!confirm('If you are not registered and will leave the application, your data will be lost. Click Cancel to go to Registration page.')) {
-      if (!confirm('Если вы не зарегестрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
-        console.log('press Cancel');
-        this.retrieve().then(() => this.afterPromise());
-        return this.isCanDeactivate;
-      } else {
-        console.log('press Ok');
-        return true; }
-    }
-  }
-  private retrieve(): Promise<any> {
-      return new Promise((resolve) => {
-        this.retrieveDataResolver = resolve;
-        this.setIsCanDeactivate();
-      });
-    }
-  private setIsCanDeactivate(): void {
-    this.isCanDeactivate = true;
-    this.retrieveDataResolver();
-  }
-  private afterPromise() {
-    this.router.navigate(['register']);
-  }
-// End CANDEACTIVATE
+//   // CANDEACTIVATE
+//   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+//     if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
+//       console.log('match CanDeactivate true');
+//       return true;
+//     } else {
+//       console.log('match CanDeactivate false');
+//       // if (!confirm('If you are not registered and will leave the application, your data will be lost. Click Cancel to go to Registration page.')) {
+//       if (!confirm('Если вы не зарегестрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
+//         console.log('press Cancel');
+//         this.retrieve().then(() => this.afterPromise());
+//         return this.isCanDeactivate;
+//       } else {
+//         console.log('press Ok');
+//         return true; }
+//     }
+//   }
+//   private retrieve(): Promise<any> {
+//       return new Promise((resolve) => {
+//         this.retrieveDataResolver = resolve;
+//         this.setIsCanDeactivate();
+//       });
+//     }
+//   private setIsCanDeactivate(): void {
+//     this.isCanDeactivate = true;
+//     this.retrieveDataResolver();
+//   }
+//   private afterPromise() {
+//     this.router.navigate(['register']);
+//   }
+// // End CANDEACTIVATE
 
   private getUsersForMatching() {
 

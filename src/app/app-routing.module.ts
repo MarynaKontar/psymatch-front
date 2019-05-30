@@ -67,17 +67,19 @@ const routes: Routes = [
   {
     path: 'value-profile',
     component: ValueCompatibilityProfileComponent,
-    canActivate: [AnonimRegistrationGuard]
+    canActivate: [AnonimRegistrationGuard],
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'match-home',
     component: MatchHomePageComponent,
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'match',
     component: MatchValueCompatibilityComponent,
     // canActivate: [AuthGuard, RegistrationGuard],
-    // canDeactivate: [CanDeactivateGuard]
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'tokens',
