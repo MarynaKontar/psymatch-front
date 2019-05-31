@@ -22,6 +22,8 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   // paged items
   pagedItems: any[];
   selectedPage = 0;
+  pageSizeDefault: number = 3;
+  private retrieveDataResolver;
   constructor(private userAccountService: UserAccountService,
               loginService: LoginService,
               registrationService: RegistrationService,
@@ -32,48 +34,59 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   }
 
   ngOnInit() {
-    // this.getAll(1, 2);
-    this.setPage(1, 2);
+    this.setPage(1, this.pageSizeDefault);
   }
   // // if the user is not registered, warn that some information may not be saved (see unloadNotification method in DeactivationGuard)
   // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
   //   return this.loginService.isLogin() && this.registrationService.isRegistered();
   // }
 
-  getAll(page: number, size: number) {
+  setPage(page: number, pageSize: number = this.pageSizeDefault) {
+    this.retrieveGetAllPromise(page, pageSize).then(() => { this.afterSaveGoalActions(page, pageSize); });
+    // this.getAll(page, pageSize);
+    // // get pagination object from service
+    // setTimeout(() => {
+    //
+    // }, 500);
+  }
+
+
+
+//        !!!!!!!!!!!!!!!!!!!! SYNCHRONIZE RETRIEVING DATA FROM SERVER !!!!!!!!!!!!!!!!!!
+  private afterSaveGoalActions(page: number, pageSize: number): void {
+    console.log('SETPAGE1');
+    this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page, pageSize);
+    console.log('SETPAGE2: ', this.pagination);
+    // get current page of items
+    this.pagedItems = this.pageUserAccount.content.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
+    console.log('SETPAGE3: ', this.pagedItems);
+  }
+
+  private getAll(page: number, size: number)  {
+    // your async retrieval data logic goes here
     console.log('MHomePC-GET-ALL: ' + page + ':' + size.toString());
     this.userAccountService.getAll(page, size)
       .subscribe(data => {
-        console.log('GETALL-DATA: ', data);
+        console.log('MHomePC-GETALL-DATA: ', data);
         this.pageUserAccount = data;
         this.userAccounts = data.content;
-        // initialize to page 1
-        // this.setPage(page);
-
+        this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
       });
-      console.log('MHomePC-GET-ALL2');
+    console.log('MHomePC-GET-ALL2');
   }
 
-
-  setPage(page: number, pageSize: number = 2) {
-    this.getAll(page, pageSize);
-    // get pagination object from service
-    setTimeout(() => {
-      console.log('SETPAGE1');
-      this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page, pageSize);
-      console.log('SETPAGE2: ', this.pagination);
-      // get current page of items
-      this.pagedItems = this.pageUserAccount.content.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
-      console.log('SETPAGE3: ', this.pagedItems);
-    }, 100);
+  private retrieveGetAllPromise(page: number, pageSize: number): Promise<any> {
+    return new Promise((resolve) => {
+      this.retrieveDataResolver = resolve;
+      this.getAll(page, pageSize);
+    });
   }
 
-
-  onSelect(page: number): void {
-    console.log('selected page : ' + page);
-    this.selectedPage = page;
-    this.getAll(page, 3);
-  }
+  // onSelect(page: number): void {
+  //   console.log('selected page : ' + page);
+  //   this.selectedPage = page;
+  //   this.getAll(page, 3);
+  // }
 
   public match(user: User): void {
     console.log('MHomePC-MATCH-SET-USER-FOR-MATCHING: ', user);

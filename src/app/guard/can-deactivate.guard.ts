@@ -24,7 +24,7 @@ export class CanDeactivateGuard implements CanDeactivate<DeactivationGuarded> {
 }
 
 export class DeactivationLoginRegistrationGuarded {
-  retrieveDataResolver;
+  private retrieveDataResolverDRG;
   returnUrl: string;
   isCanDeactivate: boolean;
   constructor(public loginService: LoginService,
@@ -49,13 +49,13 @@ export class DeactivationLoginRegistrationGuarded {
   }
   private retrieve(): Promise<any> {
     return new Promise((resolve) => {
-      this.retrieveDataResolver = resolve;
+      this.retrieveDataResolverDRG = resolve;
       this.setIsCanDeactivate();
     });
   }
   private setIsCanDeactivate(): void {
     this.isCanDeactivate = true;
-    this.retrieveDataResolver();
+    this.retrieveDataResolverDRG();
   }
   private afterPromise() {
     this.router.navigate(['register']);
