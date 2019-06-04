@@ -1,6 +1,5 @@
 
 <div class="container-fluid tests">
-<!--<button (onclick)="createFriendsTokens()">CLICK</button>-->
   <!--                                     GOALS                                      -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isGoalsDone">
     <div class="area header">{{ tests.goal[0].area.areaName }}</div>
@@ -115,19 +114,9 @@
       </div>
     </div>
   </div>
-
-
-
-  <!--<div [hidden] = "!isQualitiesDone || (!isGoalsDone || !isStatesDone)">-->
-    <!--<div class="area answer">Вы успешно прошли тестирование!</div>-->
-    <!--<div class="container test btn-group-vertical mr-4 btn-block" >-->
-      <!--<button (click)="afterTestActions()" type="button" class="btn btn-success btn-lg">Посмотрите результаты теста</button>-->
-    <!--</div>-->
-  <!--</div>-->
-
 </div>
 
 
-<div class="test another-user" hidden="true">
-  <button (click)="testAnotherUser()" type="button" class="test-another-user btn btn-primary float-right">Протестировать своего друга/подругу </button>
-</div>
+<!--<div class="test another-user" hidden="true">-->
+  <!--<button (click)="testAnotherUser()" type="button" class="test-another-user btn btn-primary float-right">Протестировать своего друга/подругу </button>-->
+<!--</div>-->

@@ -13,7 +13,9 @@ export class UserAccountService {
   constructor(private http: HttpClient) { }
 
   getUserAccount(): UserAccount {
-   return JSON.parse(localStorage.getItem('userAccount'));
+    if (localStorage.getItem('userAccount')) {
+      return JSON.parse(localStorage.getItem('userAccount'));
+    } else { return new UserAccount(new User()); }
   }
   setUserAccount(userAccount: UserAccount) {
     localStorage.setItem('userAccount', JSON.stringify(userAccount));
@@ -26,6 +28,13 @@ export class UserAccountService {
   getAll(page: number, size: number): Observable<PageUserAccount> {
     console.log(this.uri + `/account/getAll`);
     return this.http.get<PageUserAccount>(this.uri + `/account/getAllUsers` + `?page=` + page + `&size=` + size);
+  }
+
+  isUserForMatchingToken() {
+    if (localStorage.getItem('userForMatchingToken') != null && localStorage.getItem('userForMatchingToken').length !== 0 ) {
+      return true;
+    }
+    return false;
   }
 
   inviteForMatching(userAccountForInvite: UserAccount): Observable<UserAccount> {

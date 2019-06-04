@@ -11,6 +11,7 @@ import { TestNotPassedComponent } from './test-not-passed/test-not-passed.compon
 import {LoginModule} from '../login/login.module';
 import { TestFriendButtonComponent } from './test-friend-button/test-friend-button.component';
 import { TestFriendComponent } from './test-friend/test-friend.component';
+import { ReturnToFriendAccountComponent } from './return-to-friend-account/return-to-friend-account.component';
 
 @NgModule({
   imports: [
@@ -20,10 +21,10 @@ import { TestFriendComponent } from './test-friend/test-friend.component';
   ],
   exports: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
     SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent,
-    TestNotPassedComponent, TestFriendButtonComponent, TestFriendComponent],
+    TestNotPassedComponent, TestFriendButtonComponent, TestFriendComponent, ReturnToFriendAccountComponent],
   declarations: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
     SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent,
-    TestNotPassedComponent, TestFriendButtonComponent, TestFriendComponent],
+    TestNotPassedComponent, TestFriendButtonComponent, TestFriendComponent, ReturnToFriendAccountComponent],
   providers: [SendingTokensComponent]
 })
 export class CommonComponentsModule { }

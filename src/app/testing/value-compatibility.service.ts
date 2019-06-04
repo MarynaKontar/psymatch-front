@@ -7,6 +7,7 @@ import {ValueProfileIndividual} from './value-compatibility-profile/value-profil
 import {User} from '../profile/user';
 import {ValueProfileMatching} from '../matching/match-value-compatibility/match-value-compatibility';
 import {API_URL} from '../utils/config';
+import {UserAccountService} from '../profile/user-account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class ValueCompatibilityService {
 
   uri = `${API_URL}`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private userAccountService: UserAccountService) { }
 
   // getUser(id: number): Observable<DataStudent> {
   //   return this.http.get<DataStudent>(`${API_URL}/student/${id}`, {
@@ -41,7 +43,7 @@ export class ValueCompatibilityService {
       console.log('ValueCompatibilityService saveGoalArray: ' + token);
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'Authorization': token});
-    } else if (localStorage.getItem('userForMatchingToken')) {
+    } else if (this.userAccountService.isUserForMatchingToken()) {
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'userForMatchingToken': localStorage.getItem('userForMatchingToken')});
     } else {

@@ -26,6 +26,9 @@ export class UserAccount {
   usersForMatching: User[];
   usersWhoYouInvite: User[];
   usersWhoInvitedYou: User[];
+  constructor(user?: User) {
+    this.user = user;
+  }
 }
 export class PageUserAccount {
   content: UserAccount[];

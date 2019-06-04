@@ -49,7 +49,8 @@
         <!--<a *ngIf="isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/logout" [hidden]="!isLogin">Выйти</a>-->
         <a *ngIf="!isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/register" routerLinkActive="active" [hidden]="isRegistered">Register</a>
         <!--<a *ngIf="isLogin&&isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/logout" routerLinkActive="active" [hidden]="!isLogin">Logout</a>-->
-        <a *ngIf="isLogin&&isRegistered" class="nav-item nav-link my-2 my-lg-0" routerLink="/account" [hidden]="!isLogin || !isRegistered">Account</a>
+        <a *ngIf="!isAccountNotVisible" class="nav-item nav-link my-2 my-lg-0" routerLink="/account" [hidden]="isAccountNotVisible">{{account.user.name}}</a>
+        <a *ngIf="isLogin&&isAccountNotVisible" class="nav-item nav-link my-2 my-lg-0" routerLink="/account" [hidden]="!isAccountNotVisible">Account</a>
         <!--<ul class="navbar-nav nav-flex-icons">-->
           <!--<li class="nav-item waves-light">-->
             <!--<a href="#" class="nav-link" target="_blank"><i class="fab fa-facebook-f"></i></a>-->

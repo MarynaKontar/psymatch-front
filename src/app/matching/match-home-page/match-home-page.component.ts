@@ -42,7 +42,7 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   // }
 
   setPage(page: number, pageSize: number = this.pageSizeDefault) {
-    this.retrieveGetAllPromise(page, pageSize).then(() => { this.afterSaveGoalActions(page, pageSize); });
+    this.retrieveGetAllPromise(page, pageSize).then(() => { this.afterGetAllActions(page, pageSize); });
     // this.getAll(page, pageSize);
     // // get pagination object from service
     // setTimeout(() => {
@@ -53,13 +53,11 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
 
 
 //        !!!!!!!!!!!!!!!!!!!! SYNCHRONIZE RETRIEVING DATA FROM SERVER !!!!!!!!!!!!!!!!!!
-  private afterSaveGoalActions(page: number, pageSize: number): void {
-    console.log('SETPAGE1');
-    this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page, pageSize);
-    console.log('SETPAGE2: ', this.pagination);
-    // get current page of items
-    this.pagedItems = this.pageUserAccount.content.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
-    console.log('SETPAGE3: ', this.pagedItems);
+  private retrieveGetAllPromise(page: number, pageSize: number): Promise<any> {
+    return new Promise((resolve) => {
+      this.retrieveDataResolver = resolve;
+      this.getAll(page, pageSize);
+    });
   }
 
   private getAll(page: number, size: number)  {
@@ -75,11 +73,13 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
     console.log('MHomePC-GET-ALL2');
   }
 
-  private retrieveGetAllPromise(page: number, pageSize: number): Promise<any> {
-    return new Promise((resolve) => {
-      this.retrieveDataResolver = resolve;
-      this.getAll(page, pageSize);
-    });
+  private afterGetAllActions(page: number, pageSize: number): void {
+    console.log('SETPAGE1');
+    this.pagination = this.paginationService.getPager(this.pageUserAccount.totalElements, page, pageSize);
+    console.log('SETPAGE2: ', this.pagination);
+    // get current page of items
+    this.pagedItems = this.pageUserAccount.content.slice(this.pagination.startIndex, this.pagination.endIndex + 1);
+    console.log('SETPAGE3: ', this.pagedItems);
   }
 
   // onSelect(page: number): void {

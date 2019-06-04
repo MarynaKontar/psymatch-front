@@ -30,7 +30,8 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit() {
     // this.openTokensPage = false;
-    if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
+    // if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
+    if (this.loginService.isLogin()) {
       this.userAccount = this.userAccountService.getUserAccount();
       if (this.userAccount.user.gender === Gender.FEMALE) {
         this.userAvatarLink = 'avatar_female.png';

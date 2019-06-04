@@ -8,6 +8,7 @@ import 'chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js';
 import {URL} from '../../utils/config';
 import {LoginService} from '../../login/login.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
+import {UserAccountService} from '../../profile/user-account.service';
 
 
 @Component({
@@ -43,6 +44,7 @@ export class ValueCompatibilityComponent implements OnInit {
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
               private loginService: LoginService,
+              private userAccountService: UserAccountService,
               private sendingTokensService: SendingTokensService,
               private formBuilder: FormBuilder,
               private router: Router, private route: ActivatedRoute) {
@@ -233,7 +235,12 @@ export class ValueCompatibilityComponent implements OnInit {
     }
    // this.router.navigate(['value-profile']);
     setTimeout(() => {
-      this.router.navigate(['value-profile']);
+      if (this.userAccountService.isUserForMatchingToken()) {
+        location.reload();
+        this.router.navigate(['match']);
+      } else {
+        this.router.navigate(['value-profile']);
+      }
       },
     200
       );
@@ -324,13 +331,13 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isNotPassed = true;
   }
 
-  testAnotherUser() {
-    const token = this.loginService.getToken();
-    // this.router.navigate(['error']);
-    this.loginService.logout();
-    localStorage.setItem('userForMatchingToken', token);
-    this.router.navigate(['value-compatibility-test']);
-  }
+  // testAnotherUser() {
+  //   const token = this.loginService.getToken();
+  //   // this.router.navigate(['error']);
+  //   this.loginService.logout();
+  //   localStorage.setItem('userForMatchingToken', token);
+  //   this.router.navigate(['value-compatibility-test']);
+  // }
 
   public createFriendsTokens() {
     this.sendingTokensService.createFriendsTokens();

@@ -13,6 +13,7 @@ import {Observable} from 'rxjs';
 import {RegistrationService} from '../../registration/registration.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 import {MatchHomePageComponent} from '../match-home-page/match-home-page.component';
+import {UserAccountService} from '../../profile/user-account.service';
 
 @Component({
   selector: 'app-match-value-compatibility',
@@ -94,18 +95,13 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
   linearGradient = [];
   boxShadow = [];
   userMatch: UserMatch;
-
-  // RETURN TO FRIEND TOKEN
-  ifUserForMatchingToken;
-  retrieveDataResolver;
-  isLoginError: boolean;
-  returnUrl: string;
   // private isCanDeactivate: boolean;
 
   constructor(private matchValueCompatibilityService: MatchValueCompatibilityService,
               private valueCompatibilityService: ValueCompatibilityService,
               loginService: LoginService,
               registrationService: RegistrationService,
+              private userAccountService: UserAccountService,
               private sendingTokensService: SendingTokensService,
               router: Router,
               private route: ActivatedRoute,
@@ -116,11 +112,6 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
 
   ngOnInit() {
     console.log('MVCC-GET-USER-FOR-MATCHING');
-
-    // RETURN TO FRIEND ACCOUNT
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/match';
-    this.ifUserForMatchingToken = localStorage.getItem('userForMatchingToken') !== null
-                               && localStorage.getItem('userForMatchingToken').length !== 0;
 
     if (this.loginService.isLogin() &&
       this.loginService.isValueCompatibilityTestPassed()) {
@@ -664,45 +655,6 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
       colorNumber = 3;
     } else { colorNumber = 4; }
     return colorNumber;
-  }
-
-
-  // RETURN TO FRIEND ACCOUNT
-  returnToFriendAccount() {
-    console.log('RETURN TO FRIEND ACCOUNT');
-    this.returnToFriendAccountPromise().then(() => { this.aftereturnToFriendAccountActions(); });
-  }
-
-  private returnToFriendAccountPromise(): Promise<any> {
-    return new Promise((resolve) => {
-      this.retrieveDataResolver = resolve;
-      this.returnToFriendAccountServer();
-    });
-  }
-
-  private returnToFriendAccountServer() {
-    this.loginService.returnToFriendAccount()
-      .subscribe(userAccount => {
-          this.loginService.logout();
-          this.loginService.setUserAccount(userAccount.body);
-          this.loginService.saveTokenToLocalStorage(userAccount);
-          const user: User = userAccount.body.user;
-          this.registrationService.setIsAnonimRegistered(user);
-          this.registrationService.setIsRegistered(user);
-          this.loginService.setIsValueCompatibilityTestPassed(userAccount.body);
-          this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
-          this.retrieveDataResolver();
-        },
-        error => {
-          this.isLoginError = true;
-          // login failed so display error
-
-        });
-  }
-
-  private aftereturnToFriendAccountActions() {
-    this.router.navigateByUrl(this.returnUrl);
-    location.reload();
   }
 }
 

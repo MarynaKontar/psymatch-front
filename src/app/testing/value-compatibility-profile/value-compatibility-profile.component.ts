@@ -54,7 +54,7 @@ export class ValueCompatibilityProfileComponent extends DeactivationLoginRegistr
     if (this.loginService.isLogin() && this.loginService.isValueCompatibilityTestPassed()) {
       console.log('isValueCompatibilityTestPassed: ', this.isValueCompatibilityTestPassed);
       this.plotValueProfileBar(); // не могу под if внести, так как в этом случае ссылка в <app-test-not-passed></app-test-not-passed> не активна, пока не знаю почему
-      this.getFriendsTokens();
+      // this.getFriendsTokens();
     }
     // setTimeout(() => {
     //   this.plotValueProfileBar();

@@ -1,5 +1,3 @@
-<!--<app-registration></app-registration>-->
-
 <!--Navigation-->
 <nav class="navbar justify-content-center align-items-center fixed-bottom pt-2 pb-4" id="valueCompatibilityReportTab">
   <a class="nav-link nondecorated" href="match#valueCompatibilityMatches">Отчёт по ценностной совместимости</a>
@@ -22,10 +20,9 @@
           <div class="row">
             <div class="col-sm-12 col-lg-12">
               <div class="match head main">ОТЧЁТ ПО СОВМЕСТИМОСТИ</div>
-              <br>
-              <div *ngIf="ifUserForMatchingToken" class="d-flex justify-content-end">
-                <button (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
-              </div>
+
+              <app-return-to-friend-account></app-return-to-friend-account>
+
                 <!--Value compatibility report-->
                   <!--Value Compatibility Matches-->
                   <div *ngIf="matches" id="valueCompatibilityMatches" class="container value-compatibility matches">
@@ -152,150 +149,3 @@
 
   </div><!-- End row -->
 </div><!-- End container-fluid match -->
-
-
-
-
-
-
-
-
-
-<!--Value compatibility report-->
-<!--<div class="tab-content" id="valueCompatibilityReportTabContent">-->
-  <!--<div class="match head main">ОТЧЁТ ПО СОВМЕСТИМОСТИ</div>-->
-  <!--&lt;!&ndash;Value Compatibility Matches&ndash;&gt;-->
-  <!--<div class="tab-pane fade show active" id="valueCompatibilityMatches" role="tabpanel" aria-labelledby="valueCompatibilityMatches-tab">-->
-    <!--<div *ngIf="matches" class="container value-compatibility matches">-->
-      <!--<div class="row head">-->
-        <!--<div class="col-12 col-xl-12">-->
-          <!--Отчёт по ценностной совместимости.-->
-          <!--Оцениваемый партнёр: <span style="color: black" >{{usersForMatching[0].name}}</span>-->
-        <!--</div>-->
-      <!--</div>-->
-
-      <!--<div class="row header align-items-center"> &lt;!&ndash;align-items-center   vertical align &ndash;&gt;-->
-        <!--<div class="col-md-6 col-xl-3 d-none d-md-block"> &lt;!&ndash;d-none d-md-block - visible only on screens bigger than middle  &ndash;&gt;-->
-          <!--Аспекты совместимости-->
-        <!--</div>-->
-        <!--<div class="col-md-6 col-xl-4 d-none d-md-block">-->
-          <!--Уровень совместимости-->
-        <!--</div>-->
-        <!--<div class="col-md-0 col-xl-5 d-none d-xl-block">-->
-          <!--Комментарий-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<hr>-->
-
-      <!--<div *ngFor="let match of aspectMatches; let i = index">-->
-        <!--<div class="row aspect align-items-center">-->
-          <!--<div class="col-md-6 col-xl-3">-->
-            <!--<div class="aspect label">-->
-              <!--{{aspectComments[i].aspect}}-->
-            <!--</div>-->
-            <!--<div class="aspect description">-->
-              <!--{{aspectComments[i].aspectDescription}}-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-md-6 col-xl-4 ">-->
-            <!--<div class="container rectangle area mx-auto" [style.background]="linearGradient[i]" [style.box-shadow]="boxShadow[i]">-->
-              <!--<div class="head">Уровень совместимости</div>-->
-              <!--<div class="value">{{ match }}%</div>-->
-              <!--<div class="level">{{aspectComments[i].levelName }}</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="col-md-12 col-xl-5">-->
-            <!--<div class="interpretation text">-->
-              <!--<span class="comment header">{{ aspectComments[i].header }}</span>-->
-              <!--{{aspectComments[i].foreword}}-->
-              <!--<span class="accent">{{aspectComments[i].accent}}</span>-->
-              <!--{{aspectComments[i].mainText}}-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<hr *ngIf='i + 1'>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--&lt;!&ndash;End Value Compatibility Matches&ndash;&gt;-->
-
-  <!--&lt;!&ndash;Value Profiles For Matching d-none d-sm-block&ndash;&gt;-->
-  <!--<div class="tab-pane fade" id="valueProfilesForMatching" role="tabpanel" aria-labelledby="valueProfilesForMatching-tab">-->
-    <!--<div *ngIf="valueProfilesForMatching" class="container-fluid value profile">-->
-      <!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
-      <!--&lt;!&ndash;<div class="col-12 col-xl-12">&ndash;&gt;-->
-      <!--&lt;!&ndash;For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)&ndash;&gt;-->
-      <!--<div class="match head" >Интерпретация различий в ценностях</div>-->
-      <!--<div *ngIf="chartBar" class="container-fluid chart-bar">-->
-        <!--<canvas id="canvasBar">{{ chartBar }}</canvas>-->
-      <!--</div>-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--&lt;!&ndash;End Value Profiles For Matching&ndash;&gt;-->
-
-  <!--&lt;!&ndash;Value Profiles For Matching Differences&ndash;&gt;-->
-  <!--<div class="tab-pane fade" id="valueProfilesForMatchingDifferences" role="tabpanel" aria-labelledby="valueProfilesForMatchingDifferences-tab">-->
-    <!--<div *ngIf="valueProfilesForMatching" class="container values-differences report">-->
-
-      <!--<div class="row head">-->
-        <!--<div class="col-12 col-xl-12">-->
-          <!--Отчёт по различиям в ценностях.-->
-          <!--Оцениваемый партнёр: <span style="color: black" >{{usersForMatching[0].name}}</span>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<div class="row header align-items-center mx-auto">-->
-        <!--<div class="col-md-6 col-xl-3 d-none d-md-block"> &lt;!&ndash;d-none d-md-block - visible only on screens bigger than middle  &ndash;&gt;-->
-          <!--Аспекты совместимости-->
-        <!--</div>-->
-        <!--<div class="col-md-6 col-xl-4 d-none d-md-block">-->
-          <!--Различие в ценности-->
-        <!--</div>-->
-        <!--<div class="col-md-0 col-xl-5 d-none d-xl-block">-->
-          <!--Комментарий-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--<hr>-->
-
-      <!--<div *ngFor="let scalesComment of scalesComments; let i = index;">-->
-        <!--<div class="row aspect development align-items-center mx-auto">-->
-          <!--<div class="col-md-6 col-xl-3">-->
-            <!--<div class="scale label">-->
-              <!--{{ scaleLabels[i] }}-->
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--&lt;!&ndash;<div class="col-sm-12 col-md-5 col-lg-3">&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="container chart-bar">&ndash;&gt;-->
-          <!--&lt;!&ndash;<canvas id="chartBarDevelopment"></canvas>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--<div class="col-md-6 col-xl-4">-->
-            <!--<div class="container rectangle scale mx-auto"> &lt;!&ndash;[style.border-color]='scaleColor[i]'&ndash;&gt;-->
-              <!--<div class="head">Различия в ценности</div>-->
-              <!--<div [style.color]='scaleLevelColor[i]' class="icon">{{ icon[i] }}</div>-->
-              <!--&lt;!&ndash;<img class="icons" src={{image}}>&ndash;&gt;-->
-              <!--<div class="level">{{scalesComment.levelName }}</div>-->
-
-            <!--</div>-->
-          <!--</div>-->
-
-          <!--<div class="col-md-12 col-xl-5">-->
-            <!--<div class="interpretation text">-->
-              <!--{{ scalesComments[0].text[0] }}-->
-              <!--<span class="accent">{{ scalesComment.text[1] }}</span>-->
-              <!--{{ scalesComment.text[2] }}-->
-              <!--{{ scalesComment.scale }} {{ scalesComment.text[3] }}-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-        <!--<hr *ngIf='i + 1'>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--&lt;!&ndash;End Value Profiles For Matching Differences&ndash;&gt;-->
-
-<!--</div>-->
-<!--End Value compatibility report-->
