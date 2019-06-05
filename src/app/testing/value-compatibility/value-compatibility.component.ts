@@ -234,16 +234,16 @@ export class ValueCompatibilityComponent implements OnInit {
       this.createFriendsTokens();
     }
    // this.router.navigate(['value-profile']);
-    setTimeout(() => {
+   //  setTimeout(() => {
       if (this.userAccountService.isUserForMatchingToken()) {
-        location.reload();
+        // location.reload();
         this.router.navigate(['match']);
       } else {
         this.router.navigate(['value-profile']);
       }
-      },
-    200
-      );
+    //   },
+    // 200
+    //   );
   }
 
 
