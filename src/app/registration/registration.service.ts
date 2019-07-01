@@ -26,11 +26,14 @@ export class RegistrationService {
 
 // TODO убрать (проверить, чтобы через интерсептор работало)
   /** POST: add a fully new user or add an anonim user to the server (database) */
-  registerNewUser(user: User): Observable<UserAccount> {
-    // registerNewUser(user: User): Observable<HttpResponse<UserAccount>> {
+  registerNewUser(user: User): Observable<HttpResponse<UserAccount>> {
     console.log('registerNewUser(): ');
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      observe: 'response' as 'response'
+    };
     // take token (if it is in localStorage) from localstorage (throw token-interceptor) and push it to backend to save new user data(email, password) for that anonim user
-    return this.http.post<UserAccount>(this.uri + `/registration`, user);
+    return this.http.post<UserAccount>(this.uri + `/registration`, user, httpOptions);
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
@@ -47,7 +50,7 @@ export class RegistrationService {
   }
 
   setIsRegistered(user: User) {
-    // предполагаем, что пользователь зарегестрирован, если у него есть name и email
+    // предполагаем, что пользователь зарегистрирован, если у него есть name и email
     localStorage.setItem('isRegistered', (user.name != null && user.email != null) ? 'true' : 'false');
   }
 

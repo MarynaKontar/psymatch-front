@@ -8,7 +8,9 @@ import {doughnutCenterTextColor, doughnutsBorderColor, stateColor} from '../../.
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 import {DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
 import {RegistrationService} from '../../registration/registration.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserAccountService} from '../../profile/user-account.service';
+import {LogService} from '../../common-components/services/log.service';
 
 
 @Component({
@@ -42,9 +44,12 @@ export class ValueCompatibilityProfileComponent extends DeactivationLoginRegistr
   constructor(private valueCompatibilityService: ValueCompatibilityService,
               loginService: LoginService,
               registrationService: RegistrationService,
+              userAccountService: UserAccountService,
               private sendingTokensService: SendingTokensService,
-              router: Router) {
-    super(loginService, registrationService, router);
+              router: Router,
+              activatedRoute: ActivatedRoute,
+              log: LogService) {
+    super(loginService, registrationService, userAccountService, router, activatedRoute, log);
   }
 
   ngOnInit() {
@@ -282,7 +287,7 @@ export class ValueCompatibilityProfileComponent extends DeactivationLoginRegistr
                 fontStyle: 'bold',
               }
             },
-            // зарегестрировала новый сервис (chart.config.options.elements.center) в Chart.pluginService.register({...
+            // зарегистрировала новый сервис (chart.config.options.elements.center) в Chart.pluginService.register({...
             elements: {
               center: {
                 text: match[i] + '%',

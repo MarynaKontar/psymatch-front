@@ -21,6 +21,7 @@ import { AuthorCardsComponent } from './author-cards/author-cards.component';
 import {CommonComponentsModule} from './common-components/common-components.module';
 import { PsychologicalCompatibilityInfoComponent } from './psychological-compatibility-info/psychological-compatibility-info.component';
 import {PaginationService} from './pagination/pagination.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {PaginationService} from './pagination/pagination.service';
     CardComponent,
     AuthorCardsComponent,
     PsychologicalCompatibilityInfoComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

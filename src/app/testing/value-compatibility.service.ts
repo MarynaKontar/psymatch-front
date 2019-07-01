@@ -45,7 +45,7 @@ export class ValueCompatibilityService {
         'Authorization': token});
     } else if (this.userAccountService.isUserForMatchingToken()) {
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
-        'userForMatchingToken': localStorage.getItem('userForMatchingToken')});
+        'userForMatchingToken': this.userAccountService.getUserForMatchingToken()});
     } else {
       console.log('ValueCompatibilityService saveGoalArray: no token' );
       headers = new HttpHeaders({ 'Content-Type': 'application/json'});

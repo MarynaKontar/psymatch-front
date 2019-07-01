@@ -2,7 +2,7 @@
 <div class="container-fluid tests">
   <!--                                     GOALS                                      -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isGoalsDone">
-    <div class="area header">{{ tests.goal[0].area.areaName }}</div>
+    <!--<div class="area header">{{ tests.goal[0].area.areaName }}</div>-->
     <div class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.goal; let i = index"
@@ -26,24 +26,25 @@
         </div>
       </label>
     </div>
-    <div class="row buttons justify-content-center">
+    <div class="row buttons justify-content-center" [hidden]="isNotPassed">
+      <div class="area answer before">Вы прошли субтест «Жизненные приоритеты». Сохраните данные и пройдите cубтесты "Состояния" и "Личностные качества"</div>
       <div class="btn-group-vertical">
-        <button (click)="saveGoals()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ</button>
-        <button (click)="resetGoals()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>
+        <button (click)="saveGoals()" type="button" class="btn btn-success">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
+        <button (click)="resetGoals()" type="button" class="btn btn-light btn-sm">Пройти тест снова</button>
       </div>
     </div>
   </div>
 
 
-  <div [hidden] = "!isGoalsDone || (isStatesDone || isQualitiesDone)" @vanish>
-    <div class="area answer">Вы успешно прошли тестирование "Жизненные цели".
-      Осталось пройти тесты "Состояния" и "Личностные качества"</div>
+  <div [hidden] = "!(isGoalsDone && (!isStatesDone && !isQualitiesDone) && ind == 0)" @vanish>
+    <div class="area answer">Вы успешно прошли субтест «Жизненные приоритеты».
+      Осталось пройти cубтесты "Состояния" и "Личностные качества"</div>
   </div>
 
 
   <!--                                     STATES                                      -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isStatesDone || !isGoalsDone">
-    <div class="area header">{{ tests.state[0].area.areaName }}</div>
+    <!--<div class="area header">{{ tests.state[0].area.areaName }}</div>-->
     <div class="area question">{{ tests.state[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center" *ngFor="let test of tests.state; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
@@ -66,24 +67,25 @@
         </div>
       </label>
     </div>
-    <div class="row buttons justify-content-center">
+    <div class="row buttons justify-content-center" [hidden]="isNotPassed">
+      <div class="area answer before">Вы прошли субтест «Состояния». Сохраните данные и пройдите cубтест "Личностные качества"</div>
       <div class="btn-group-vertical">
-        <button (click)="saveStates()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ</button>
+        <button (click)="saveStates()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
         <button (click)="resetStates()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>
       </div>
     </div>
   </div>
 
-  <div [hidden] = "!isStatesDone || (!isGoalsDone || isQualitiesDone)">
-    <div class="area answer">Вы успешно прошли тестирование "Состояния".
-      Осталось пройти тест "Личностные качества"</div>
+  <div [hidden] = "!(isStatesDone && (isGoalsDone && !isQualitiesDone) && ind == 0)" @vanish>
+    <div class="area answer">Вы успешно прошли субтест "Состояния".
+      Осталось пройти субтест "Личностные качества"</div>
   </div>
 
 
 
   <!--                                     QUALITIES                                       -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isQualitiesDone || !isGoalsDone || !isStatesDone">
-    <div class="area header">{{ tests.quality[0].area.areaName }}</div>
+    <!--<div class="area header">{{ tests.quality[0].area.areaName }}</div>-->
     <div class="area question">{{ tests.quality[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.quality; let i = index"
@@ -115,8 +117,3 @@
     </div>
   </div>
 </div>
-
-
-<!--<div class="test another-user" hidden="true">-->
-  <!--<button (click)="testAnotherUser()" type="button" class="test-another-user btn btn-primary float-right">Протестировать своего друга/подругу </button>-->
-<!--</div>-->

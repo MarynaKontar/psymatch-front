@@ -32,7 +32,9 @@ export let slide = trigger('slide', [
 ]);
 
 export let vanish = trigger('vanish', [
-  transition('* => *',
+  state('active', style({ transform: 'translateX(0%)'})),
+  state('unactive',  style({ transform: 'translateX(300%)'})),
+  transition('active => unactive',
     animate('5s ease-in', keyframes([
       style({opacity: 1, offset: 0}),
       style({opacity: .5, offset: .3}),

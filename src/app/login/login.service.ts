@@ -3,7 +3,6 @@ import {User, UserAccount} from '../profile/user';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {API_URL} from '../utils/config';
-import {RegistrationService} from '../registration/registration.service';
 import {UserAccountService} from '../profile/user-account.service';
 
 @Injectable({
@@ -29,7 +28,7 @@ export class LoginService {
   }
 
   returnToFriendAccount(): Observable<HttpResponse<UserAccount>> {
-    const userForMatchingToken = localStorage.getItem('userForMatchingToken');
+    const userForMatchingToken = this.userAccountService.getUserForMatchingToken();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -46,7 +45,7 @@ export class LoginService {
 
   saveTokenToLocalStorage(httpResponse: HttpResponse<UserAccount>) {
     localStorage.setItem('token', httpResponse.headers.get('AUTHORIZATION'));
-    console.log('token: ',  httpResponse.headers.get('AUTHORIZATION'));
+    console.log('LOGIN-COMPONENT: token: ',  httpResponse.headers.get('AUTHORIZATION'));
   }
 
   setIsValueCompatibilityTestPassed(userAccount: UserAccount) {
@@ -73,6 +72,7 @@ export class LoginService {
   // }
 
   logout() {
+    console.log('LOGIN-SERVICE: logout()');
     // localStorage.clear();
     sessionStorage.clear();
     localStorage.removeItem('token');
@@ -88,8 +88,8 @@ export class LoginService {
   }
 
   isLogin() {
-    console.log('isLogin(): ', localStorage.getItem('token'));
-    return localStorage.getItem('token') != null;
+    console.log('LOGIN-COMPONENT: isLogin(): ', localStorage.getItem('token'));
+    return localStorage.getItem('token') != null && localStorage.getItem('token').length !== 0;
 
   }
   getToken() {

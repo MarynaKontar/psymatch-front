@@ -5,14 +5,16 @@ import {FormsModule} from '@angular/forms';
 import {RegistrationModule} from '../registration/registration.module';
 import {LoginService} from './login.service';
 import {ProfileModule} from '../profile/profile.module';
+import {RegistrationService} from '../registration/registration.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RegistrationModule,
+    // RegistrationModule,
   ],
   declarations: [LoginComponent],
-  providers: [LoginService],
+  exports: [LoginComponent],
+  providers: [LoginService, RegistrationService],
 })
 export class LoginModule { }

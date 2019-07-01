@@ -3,8 +3,8 @@ import {User} from '../../profile/user';
 import {RegistrationService} from '../registration.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../login/login.service';
-import {DeactivationGuarded} from '../../guard/can-deactivate.guard';
-import {Observable} from 'rxjs';
+import {UserAccountService} from '../../profile/user-account.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-registration',
@@ -12,22 +12,37 @@ import {Observable} from 'rxjs';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  @ViewChild('openModalRegistration') openModal: ElementRef; // in html <button id="openModalRegistration" ...>
+  // @ViewChild('openModalRegistration') openModal: ElementRef; // in html <button id="openModalRegistration" ...>
+  // @ViewChild('registration') registration: ElementRef;
+  @ViewChild('openModalLogin') openModalLogin: ElementRef; // in html <button id="loginModal" ...> in login component
   registeredUser = new User();
   isNeedToBeRegistered = false;
   returnUrl: string;
+  isRegistrationError;
   private retrieveDataResolver;
+  isRegistered: boolean;
   constructor(private registrationService: RegistrationService,
               private router: Router,
               private route: ActivatedRoute,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private userAccountService: UserAccountService,
+              private location: Location) { }
 
   ngOnInit() {
-    if (this.isNew()) {
-      this.openModal.nativeElement.click(); // @ViewChild
-      // get return url from route parameters or default to '/'
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.isRegistered = !this.isNew();
+    if (!this.isRegistered) {
+      // this.openModal.nativeElement.click(); // @ViewChild
+      if (this.userAccountService.isUserAccount() && this.userAccountService.getUserAccount().user != null) {
+        let user = this.userAccountService.getUserAccount().user;
+        if (user.name != null) { this.registeredUser.name = user.name; }
+        if (user.email != null) { this.registeredUser.email = user.email; }
+        if (user.gender != null) { this.registeredUser.gender = user.gender; }
+        if (user.age != null) { this.registeredUser.age = user.age; }
+      }
     }
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log('returnUrl: ' + this.returnUrl);
   }
 
   registerUser() {
@@ -43,25 +58,36 @@ export class RegistrationComponent implements OnInit {
   }
 
   private afterSaveUserActions(): void {
-    console.log('returnUrl: ' + this.returnUrl);
-    location.reload();
+    // console.log('returnUrl: ' + this.returnUrl);
+    // if (this.loginService.isLogin()) {
+    //   location.reload(); // need to update account user name in header navigation
+    // this.router.navigate(['register']);
+    // this.router.navigateByUrl(this.returnUrl);
+    // } else { this.router.navigate(['login']); }
+
+    // !!! Вывести сообщение о регистрации и ссылки на пред. страницу
+
   }
   private saveUser(): void {
     console.log('saveUser()');
     this.registrationService.registerNewUser(<User> this.registeredUser)
       .subscribe(data => {
-        this.registrationService.setIsRegistered(data.user);
-        this.loginService.setIsValueCompatibilityTestPassed(data);
-        this.registeredUser = data.user;
+        if (data.headers.get('AUTHORIZATION') != null) {
+          this.loginService.saveTokenToLocalStorage(data);
+        }
+        this.registrationService.setIsRegistered(data.body.user);
+        this.registrationService.setIsAnonimRegistered(data.body.user);
+        this.loginService.setIsValueCompatibilityTestPassed(data.body);
+        this.registeredUser = data.body.user;
         this.isNeedToBeRegistered = this.isNew();
-        this.loginService.setUserAccount(data);
-
-        if (this.loginService.isLogin()) {
-          this.router.navigateByUrl(this.returnUrl);
-        } else { this.router.navigate(['login']); }
-
+        this.loginService.setUserAccount(data.body);
+        this.isRegistered = true;
+        // this.registration.nativeElement.open();
         this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
-      });
+      },
+        error => {
+          this.isRegistrationError = true;
+        });
   }
   private retrieveUserPromise(): Promise<any> {
     console.log('retrieveUserPromise()');
@@ -70,4 +96,19 @@ export class RegistrationComponent implements OnInit {
       this.saveUser();
     });
   }
+
+  login() {
+    this.openModalLogin.nativeElement.click(); // @ViewChild
+  }
+  goBack() {
+    // window.location.reload(); // need to update account user name in header navigation
+    this.location.back();
+  }
+  // close() {
+  //   this.registration.nativeElement.hide();
+  //   if (this.loginService.isLogin()) {
+  //     // location.reload(); // need to update account user name in header navigation
+  //     this.router.navigateByUrl(this.returnUrl);
+  //   } else { this.router.navigateByUrl('login'); }
+  // }
 }

@@ -1,21 +1,22 @@
 .container-fluid.tests{
-  margin: 4% 1% 1% 1%;
+  margin: 6% 2% 1% 1%;
 }
 @media(max-width:575.98px) {
   .container-fluid.tests  {
-    margin: 6% 0 0 0 ;
+    margin: 8% 0 0 0 ;
   }
   .area.header {
     font-size: smaller;
   }
   .area.question {
-    font-size: small;
+    font-size: medium;
   }
 }
 
-.test-another-user{
-  margin: 5% 10% 10% 10% ;
+.card-deck {
+  //display: block;
 }
+
 .area {
   padding: 1% 0;
   font-size: x-large;
@@ -28,8 +29,11 @@
 .area.question {
   padding: 1% 0;
   margin-bottom: 0%;
-  font-size: x-large;
+  font-size: xx-large;
   text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #3b51b5;
 }
 @media(max-width:575.98px) {
   .area.header {
@@ -47,7 +51,10 @@
   font-weight: bold;
   color: #05AE0E;
 }
-
+.area.answer.before {
+  //color: rgba(5,174,250, 0.7);
+  color: #444444;
+}
 //Testing card's animation
 //http://tobiasahlin.com/blog/how-to-animate-box-shadow/
 .card {
@@ -89,7 +96,14 @@
       font-size: larger;
     }
   }
-
+  .btn {
+    font-size: large;
+  }
+  button {
+    width: 310px;
+    max-width: 310px;
+    min-width: 310px;
+  }
 }
 .card-body {
   text-align: justify;
@@ -134,17 +148,17 @@
   opacity: 1;
 }
 .buttons {
-  margin-top: 15%;
+  margin: 3% 1% 8% 1%;
 }
 button {
-  margin: 15% auto;
+  margin: 5% auto;
   //border-radius: 5%;
   padding: 5%;
   font-size: x-large;
   text-align: center;
-  width: 320px;
-  max-width: 320px;
-  min-width: 320px;
+  width: 380px;
+  max-width: 380px;
+  min-width: 380px;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
 }
 input[type=radio] {

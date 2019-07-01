@@ -5,6 +5,8 @@ import {UserAccountService} from '../../profile/user-account.service';
 import {RegistrationService} from '../../registration/registration.service';
 import {LoginService} from '../../login/login.service';
 import {SendingTokensService} from '../sending-tokens/sending-tokens.service';
+import {ComponentName} from '../services/component-name';
+import {LogService} from '../services/log.service';
 
 @Component({
   selector: 'app-return-to-friend-account',
@@ -18,26 +20,33 @@ export class ReturnToFriendAccountComponent implements OnInit {
   isLoginError: boolean;
   returnUrl: string;
 
+  isRegistered;
+
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
               private userAccountService: UserAccountService,
               private sendingTokensService: SendingTokensService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private log: LogService) {
+  }
 
   ngOnInit() {
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `onInit`);
+    this.isRegistered = this.registrationService.isRegistered();
     // RETURN TO FRIEND ACCOUNT
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/match';
+    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/match';
     this.ifUserForMatchingToken = this.userAccountService.isUserForMatchingToken();
   }
 
 // RETURN TO FRIEND ACCOUNT
   returnToFriendAccount() {
-    console.log('RETURN TO FRIEND ACCOUNT');
-    this.returnToFriendAccountPromise().then(() => { this.aftereturnToFriendAccountActions(); });
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `method`);
+    this.returnToFriendAccountPromise().then(() => { this.afterReturnToFriendAccountActions(); });
   }
 
   private returnToFriendAccountPromise(): Promise<any> {
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountPromise()`);
     return new Promise((resolve) => {
       this.retrieveDataResolver = resolve;
       this.returnToFriendAccountServer();
@@ -45,6 +54,7 @@ export class ReturnToFriendAccountComponent implements OnInit {
   }
 
   private returnToFriendAccountServer() {
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer()`);
     this.loginService.returnToFriendAccount()
       .subscribe(userAccount => {
           this.loginService.logout();
@@ -58,13 +68,15 @@ export class ReturnToFriendAccountComponent implements OnInit {
           this.retrieveDataResolver();
         },
         error => {
+          this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer() - error: ${error}`);
           this.isLoginError = true;
           // login failed so display error
 
         });
   }
 
-  private aftereturnToFriendAccountActions() {
+  private afterReturnToFriendAccountActions() {
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `afterReturnToFriendAccountActions(): returnUrl: ${this.returnUrl}`);
     this.router.navigateByUrl(this.returnUrl);
     location.reload();
   }

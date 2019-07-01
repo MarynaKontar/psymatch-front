@@ -236,10 +236,11 @@ export class ValueCompatibilityComponent implements OnInit {
    // this.router.navigate(['value-profile']);
    //  setTimeout(() => {
       if (this.userAccountService.isUserForMatchingToken()) {
-        // location.reload();
         this.router.navigate(['match']);
+        // location.reload();
       } else {
         this.router.navigate(['value-profile']);
+        // location.reload();
       }
     //   },
     // 200
@@ -255,7 +256,8 @@ export class ValueCompatibilityComponent implements OnInit {
     console.log(this.tests.goal);
     this.resetItemsAfterSaveAreaArrays();
     this.setPossibilityToPassTestsAgain();
-    this.router.navigate(['value-compatibility-test']);
+    // location.reload();
+    // this.router.navigate(['value-compatibility-test']);
   }
   private saveGoalArray(): void {
     // your async retrieval data logic goes here
@@ -330,14 +332,6 @@ export class ValueCompatibilityComponent implements OnInit {
     this.ind = 0;
     this.isNotPassed = true;
   }
-
-  // testAnotherUser() {
-  //   const token = this.loginService.getToken();
-  //   // this.router.navigate(['error']);
-  //   this.loginService.logout();
-  //   localStorage.setItem('userForMatchingToken', token);
-  //   this.router.navigate(['value-compatibility-test']);
-  // }
 
   public createFriendsTokens() {
     this.sendingTokensService.createFriendsTokens();

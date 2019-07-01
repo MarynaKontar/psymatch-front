@@ -48,8 +48,9 @@ export class AnonimRegistrationComponent implements OnInit {
         this.user1.gender = this.user.gender;
         this.userAccount.user = this.user1;
         this.userAccountService.setUserAccount(this.userAccount);
+        // location.reload(); // need to update account user name in header navigation
         this.router.navigateByUrl(this.returnUrl);
-        // location.reload();
+
       });
     this.isAnonimRegistered = this.registrationService.isAnonimRegistered();
     // this.router.navigate(['value-profile']); // обновить страничку value-profile, чтобы появилость окно tokens. НЕ ОБНОВЛЯЕТСЯ

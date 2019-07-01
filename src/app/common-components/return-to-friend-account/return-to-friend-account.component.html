@@ -1,3 +1,29 @@
 <div *ngIf="ifUserForMatchingToken" class="d-flex justify-content-end">
-  <button (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
+  <button *ngIf="isRegistered" class="btn btn-link return-to-friend-account" (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
+  <button *ngIf="!isRegistered" type="button" class="btn btn-link return-to-friend-account" data-toggle="modal" data-target="#returnToFriendAccount">
+    Зарегестрироваться и вернуться к профилю друга
+  </button>
+
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="returnToFriendAccount" tabindex="-1" aria-labelledby="returnToFriendAccountTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-dismiss="modal">
+      <div class="modal-body">
+        Если вы не зарегистрированы, то ваши данные будут потеряны и вы не сможете их восстановить!!!
+      </div><!--end modal-body -->
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col col-sm-6 order-sm-last d-flex justify-content-center align-items-center">
+            <a class="register" routerLink="/register">ЗАРЕГИСТРИРОВАТЬСЯ</a>
+          </div>
+          <div class="col col-sm-6 order-sm-first d-flex justify-content-center align-items-center">
+            <button class="btn btn-link" (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
+          </div>
+        </div>
+      </div><!--end modal-footer -->
+    </div><!--end modal-content -->
+  </div><!--end modal-dialog-->
+</div><!--end Modal -->

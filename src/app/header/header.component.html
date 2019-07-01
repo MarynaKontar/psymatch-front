@@ -10,29 +10,28 @@
       <!--Collapse button-->
 
       <!--Brand-->
-      <a class="navbar-brand" href="#">Совместимость</a>
+      <a class="navbar-brand" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Совместимость</a>
       <!--Brand-->
 
     <!--Collapsed navbar-->
     <div class="collapse navbar-collapse" id="dropdownMenu">
-
       <!--Left navbar-->
       <div class="nav navbar-nav mr-auto">
-        <!--<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>-->
         <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" routerLink="/user-test" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" routerLink="/user-test" id="navbarDropdownMenuLink" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active" >
             Тест
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/value-compatibility-test" routerLinkActive="active">Личностная совместимость</a>
-            <a class="dropdown-item" href="/error">Ролевая совместимость</a>
-            <a class="dropdown-item" href="/error">Любовная совместимость</a>
-            <a class="dropdown-item" href="/error">Сексуальная совместимость</a>
+            <a class="dropdown-item" routerLink="/vc-test-instruction" routerLinkActive="active">Личностная совместимость</a>
+            <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Ролевая совместимость</a>
+            <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Любовная совместимость</a>
+            <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Сексуальная совместимость</a>
           </div>
         </div>
         <!--<a *ngIf="isValueCompatibilityTestPassed" class="nav-item nav-link" routerLink="/value-profile">Ценностный профиль</a>-->
-        <a class="nav-item nav-link" routerLink="/value-profile">Ценностный профиль</a>
-        <a class="nav-item nav-link" routerLink="/match-home">Сравнить профили</a>
+        <a class="nav-item nav-link" routerLink="/value-profile" routerLinkActive="active">Ценностный профиль</a>
+        <a class="nav-item nav-link" routerLink="/match-home" routerLinkActive="active">Сравнить профили</a>
         <!--<a class="nav-item nav-link" routerLink="/match">Сравнение</a>-->
       </div>
       <!--Left navbar-->
@@ -40,33 +39,35 @@
       <!--Right navbar-->
       <div class="nav navbar-nav mr-2">
 
-        <a class="nav-item nav-link my-2 my-lg-0" routerLink="psychological-compatibility-info">Психологическая совместимость</a>
-        <a class="nav-item nav-link my-2 my-lg-0" routerLink="about-project">О проекте</a>
+        <a class="nav-item nav-link my-2 my-lg-0" routerLink="psychological-compatibility-info" routerLinkActive="active">Психологическая совместимость</a>
+        <a class="nav-item nav-link my-2 my-lg-0" routerLink="about-project" routerLinkActive="active">О проекте</a>
         <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="/card">Авторы</a>-->
         <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="tokens">Send an invitation to friends</a>-->
-        <!--<a class="nav-item nav-link my-2 my-lg-0" href="#">Account</a>-->
-        <a *ngIf="!isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/login" [hidden]="isLogin">Войти</a>
-        <!--<a *ngIf="isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/logout" [hidden]="!isLogin">Выйти</a>-->
+        <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="/vc-test-instruction">Инструкция</a>-->
+        <!--<a *ngIf="!isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/login" [hidden]="isLogin">Login</a>-->
+        <button *ngIf="!isLogin; else logout" class="nav-item nav-link btn btn-link my-2 my-lg-0" id="openModalLogin"
+                #openModalLogin data-toggle="modal" data-target="#loginModal">Login</button>
+        <ng-template #logout>
+          <!--<a *ngIf="isLogin&&isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/logout" routerLinkActive="active" [hidden]="!isLogin">Logout</a>-->
+          <!--<a *ngIf="isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/logout" [hidden]="!isLogin">Выйти</a>-->
+          <button *ngIf="isLogin" class="nav-item nav-link btn btn-link my-2 my-lg-0"
+                  data-toggle="modal" data-target="#modalLogout">Logout</button>
+        </ng-template>
+
         <a *ngIf="!isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/register" routerLinkActive="active" [hidden]="isRegistered">Register</a>
-        <!--<a *ngIf="isLogin&&isRegistered" class="nav-item nav-link disabled my-2 my-lg-0" routerLink="/logout" routerLinkActive="active" [hidden]="!isLogin">Logout</a>-->
-        <a *ngIf="!isAccountNotVisible" class="nav-item nav-link my-2 my-lg-0" routerLink="/account" [hidden]="isAccountNotVisible">{{account.user.name}}</a>
-        <a *ngIf="isLogin&&isAccountNotVisible" class="nav-item nav-link my-2 my-lg-0" routerLink="/account" [hidden]="!isAccountNotVisible">Account</a>
-        <!--<ul class="navbar-nav nav-flex-icons">-->
-          <!--<li class="nav-item waves-light">-->
-            <!--<a href="#" class="nav-link" target="_blank"><i class="fab fa-facebook-f"></i></a>-->
-          <!--</li>-->
-          <!--<li class="nav-item waves-light">-->
-            <!--<a href="#" class="nav-link" target="_blank"><i class="fab fa-twitter"></i></a>-->
-          <!--</li>-->
-          <!--<li class="nav-item waves-light">-->
-            <!--<a href="#" class="nav-link" target="_blank"><i class="fab fa-instagram"></i></a>-->
-          <!--</li>-->
-        <!--</ul>-->
+
+        <a *ngIf="isAccountVisible; else accountAlias" class="nav-item nav-link my-2 my-lg-0"
+           routerLink="/account" routerLinkActive="active" [hidden]="!isAccountVisible">{{account.user.name}}</a>
+        <ng-template #accountAlias>
+          <a class="nav-item nav-link my-2 my-lg-0"
+             routerLink="/account" routerLinkActive="active" [hidden]="!isAliasAccountVisible">Account</a>
+        </ng-template>
       </div>
       <!--Right navbar-->
-
     </div>
     <!--Collapsed navbar-->
-
 </nav>
 <!--Navigation-->
+
+<app-login></app-login>
+<app-logout></app-logout>

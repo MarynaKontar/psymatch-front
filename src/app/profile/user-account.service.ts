@@ -30,11 +30,21 @@ export class UserAccountService {
     return this.http.get<PageUserAccount>(this.uri + `/account/getAllUsers` + `?page=` + page + `&size=` + size);
   }
 
+  isUserAccount(): boolean {
+    return localStorage.getItem('userAccount') != null;
+  }
   isUserForMatchingToken() {
     if (localStorage.getItem('userForMatchingToken') != null && localStorage.getItem('userForMatchingToken').length !== 0 ) {
       return true;
     }
     return false;
+  }
+  getUserForMatchingToken(): string {
+    return localStorage.getItem('userForMatchingToken');
+  }
+
+  setUserForMatchingToken(userForMatchingToken: string) {
+    localStorage.setItem('userForMatchingToken', userForMatchingToken);
   }
 
   inviteForMatching(userAccountForInvite: UserAccount): Observable<UserAccount> {

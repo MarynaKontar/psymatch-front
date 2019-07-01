@@ -14,6 +14,7 @@ import {RegistrationService} from '../../registration/registration.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 import {MatchHomePageComponent} from '../match-home-page/match-home-page.component';
 import {UserAccountService} from '../../profile/user-account.service';
+import {LogService} from '../../common-components/services/log.service';
 
 @Component({
   selector: 'app-match-value-compatibility',
@@ -101,12 +102,13 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
               private valueCompatibilityService: ValueCompatibilityService,
               loginService: LoginService,
               registrationService: RegistrationService,
-              private userAccountService: UserAccountService,
+              userAccountService: UserAccountService,
               private sendingTokensService: SendingTokensService,
               router: Router,
-              private route: ActivatedRoute,
+              activatedRoute: ActivatedRoute,
+              log: LogService,
               private sanitizer: DomSanitizer) {
-    super( loginService, registrationService, router);
+    super( loginService, registrationService, userAccountService, router, activatedRoute, log);
   }
 
 
@@ -135,7 +137,7 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
 //     } else {
 //       console.log('match CanDeactivate false');
 //       // if (!confirm('If you are not registered and will leave the application, your data will be lost. Click Cancel to go to Registration page.')) {
-//       if (!confirm('Если вы не зарегестрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
+//       if (!confirm('Если вы не зарегистрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
 //         console.log('press Cancel');
 //         this.retrieve().then(() => this.afterPromise());
 //         return this.isCanDeactivate;

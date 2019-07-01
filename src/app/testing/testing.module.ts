@@ -9,6 +9,7 @@ import { TestHomePageComponent } from './test-home-page/test-home-page.component
 import {CommonComponentsModule} from '../common-components/common-components.module';
 import {AppRoutingModule} from '../app-routing.module';
 import {LoginModule} from '../login/login.module';
+import { ValueCompatibilityTestInctructionComponent } from './value-compatibility-test-inctruction/value-compatibility-test-inctruction.component';
 // import {MatButtonModule, MatStepperModule} from '@angular/material';
 
 @NgModule({
@@ -23,7 +24,8 @@ import {LoginModule} from '../login/login.module';
     // MatButtonModule,
     // MatStepperModule
   ],
-  declarations: [ValueCompatibilityComponent, ValueCompatibilityProfileComponent, TestHomePageComponent],
+  declarations: [ValueCompatibilityComponent, ValueCompatibilityProfileComponent,
+                 TestHomePageComponent, ValueCompatibilityTestInctructionComponent],
   exports: [TestHomePageComponent],
   providers: [ValueCompatibilityService]
 })

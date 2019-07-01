@@ -14,9 +14,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
 // т.к HttpInterceptor перехватывает абсолютно все запросы мы должны гарантировать, что Authorization заголовок будет
 // добавлен только к запросам на наш API
-//    if (!req.url.includes('api/')) {
-//      return next.handle(req);
-//    }
+   if (!req.url.includes('api/')) {
+     return next.handle(req);
+   }
 
 // Get the auth token from the service.
 //     const token = this.auth.getAuthorizationToken();

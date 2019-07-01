@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../login/login.service';
+import {LogService} from '../services/log.service';
+import {ComponentName} from '../services/component-name';
 
 @Component({
   selector: 'app-test-not-passed',
@@ -9,13 +11,14 @@ import {LoginService} from '../../login/login.service';
 export class TestNotPassedComponent implements OnInit {
   isVisible;
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private log: LogService
   ) { }
 
   ngOnInit() {
-    console.log('TestNotPassedComponent');
+    this.log.log(ComponentName.TEST_NOT_PASSED, `onInit`);
     this.isVisible = !this.loginService.isValueCompatibilityTestPassed();
-    console.log('TestNotPassedComponent isVisible: ', this.isVisible);
+    this.log.log(ComponentName.TEST_NOT_PASSED, `isVisible: ${this.isVisible}`);
   }
 
 }

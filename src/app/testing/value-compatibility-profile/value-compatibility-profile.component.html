@@ -3,12 +3,14 @@
 
   <div class="row">
 
-    <div class="col-sm-12 col-lg-10 justify-content-center" [hidden]="isValueCompatibilityTestPassed">
-      <app-test-not-passed></app-test-not-passed>
-    </div>
-    <div class="col-sm-12 col-lg-10 justify-content-center" [hidden]="!isValueCompatibilityTestPassed">
+    <ng-template #vcTestStatus>
+      <div class="col-sm-12 col-lg-10 justify-content-center">
+        <app-test-not-passed></app-test-not-passed>
+      </div>
+    </ng-template>
+    <div *ngIf="isValueCompatibilityTestPassed; else vcTestStatus" class="col-sm-12 col-lg-10 justify-content-center" [hidden]="!isValueCompatibilityTestPassed">
 
-      <div class="container value profile content" [hidden]="!isValueCompatibilityTestPassed">
+      <div class="container value profile content">
         <!--<div class="row d-none d-sm-none d-md-block align-items-center justify-content-center">-->
         <div class="row align-items-center justify-content-center">
           <div class="col-12 col-xl-12">

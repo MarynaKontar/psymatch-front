@@ -10,3 +10,16 @@
   background-color: rgba(41, 43, 44, 0.7);
   color: rgb(247, 247, 247);
 }
+//navbar and dropdown open on big displays (>544px)
+// by hoovering (not clicking)
+@media (min-width: 544px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .navbar:hover .collapse {
+    display: block;
+  }
+}
+button {
+  display: flex;
+}

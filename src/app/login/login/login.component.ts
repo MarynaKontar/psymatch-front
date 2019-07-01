@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   private afterLoginActions(): void {
     console.log('afterLoginActions');
-    // location.reload(); // need to reload because there will be seen Login and Register on header without reload
+    // location.reload(); // need to update account user name in header navigation
     console.log('returnUrl: ', this.returnUrl);
     this.router.navigateByUrl(this.returnUrl); // if replace to afterLoginActions(), reload to login page? not to home page
     console.log(this.userAccount);

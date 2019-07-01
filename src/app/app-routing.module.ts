@@ -15,11 +15,13 @@ import {PsychologicalCompatibilityInfoComponent} from './psychological-compatibi
 import {UserAccountComponent} from './profile/user-account/user-account.component';
 import {AnonimRegistrationComponent} from './registration/anonim-registration/anonim-registration.component';
 import {TestFriendComponent} from './common-components/test-friend/test-friend.component';
-import {AuthGuard} from './auth.guard';
+import {AuthGuard} from './guard/auth.guard';
 import {RegistrationGuard} from './guard/registration.guard';
 import {AnonimRegistrationGuard} from './guard/anonim-registration.guard';
 import {CanDeactivateGuard} from './guard/can-deactivate.guard';
 import {MatchHomePageComponent} from './matching/match-home-page/match-home-page.component';
+import {ValueCompatibilityTestInctructionComponent} from './testing/value-compatibility-test-inctruction/value-compatibility-test-inctruction.component';
+import {LogoutComponent} from './logout/logout.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,11 @@ const routes: Routes = [
   },
 
   {
+    path: 'logout',
+    component: LogoutComponent
+  },
+
+  {
     path: 'account',
     component: UserAccountComponent,
     canActivate: [AuthGuard]
@@ -59,6 +66,10 @@ const routes: Routes = [
   {
     path: 'user-test',
     component: TestHomePageComponent
+  },
+  {
+    path: 'vc-test-instruction',
+    component: ValueCompatibilityTestInctructionComponent
   },
   {
     path: 'value-compatibility-test',
@@ -89,7 +100,8 @@ const routes: Routes = [
   {
     path: 'test-friend',
     component: TestFriendComponent,
-    canActivate: [AnonimRegistrationGuard]
+    canActivate: [AnonimRegistrationGuard],
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'anonim-registration',

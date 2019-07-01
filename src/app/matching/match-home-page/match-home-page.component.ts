@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {MatchValueCompatibilityService} from '../match-value-compatibility.service';
 import {UserAccountService} from '../../profile/user-account.service';
 import {PageUserAccount, User, UserAccount} from '../../profile/user';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PaginationService} from '../../pagination/pagination.service';
 import {DeactivationGuarded, DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
-import {Observable} from 'rxjs';
 import {LoginService} from '../../login/login.service';
 import {RegistrationService} from '../../registration/registration.service';
+import {LogService} from '../../common-components/services/log.service';
 
 @Component({
   selector: 'app-match-home-page',
@@ -24,13 +24,15 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   selectedPage = 0;
   pageSizeDefault: number = 3;
   private retrieveDataResolver;
-  constructor(private userAccountService: UserAccountService,
+  constructor(userAccountService: UserAccountService,
               loginService: LoginService,
               registrationService: RegistrationService,
               router: Router,
+              activatedRoute: ActivatedRoute,
+              log: LogService,
               private matchValueCompatibilityService: MatchValueCompatibilityService,
               private paginationService: PaginationService) {
-    super(loginService, registrationService, router);
+    super(loginService, registrationService, userAccountService, router, activatedRoute, log);
   }
 
   ngOnInit() {

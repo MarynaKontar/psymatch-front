@@ -2,7 +2,58 @@
 //  padding-bottom: 10%;
 //  padding-top: 10%;
 //}
+.container-fluid {
+  margin-top: 10%;
+}
+.card {
+  border-radius: 3%;
+}
+.card-header {
+  background-color: #3b51b5;
+  color: #FFFFFF;
+}
 button {
   margin: 0% 0%;
   font-size: large;
+}
+
+
+.modal-header {
+  background-color: #3b51b5;
+  color: #FFFFFF;
+}
+.modal-dialog {
+  border-radius: 5%;
+}
+.links a, .links button {
+  display: flex;
+  font-size: large;
+}
+
+.success {
+  text-align: center;
+  .title {
+    color: green;
+    text-transform: uppercase;
+  }
+  .links {
+    font-size: xx-large;
+  }
+  a, button {
+    font-size: x-large;
+  }
+}
+
+@media(max-width: 595.98px) {
+  .container-fluid {
+    margin-top: 15%;
+  }
+  .success{
+    .title {
+      font-size: x-large;
+    }
+    a, button {
+      font-size: large;
+    }
+  }
 }

@@ -10,6 +10,9 @@
 // add user names to match: Value Profiles For Matching figure; test-cards: card-body not linked; in header Pass test;
 // add returnToFriendAccount button, method, endpoint (when friends test on one device); add canDeactivate guard, but not work navigate on it;
 
+//add logServiceand enum for component names and add/replace console.log(...) to service.log(...)
+
+
 // !!!!!!!!!!!!!!!--BACKEND--!!!!!!!!!!!!!!!!!!!
 // add UserAccount, UserAccoutService, UserAccounDto, UserAccountDtoConverter and change in /login controller method ResponseEntity from SimpleUserDto to UserAccountDto. Now can return after login not only user info, but what test is passed, invite tokens (write method UserAccount getUserAccount(User user));
 // change endpoint /addAgeAndGender to /anonimRegistration, where save/update not only age and gender, but name too; /registration endpoint return ResponseEntity<UserAccountDto> (before was ResponseEntity<SimpleUserDto>); addUserForMatching method (ValueCompatibilityAnswersServiceImpl): add userForMatching to both users;

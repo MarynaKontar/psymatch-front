@@ -6,11 +6,11 @@
   <div class="card bg-success text-white">
     <div *ngIf="isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestPassed}}</div>
     <div *ngIf="!isValueCompatibilityTestPassed" class="card-header">
-      <a class="customDecorated" routerLink="/value-compatibility-test">{{valueCompatibilityTestIsNotPassed}}</a>
+      <a class="customDecorated" routerLink="/vc-test-instruction">{{valueCompatibilityTestIsNotPassed}}</a>
     </div>
     <!--<div *ngIf="!isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestIsNotPassed}}</div>-->
     <div class="card-body">
-      <!--<a class="card-content customDecorated" routerLink="/value-compatibility-test">-->
+      <!--<a class="card-content customDecorated" routerLink="/vc-test-instruction">-->
       <div class="card-content">
         <h2 class="card-title">{{value_compatibility_test_header}}</h2>
         <p class="card-text">{{value_compatibility_test_main_text}}</p>
@@ -53,7 +53,7 @@
           </div><!--end card -->
         </div><!--end modal-body -->
         <div class="modal-footer justify-content-center">
-          <a class="footer customDecorated" routerLink="/value-compatibility-test">Пройти тест</a>
+          <a class="footer customDecorated" routerLink="/vc-test-instruction">Пройти тест</a>
         </div><!--end modal-footer -->
       </div><!--end modal-content -->
     </div><!--end modal-dialog-->

@@ -1,8 +1,11 @@
 import {HostListener, Injectable} from '@angular/core';
-import {CanDeactivate, Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, CanDeactivate, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import {RegistrationService} from '../registration/registration.service';
 import {LoginService} from '../login/login.service';
+import {UserAccountService} from '../profile/user-account.service';
+import {ComponentName} from '../common-components/services/component-name';
+import {LogService} from '../common-components/services/log.service';
 
 export abstract class DeactivationGuarded {
   abstract canDeactivate(): Observable<boolean> | Promise<boolean> | boolean;
@@ -27,27 +30,38 @@ export class DeactivationLoginRegistrationGuarded {
   private retrieveDataResolverDRG;
   returnUrl: string;
   isCanDeactivate: boolean;
+  private routeSnapshot: ActivatedRouteSnapshot;
   constructor(public loginService: LoginService,
               public registrationService: RegistrationService,
-              public router: Router) {}
+              public userAccountService: UserAccountService,
+              public router: Router,
+              public activatedRoute: ActivatedRoute,
+              public log: LogService) {
+    this.routeSnapshot = activatedRoute.snapshot;
+  }
   // CANDEACTIVATE
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
-      console.log('match CanDeactivate true');
+    if ((this.loginService.isLogin() && this.registrationService.isRegistered())
+      || this.registrationService.isRegistered()
+      // на страницах, где применяется этот guard и так будет предлогаться зарегестрироваться, если isUserForMatchingToken(). Топорно, но пока не вижу другого выхода
+      || (!this.registrationService.isRegistered() && this.userAccountService.isUserForMatchingToken())
+      || !this.loginService.isLogin()) {
+      this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): true`);
       return true;
     } else {
-      console.log('match CanDeactivate false');
+      this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): false`);
       // if (!confirm('If you are not registered and will leave the application, your data will be lost. Click Cancel to go to Registration page.')) {
-      if (!confirm('Если вы не зарегестрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
-        console.log('press Cancel');
+      if (!confirm('Если вы не зарегистрированы и покинете приложение, ваши данные будут потеряны. Нажмите Отмена, чтобы перейти на страницу регистрации.')) {
+        this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): press Cancel`);
         this.retrieve().then(() => this.afterPromise());
         return this.isCanDeactivate;
       } else {
-        console.log('press Ok');
+        this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): press Ok`);
         return true; }
     }
   }
   private retrieve(): Promise<any> {
+    this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): retrieve()`);
     return new Promise((resolve) => {
       this.retrieveDataResolverDRG = resolve;
       this.setIsCanDeactivate();
@@ -58,7 +72,10 @@ export class DeactivationLoginRegistrationGuarded {
     this.retrieveDataResolverDRG();
   }
   private afterPromise() {
-    this.router.navigate(['register']);
+    this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): afterPromise()`);
+    // this.router.navigate(['register']);
+    this.router.navigate(['register'], { queryParams: { returnUrl: '/' + this.routeSnapshot.url }});
+    // location.reload();
   }
 // End CANDEACTIVATE
 

@@ -5,11 +5,13 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import {UserAccountService} from './user-account.service';
 import {FormsModule} from '@angular/forms';
 import {CommonComponentsModule} from '../common-components/common-components.module';
+import {AppRoutingModule} from '../app-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    AppRoutingModule,
     CommonComponentsModule
   ],
   declarations: [UserAccountComponent],
