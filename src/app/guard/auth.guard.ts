@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {ElementRef, Injectable, ViewChild} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import {LoginService} from '../login/login.service';
+import {LoginService} from '../auth/authentication/login.service';
 import {ComponentName} from '../common-components/services/component-name';
 import {LogService} from '../common-components/services/log.service';
 

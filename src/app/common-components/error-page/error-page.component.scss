@@ -7,3 +7,14 @@
 button {
   font-size: 40px;
 }
+
+@media(max-width:991.98px) {
+  .test-in-development {
+    font-size: 40px;
+  }
+}
+@media(max-width:575.98px) {
+  .test-in-development {
+    font-size: 25px;
+  }
+}

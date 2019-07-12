@@ -1,8 +1,8 @@
 import {HostListener, Injectable} from '@angular/core';
 import {ActivatedRoute, ActivatedRouteSnapshot, CanDeactivate, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import {RegistrationService} from '../registration/registration.service';
-import {LoginService} from '../login/login.service';
+import {RegistrationService} from '../auth/registration/registration.service';
+import {LoginService} from '../auth/authentication/login.service';
 import {UserAccountService} from '../profile/user-account.service';
 import {ComponentName} from '../common-components/services/component-name';
 import {LogService} from '../common-components/services/log.service';
@@ -41,11 +41,13 @@ export class DeactivationLoginRegistrationGuarded {
   }
   // CANDEACTIVATE
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `isAnonimRegistered: ${this.registrationService.isAnonimRegistered()}`);
     if ((this.loginService.isLogin() && this.registrationService.isRegistered())
       || this.registrationService.isRegistered()
       // на страницах, где применяется этот guard и так будет предлогаться зарегестрироваться, если isUserForMatchingToken(). Топорно, но пока не вижу другого выхода
       || (!this.registrationService.isRegistered() && this.userAccountService.isUserForMatchingToken())
-      || !this.loginService.isLogin()) {
+      || !this.loginService.isLogin()
+      || this.registrationService.isAnonimRegistered()) {
       this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): true`);
       return true;
     } else {

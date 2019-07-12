@@ -6,7 +6,7 @@ import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js';
 import {URL} from '../../utils/config';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../../auth/authentication/login.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 import {UserAccountService} from '../../profile/user-account.service';
 
@@ -171,7 +171,7 @@ export class ValueCompatibilityComponent implements OnInit {
         }
       );
     this.resetItemsAfterSaveAreaArrays();
-    this.router.navigate(['value-compatibility-test']);
+    // this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! STATE !!!!!!!!!!
@@ -187,7 +187,7 @@ export class ValueCompatibilityComponent implements OnInit {
         }
       );
     this.resetItemsAfterSaveAreaArrays();
-    this.router.navigate(['value-compatibility-test']);
+    // this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! QUALITIES !!!!!!!!!!
@@ -203,7 +203,7 @@ export class ValueCompatibilityComponent implements OnInit {
         }
       );
     this.resetItemsAfterSaveAreaArrays();
-    this.router.navigate(['value-compatibility-test']);
+    // this.router.navigate(['value-compatibility-test']);
   }
 
   isFirstTestItem(i): boolean {
@@ -286,7 +286,7 @@ export class ValueCompatibilityComponent implements OnInit {
     console.log(this.tests.state);
     this.resetItemsAfterSaveAreaArrays();
     this.setPossibilityToPassTestsAgain();
-    this.router.navigate(['value-compatibility-test']);
+    // this.router.navigate(['value-compatibility-test']);
   }
   private saveStateArray(): void {
     this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data => {

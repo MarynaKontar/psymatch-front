@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import {User, UserAccount} from '../profile/user';
-import {Observable} from 'rxjs';
+import {EventEmitter, Injectable, Output} from '@angular/core';
+import {User, UserAccount} from '../../profile/user';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {API_URL} from '../utils/config';
-import {UserAccountService} from '../profile/user-account.service';
+import {API_URL} from '../../utils/config';
+import {UserAccountService} from '../../profile/user-account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,6 @@ export class LoginService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response' as 'response'
     };
-    // const loggedUser: Observable<HttpResponse<User>> = this.http.post<User>(this.uri + `/auth/login`, user, httpOptions);
     // console.log(loggedUser);
     // this.saveTokenToLocalStorage(loggedUser);
     // this.saveHaveAgeAndGenderToLocaleStorage(loggedUser);
@@ -95,5 +94,4 @@ export class LoginService {
   getToken() {
     return localStorage.getItem('token');
   }
-
 }

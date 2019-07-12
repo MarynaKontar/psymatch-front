@@ -7,10 +7,10 @@ import {ValueCompatibilityService} from '../../testing/value-compatibility.servi
 import {User} from '../../profile/user';
 import {AspectComment, ValuesDifferencesComment, ScaleLevel, AspectLevel, UserMatch} from './match-value-compatibility';
 import {DomSanitizer} from '@angular/platform-browser';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../../auth/authentication/login.service';
 import {DeactivationGuarded, DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
 import {Observable} from 'rxjs';
-import {RegistrationService} from '../../registration/registration.service';
+import {RegistrationService} from '../../auth/registration/registration.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 import {MatchHomePageComponent} from '../match-home-page/match-home-page.component';
 import {UserAccountService} from '../../profile/user-account.service';

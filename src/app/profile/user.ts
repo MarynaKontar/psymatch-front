@@ -41,3 +41,7 @@ export class PageUserAccount {
   numberOfElements: number ;
 
 }
+
+// export class ChangePassword {
+//   oldUser
+// }

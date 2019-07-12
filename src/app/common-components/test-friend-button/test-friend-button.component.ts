@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../../auth/authentication/login.service';
 
 @Component({
   selector: 'app-test-friend-button',

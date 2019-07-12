@@ -19,12 +19,6 @@ export class ValueCompatibilityService {
   constructor(private http: HttpClient,
               private userAccountService: UserAccountService) { }
 
-  // getUser(id: number): Observable<DataStudent> {
-  //   return this.http.get<DataStudent>(`${API_URL}/student/${id}`, {
-  //     headers: this.headers
-  //   });
-  // }
-
   /** GET tests list from the server */
   getTestList(): Observable<ValueCompatibilityAnswers> {
     return this.http.get<ValueCompatibilityAnswers>(this.uri + `/test/initTest`);

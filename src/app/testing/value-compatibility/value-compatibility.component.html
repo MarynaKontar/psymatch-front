@@ -1,7 +1,11 @@
-
 <div class="container-fluid tests">
   <!--                                     GOALS                                      -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isGoalsDone">
+
+    <!--<div class="progress">-->
+      <!--<div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="10" aria-valuemin="5" aria-valuemax="100"></div>-->
+    <!--</div>-->
+
     <!--<div class="area header">{{ tests.goal[0].area.areaName }}</div>-->
     <div class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center"

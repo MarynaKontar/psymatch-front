@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {PageUserAccount, User, UserAccount} from './user';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {API_URL} from '../utils/config';
-import {ValueProfileMatching} from '../matching/match-value-compatibility/match-value-compatibility';
 
 @Injectable({
   providedIn: 'root'

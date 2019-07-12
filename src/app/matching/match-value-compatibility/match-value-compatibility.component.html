@@ -11,10 +11,13 @@
 <div class="container-fluid match" @fade>
 
   <div class="row">
-    <div class="col-sm-12 col-lg-10" [hidden]="isValueCompatibilityTestPassed">
-      <app-test-not-passed></app-test-not-passed>
-    </div>
-    <div class="col-sm-12 col-lg-10" [hidden]="!isValueCompatibilityTestPassed"> <!---->
+
+    <ng-template #testNotPassed>
+      <div class="col-sm-12 col-lg-10">
+        <app-test-not-passed></app-test-not-passed>
+      </div>
+    </ng-template>
+    <div class="col-sm-12 col-lg-10" *ngIf="isValueCompatibilityTestPassed; else testNotPassed"> <!---->
       <div class="scroll-spy" data-spy="scroll" data-target="#valueCompatibilityReportTab" data-offset="200">
         <div class="container match content">
           <div class="row">

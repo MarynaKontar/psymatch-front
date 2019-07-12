@@ -2,8 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {URL} from '../../utils/config';
 import {DOCUMENT} from '@angular/common';
 import {ValueCompatibilityService} from '../../testing/value-compatibility.service';
-import {RegistrationService} from '../../registration/registration.service';
-import {LoginService} from '../../login/login.service';
+import {RegistrationService} from '../../auth/registration/registration.service';
+import {LoginService} from '../../auth/authentication/login.service';
 import {SendingTokensService} from './sending-tokens.service';
 import {TOKENS_HEADER, TOKENS_INVITE, TOKENS_NOT_EXIST, TOOLTIP} from './sending-tokens';
 

@@ -24,7 +24,7 @@ import {
   TEST_IS_PASSED, TEST_ISNT_PASSED,
 
 } from './test-info-cards';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../../auth/authentication/login.service';
 
 @Component({
   selector: 'app-test-info-cards',

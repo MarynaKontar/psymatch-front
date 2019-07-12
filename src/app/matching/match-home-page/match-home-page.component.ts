@@ -5,8 +5,8 @@ import {PageUserAccount, User, UserAccount} from '../../profile/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PaginationService} from '../../pagination/pagination.service';
 import {DeactivationGuarded, DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
-import {LoginService} from '../../login/login.service';
-import {RegistrationService} from '../../registration/registration.service';
+import {LoginService} from '../../auth/authentication/login.service';
+import {RegistrationService} from '../../auth/registration/registration.service';
 import {LogService} from '../../common-components/services/log.service';
 
 @Component({
@@ -15,6 +15,7 @@ import {LogService} from '../../common-components/services/log.service';
   styleUrls: ['./match-home-page.component.scss']
 })
 export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded implements OnInit {
+  isValueCompatibilityTestPassed;
   userAccounts: UserAccount[];
   pageUserAccount: PageUserAccount;
   // pagination object
@@ -36,7 +37,10 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   }
 
   ngOnInit() {
-    this.setPage(1, this.pageSizeDefault);
+    this.isValueCompatibilityTestPassed = this.loginService.isLogin() && this.loginService.isValueCompatibilityTestPassed();
+    if (this.isValueCompatibilityTestPassed) {
+      this.setPage(1, this.pageSizeDefault);
+    }
   }
   // // if the user is not registered, warn that some information may not be saved (see unloadNotification method in DeactivationGuard)
   // canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {

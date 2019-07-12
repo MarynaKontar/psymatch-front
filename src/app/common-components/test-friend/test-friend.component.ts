@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from '../../login/login.service';
+import {LoginService} from '../../auth/authentication/login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
 import {UserAccountService} from '../../profile/user-account.service';
-import {RegistrationService} from '../../registration/registration.service';
+import {RegistrationService} from '../../auth/registration/registration.service';
 import {LogService} from '../services/log.service';
 import {ComponentName} from '../services/component-name';
 

@@ -1,4 +1,4 @@
-//@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@import "assets/form.scss";
 body{
   padding-top: 1%; // for padding from header navbar-fixed-top
   padding-bottom: 1%;
@@ -10,6 +10,7 @@ body{
     padding-bottom: 4%;
   }
 }
+
 @media(max-width:575.98px) {
   body {
     padding-top: 8%;

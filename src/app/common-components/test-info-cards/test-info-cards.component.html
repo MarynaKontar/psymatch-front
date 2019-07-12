@@ -4,7 +4,9 @@
 
   <!-- VALUE COMPATIBILITY test Card-->
   <div class="card bg-success text-white">
-    <div *ngIf="isValueCompatibilityTestPassed" class="card-header">{{valueCompatibilityTestPassed}}</div>
+    <div *ngIf="isValueCompatibilityTestPassed" class="card-header">
+      <a class="customDecorated" routerLink="/vc-test-instruction">{{valueCompatibilityTestPassed}}</a>
+    </div>
     <div *ngIf="!isValueCompatibilityTestPassed" class="card-header">
       <a class="customDecorated" routerLink="/vc-test-instruction">{{valueCompatibilityTestIsNotPassed}}</a>
     </div>

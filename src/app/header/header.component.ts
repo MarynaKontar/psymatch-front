@@ -1,17 +1,18 @@
-import {Component, DoCheck, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {RegistrationService} from '../registration/registration.service';
-import {LoginService} from '../login/login.service';
+import {Component, DoCheck, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {RegistrationService} from '../auth/registration/registration.service';
+import {LoginService} from '../auth/authentication/login.service';
 import {UserAccount} from '../profile/user';
 import {UserAccountService} from '../profile/user-account.service';
-import {ComponentName} from '../common-components/services/component-name';
 import {LogService} from '../common-components/services/log.service';
+import {APP_NAME} from '../utils/config';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, DoCheck {
+export class HeaderComponent implements OnInit {
+  readonly APP_NAME = `${APP_NAME}`;
 
   isRegistered: boolean;
   isAnonimRegistered: boolean;
@@ -25,7 +26,8 @@ export class HeaderComponent implements OnInit, DoCheck {
   constructor(private registrationService: RegistrationService,
               private loginService: LoginService,
               private userAccountService: UserAccountService,
-              private log: LogService) { }
+              private log: LogService) {
+  }
 
   ngOnInit() {
     this.isLogin = this.loginService.isLogin();
@@ -46,21 +48,5 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.isAliasAccountVisible = (this.isLogin && this.isAnonimRegistered && !this.isAccountUserName) ||
       (this.isLogin && this.isRegistered && !this.isAccountUserName) ||
       (this.isLogin && this.isRegistered && this.isAnonimRegistered && !this.isAccountUserName);
-  }
-
-  ngDoCheck(): void {
-    this.log.log(ComponentName.HEADER, `ngDoCheck: `);
-    if (this.isAccountUserName) {
-      this.account = this.userAccountService.getUserAccount();
-    }
-
-    this.isAccountVisible = (this.isLogin && this.isRegistered && this.isAccountUserName)
-      || (this.isLogin && this.isAnonimRegistered && this.isAccountUserName)
-      || (this.isLogin && this.isRegistered && this.isAnonimRegistered && this.isAccountUserName);
-
-    this.isAliasAccountVisible = (this.isLogin && this.isAnonimRegistered && !this.isAccountUserName) ||
-      (this.isLogin && this.isRegistered && !this.isAccountUserName) ||
-      (this.isLogin && this.isRegistered && this.isAnonimRegistered && !this.isAccountUserName);
-
   }
 }
