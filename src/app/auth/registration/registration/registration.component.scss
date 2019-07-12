@@ -1,0 +1,70 @@
+//.row{
+//  padding-bottom: 10%;
+//  padding-top: 10%;
+//}
+
+.container-fluid {
+  margin-top: 10%;
+}
+.card {
+  border-radius: 3%!important;
+  overflow: hidden;
+  max-width: 450px;
+  min-width: 320px;
+  width: 400px;
+}
+.card-header {
+  background-color: #0275d8;
+  color: #FFFFFF;
+}
+.cross-validation-error input {
+  border-left: 5px solid red;
+}
+button {
+  margin: 0% 0%;
+  font-size: large;
+}
+button.register {
+  margin: 4% 0% 4% 0%;
+  min-width: 150px;
+  font-size: large;
+}
+.links a, .links button {
+  display: flex;
+  font-size: large;
+}
+.form-check-inline {
+  margin-left: 5%;
+}
+.go-back {
+  margin-left: 5%;
+}
+
+.success {
+  text-align: center;
+  .title {
+    color: green;
+    text-transform: uppercase;
+  }
+  .links {
+    font-size: xx-large;
+  }
+  a, button {
+    font-size: x-large;
+  }
+}
+
+@media(max-width: 595.98px) {
+  .container-fluid {
+    margin-top: 15%;
+  }
+  .success{
+    .title {
+      font-size: x-large;
+    }
+    a, button {
+      font-size: large;
+    }
+  }
+}
+

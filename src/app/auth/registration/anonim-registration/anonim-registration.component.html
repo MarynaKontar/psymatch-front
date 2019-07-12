@@ -1,0 +1,77 @@
+<!----------MODAL--------->
+<button class="btn btn-primary" id="openModalAnonimRegistration" data-backdrop="static" #openModalAnonimRegistration data-toggle="modal" [hidden]="true" data-target="#anonimRegistration">Ввести имя, пол и возраст</button>
+
+<div class="modal fade" id="anonimRegistration" role="dialog" aria-labelledby="anonimRegistrationModalLabel">
+  <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="anonimRegistrationModalLabel">Для более качественной обработки результатов тестирования, введите свое имя, возраст и пол </h5>
+      </div>
+      <div class="modal-body">
+        <!--https://angular.io/guide/form-validation#adding-to-template-driven-forms-->
+        <form class="form" #registrationForm="ngForm">
+
+          <!--NAME-->
+          <div class="form-group">
+            <!--<label for="name">Name</label>-->
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+              </div>
+              <input [(ngModel)]="registeredUser.name" id="name" name="name" type="text"
+                     class="form-control rounded-0" required autofocus placeholder="имя" #name="ngModel">
+            </div>
+          </div>
+
+          <!--AGE-->
+          <div class="form-group">
+            <!--<label for="age">Возраст</label>-->
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-age">age</i> </span>
+              </div>
+              <input [(ngModel)]="registeredUser.age" name="age" id="age" type="number"
+                     class="form-control" #age="ngModel" required placeholder="возраст">
+            </div>
+          </div>
+
+          <!--GENDER-->
+          <div class="form-group">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-venus-mars"></i> </span>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [(ngModel)]="registeredUser.gender" required
+                         #gender="ngModel" name="gender" id="male" value="MALE" checked="checked">
+                  <label class="form-check-label" for="male">
+                    Мужской
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [(ngModel)]="registeredUser.gender" required
+                         name="gender" id="female" value="FEMALE">
+                  <label class="form-check-label" for="female">
+                    Женский
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--NAME ALREADY EXISTS-->
+          <h5 [hidden]="!isRegistrationError" class="alert alert-danger">Такие имя уже существуют</h5>
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+          <!--<button class="btn btn-default float-left" (click)="close()" data-dismiss="modal" aria-hidden="true">Close</button>-->
+
+          <!--BUTTON REGISTER-->
+          <button (click)="saveAnonim()" type="submit"
+                  [disabled]="name.invalid || age.invalid || gender.invalid"
+                  class="btn btn-primary float-right">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
