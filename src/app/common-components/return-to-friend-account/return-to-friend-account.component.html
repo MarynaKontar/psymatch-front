@@ -1,29 +1,33 @@
 <div *ngIf="ifUserForMatchingToken" class="d-flex justify-content-end">
-  <button *ngIf="isRegistered" class="btn btn-link return-to-friend-account" (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
-  <button *ngIf="!isRegistered" type="button" class="btn btn-link return-to-friend-account" data-toggle="modal" data-target="#returnToFriendAccount">
-    Зарегестрироваться и вернуться к профилю друга
-  </button>
-
+  <button *ngIf="isRegistered; else register" class="btn btn-link return-to-friend-account"
+          (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
+  <ng-template #register>
+    <button type="button" class="btn btn-link return-to-friend-account"
+            data-toggle="modal"
+            data-target="#confirmModal">
+      Зарегестрироваться и вернуться к профилю друга
+    </button>
+  </ng-template>
 </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="returnToFriendAccount" tabindex="-1" aria-labelledby="returnToFriendAccountTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" data-dismiss="modal">
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" role="dialog" aria-labelledby="confirmModalLabel">
+  <div class="modal-dialog confirm modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirmModalLabel">{{APP_NAME}}</h3>
+      </div>
       <div class="modal-body">
-        Если вы не зарегистрированы, то ваши данные будут потеряны и вы не сможете их восстановить!!!
-      </div><!--end modal-body -->
-      <div class="modal-footer">
-        <div class="row">
-          <div class="col col-sm-6 order-sm-last d-flex justify-content-center align-items-center">
-            <a class="register" routerLink="/register">ЗАРЕГИСТРИРОВАТЬСЯ</a>
-          </div>
-          <div class="col col-sm-6 order-sm-first d-flex justify-content-center align-items-center">
-            <button class="btn btn-link" (click)="returnToFriendAccount()">Вернуться к профилю друга </button>
-          </div>
+        <div class="message text-justify">
+          Перед возвращением на аккаунт друга, вам лучше зарегистрироваться. В этом случае вы будете иметь возможность доступа к своим данным с любого устройства.
         </div>
-      </div><!--end modal-footer -->
-    </div><!--end modal-content -->
-  </div><!--end modal-dialog-->
-</div><!--end Modal -->
+        <a><i class="fa fa-close" data-dismiss="modal" hidden="hidden" #closeBtn></i></a>
+        <p class="text-center">
+          <!--<a class="register" routerLink="/register">ЗАРЕГИСТРИРОВАТЬСЯ</a>-->
+          <button (click)="register()" type="button" class="btn btn-link register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+          <button (click)="returnToFriendAccount()" type="button" class="btn btn-link">Потерять данные и вернуться к профилю друга</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

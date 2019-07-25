@@ -1,92 +1,76 @@
 
-<!--Navigation-->
+<!--NAVIGATION-->
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top" role="navigation">
-  <!--You can change background color of navbar by adding style="background-color: #e3f2fd;" and deleting bg-dark: <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #e3f2fd;" >-->
 
-      <!--Collapse button-->
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#dropdownMenu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!--Collapse button-->
+    <!--COLLAPSED BUTTON-->
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+            data-target="#dropdownMenu" aria-controls="menu" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--COLLAPSED BUTTON-->
 
-      <!--Brand-->
-      <a class="navbar-brand" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{APP_NAME}}</a>
-      <!--Brand-->
+    <!--BRAND-->
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">{{APP_NAME}}</a>
+    <!--BRAND-->
 
-    <!--Collapsed navbar-->
-    <div class="collapse navbar-collapse" id="dropdownMenu">
-      <!--Left navbar-->
-      <div class="nav navbar-nav mr-auto">
-        <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" routerLink="/user-test" id="navbarDropdownMenuLink" role="button"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active" >
-            Тест
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/vc-test-instruction" routerLinkActive="active">Личностная совместимость</a>
-            <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Ролевая совместимость</a>
-            <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Любовная совместимость</a>
-            <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Сексуальная совместимость</a>
-          </div>
+  <!--COLLAPSED NAVBAR-->
+  <div class="collapse navbar-collapse" id="dropdownMenu">
+    <!--LEFT NAVBAR-->
+    <div class="nav navbar-nav mr-auto">
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" routerLink="/user-test" id="navbarDropdownMenuLink" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLinkActive="active">
+          Тест
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/vc-test-instruction" routerLinkActive="active">Личностная совместимость</a>
+          <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Ролевая совместимость</a>
+          <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Любовная совместимость</a>
+          <a class="dropdown-item" routerLink="/error" routerLinkActive="active">Сексуальная совместимость</a>
         </div>
-        <a class="nav-item nav-link" routerLink="/value-profile" routerLinkActive="active">Ценностный профиль</a>
-        <a class="nav-item nav-link" routerLink="/match-home" routerLinkActive="active">Сравнить профили</a>
-        <!--<a class="nav-item nav-link" routerLink="/match">Сравнение</a>-->
       </div>
-      <!--Left navbar-->
-
-      <!--Right navbar-->
-      <div class="nav navbar-nav mr-2">
-
-        <a class="nav-item nav-link my-2 my-lg-0" routerLink="/psychological-compatibility-info" routerLinkActive="active">Психологическая совместимость</a>
-        <a class="nav-item nav-link my-2 my-lg-0" routerLink="/about-project" routerLinkActive="active">О проекте</a>
-        <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="/card">Авторы</a>-->
-        <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="tokens">Send an invitation to friends</a>-->
-        <!--<a class="nav-item nav-link my-2 my-lg-0" routerLink="/vc-test-instruction">Инструкция</a>-->
-        <!--<a *ngIf="!isLogin" class="nav-item nav-link my-2 my-lg-0" routerLink="/login" [hidden]="isLogin">Login</a>-->
-        <button *ngIf="!isLogin; else logout" class="nav-item nav-link btn btn-link my-2 my-lg-0" id="openModalLogin"
-                #openModalLogin data-toggle="modal" data-target="#loginModal">Login</button>
-        <ng-template #logout>
-          <button *ngIf="isLogin" class="nav-item nav-link btn btn-link my-2 my-lg-0"
-                  data-toggle="modal" data-target="#modalLogout">Выйти</button>
-        </ng-template>
-
-        <a *ngIf="!isRegistered" class="nav-item nav-link my-2 my-lg-0" routerLink="register" routerLinkActive="active">Register</a>
-
-
-
-        <!--ACCOUNT-->
-        <!--<a *ngIf="isAccountVisible; else accountAlias" class="nav-item nav-link my-2 my-lg-0"-->
-           <!--routerLink="/account" routerLinkActive="active">{{account.user.name}}</a>-->
-        <!--<ng-template #accountAlias>-->
-          <!--<a class="nav-item nav-link my-2 my-lg-0"-->
-             <!--routerLink="/account" routerLinkActive="active">Account</a>-->
-        <!--</ng-template>-->
-
-
-
-        <ng-container *ngIf="isAccountVisible; else accountAlias">
-          <a class="nav-item nav-link my-2 my-lg-0"
-             routerLink="/account" routerLinkActive="active">{{account.user.name}}</a>
-        </ng-container>
-        <ng-template #accountAlias>
-          <ng-container *ngIf="isAliasAccountVisible; else noAccount">
-            <a class="nav-item nav-link my-2 my-lg-0"
-               routerLink="/account" routerLinkActive="active">Account</a>
-          </ng-container>
-        </ng-template>
-        <ng-template #noAccount>
-          <!--<a class="nav-item nav-link my-2 my-lg-0"-->
-             <!--routerLink=""></a>-->
-        </ng-template>
-
-
-
-
-
-      </div>
-      <!--Right navbar-->
+      <a class="nav-item nav-link" routerLink="/value-profile" routerLinkActive="active">Ценностный профиль</a>
+      <a class="nav-item nav-link" routerLink="/match-home" routerLinkActive="active">Сравнить профили</a>
+      <!--<a class="nav-item nav-link" routerLink="/match">Сравнение</a>-->
     </div>
-    <!--Collapsed navbar-->
-</nav>
-<!--Navigation-->
+    <!--LEFT NAVBAR-->
+
+    <!--RIGHT NAVBAR-->
+    <div class="nav navbar-nav mr-2">
+
+      <a class="nav-item nav-link my-2 my-lg-0" routerLink="/psychological-compatibility-info"
+         routerLinkActive="active">Психологическая совместимость</a>
+      <a class="nav-item nav-link my-2 my-lg-0" routerLink="/about-project" routerLinkActive="active">О проекте</a>
+
+
+      <!--LOGIN/LOGOUT REGISTER-->
+      <button *ngIf="!isLogin; else logout" class="nav-item nav-link btn btn-link my-2 my-lg-0" id="openModalLogin"
+              #openModalLogin data-toggle="modal" data-target="#loginModal">Login</button>
+      <ng-template #logout>
+        <button *ngIf="isLogin" class="nav-item nav-link btn btn-link my-2 my-lg-0"
+                data-toggle="modal" data-target="#modalLogout">Выйти</button>
+      </ng-template>
+
+      <a *ngIf="!isRegistered" class="nav-item nav-link my-2 my-lg-0" routerLink="register"
+         routerLinkActive="active">Register</a>
+
+
+      <!--ACCOUNT-->
+      <ng-container *ngIf="isAccountVisible; else accountAlias">
+        <a class="nav-item nav-link my-2 my-lg-0"
+           routerLink="/account" routerLinkActive="active">{{account.user.name}}</a>
+      </ng-container>
+      <ng-template #accountAlias>
+        <ng-container *ngIf="isAliasAccountVisible; else noAccount">
+          <a class="nav-item nav-link my-2 my-lg-0"
+             routerLink="/account" routerLinkActive="active">Account</a>
+        </ng-container>
+      </ng-template>
+      <ng-template #noAccount></ng-template>
+
+
+    </div><!--RIGHT NAVBAR-->
+  </div><!--COLLAPSED NAVBAR-->
+</nav><!--NAVIGATION-->

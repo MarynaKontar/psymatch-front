@@ -38,12 +38,11 @@ export class AuthorCardsComponent implements OnInit {
   prosckura_yuriy_link_name_test_constructor = `${PROSCKURA_YURIY_LINK_NAME_TEST_CONSTRUCTOR}`;
   prosckura_yuriy_link_test_constructor = `${PROSCKURA_YURIY_LINK_TEST_CONSTRUCTOR}`;
 
-
-
   prosckura_yuriy_life = `${PROSCKURA_YURIY_LIFE}`;
   prosckura_yuriy_why_in_project = `${PROSCKURA_YURIY_WHY_IN_PROJECT}`;
   prosckura_yuriy_email = `${PROSCKURA_YURIY_EMAIL}`;
   prosckura_yuriy_fb = `${PROSCKURA_YURIY_FB}`;
+
 
   prosckura_vitaliy_name = `${PROSCKURA_VITALIY_NAME}`;
   prosckura_vitaliy_role = `${PROSCKURA_VITALIY_ROLE}`;
@@ -54,6 +53,7 @@ export class AuthorCardsComponent implements OnInit {
   prosckura_vitaliy_fb = `${PROSCKURA_VITALIY_FB}`;
   prosckura_vitaliy_github = `${PROSCKURA_VITALIY_GITHUB}`;
 
+
   kontar_maryna_name = `${KONTAR_MARYNA_NAME}`;
   kontar_maryna_role = `${KONTAR_MARYNA_ROLE}`;
   kontar_maryna_boast = `${KONTAR_MARYNA_BOAST}`;
@@ -62,6 +62,7 @@ export class AuthorCardsComponent implements OnInit {
   kontar_maryna_email = `${KONTAR_MARYNA_EMAIL}`;
   kontar_maryna_fb = `${KONTAR_MARYNA_FB}`;
   kontar_maryna_github = `${KONTAR_MARYNA_GITHUB}`;
+
 
   vasylenko_svetlana_name = `${VASYLENKO_SVETLANA_NAME}`;
   vasylenko_svetlana_role = `${VASYLENKO_SVETLANA_ROLE}`;

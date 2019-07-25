@@ -15,6 +15,7 @@ import {ComponentName} from '../../../common-components/services/component-name'
 export class AnonimRegistrationComponent implements OnInit {
 
   @ViewChild('openModalAnonimRegistration') openModal: ElementRef; // in html <button id="openModalAnonimRegistration" ...>
+  @ViewChild('closeBtn') closeBtn: ElementRef;
   registeredUser = new User();
   user1 = new User();
   isAnonimRegistered = false;
@@ -31,32 +32,36 @@ export class AnonimRegistrationComponent implements OnInit {
               private log: LogService) { }
 
   ngOnInit() {
-    this.log.log(ComponentName.ANONIM_REGISTRATION, `ngOnInit`);
-    this.isVisible =
-      // this.loginService.isValueCompatibilityTestPassed() ||
-                    (this.loginService.isValueCompatibilityTestPassed() &&
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` ngOnInit`);
+    this.isVisible = (this.loginService.isValueCompatibilityTestPassed() &&
                     !this.registrationService.isAnonimRegistered());
-    this.log.log(ComponentName.ANONIM_REGISTRATION, `ngOnInit: isVisible: ${this.isVisible}`);
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` ngOnInit: isVisible: ${this.isVisible}`);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.log.log(ComponentName.ANONIM_REGISTRATION, `ngOnInit: returnUrl: ${this.returnUrl}`);
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` ngOnInit: returnUrl: ${this.returnUrl}`);
     if (this.isVisible) {
       this.openModal.nativeElement.click(); // @ViewChild
     } else { this.router.navigateByUrl(this.returnUrl); }
   }
 
   saveAnonim() {
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` saveAnonim()`);
     this.saveAnonimPromise().then(() => { this.afterSaveAnonimActions(); });
   }
 
   setAnonimRegistered() {
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` setAnonimRegistered()`);
     this.registrationService.setIsAnonimRegistered(this.registeredUser);
   }
 
   private afterSaveAnonimActions() {
-    location.reload();
+    return new Promise((resolver) => {
+      this.log.log(ComponentName.ANONIM_REGISTRATION, ` afterSaveAnonimActions(): reload`);
+      location.reload();
+    });
   }
 
   private saveAnonimPromise(): Promise<any> {
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` saveAnonimPromise()`);
     return new Promise((resolver) => {
       this.retrieveDataResolver = resolver;
       this.saveAnonimServer();
@@ -64,9 +69,11 @@ export class AnonimRegistrationComponent implements OnInit {
   }
 
   private saveAnonimServer() {
+    this.log.log(ComponentName.ANONIM_REGISTRATION, ` saveAnonimServer()`);
     this.registrationService.anonimRegistration(<User> this.registeredUser)
       .subscribe(data => {
-          this.log.log(ComponentName.ANONIM_REGISTRATION, `saveAnonimServer: ${data}`);
+          this.log.log(ComponentName.ANONIM_REGISTRATION, ` saveAnonimServer(): ${data}`);
+          this.closeBtn.nativeElement.click();
           this.registeredUser = data;
           this.setAnonimRegistered();
           this.userAccount = this.userAccountService.getUserAccount();
@@ -77,12 +84,10 @@ export class AnonimRegistrationComponent implements OnInit {
           this.userAccount.user = this.user1;
           this.userAccountService.setUserAccount(this.userAccount);
           this.isAnonimRegistered = this.registrationService.isAnonimRegistered();
-          // this.router.navigate(['value-profile']);
-          this.log.log(ComponentName.ANONIM_REGISTRATION, `saveAnonimServer: navigate to: ${this.returnUrl}`);
-          this.router.navigateByUrl(this.returnUrl);
           this.retrieveDataResolver();
         },
         error => {
+          this.log.log(ComponentName.ANONIM_REGISTRATION, ` saveAnonimServer(): error: ${error}`);
           this.isRegistrationError = true;
         });
   }

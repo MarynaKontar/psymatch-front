@@ -1,0 +1,40 @@
+// Extra small devices (less than 576px)
+.psychological-compatibility-info {
+  padding: 5% 2%;
+  //background-color: whitesmoke;
+}
+.block {
+  margin: 3% 2% 2% 2%;
+}
+.head {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 2% 0;
+  text-align: center;
+}
+.epigraph {
+  text-align: end;
+}
+.signature {
+  font-weight: bold;
+}
+.header {
+  font-size: larger;
+  font-weight: bold;
+  margin: 1%;
+}
+.description, .footer {
+  text-align: justify;
+  font-size: larger;
+}
+ul {
+  text-align: start;
+  font-size: larger;
+}
+
+// Small, medium, large, extra large devices (576px and up)
+@media (min-width: 576px) {
+  .psychological-compatibility-info {
+    padding: 0% 10%;
+  }
+}

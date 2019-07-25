@@ -19,7 +19,7 @@
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
               </div>
               <input [(ngModel)]="registeredUser.name" id="name" name="name" type="text"
-                     class="form-control rounded-0" required autofocus placeholder="имя" #name="ngModel">
+                     class="form-control rounded-0" required placeholder="имя" #name="ngModel" autofocus="autofocus">
             </div>
           </div>
 
@@ -69,6 +69,7 @@
           <button (click)="saveAnonim()" type="submit"
                   [disabled]="name.invalid || age.invalid || gender.invalid"
                   class="btn btn-primary float-right">Register</button>
+          <a><i class="fa fa-close" data-dismiss="modal" hidden="hidden" #closeBtn></i></a>
         </form>
       </div>
     </div>

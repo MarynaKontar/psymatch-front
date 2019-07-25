@@ -27,6 +27,7 @@ import {LogService} from '../../common-components/services/log.service';
    ]
 })
 export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrationGuarded implements OnInit {
+  ifUserForMatchingToken;
   userForMatching: User;
   isValueCompatibilityTestPassed: boolean;
   usersForMatching: User[] = [];
@@ -114,7 +115,7 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
 
   ngOnInit() {
     console.log('MVCC-GET-USER-FOR-MATCHING');
-
+    this.ifUserForMatchingToken = this.userAccountService.isUserForMatchingToken();
     if (this.loginService.isLogin() &&
       this.loginService.isValueCompatibilityTestPassed()) {
       this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();

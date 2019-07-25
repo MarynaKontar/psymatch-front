@@ -1,7 +1,7 @@
+// Extra small devices (portrait phones, less than 576px)
 .dropdown-menu {
   background-color: rgba(41, 43, 44, 0.5);
 }
-
 .dropdown-item {
   background-color: rgba(41, 43, 44, 0.5);
   color: rgb(247, 247, 247);
@@ -10,16 +10,17 @@
   background-color: rgba(41, 43, 44, 0.7);
   color: rgb(247, 247, 247);
 }
-//navbar and dropdown open on big displays (>544px)
-// by hoovering (not clicking)
-@media (min-width: 544px) {
+button {
+  display: flex;
+}
+
+// Small, medium, large, extra large devices (landscape phones, tablets, desktops, large desktops, 576px and up)
+//navbar and dropdown open on big displays (>576px) by hoovering (not clicking)
+@media (min-width: 576px) {
   .dropdown:hover .dropdown-menu {
     display: block;
   }
   .navbar:hover .collapse {
     display: block;
   }
-}
-button {
-  display: flex;
 }

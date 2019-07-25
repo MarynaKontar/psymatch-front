@@ -1,72 +1,89 @@
+@import "../../../assets/color.scss";
+
+// Extra small devices (portrait phones, less than 576px
 .container-fluid {
-  margin: 5%;
+  margin-bottom: 10%;
 }
 textarea{
-  padding: 4%;
-  border-color: cadetblue;
+  padding: 2%;
+  min-width: 300px;
+  font-size: medium;
   border-radius: 10px;
-  border-width: 2px;
-  min-width: 530px;
-  min-height: 350px;
+  border: 2px $copy-invite-friend-button-color;
+  min-height: 360px;
   //width: fit-content;
   //height: fit-content;
-  font-size: larger;
   text-align: justify;
 }
-@media (max-width: 575.98px) {
-  textarea{
-    min-width: 320px;
-    font-size: large;
-  }
-  .modal-content, .modal-dialog {
-    min-width: 400px;
-  }
-  .modal-body, .links {
-    padding-right: 1%;
-    padding-left: 1%;
-  }
-  .links.header {
-    font-size: medium;
-  }
-}
-@media (max-width: 399.98px) {
-  textarea{
-    padding: 2%;
-    min-width: 230px;
-    font-size: medium;
-  }
-  .modal-content, .modal-dialog {
-    min-width: 300px;
-  }
-}
 .links.header{
-  font-size: x-large;
-  margin: 2%;
+  font-size: large;
+  margin-top: 5%;
+  margin-bottom: 5%;
   text-align: center;
   font-weight: bold;
   color: #444444;
 }
-.row {
-  margin-top: 4%;
+.row.textarea {
+  margin-bottom: 8%;
 }
 button {
-  margin: 2%;
+  margin: 10%;
   width: 80px;
   height: 80px;
   border-radius: 25%;
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  background-color: cadetblue;
-  //background-color: teal;
+  background-color: $copy-invite-friend-button-color;
 }
-//button.close {
-//  box-shadow: none;
-//}
-
 .container-fluid.online-advertising {
   margin: 2% 0.5%;
 }
 .error {
   font-size: x-large;
   text-align: center;
+}
+
+// Extra Small devices (portrait phones, 400px and up)
+@media (min-width: 400px) {
+  textarea{
+    min-width: 380px;
+    font-size: large;
+  }
+  .links.header {
+    font-size: x-large;
+  }
+  .row.textarea {
+    margin-bottom: 5%;
+  }
+  button {
+    margin: 6%;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  textarea {
+    padding: 4%;
+    min-width: 470px;
+    min-height: 360px;
+    font-size: larger;
+  }
+  .links.header {
+    font-size: xx-large;
+  }
+}
+
+// Medium, large, devices (tablets, desktops, 768px and up)
+@media (min-width: 768px) {
+  textarea {
+    min-width: 530px;
+    min-height: 300px;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  textarea {
+    min-height: 350px;
+  }
 }

@@ -1,30 +1,16 @@
-a {
-  text-decoration: none;
-  outline: none;
+@import "../test-button.scss";
+
+// Extra small devices (portrait phones, less than 576px)
+.test-friend {
+  font-size: large!important;
   display: inline-block;
-  padding: 15px 30px;
   margin: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0 0 40px 40px #3b51b5 inset, 0 0 0 0 #3b51b5;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: white;
-  transition: .15s ease-in-out;
+  box-shadow: 0 0 40px 40px $background-button-color inset, 0 0 0 0 $background-button-color !important;
 }
-a:hover {
-  box-shadow: 0 0 10px 0 #3b51b5 inset, 0 0 10px 4px #3b51b5;
-  color: #3b51b5;
-}
-
-@media(max-width: 575.98px)  {
-  a {
-    font-size: medium;
+// Small, medium, large, extra large devices (576px and up)
+@media(min-width: 576px)  {
+.test-friend {
     padding: 15px 15px;
-  }
-}
-@media(max-width: 319.98px)  {
-  a {
-    font-size: small;
   }
 }

@@ -1,38 +1,20 @@
-.btn.return-to-friend-account {
-  text-decoration: none;
-  outline: none;
-  //display: inline-block;
-  text-align: center;
-  width: 400px;
+@import "../test-button.scss";
+
+// Extra small devices (portrait phones, less than 576px)
+button.return-to-friend-account {
+  display: inline-block;
+  width: 280px;
   height: 150px;
-  padding: 25px 30px;
-  margin: 10px 20px;
+  padding: 5px 10px;
+  margin: 0;
   border-radius: 10px;
-  border-color: #3b51b5;
-  box-shadow: 10px 10px 80px 80px #3b51b5 inset;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  font-size: x-large;
-  letter-spacing: 2px;
-  white-space: normal;
-  color: white;
-  cursor: pointer;
-  transition: .15s ease-in-out;
+  border-color: $background-button-color;
 }
-.modal-body {
-  text-align: center;
-  font-size: x-large;
-  font-weight: bold;
-}
-.register {
-  font-weight: bold;
-  font-size: large;
-}
-@media(max-width: 575.98px)  {
-  .btn.return-to-friend-account {
-    width: 280px;
-    padding: 5px 10px;
-    margin: 0px 0px;
-    font-size: large;
+
+// Small, medium, large, extra large devices (landscape phones, tablets, desktops, large desktops 576px and up)
+@media (min-width: 576px) {
+  button.return-to-friend-account {
+    width: 400px;
+    margin: 0px 20px 30px 20px;
   }
 }

@@ -1,0 +1,60 @@
+<div class="container-fluid psychological-compatibility-info">
+
+  <!--First block -->
+  <div class="block">
+    <div class="head">{{about_header}}</div>
+    <blockquote class="text-right">
+      <div class="epigraph">{{about_epigraph1}}</div>
+      <div class="epigraph">{{about_epigraph2}}</div>
+      <div class="epigraph">{{about_epigraph3}}</div>
+      <div class="epigraph signature"><cite title="{{about_epigraph_signature}}">{{about_epigraph_signature}}</cite></div>
+    </blockquote>
+    <div class="psychological-incompatibility header">{{psychological_incompatibility_header}}</div>
+    <div class="psychological-incompatibility description">{{psychological_incompatibility_description}}</div>
+  </div>
+
+  <!-- Second block -->
+  <div class="block">
+    <div class="psychological-compatibility header">{{psychological_compatibility_header}}</div>
+    <div class="psychological-compatibility description">{{psychological_compatibility_description}}</div>
+    <ul>
+      <li>{{psychological_compatibility_list1}}</li>
+      <li>{{psychological_compatibility_list2}}</li>
+      <li>{{psychological_compatibility_list3}}</li>
+      <li>{{psychological_compatibility_list4}}</li>
+    </ul>
+    <div class="psychological-compatibility footer">{{psychological_compatibility_footer}}</div>
+  </div>
+
+  <!-- Third block -->
+  <div class="block">
+    <div class="psychological-compatibility header">{{psychological_compatibility_can_be_measured_header}}</div>
+    <div class="psychological-compatibility description">{{psychological_compatibility_can_be_measured_description}}</div>
+    <ul>
+      <!-- Route to tests description (modal window)-->
+      <!--  Modal #modalValueCompatibilityTest,#modalRoleCompatibilityTest, ... are in test-info-cards.component.html. And we can see they here by id (#) -->
+      <li><a href="#modalValueCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalValueCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list11}}</a>
+        {{psychological_compatibility_can_be_measured_list12}}
+      </li>
+      <li><a href="#modalRoleCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalRoleCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list21}}</a>
+        {{psychological_compatibility_can_be_measured_list22}}
+      </li>
+      <li><a href="#modalLoveCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalLoveCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list31}}</a>
+        {{psychological_compatibility_can_be_measured_list32}}
+      </li>
+      <li><a href="#modalSexualCompatibilityTest" routerLinkActive="active" data-toggle="modal" data-target="#modalSexualCompatibilityTest">
+        {{psychological_compatibility_can_be_measured_list41}}</a>
+        {{psychological_compatibility_can_be_measured_list42}}
+      </li>
+      <!-- Route directly to tests-->
+      <!--<li><a routerLink="/vc-test-instruction" routerLinkActive="active">{{psychological_compatibility_can_be_measured_list11}}</a>{{psychological_compatibility_can_be_measured_list12}}</li>-->
+      <!--<li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list21}}</a>{{psychological_compatibility_can_be_measured_list22}}</li>-->
+      <!--<li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list31}}</a>{{psychological_compatibility_can_be_measured_list32}}</li>-->
+      <!--<li><a routerLink="/error">{{psychological_compatibility_can_be_measured_list41}}</a>{{psychological_compatibility_can_be_measured_list42}}</li>-->
+    </ul>
+    <div class="psychological-compatibility footer">{{psychological_compatibility_can_be_measured_footer}}</div>
+  </div>
+</div>

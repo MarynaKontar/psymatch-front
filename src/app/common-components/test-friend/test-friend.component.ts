@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from '../../auth/authentication/login.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DeactivationLoginRegistrationGuarded} from '../../guard/can-deactivate.guard';
@@ -6,6 +6,7 @@ import {UserAccountService} from '../../profile/user-account.service';
 import {RegistrationService} from '../../auth/registration/registration.service';
 import {LogService} from '../services/log.service';
 import {ComponentName} from '../services/component-name';
+import {APP_NAME} from '../../utils/config';
 
 @Component({
   selector: 'app-test-friend',
@@ -13,7 +14,12 @@ import {ComponentName} from '../services/component-name';
   styleUrls: ['./test-friend.component.scss']
 })
 export class TestFriendComponent  extends DeactivationLoginRegistrationGuarded implements OnInit {
-
+  @ViewChild('openModalConfirm') modalConfirm: ElementRef;
+  @ViewChild('closeBtn') closeModalConfirm: ElementRef;
+  readonly APP_NAME = `${APP_NAME}`;
+  isDeactivate: Promise<boolean>;
+  private retrieveDataResolver;
+  private token;
   constructor(userAccountService: UserAccountService,
     loginService: LoginService,
     registrationService: RegistrationService,
@@ -23,23 +29,67 @@ export class TestFriendComponent  extends DeactivationLoginRegistrationGuarded i
     super(loginService, registrationService, userAccountService, router, activatedRoute, log);
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
   testAnotherUser() {
-    if ( super.canDeactivate() ) {
-      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): super.canDeactivate=TRUE`);
-      const token = this.loginService.getToken();
-      if (token) {
-        this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): TOKEN=TRUE`);
-        this.loginService.logout();
-        this.userAccountService.setUserForMatchingToken(token);
-        this.router.navigate(['vc-test-instruction']);
-      } else {
-        this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): TOKEN=FALSE`);
-        this.router.navigate(['vc-test-instruction']);
-      }
+    if (this.registrationService.isRegistered()) {
+      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): canDeactivate=TRUE`);
+      this.goToTestAnotherUser();
     } else {
-      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): super.canDeactivate=FALSE`);
+      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): canDeactivate=FALSE`);
+      this.modalConfirm.nativeElement.click();
     }
   }
+
+  goToTestAnotherUser () {
+    this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser`);
+    this.token = this.loginService.getToken();
+    this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
+    if (this.token) {
+      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
+      this.loginService.logout();
+      this.userAccountService.setUserForMatchingToken(this.token);
+      this.router.navigate(['vc-test-instruction']);
+    } else {
+      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN=FALSE`);
+      this.router.navigate(['vc-test-instruction']);
+    }
+  }
+  register() {
+    this.closeModalConfirm.nativeElement.click();
+    this.router.navigate(['register']);
+  }
+  // testAnotherUser() {
+  //   // this.getPromise().then(() => { this.afterPromiseActions(); });
+  //   this.isDeactivate = this.canDeactivate();
+  //   this.isDeactivate.then(() => {
+  //     if (this.isCanDeactivate) {
+  //       this.goToTestAnotherUser();
+  //     } else {
+  //       // this.retrieveDataResolver();
+  //       this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): super.canDeactivate=FALSE`);
+  //     }
+  //   });
+  // }
+  //
+  // private getPromise(): Promise<any> {
+  //   return new Promise((resolver) => {
+  //     this.retrieveDataResolver = resolver;
+  //     this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): getPromise: `);
+  //     this.isDeactivate = this.canDeactivate();
+  //     this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): getPromise: ${this.isDeactivate}`);
+  //     this.token = this.loginService.getToken();
+  //     this.retrieveDataResolver();
+  //   });
+  // }
+  //
+  // private afterPromiseActions() {
+  //   if ( this.isDeactivate ) {
+  //     // this.retrieveDataResolver();
+  //     this.goToTestAnotherUser();
+  //   } else {
+  //     // this.retrieveDataResolver();
+  //     this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): super.canDeactivate=FALSE`);
+  //   }
+  // }
 }

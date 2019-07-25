@@ -1,14 +1,13 @@
-
 <div class="container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="col-12 col-lg-10">
       <div class="container-fluid test-friend d-flex justify-content-center align-items-center">
         <div class="row">
           <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
-            <button routerLink="/tokens" class="d-flex align-items-center">Выслать другу приглашение протестироваться</button>
+            <button routerLink="/tokens" class="test-friend d-flex align-items-center">Выслать другу приглашение протестироваться</button>
           </div>
           <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
-            <button (click)="testAnotherUser()" class="d-flex align-items-center">Протестировать друга/подругу на этом же устройстве</button>
+            <button (click)="testAnotherUser()" class="test-friend d-flex align-items-center">Протестировать друга/подругу на этом же устройстве</button>
           </div>
         </div><!-- end row -->
       </div>
@@ -23,4 +22,27 @@
 </div><!-- end container-fluid -->
 
 
-<!--<app-sending-tokens></app-sending-tokens>-->
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" id="openModalConfirm" #openModalConfirm
+        data-toggle="modal" data-target="#confirmModal" [hidden]="true">Open Modal</button>
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" role="dialog" aria-labelledby="confirmModalLabel">
+  <div class="modal-dialog confirm modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="confirmModalLabel">{{APP_NAME}}</h3>
+      </div>
+      <div class="modal-body">
+        <div class="message text-justify">
+          Для того, чтобы протестировать друга, вам лучше зарегистрироваться. В этом случае вы будете иметь возможность доступа к своим данным с любого устройства.
+        </div>
+        <a><i class="fa fa-close" data-dismiss="modal" hidden="hidden" #closeBtn></i></a>
+        <p class="text-center">
+          <!--<a class="register" routerLink="/register">ЗАРЕГИСТРИРОВАТЬСЯ</a>-->
+          <button (click)="register()" type="button" class="btn btn-link register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+          <button (click)="goToTestAnotherUser()" type="button" class="btn btn-link">Не регистрироваться и перейти к тестированию друга</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

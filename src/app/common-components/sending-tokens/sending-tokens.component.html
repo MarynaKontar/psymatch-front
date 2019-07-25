@@ -1,6 +1,4 @@
-
-<!----------NOT MODAL--------->
-<div class="container-fluid links">
+<div class="container-fluid">
   <div class="row d-flex">
     <ng-template #noTokens>
       <div class="col-12 col-lg-10">
@@ -10,13 +8,17 @@
       </div>
     </ng-template>
     <div *ngIf="tokens!=null; else noTokens" class="col-12 col-lg-10">
-      <div class="links header">{{ tokensHeader }}</div>
-      <div class="row d-flex justify-content-center" *ngFor="let link of links; let i = index">
+      <div class="row d-flex justify-content-center">
+        <div class="col-12 col-xl-8 col-lg-9 col-md-10">
+          <div class="links header">{{ tokensHeader }}</div>
+        </div>
+      </div>
+      <div class="row textarea d-flex justify-content-center" *ngFor="let link of links; let i = index">
         <div class="col-12 col-xl-7 col-lg-7 col-md-7 d-flex justify-content-center align-items-center">
           <textarea [id]="link" class="tooltip-test" [title]="tooltip">{{ tokensInvite }} {{link}}</textarea>
         </div>
         <div class="col-12 col-xl-1 col-lg-2 col-md-3 d-flex justify-content-center align-items-center">
-          <button (click)="copyElementText(link)"><i class="fa fa-copy"></i></button>
+          <button (click)="copyElementText(link)" [title]="tooltip_copy"><i class="fa fa-copy"></i></button>
         </div>
       </div><!-- end row -->
     </div>
@@ -28,40 +30,3 @@
     </div>
   </div><!-- end row -->
 </div><!-- end container-fluid -->
-
-
-
-
-
-
-
-<!--<button class="btn btn-primary" id="openModalSendTokens" data-toggle="modal" #openModalSendTokens [hidden]="true" data-target="#sendTokens">Пригласите друга</button>-->
-
-<!----------MODAL--------->
-<!--<div class="modal fade bd-example-modal-lg" id="sendTokens" [hidden]="!isTokenLinkVisible" tabindex="-1" role="dialog" aria-labelledby="sendTokensModalLabel" aria-hidden="true">-->
-  <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
-    <!--<div class="modal-content">-->
-      <!--<div class="modal-header">-->
-        <!--<div class="modal-title links header" id="sendTokensModalLabel">{{ tokensHeader }}</div>-->
-        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-          <!--<span aria-hidden="true">&times;</span>-->
-        <!--</button>-->
-      <!--</div>-->
-      <!--<div class="modal-body">-->
-        <!--<div class="container-fluid links" *ngFor="let link of links; let i = index">-->
-            <!--<div class="row d-flex justify-content-center align-items-center">-->
-              <!--<div class="col-12 col-sm-11 d-flex justify-content-center align-self-center">-->
-                <!--<textarea [id]="link">{{ tokensInvite }} {{link}}</textarea>-->
-              <!--</div>-->
-              <!--<div class="col-12 col-sm-1 d-flex justify-content-center align-self-center">-->
-                <!--<button (click)="copyElementText(link)"><i class="fa fa-copy"></i></button>-->
-              <!--</div>-->
-            <!--</div> &lt;!&ndash; end row &ndash;&gt;-->
-          <!--</div>&lt;!&ndash; end container-fluid links &ndash;&gt;-->
-        <!--</div>&lt;!&ndash; end modal-body &ndash;&gt;-->
-        <!--<div class="modal-footer">-->
-          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-        <!--</div>-->
-      <!--</div>&lt;!&ndash; end modal-content &ndash;&gt;-->
-    <!--</div>&lt;!&ndash; end modal-dialog &ndash;&gt;-->
-  <!--</div>&lt;!&ndash; end modal &ndash;&gt;-->

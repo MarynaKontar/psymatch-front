@@ -48,6 +48,7 @@
                   id="name_modal"
                   placeholder="name or email"
                   formControlName="email"
+                  autofocus="autofocus"
                 >
               </div>
               <div
@@ -70,6 +71,7 @@
                   id="password_modal"
                   placeholder="password"
                   formControlName="password"
+                  (keyup.enter)="login()"
                 >
               </div>
               <div

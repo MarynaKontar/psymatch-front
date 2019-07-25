@@ -7,7 +7,7 @@
     <!--</div>-->
 
     <!--<div class="area header">{{ tests.goal[0].area.areaName }}</div>-->
-    <div class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
+    <div *ngIf="isNotPassed" class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.goal; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
@@ -32,7 +32,7 @@
     </div>
     <div class="row buttons justify-content-center" [hidden]="isNotPassed">
       <div class="area answer before">Вы прошли субтест «Жизненные приоритеты». Сохраните данные и пройдите cубтесты "Состояния" и "Личностные качества"</div>
-      <div class="btn-group-vertical">
+      <div class="btn-group-vertical" role="group">
         <button (click)="saveGoals()" type="button" class="btn btn-success">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
         <button (click)="resetGoals()" type="button" class="btn btn-light btn-sm">Пройти тест снова</button>
       </div>
@@ -49,7 +49,7 @@
   <!--                                     STATES                                      -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isStatesDone || !isGoalsDone">
     <!--<div class="area header">{{ tests.state[0].area.areaName }}</div>-->
-    <div class="area question">{{ tests.state[0].area.areaQuestion }}</div>
+    <div *ngIf="isNotPassed" class="area question">{{ tests.state[0].area.areaQuestion }}</div>
     <div class="card-deck justify-content-center align-items-center" *ngFor="let test of tests.state; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
@@ -113,7 +113,8 @@
         </div>
       </label>
     </div>
-    <div class="row buttons justify-content-center">
+    <div class="row buttons justify-content-center" [hidden]="isNotPassed">
+      <div class="area answer before">Вы прошли субтест «Личностные качества». Сохраните данные.</div>
       <div class="btn-group-vertical">
         <button (click)="saveQualities()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ</button>
         <button (click)="resetQualities()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>

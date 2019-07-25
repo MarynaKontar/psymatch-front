@@ -24,7 +24,7 @@
             <div class="col-sm-12 col-lg-12">
               <div class="match head main">ОТЧЁТ ПО СОВМЕСТИМОСТИ</div>
 
-              <app-return-to-friend-account></app-return-to-friend-account>
+              <app-return-to-friend-account *ngIf="ifUserForMatchingToken"></app-return-to-friend-account>
 
                 <!--Value compatibility report-->
                   <!--Value Compatibility Matches-->

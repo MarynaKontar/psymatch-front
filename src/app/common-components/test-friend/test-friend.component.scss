@@ -1,4 +1,6 @@
+@import "../test-button.scss";
 
+// Extra small devices (portrait phones, less than 320px)
 .container-fluid.online-advertising {
   margin: 2% 0.5%;
 }
@@ -6,48 +8,46 @@
   height: 60vh;
   margin: 5% 0.5%;
 }
-button {
-  text-decoration: none;
-  outline: none;
+
+button.test-friend {
   display: inline-block;
-  text-align: center;
-  width: 500px;
-  height: 200px;
-  padding: 25px 30px;
+  width: 250px;
+  min-height: 200px;
   margin: 10px 20px;
   border-radius: 10px;
-  border-color: #3b51b5;
-  box-shadow: 10px 10px 80px 80px #3b51b5 inset;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  font-size: xx-large;
-  letter-spacing: 2px;
-  color: white;
-  cursor: pointer;
-  transition: .15s ease-in-out;
+  font-size: larger!important;
 }
-button:hover {
-  box-shadow: 0 0 10px 0 #3b51b5 inset, 0 0 10px 4px #3b51b5;
-  color: #3b51b5;
+button.test-friend:hover {
+  box-shadow: 0 0 10px 0 $background-button-color inset, 0 0 10px 4px $background-button-color;
+  color: $background-button-color;
   background-color: #FFFFFF;
 }
 
-@media(max-width: 1199.98px)  {
-  button {
-    font-size: x-large;
-    padding: 15px 15px;
-  }
-}
-@media(max-width: 575.98px)  {
-  button {
-    font-size: large;
+// Extra small devices (portrait phones, 320px and up)
+@media (min-width: 320px) {
+  button.test-friend {
     padding: 15px 15px;
     width: 300px;
   }
 }
-@media(max-width: 319.98px)  {
-  button {
-    font-size: medium;
-    width: 250px;
+
+// Small, medium, large  devices (landscape phones, tablets, desktops 576px and up)
+@media (min-width: 576px) {
+  button.test-friend {
+    font-size: x-large!important;
+  }
+}
+
+//// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) { ... }
+//
+//// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+//
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  button.test-friend {
+    width: 500px;
+    font-size: xx-large!important;
   }
 }

@@ -1,6 +1,37 @@
+.modal-content, .card {
+  max-width: 400px;
+  min-width: 320px;
+  width: 400px;
+  border-radius: 3%!important;
+  overflow: hidden;
+}
+.modal-header, .card-header {
+  background-color: #0275d8;
+  color: #FFFFFF;
+  margin-bottom: 5%;
+}
+form {
+  max-width: 370px;
+}
+button {
+  //margin: 0% 0%;
+  font-size: large;
+}
+button.register, button.login {
+  margin: 4% 0% 4% 0%;
+  min-width: 130px;
+  font-size: large;
+}
+.form-check-inline {
+  margin-left: 5%;
+}
 .ng-invalid.ng-touched:not(form)  {
   border-left: 5px solid #a94442; /* red */
 }
 .has-error span {
   color: #a94442;
 }
+.cross-validation-error input {
+  border-left: 5px solid red;
+}
+

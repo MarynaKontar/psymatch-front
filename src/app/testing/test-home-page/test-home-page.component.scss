@@ -1,19 +1,17 @@
+// Extra small and small devices (portrait, landscape phones, less than 768px)
 .tests-list{
-  //width: 100vw;
-  height: 100vh; // 100vh - полная (100%) высота экрана
-  margin-top: 2%;
+   // 100vh - полная (100%) высота экрана
+  height: 180%;
+  //background-repeat: repeat-y;
   background-image: url("../../../assets/images/tests_list_background_image.jpg");
-  background-repeat: no-repeat;
   background-size: cover;
 }
-@media(max-width:1199.98px) {
-  .tests-list {
-    margin-top: 3%;
-  }
-}
-@media(max-width:991.98px) {
-  .tests-list {
-    margin-top: 2%;
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .tests-list{
+    height: 94vh;
+    background-repeat: no-repeat;
   }
 }
 

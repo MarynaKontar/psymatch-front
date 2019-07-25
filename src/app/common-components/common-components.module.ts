@@ -12,18 +12,39 @@ import { TestFriendButtonComponent } from './test-friend-button/test-friend-butt
 import { TestFriendComponent } from './test-friend/test-friend.component';
 import { ReturnToFriendAccountComponent } from './return-to-friend-account/return-to-friend-account.component';
 import {LogService} from './services/log.service';
+import { WhyDeterminePsychologicalCompatibilityComponent } from './why-determine-psychological-compatibility/why-determine-psychological-compatibility.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
   ],
-  exports: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
-    SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent,
-    TestNotPassedComponent, TestFriendButtonComponent, TestFriendComponent, ReturnToFriendAccountComponent],
-  declarations: [TestInfoCardsComponent, ErrorPageComponent, PassTestButtonComponent,
-    SendingTokensComponent, HomeHeaderComponent, OnlineAdvertisingComponent,
-    TestNotPassedComponent, TestFriendButtonComponent, TestFriendComponent, ReturnToFriendAccountComponent],
+  exports: [
+    TestInfoCardsComponent,
+    ErrorPageComponent,
+    PassTestButtonComponent,
+    SendingTokensComponent,
+    HomeHeaderComponent,
+    OnlineAdvertisingComponent,
+    TestNotPassedComponent,
+    TestFriendButtonComponent,
+    TestFriendComponent,
+    ReturnToFriendAccountComponent,
+    WhyDeterminePsychologicalCompatibilityComponent
+  ],
+  declarations: [
+    TestInfoCardsComponent,
+    ErrorPageComponent,
+    PassTestButtonComponent,
+    SendingTokensComponent,
+    HomeHeaderComponent,
+    OnlineAdvertisingComponent,
+    TestNotPassedComponent,
+    TestFriendButtonComponent,
+    TestFriendComponent,
+    ReturnToFriendAccountComponent,
+    WhyDeterminePsychologicalCompatibilityComponent
+  ],
   providers: [LogService]
 })
 export class CommonComponentsModule { }

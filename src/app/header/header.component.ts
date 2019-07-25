@@ -1,10 +1,11 @@
-import {Component, DoCheck, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegistrationService} from '../auth/registration/registration.service';
 import {LoginService} from '../auth/authentication/login.service';
 import {UserAccount} from '../profile/user';
 import {UserAccountService} from '../profile/user-account.service';
 import {LogService} from '../common-components/services/log.service';
 import {APP_NAME} from '../utils/config';
+import {ComponentName} from '../common-components/services/component-name';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   isValueCompatibilityTestPassed: boolean;
   account: UserAccount;
   isAccountUserName;
-  isAccountVisible; // 'userAccount.user.name'
+  isAccountVisible; // 'is userAccount.user.name'
   isAliasAccountVisible; // 'Account'
 
   constructor(private registrationService: RegistrationService,
@@ -30,16 +31,22 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.log.log(ComponentName.HEADER, ` ngOnInit`);
     this.isLogin = this.loginService.isLogin();
     this.isRegistered = this.registrationService.isRegistered();
-    this.isAccountUserName = this.userAccountService.isUserAccount()
-      && this.userAccountService.getUserAccount().user !== null
-      && this.userAccountService.getUserAccount().user.name !== null;
+    const isUserAccount = this.userAccountService.isUserAccount();
+    this.account = this.userAccountService.getUserAccount();
+    this.isAccountUserName = isUserAccount &&
+                             this.account.user !== null &&
+                             this.account.user.name !== null;
     this.isAnonimRegistered = this.registrationService.isAnonimRegistered();
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
-    if (this.isAccountUserName) {
-      this.account = this.userAccountService.getUserAccount();
-    }
+
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isLogin: ${this.isLogin}`);
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isRegistered: ${this.isRegistered}`);
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isAccountUserName: ${this.isAccountUserName}`);
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isAnonimRegistered: ${this.isAnonimRegistered}`);
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isValueCompatibilityTestPassed: ${this.isValueCompatibilityTestPassed}`);
 
     this.isAccountVisible = (this.isLogin && this.isRegistered && this.isAccountUserName)
       || (this.isLogin && this.isAnonimRegistered && this.isAccountUserName)
@@ -48,5 +55,8 @@ export class HeaderComponent implements OnInit {
     this.isAliasAccountVisible = (this.isLogin && this.isAnonimRegistered && !this.isAccountUserName) ||
       (this.isLogin && this.isRegistered && !this.isAccountUserName) ||
       (this.isLogin && this.isRegistered && this.isAnonimRegistered && !this.isAccountUserName);
+
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isAccountVisible: ${this.isAccountVisible}`);
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isAliasAccountVisible: ${this.isAliasAccountVisible}`);
   }
 }

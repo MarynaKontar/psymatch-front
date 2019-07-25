@@ -3,7 +3,6 @@ import {AuthenticationModule} from './authentication/authentication.module';
 import {RegistrationModule} from './registration/registration.module';
 import {LoginComponent} from './authentication/login/login.component';
 import {LogoutComponent} from './authentication/logout/logout.component';
-import {AnonimRegistrationComponent} from './registration/anonim-registration/anonim-registration.component';
 
 
 @NgModule({

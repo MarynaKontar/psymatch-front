@@ -12,9 +12,25 @@
 
 //add logServiceand enum for component names and add/replace console.log(...) to service.log(...)
 
+//NOT COMMITED collected all auth form scss in one file auth.scss; refactor author-cards, profile, auth, common-components and header scss files: arranged in order and adjusted to the size of all screens, collected button scss in ine file test-button.scss, collected all colosr scss in one file color.scss; add logService methods to auth module, profile module and common-components;
 
 // !!!!!!!!!!!!!!!--BACKEND--!!!!!!!!!!!!!!!!!!!
 // add UserAccount, UserAccoutService, UserAccounDto, UserAccountDtoConverter and change in /login controller method ResponseEntity from SimpleUserDto to UserAccountDto. Now can return after login not only user info, but what test is passed, invite tokens (write method UserAccount getUserAccount(User user));
 // change endpoint /addAgeAndGender to /anonimRegistration, where save/update not only age and gender, but name too; /registration endpoint return ResponseEntity<UserAccountDto> (before was ResponseEntity<SimpleUserDto>); addUserForMatching method (ValueCompatibilityAnswersServiceImpl): add userForMatching to both users;
 // change all @DbRef to manual references (https://docs.mongodb.com/manual/reference/database-references/); add UserAccountEntity to store to db;
 // NO COMMIT save userAccount when register
+
+
+// + profile, auth, author-cards, home-header, header, test-home-page, test-info-cards,
+// + psychological-compatibility-info, why-determine-psychological-compatibility,
+// + test-friend-button, pass-test-button, test-friend, test-not-passed
+// + return-to-friend-account, sending-tokens, error-page, online-advertising
+
+// REFACTOR:
+// interseptor
+// common-components
+
+
+//
+//
+// Small, medium, large, extra large devices (landscape phones, tablets, desktops, large desktops, 576px and up)

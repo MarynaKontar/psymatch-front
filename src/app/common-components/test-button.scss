@@ -1,0 +1,53 @@
+@import "../../assets/color.scss";
+a.pass-test,
+a.test-friend,
+button.return-to-friend-account,
+button.test-friend  {
+  text-decoration: none;
+  outline: none;
+  padding: 15px 30px;
+  //background-color: $background-button;
+  //box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.4);
+  //box-shadow: 0 0 40px 40px $background-button inset, 0 0 0 0 $background-button;
+  box-shadow: 10px 10px 80px 80px $background-button-color inset;
+  font-size: x-large;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  white-space: normal; // buttons label in several lines
+  cursor: pointer;
+  transition: .25s ease-in-out;
+
+}
+a.pass-test:hover,
+a.test-friend:hover,
+button.return-to-friend-account:hover,
+button.test-friend:hover {
+  box-shadow: 0 0 10px 0 $background-button-color inset, 0 0 10px 4px $background-button-color !important;
+  color: $background-button-color;
+  -webkit-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+.confirm {
+  .modal-content {
+    border-radius: 3% !important;
+    overflow: hidden;
+  }
+  .modal-header {
+    background-color: $confirm-modal-header-color;
+    color: #FFFFFF;
+  }
+  .message {
+    font-size: large;
+    margin: 4% 0%;
+  }
+  .btn-link {
+    margin-top: 3%;
+    white-space: normal; // buttons label in several lines
+  }
+  .register {
+    font-size: larger;
+  }
+}

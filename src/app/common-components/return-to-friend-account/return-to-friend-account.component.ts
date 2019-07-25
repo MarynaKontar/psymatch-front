@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {User} from '../../profile/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserAccountService} from '../../profile/user-account.service';
@@ -7,6 +7,7 @@ import {LoginService} from '../../auth/authentication/login.service';
 import {SendingTokensService} from '../sending-tokens/sending-tokens.service';
 import {ComponentName} from '../services/component-name';
 import {LogService} from '../services/log.service';
+import {APP_NAME} from '../../utils/config';
 
 @Component({
   selector: 'app-return-to-friend-account',
@@ -14,13 +15,13 @@ import {LogService} from '../services/log.service';
   styleUrls: ['./return-to-friend-account.component.scss']
 })
 export class ReturnToFriendAccountComponent implements OnInit {
-// RETURN TO FRIEND TOKEN
-  ifUserForMatchingToken;
+  isRegistered;
   retrieveDataResolver;
   isLoginError: boolean;
   returnUrl: string;
-
-  isRegistered;
+  ifUserForMatchingToken;
+  readonly APP_NAME = `${APP_NAME}`;
+  @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
@@ -41,10 +42,15 @@ export class ReturnToFriendAccountComponent implements OnInit {
 
 // RETURN TO FRIEND ACCOUNT
   returnToFriendAccount() {
-    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `method`);
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccount`);
     this.returnToFriendAccountPromise().then(() => { this.afterReturnToFriendAccountActions(); });
   }
 
+  register() {
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `register`);
+    this.closeBtn.nativeElement.click();
+    this.router.navigate(['register']);
+  }
   private returnToFriendAccountPromise(): Promise<any> {
     this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountPromise()`);
     return new Promise((resolve) => {
@@ -68,10 +74,8 @@ export class ReturnToFriendAccountComponent implements OnInit {
           this.retrieveDataResolver();
         },
         error => {
-          this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer() - error: ${error}`);
+          this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer() - error: ${JSON.stringify(error)}`);
           this.isLoginError = true;
-          // login failed so display error
-
         });
   }
 

@@ -5,9 +5,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from '../../authentication/login.service';
 import {UserAccountService} from '../../../profile/user-account.service';
 import {Location} from '@angular/common';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {PASSWORD_LENGTH} from '../../../common-components/common-constant';
+import {PASSWORD_LENGTH} from '../../auth-constant';
 import {APP_NAME} from '../../../utils/config';
+import {LogService} from '../../../common-components/services/log.service';
+import {ComponentName} from '../../../common-components/services/component-name';
 
 @Component({
   selector: 'app-registration',
@@ -16,10 +17,7 @@ import {APP_NAME} from '../../../utils/config';
 })
 export class RegistrationComponent implements OnInit {
   readonly APP_NAME = `${APP_NAME}`;
-  // @ViewChild('openModalRegistration') openModal: ElementRef; // in html <button id="openModalRegistration" ...>
-  // @ViewChild('registration') registration: ElementRef;
   @ViewChild('openModalLogin') openModalLogin: ElementRef; // in html <button id="loginModal" ...> in login component
-  registrationForm: FormGroup;
   registeredUser = new User();
   isNeedToBeRegistered = false;
   returnUrl: string;
@@ -32,13 +30,16 @@ export class RegistrationComponent implements OnInit {
               private route: ActivatedRoute,
               private loginService: LoginService,
               private userAccountService: UserAccountService,
-              private location: Location) { }
+              private location: Location,
+              private log: LogService) { }
 
   ngOnInit() {
+    this.log.log(ComponentName.REGISTRATION, ` ngOnInit`);
     this.isRegistered = !this.isNew();
+    this.log.log(ComponentName.REGISTRATION, ` ngOnInit: isRegistered: ${this.isRegistered}`);
     if (!this.isRegistered) {
-      // this.openModal.nativeElement.click(); // @ViewChild
       if (this.userAccountService.isUserAccount() && this.userAccountService.getUserAccount().user != null) {
+        this.log.log(ComponentName.REGISTRATION, ` ngOnInit: userAccount: ${this.userAccountService.getUserAccount()}`);
         let user = this.userAccountService.getUserAccount().user;
         if (user.name != null) { this.registeredUser.name = user.name; }
         if (user.email != null) { this.registeredUser.email = user.email; }
@@ -48,37 +49,31 @@ export class RegistrationComponent implements OnInit {
     }
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    console.log('returnUrl: ' + this.returnUrl);
+    this.log.log(ComponentName.REGISTRATION, ` ngOnInit: returnUrl: ${this.returnUrl}`);
   }
 
   registerUser() {
     // SYNCHRONOUS: doing a serial sequence of async tasks with PROMISE, using chaining "then" calls.
     // without Promise, all commands async, and there is can be "navigate" before retrieve data from server
-    console.log('registerUser(): ', this.registeredUser);
+    this.log.log(ComponentName.REGISTRATION, ` registerUser(): ${this.registeredUser}`);
     this.retrieveUserPromise().then(() => { this.afterSaveUserActions(); });
   }
 
   isNew(): boolean {
-    console.log('isNew: ' + !this.registrationService.isRegistered());
+    this.log.log(ComponentName.REGISTRATION, ` isNew(): ${!this.registrationService.isRegistered()}`);
     return !this.registrationService.isRegistered();
   }
 
   private afterSaveUserActions(): void {
-    // console.log('returnUrl: ' + this.returnUrl);
-    // if (this.loginService.isLogin()) {
-      location.reload(); // need to update account user name in header navigation
-    // this.router.navigate(['register']);
-    // this.router.navigateByUrl(this.returnUrl);
-    // } else { this.router.navigate(['login']); }
-
-    // !!! Вывести сообщение о регистрации и ссылки на пред. страницу
-
+    this.log.log(ComponentName.REGISTRATION, ` afterSaveUserActions()`);
+    location.reload(); // need to update account user name in header navigation
   }
   private saveUser(): void {
-    console.log('saveUser()');
+    this.log.log(ComponentName.REGISTRATION, ` saveUser()`);
     this.registrationService.registerNewUser(<User> this.registeredUser)
       .subscribe(data => {
         if (data.headers.get('AUTHORIZATION') != null) {
+          this.log.log(ComponentName.REGISTRATION, ` saveUser(): token: ${data.headers.get('AUTHORIZATION')}`);
           this.loginService.saveTokenToLocalStorage(data);
         }
         this.registrationService.setIsRegistered(data.body.user);
@@ -88,15 +83,15 @@ export class RegistrationComponent implements OnInit {
         this.isNeedToBeRegistered = this.isNew();
         this.loginService.setUserAccount(data.body);
         this.isRegistered = true;
-        // this.registration.nativeElement.open();
         this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
       },
         error => {
+          this.log.log(ComponentName.REGISTRATION, ` saveUser(): error: ${error}`);
           this.isRegistrationError = true;
         });
   }
   private retrieveUserPromise(): Promise<any> {
-    console.log('retrieveUserPromise()');
+    this.log.log(ComponentName.REGISTRATION, ` retrieveUserPromise()`);
     return new Promise((resolve) => {
       this.retrieveDataResolver = resolve;
       this.saveUser();
@@ -104,23 +99,15 @@ export class RegistrationComponent implements OnInit {
   }
 
   login() {
+    this.log.log(ComponentName.REGISTRATION, ` login()`);
     this.openModalLogin.nativeElement.click(); // @ViewChild
   }
   goBack() {
-    // window.location.reload(); // need to update account user name in header navigation
-    console.log(this.location.path);
-    console.log(this.location.path(false).toString());
+    this.log.log(ComponentName.REGISTRATION, ` goBack(): ${this.location.path.toString()}`);
     if (this.location.path.toString() === '/register') {
       this.location.go('/home');
     } else {
       this.location.back();
     }
   }
-  // close() {
-  //   this.registration.nativeElement.hide();
-  //   if (this.loginService.isLogin()) {
-  //     // location.reload(); // need to update account user name in header navigation
-  //     this.router.navigateByUrl(this.returnUrl);
-  //   } else { this.router.navigateByUrl('login'); }
-  // }
 }

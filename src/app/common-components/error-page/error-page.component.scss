@@ -1,6 +1,7 @@
+// Extra small devices (portrait phones, less than 576px)
 .test-in-development {
   text-align: center;
-  font-size: 60px;
+  font-size: 25px;
   font-weight: bold;
   margin: 20% 10% 10% 10%;
 }
@@ -16,5 +17,19 @@ button {
 @media(max-width:575.98px) {
   .test-in-development {
     font-size: 25px;
+  }
+}
+
+// Small, medium devices (landscape phones,tablets, 576px and up)
+@media (min-width: 576px) {
+  .test-in-development {
+    font-size: 40px;
+  }
+}
+
+// Large, extra large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .test-in-development {
+    font-size: 60px;
   }
 }

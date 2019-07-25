@@ -1,5 +1,5 @@
 .carousel {
-  margin-top: 1%;
+  //margin-top: 1%;
 }
 .carousel-inner {
   background: url(http://gramercyrow.com/wp-content/uploads/2018/01/Article-0218-bigstock-couple-hiking-holding-hands-222994444-800x250.jpg)
@@ -10,68 +10,17 @@
 }
 .carousel-caption {
   position: initial;
-  margin: 5% 10% 1% 10%;
-}
-.for-whom-our-site {
-  font-size: x-large;
-  font-weight: normal;
+  margin: 6% 9% 0% 9%;
 }
 .for-whom-our-site-header {
-  font-size: xx-large;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
 }
-
-@media(max-width:1199.98px) {
-  .carousel-caption {
-    margin: 10% 10% 1% 10%;
-  }
-  .for-whom-our-site {
-    font-size: x-large;
-  }
-  .small-font {
-    font-size: larger;
-  }
-  .for-whom-our-site-header {
-    font-size: x-large;
-    margin-bottom: 2%;
-  }
+.for-whom-our-site {
+  font-weight: normal;
 }
-@media(max-width:991.98px) {
-  .carousel-caption {
-    margin: 8% 10% 1% 10%;
-  }
-  .for-whom-our-site {
-    font-size: x-large;
-  }
-  .small-font {
-    font-size: larger;
-  }
-  .for-whom-our-site-header {
-    font-size: x-large;
-    margin-bottom: 2%;
-  }
-}
-@media(max-width:767.98px) {
-  .carousel-caption {
-    margin: 6% 9% 0% 9%;
-  }
-  .for-whom-our-site {
-    font-size: larger;
-  }
-  .small-font {
-    font-size: large;
-  }
-  .for-whom-our-site-header {
-    font-size: x-large;
-    margin-bottom: 3%;
-  }
-}
-
 .font-dark {
-  //color: #333333;
   color: darkslateblue;
 }
-
 .font-light {
   color: whitesmoke;
 }
@@ -86,3 +35,40 @@ a.nondecorated.link:hover,  /* при наведении */
 a.nondecorated.link {
   text-decoration: none;
 }
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .carousel-caption {
+    margin: 8% 10% 1% 10%;
+  }
+  .for-whom-our-site {
+    font-size: x-large;
+  }
+  .small-font {
+    font-size: larger;
+  }
+  .for-whom-our-site-header {
+    margin-bottom: 2%;
+    font-size: x-large;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .carousel-caption {
+    margin: 10% 10% 1% 10%;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .carousel-caption {
+    margin: 5% 10% 1% 10%;
+  }
+  .for-whom-our-site-header {
+    font-size: xx-large;
+  }
+}
+
+

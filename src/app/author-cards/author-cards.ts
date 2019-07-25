@@ -27,7 +27,7 @@ export const PROSCKURA_YURIY_EMAIL = `uprosckura@gmail.com`;
 export const PROSCKURA_YURIY_FB = `https://www.facebook.com/urprost`;
 
 export const PROSCKURA_VITALIY_NAME = `Виталий Проскура`;
-export const PROSCKURA_VITALIY_ROLE = ``;
+export const PROSCKURA_VITALIY_ROLE = `Coaвтор программного кода приложения.`;
 export const PROSCKURA_VITALIY_BOAST = ``;
 export const PROSCKURA_VITALIY_LIFE = ``;
 export const PROSCKURA_VITALIY_WHY_IN_PROJECT = ``;

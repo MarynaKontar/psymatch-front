@@ -25,6 +25,8 @@ import {
 
 } from './test-info-cards';
 import {LoginService} from '../../auth/authentication/login.service';
+import {LogService} from '../services/log.service';
+import {ComponentName} from '../services/component-name';
 
 @Component({
   selector: 'app-test-info-cards',
@@ -71,9 +73,11 @@ export class TestInfoCardsComponent implements OnInit {
   sexualCompatibilityTestPassed = `${TEST_IS_PASSED}`;
   sexualCompatibilityTestIsNotPassed = `${TEST_ISNT_PASSED}`;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private log: LogService) { }
 
   ngOnInit() {
+    this.log.log(ComponentName.TEST_INFO_CARDS, ` ngOnInit`);
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
   }
 

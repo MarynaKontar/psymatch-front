@@ -8,9 +8,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./error-page.component.scss']
 })
 export class ErrorPageComponent implements OnInit {
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private location: Location) { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
   }

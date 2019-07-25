@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { httpInterceptorProviders } from './http-interceptors/interceptors';
 import { AboutProjectComponent } from './about-project/about-project.component';
-import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { AuthorCardsComponent } from './author-cards/author-cards.component';
 import { CommonComponentsModule } from './common-components/common-components.module';
 import { PsychologicalCompatibilityInfoComponent } from './psychological-compatibility-info/psychological-compatibility-info.component';
@@ -27,7 +26,6 @@ import { AuthModule } from './auth/auth.module';
     FooterComponent,
     HomeComponent,
     AboutProjectComponent,
-    HowItWorksComponent,
     AuthorCardsComponent,
     PsychologicalCompatibilityInfoComponent,
   ],

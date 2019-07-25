@@ -1,69 +1,35 @@
-//.row{
-//  padding-bottom: 10%;
-//  padding-top: 10%;
-//}
-
+@import "../../auth";
+// Extra small devices (portrait phones, less than 576px)
 .container-fluid {
-  margin-top: 10%;
+  margin-top: 15%;
 }
-.card {
-  border-radius: 3%!important;
-  overflow: hidden;
-  max-width: 450px;
-  min-width: 320px;
-  width: 400px;
-}
-.card-header {
-  background-color: #0275d8;
-  color: #FFFFFF;
-}
-.cross-validation-error input {
-  border-left: 5px solid red;
-}
-button {
-  margin: 0% 0%;
-  font-size: large;
-}
-button.register {
-  margin: 4% 0% 4% 0%;
-  min-width: 150px;
-  font-size: large;
-}
-.links a, .links button {
-  display: flex;
-  font-size: large;
-}
-.form-check-inline {
-  margin-left: 5%;
+.success{
+  text-align: center;
+  .title {
+    font-size: x-large;
+    color: green;
+  }
+  .links a, .links button {
+    display: flex;
+    font-size: x-large;
+  }
 }
 .go-back {
   margin-left: 5%;
 }
 
-.success {
-  text-align: center;
-  .title {
-    color: green;
-    text-transform: uppercase;
-  }
-  .links {
-    font-size: xx-large;
-  }
-  a, button {
-    font-size: x-large;
-  }
-}
-
-@media(max-width: 595.98px) {
+// Small devices (landscape phones, 576px and up)
+@media(min-width: 576px) {
   .container-fluid {
-    margin-top: 15%;
+    margin-top: 10%;
   }
-  .success{
+  .success {
     .title {
-      font-size: x-large;
+      font-size: xx-large;
+      text-transform: uppercase;
     }
-    a, button {
-      font-size: large;
+    .links a, .links button {
+      font-size: xx-large;
     }
   }
 }

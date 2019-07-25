@@ -3,9 +3,11 @@ import {Gender, User, UserAccount} from '../user';
 import {UserAccountService} from '../user-account.service';
 import {LoginService} from '../../auth/authentication/login.service';
 import {RegistrationService} from '../../auth/registration/registration.service';
-import {PASSWORD_LENGTH} from '../../common-components/common-constant';
+import {PASSWORD_LENGTH} from '../../auth/auth-constant';
 import {FormControl} from '@angular/forms';
 import {APP_NAME} from '../../utils/config';
+import {LogService} from '../../common-components/services/log.service';
+import {ComponentName} from '../../common-components/services/component-name';
 
 @Component({
   selector: 'app-user-account',
@@ -13,6 +15,7 @@ import {APP_NAME} from '../../utils/config';
   styleUrls: ['./user-account.component.scss']
 })
 export class UserAccountComponent implements OnInit {
+  isLogin;
   retrieveDataResolver;
   userAccount: UserAccount;
   userAvatarLink: string;
@@ -30,13 +33,13 @@ export class UserAccountComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private userAccountService: UserAccountService,
-              private registrationService: RegistrationService) { }
+              private registrationService: RegistrationService,
+              private log: LogService) { }
 
   ngOnInit() {
-    console.log('isUpdateError: ', this.isUpdateError);
-    // this.openTokensPage = false;
-    // if (this.loginService.isLogin() && this.registrationService.isRegistered()) {
-    if (this.loginService.isLogin()) {
+    this.isLogin = this.loginService.isLogin();
+    this.log.log(ComponentName.USER_ACCOUNT, ` ngOnInit: isLogin: ${this.isLogin}`);
+    if (this.isLogin) {
       this.userAccount = this.userAccountService.getUserAccount();
       this.oldUser = {name: this.userAccount.user.name,
                       email: this.userAccount.user.email,
@@ -51,13 +54,14 @@ export class UserAccountComponent implements OnInit {
         this.checkedMale = 'checked';
       }
     }
+    this.log.log(ComponentName.USER_ACCOUNT, ` ngOnInit: end`);
   }
 
   update() {
+    this.log.log(ComponentName.USER_ACCOUNT, ` update()`);
     // check if data was changed. If not, enter message
-    console.log('oldUser: ', this.oldUser);
-    console.log('newUser: ', this.userAccount.user);
     if (this.checkIfDataEquals()) {
+      this.log.log(ComponentName.USER_ACCOUNT, ` update(): data is equal`);
       this.confirmMessage = 'Вы не внесли никаких изменений.';
       this.confirmChanges.nativeElement.click();
     } else {
@@ -66,8 +70,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   changePassword(password: FormControl, newPassword: FormControl) {
-    console.log('oldPassword:', password.value);
-    console.log('newPassword:', newPassword.value);
+    this.log.log(ComponentName.USER_ACCOUNT, ` changePassword: oldPassword-newPassword: ${password.value} - ${newPassword.value}`);
     this.registrationService.changePassword(password.value, newPassword.value)
       .subscribe(
         () => {
@@ -83,6 +86,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   private updatePromise(): Promise<any> {
+    this.log.log(ComponentName.USER_ACCOUNT, ` updatePromise()`);
     return new Promise((resolve) => {
       this.retrieveDataResolver = resolve;
       this.updateServer();
@@ -90,6 +94,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   private updateServer(): void {
+    this.log.log(ComponentName.USER_ACCOUNT, ` updateServer(): userAccount: ${this.userAccount}`);
     this.userAccountService.update(this.userAccount)
       .subscribe(userAccount => {
           this.userAccount = userAccount;
@@ -99,12 +104,15 @@ export class UserAccountComponent implements OnInit {
           this.retrieveDataResolver();
         },
         error => {
+          this.log.log(ComponentName.USER_ACCOUNT, ` updateServer(): error: ${error}`);
           this.isUpdateError = true;
         });
   }
 
   private afterUpdateActions(): void {
+    this.log.log(ComponentName.USER_ACCOUNT, ` afterUpdateActions()`);
     if (this.accountName !== this.newAccountName) {
+      this.log.log(ComponentName.USER_ACCOUNT, ` account name is changed => reload`);
       location.reload();
     } else {
       this.confirmChanges.nativeElement.click();
@@ -112,8 +120,8 @@ export class UserAccountComponent implements OnInit {
   }
 
   private checkIfDataEquals(): boolean {
-    console.log('user: ', this.userAccount.user);
-    console.log('oldUser: ', this.oldUser);
+    this.log.log(ComponentName.USER_ACCOUNT, ` checkIfDataEquals(): user: ${this.userAccount.user}`);
+    this.log.log(ComponentName.USER_ACCOUNT, ` checkIfDataEquals(): oldUser: ${this.oldUser}`);
     return this.userAccount.user.name === this.oldUser.name &&
       this.userAccount.user.email === this.oldUser.email &&
       this.userAccount.user.age === this.oldUser.age &&

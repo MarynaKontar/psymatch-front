@@ -6,7 +6,7 @@ import {HttpResponse} from '@angular/common/http';
 import {SendingTokensService} from '../../../common-components/sending-tokens/sending-tokens.service';
 import {ComponentName} from '../../../common-components/services/component-name';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {PASSWORD_LENGTH} from '../../../common-components/common-constant';
+import {PASSWORD_LENGTH} from '../../auth-constant';
 import {LogService} from '../../../common-components/services/log.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {APP_NAME} from '../../../utils/config';
@@ -63,15 +63,18 @@ export class LoginComponent implements OnInit {
 
     // если на страницу логирования перебрасывает с auth.guard
      if (this.returnUrl) {
+       this.log.log(ComponentName.LOGIN, ` login(): afterLoginActions(): navigateByUrl: ${this.returnUrl}`);
        this.router.navigateByUrl(this.returnUrl);
        // написать общий сервис для передачи user name из этого модуля в header.component
      } else {
        if (location.pathname === '/value-profile' ||
          location.pathname === '/match-home' ||
          location.pathname === '/match') {
+         this.log.log(ComponentName.LOGIN, ` login(): afterLoginActions(): location: ${location.pathname} => reload`);
          location.reload(); // в любом случае перезагрузить так как должны новые данные подгрузиться
        } else {
          // написать общий сервис для передачи user name из этого модуля в header.component
+         this.log.log(ComponentName.LOGIN, ` login(): afterLoginActions(): reload`);
          location.reload();
        }
      }
@@ -94,9 +97,8 @@ export class LoginComponent implements OnInit {
           this.retrieveDataResolver();
         },
         error => {
-        this.isLoginError = true;
-          // login failed so display error
-
+          this.log.log(ComponentName.LOGIN, ` login(): loginServer(): error: ${error}`);
+          this.isLoginError = true;
         });
   }
   private loginPromise(): Promise<any> {

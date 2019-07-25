@@ -92,7 +92,7 @@ const routes: Routes = [
   {
     path: 'match-home',
     component: MatchHomePageComponent,
-    canDeactivate: [CanDeactivateGuard]
+    // canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'match',
@@ -109,7 +109,7 @@ const routes: Routes = [
     path: 'test-friend',
     component: TestFriendComponent,
     canActivate: [AnonimRegistrationGuard],
-    canDeactivate: [CanDeactivateGuard]
+    // canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'error',
