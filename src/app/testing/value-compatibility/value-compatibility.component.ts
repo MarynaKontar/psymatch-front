@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
-import {animationTime, Scale, ScaleEnum, ValueCompatibilityAnswers} from './value-compatibility-answers';
+import {animationTime, AreaItem, Scale, ScaleEnum, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormBuilder} from '@angular/forms';
 import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -9,6 +9,9 @@ import {URL} from '../../utils/config';
 import {LoginService} from '../../auth/authentication/login.service';
 import {SendingTokensService} from '../../common-components/sending-tokens/sending-tokens.service';
 import {UserAccountService} from '../../profile/user-account.service';
+import {LogService} from '../../common-components/services/log.service';
+import {STATE_COLOR} from '../../../assets/colorStyle';
+import {ComponentName} from '../../common-components/services/component-name';
 
 
 @Component({
@@ -29,84 +32,87 @@ export class ValueCompatibilityComponent implements OnInit {
   isNotPassed = true;
   itemState = [];
   token: string;
-  @Output() links;
-  linkArray = [];
   uri = `${URL}`;
-  scaleColor = ['rgba(255,0,0, 1)', 'rgba(255,148,0, 1)', 'rgba(255,237,0, 1)',
-    'rgba(113,218,0, 1)', 'rgba(0,240,255,1)', 'rgba(108,88,255,1)'];
-
+  scaleColor = `${STATE_COLOR}`.split(' ');
+  private retrieveDataResolver;
   /** For setTimeout. Нужна пауза, чтобы успела пройти анимация 'active => unactive' (пауза должна быть такой же как в анимации "slide") */
   animationTime = animationTime;
-  userId: string;
-
-  // data: Observable<ValueCompatibilityAnswers>;
-  private retrieveDataResolver;
 
   constructor(private valueCompatibilityService: ValueCompatibilityService,
               private loginService: LoginService,
               private userAccountService: UserAccountService,
               private sendingTokensService: SendingTokensService,
               private formBuilder: FormBuilder,
-              private router: Router, private route: ActivatedRoute) {
+              private router: Router,
+              private route: ActivatedRoute,
+              private log: LogService) {
   }
 
+  initRoute() {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` initRoute()`);
+    // if a link comes with a token in the parameters, then pull out this token
+    // and insert it into the request header for the backend
+    // (pass in the saveGoalArray method), calling initRoute () in ngOnInit ()
 
-  public initRoute() {
-    //  если приходит ссылка с токеном в параметрах, то вытаскиваем этот токен и засовываем его в хедер запроса на бекенд
-    // (передаем в метод saveGoalArray), вызывая initRoute() в ngOnInit()
-
-    // Если кто-то прошел тест на своем компьютере, то на этом же компьютере может пройти тест кто-то другой по высланному токену
+    // If someone passed the test on his computer, then on the same computer,
+    // someone else can take the test using the token sent.
     // this.token = this.route.snapshot.queryParams.token;
     if (this.route.snapshot.queryParamMap.has('token')) {
+      this.route.queryParams.subscribe(params => {
+        this.token = params['token']; });
       this.loginService.logout();
       this.token = 'Bearer ' + this.route.snapshot.queryParamMap.get('token');
-      console.log(this.token);
+      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` initRoute(): has token as query param: ${this.token}`);
     } else {
-      if (localStorage.getItem('token')) {
-        this.token = localStorage.getItem('token');
+      let token = localStorage.getItem('token');
+      if (token) {
+        this.log.log(ComponentName.VALUE_COMPATIBILITY, ` initRoute(): hasn't token as query param, but has token in local storage: ${token}`);
+        this.token = token;
       }
     }
-    // if (this.route.snapshot.queryParamMap.has('token')) {
-    //   this.token = this.route.snapshot.queryParamMap.get('token');
-    //   console.log(this.token);
-    // } else { this.token = localStorage.getItem('token'); }
-    // this.route.queryParams.subscribe(params => {
-    //   this.token = params['token'];
-    //   console.log('this.route.queryParams.subscribe(params => {\n' +
-    //     'this.token = params[\'token\']: ' + this.token); });
   }
 
   ngOnInit() {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, `ngOnInit`);
     this.initRoute();
-
     this.isGoalsDone = localStorage.getItem('isGoalsDone') === 'true';
-    console.log('this.isGoalsDone ' + this.isGoalsDone );
     this.isStatesDone = localStorage.getItem('isStatesDone') === 'true';
-    console.log('this.isStatesDone ' + this.isStatesDone );
     this.isQualitiesDone = localStorage.getItem('isQualitiesDone') === 'true';
-    console.log('this.isQualitiesDone ' + this.isQualitiesDone );
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: isStatesDone: ${this.isStatesDone}`);
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: isGoalsDone: ${this.isGoalsDone}`);
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: isQualitiesDone: ${this.isQualitiesDone}`);
 
-    // this.tests = tests; // TODO можно не ходить на сервер
-    this.valueCompatibilityService.getTestList()
-      .subscribe(data => {
-          this.tests = data;
-          console.log(data);
+    // ============GET INITIAL TESTS =================
+    // you can not go to the server to get the initial tests
+    this.tests = tests;
+    this.shaffle(this.tests.goal);
+    this.shaffle(this.tests.state);
+    this.shaffle(this.tests.quality);
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: initial test: `, this.tests);
 
-        // this.tests.goal.forEach(goal => {
-        //     goal.firstScale.scaleColor = this.setScaleColor(goal.firstScale.scale);
-        //     goal.secondScale.scaleColor = this.setScaleColor(goal.secondScale.scale);
-        // });
-        // this.tests.quality.forEach(quality => {
-        //   quality.firstScale.scaleColor = this.setScaleColor(quality.firstScale.scale);
-        //   quality.secondScale.scaleColor = this.setScaleColor(quality.secondScale.scale);
-        // });
-        // this.tests.state.forEach(state => {
-        //   state.firstScale.scaleColor = this.setScaleColor(state.firstScale.scale);
-        //   state.secondScale.scaleColor = this.setScaleColor(state.secondScale.scale);
-        // });
-      }
-      );
+    // go to the server to get the initial tests
+    // this.valueCompatibilityService.getTestList()
+    //   .subscribe(data => {
+    //       this.tests = data;
+    //       this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: tests: ${data}`);
+    //
+    //     // Yura wanted to make colored headlines of cards
+    //     // this.tests.goal.forEach(goal => {
+    //     //     goal.firstScale.scaleColor = this.setScaleColor(goal.firstScale.scale);
+    //     //     goal.secondScale.scaleColor = this.setScaleColor(goal.secondScale.scale);
+    //     // });
+    //     // this.tests.quality.forEach(quality => {
+    //     //   quality.firstScale.scaleColor = this.setScaleColor(quality.firstScale.scale);
+    //     //   quality.secondScale.scaleColor = this.setScaleColor(quality.secondScale.scale);
+    //     // });
+    //     // this.tests.state.forEach(state => {
+    //     //   state.firstScale.scaleColor = this.setScaleColor(state.firstScale.scale);
+    //     //   state.secondScale.scaleColor = this.setScaleColor(state.secondScale.scale);
+    //     // });
+    //   }
+    //   );
 
+    // marks active and unactive card-deck for @slide animation
     for (let i = 0; i < 15; i++) {
       if (i === 0) {
         this.itemState[i] = 'active';
@@ -125,34 +131,43 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
   setGoal(i: number, scale: Scale) {
-    console.log('setGoal ' + i);
     this.itemState[i] = 'unactive';
+    // We can equate the object or the values. If object - than in reset methods we cann't equate to null,
+    // bacause value in first or second scale will be null too. But equate to null in reset methods isn't necessary.
     this.tests.goal[i].chosenScale = scale;
+    // this.tests.goal[i].chosenScale.scale = scale.scale;
+    // this.tests.goal[i].chosenScale.scaleHeader = scale.scaleHeader;
+    // this.tests.goal[i].chosenScale.scaleDescription = scale.scaleDescription;
     this.setTimeout(i);
   }
 
   setState(i: number, scale: Scale) {
     this.itemState[i] = 'unactive';
     this.tests.state[i].chosenScale = scale;
+    // this.tests.state[i].chosenScale.scale = scale.scale;
+    // this.tests.state[i].chosenScale.scaleHeader = scale.scaleHeader;
+    // this.tests.state[i].chosenScale.scaleDescription = scale.scaleDescription;
     this.setTimeout(i);
   }
 
   setQuality(i: number, scale: Scale) {
     this.itemState[i] = 'unactive';
     this.tests.quality[i].chosenScale = scale;
+    // this.tests.quality[i].chosenScale.scale = scale.scale;
+    // this.tests.quality[i].chosenScale.scaleHeader = scale.scaleHeader;
+    // this.tests.quality[i].chosenScale.scaleDescription = scale.scaleDescription;
     this.setTimeout(i);
   }
 
   private setTimeout(i: number) {
-    // нужна пауза, чтобы успела пройти анимация 'active => unactive' (пауза должна быть такой же как в анимации "slide")
+    // a pause is needed for the animation to go through 'active => unactive' (the pause should be the same as in the animation "slide")
     setTimeout(() => {
       this.ind = i + 1;
       this.itemState[i + 1] = 'active';
-      // Добавить проверку на Passed
+      // test if passed
       if (this.ind === 15) {
         this.isNotPassed = false;
       }
-      // this.router.navigate(['register']);
     }, this.animationTime);
   }
 
@@ -160,68 +175,56 @@ export class ValueCompatibilityComponent implements OnInit {
   saveGoals() {
     // SYNCHRONOUS: doing a serial sequence of async tasks with PROMISE, using chaining "then" calls.
     // without Promise, all commands async, and there is can be "navigate" before retrieve data from server
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, `saveGoals()`);
     this.retrieveGoalPromise().then(() => { this.afterSaveGoalActions(); });
   }
 
   resetGoals() {
-    this.valueCompatibilityService.getTestList()
-      .subscribe(data => {
-          console.log(data);
-          this.tests.goal = data.goal;
-        }
-      );
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` resetGoals()`);
+    // it is not necessary to equate to null. If you don't, then the new chosen scale will replace the old ones.
+    // This only works if in the setState (setGoal, setQuality) methods we don't equate the object, but the values.
+    // this.tests.goal.forEach(goal => {
+    //   goal.chosenScale.scale = null;
+    //   goal.chosenScale.scaleHeader = null;
+    //   goal.chosenScale.scaleDescription = null;
+    // });
     this.resetItemsAfterSaveAreaArrays();
-    // this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! STATE !!!!!!!!!!
   saveStates() {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStates()`);
     this.retrieveStatePromise().then(() => { this.afterSaveStateActions(); });
   }
 
   resetStates() {
-    this.valueCompatibilityService.getTestList()
-      .subscribe(data => {
-          console.log(data);
-          this.tests.state = data.state;
-        }
-      );
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` resetStates()`);
+    // this.tests.state.forEach(state => {
+    //   state.chosenScale.scale = null;
+    //   state.chosenScale.scaleHeader = null;
+    //   state.chosenScale.scaleDescription = null;
+    // });
     this.resetItemsAfterSaveAreaArrays();
-    // this.router.navigate(['value-compatibility-test']);
   }
 
 //        !!!!!!!!!!! QUALITIES !!!!!!!!!!
   saveQualities() {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveQualities()`);
     this.retrieveQualityPromise().then(() => { this.afterSaveQualityActions(); });
   }
 
   resetQualities() {
-    this.valueCompatibilityService.getTestList()
-      .subscribe(data => {
-          console.log(data);
-          this.tests.quality = data.quality;
-        }
-      );
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` resetQualities()`);
+    // this.tests.quality.forEach(quality => {
+    //   quality.chosenScale.scale = null;
+    //   quality.chosenScale.scaleHeader = null;
+    //   quality.chosenScale.scaleDescription = null;
+    // });
     this.resetItemsAfterSaveAreaArrays();
-    // this.router.navigate(['value-compatibility-test']);
-  }
-
-  isFirstTestItem(i): boolean {
-    if (i === 0) {
-      return true;
-    }
-    return false;
-  }
-
-  isLastTestItem(i): boolean {
-    if (i === 14) {
-      return true;
-    }
-    return false;
   }
 
   private setPossibilityToPassTestsAgain() {
-
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` setPossibilityToPassTestsAgain()`);
     if (this.isGoalsDone === true && this.isStatesDone === true && this.isQualitiesDone === true) {
       localStorage.setItem('isGoalsDone', 'false');
       localStorage.setItem('isStatesDone', 'false');
@@ -230,51 +233,42 @@ export class ValueCompatibilityComponent implements OnInit {
   }
 
  private afterTestActions() {
+   this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterTestActions()`);
     if (localStorage.getItem('friendsTokens') === null) {
+      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterTestActions(): createFriendsTokens()`);
       this.createFriendsTokens();
     }
-   // this.router.navigate(['value-profile']);
-   //  setTimeout(() => {
       if (this.userAccountService.isUserForMatchingToken()) {
+        this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterTestActions(): there is userForMatchingToken, so navigate to /match`);
         this.router.navigate(['match']);
-        // location.reload();
       } else {
+        this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterTestActions(): navigate to /value-profile`);
         this.router.navigate(['value-profile']);
-        // location.reload();
       }
-    //   },
-    // 200
-    //   );
   }
-
 
 
 //        !!!!!!!!!!!!!!!!!!!! SYNCHRONIZE RETRIEVING DATA FROM SERVER !!!!!!!!!!!!!!!!!!
+
 //        !!!!!!!!!!! GOAL !!!!!!!!!!
   private afterSaveGoalActions(): void {
-    console.log('2. DISPLAYING DATA');
-    console.log(this.tests.goal);
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterSaveGoalActions()`);
     this.resetItemsAfterSaveAreaArrays();
     this.setPossibilityToPassTestsAgain();
-    // location.reload();
-    // this.router.navigate(['value-compatibility-test']);
   }
   private saveGoalArray(): void {
-    // your async retrieval data logic goes here
-    console.log('1. GETTING DATA FROM SERVER');
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveGoalArray()`);
       this.valueCompatibilityService.saveGoalArray(this.tests, this.token).subscribe(httpResponse => {
           localStorage.setItem('token', httpResponse.headers.get('Authorization'));
           localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.passed === true ? 'true' : 'false');
           localStorage.setItem('isGoalsDone', 'true');
-          this.userId = httpResponse.body.userId;
           this.isGoalsDone = true;
-          console.log('token', httpResponse.headers.get('Authorization'));
-          console.log('token', this.userId);
           this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
         }
       );
   }
   private retrieveGoalPromise(): Promise<any> {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` retrieveGoalPromise()`);
     return new Promise((resolve) => {
       this.retrieveDataResolver = resolve;
       this.saveGoalArray();
@@ -283,14 +277,14 @@ export class ValueCompatibilityComponent implements OnInit {
 
 //        !!!!!!!!!!! STATE !!!!!!!!!!
   private afterSaveStateActions(): void {
-    console.log(this.tests.state);
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterSaveStateActions()`);
     this.resetItemsAfterSaveAreaArrays();
     this.setPossibilityToPassTestsAgain();
-    // this.router.navigate(['value-compatibility-test']);
   }
   private saveStateArray(): void {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray()`);
     this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data => {
-      console.log('saveState: ' + data);
+      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray(): ${data.state}`);
       localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
       localStorage.setItem('isStatesDone', 'true');
       this.isStatesDone = true;
@@ -299,6 +293,7 @@ export class ValueCompatibilityComponent implements OnInit {
     );
   }
   private retrieveStatePromise(): Promise<any> {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` retrieveStatePromise()`);
     return new Promise((resolve) => {
       this.retrieveDataResolver = resolve;
       this.saveStateArray();
@@ -307,14 +302,16 @@ export class ValueCompatibilityComponent implements OnInit {
 
 //        !!!!!!!!!!! QUALITIES !!!!!!!!!!
   private afterSaveQualityActions(): void {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` afterSaveQualityActions()`);
     console.log(this.tests.quality);
     this.resetItemsAfterSaveAreaArrays();
     this.setPossibilityToPassTestsAgain();
     this.afterTestActions();
   }
   private saveQualityArray(): void {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveQualityArray()`);
     this.valueCompatibilityService.saveQualityArray(this.tests).subscribe(data => {
-      console.log('saveQuality: ' + data);
+      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray(): ${data.quality}`);
       localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
       localStorage.setItem('isQualitiesDone', 'true');
       this.isQualitiesDone = true;
@@ -322,6 +319,7 @@ export class ValueCompatibilityComponent implements OnInit {
     });
   }
   private retrieveQualityPromise(): Promise<any> {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` retrieveQualityPromise()`);
     return new Promise((resolve) => {
       this.retrieveDataResolver = resolve;
       this.saveQualityArray();
@@ -333,33 +331,52 @@ export class ValueCompatibilityComponent implements OnInit {
     this.isNotPassed = true;
   }
 
-  public createFriendsTokens() {
+  private createFriendsTokens() {
     this.sendingTokensService.createFriendsTokens();
   }
 
+  // Yura wanted to make colored headlines of cards
   // private setScaleColor(scale: ScaleEnum): string {
   //   switch (scale) {
   //     case ScaleEnum.ONE: {
-  //       return this.scaleColor[0];
-  //     }
-  //     case ScaleEnum.TWO: {
-  //       return this.scaleColor[1];
-  //     }
-  //     case ScaleEnum.THREE: {
-  //       return this.scaleColor[2];
-  //     }
-  //     case ScaleEnum.FOUR: {
-  //       return this.scaleColor[3];
-  //     }
-  //     case ScaleEnum.FIVE: {
-  //       return this.scaleColor[4];
-  //     }
-  //     case ScaleEnum.SIX: {
   //       return this.scaleColor[5];
   //     }
-  //     default: {
+  //     case ScaleEnum.TWO: {
+  //       return this.scaleColor[4];
+  //     }
+  //     case ScaleEnum.THREE: {
+  //       return this.scaleColor[3];
+  //     }
+  //     case ScaleEnum.FOUR: {
+  //       return this.scaleColor[2];
+  //     }
+  //     case ScaleEnum.FIVE: {
+  //       return this.scaleColor[1];
+  //     }
+  //     case ScaleEnum.SIX: {
   //       return this.scaleColor[0];
+  //     }
+  //     default: {
+  //       return this.scaleColor[5];
   //     }
   //   }
   // }
+
+  // =============== SHAFFLE TEST ARRAYS ==========
+  private shaffle( array: AreaItem[] ) {
+    if (array.length <= 1) { return; }
+    for (let n = 0; n < array.length; n++) {
+      // choose a random not-yet-placed item to place there
+      // must be an item AFTER the current item, because the stuff
+      // before has all already been placed
+      const randomChoiceIndex = this.getRandom(n, array.length - 1);
+      // place our random choice in the spot by swapping
+      [array[n], array[randomChoiceIndex]] = [array[randomChoiceIndex], array[n]];
+    }
+  }
+
+  private getRandom(floor: number, ceiling: number) {
+    return Math.floor(Math.random() * (ceiling - floor + 1)) + floor;
+  }
+
 }

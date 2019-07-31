@@ -21,6 +21,7 @@ export class ReturnToFriendAccountComponent implements OnInit {
   returnUrl: string;
   ifUserForMatchingToken;
   readonly APP_NAME = `${APP_NAME}`;
+  @ViewChild('openModalConfirm') openModalConfirm: ElementRef;
   @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private loginService: LoginService,
@@ -50,6 +51,11 @@ export class ReturnToFriendAccountComponent implements OnInit {
     this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `register`);
     this.closeBtn.nativeElement.click();
     this.router.navigate(['register']);
+  }
+  conrirmReturnToFriendAccount() {
+    this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `conrirmReturnToFriendAccount`);
+    this.closeBtn.nativeElement.click();
+    this.openModalConfirm.nativeElement.click();
   }
   private returnToFriendAccountPromise(): Promise<any> {
     this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountPromise()`);

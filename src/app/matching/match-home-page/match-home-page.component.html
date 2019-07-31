@@ -1,64 +1,61 @@
 <div class="container-fluid match">
-
-  <div class="row">
-    <ng-template #testNotPassed>
-    <div class="col-sm-12 col-lg-10">
-      <app-test-not-passed></app-test-not-passed>
-    </div>
-    </ng-template>
-    <div class="col-sm-12 col-lg-10" *ngIf="isValueCompatibilityTestPassed; else testNotPassed">
-
-    <app-return-to-friend-account></app-return-to-friend-account>
-
-
-      <div  *ngFor="let account of pageUserAccount.content; let i = index">
-        <!--<div class="col-lg-3"></div>-->
-        <div class="col-lg-4 offset-lg-4 d-flex justify-content-center">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title text-muted text-uppercase text-center">{{account.user.name}}</h5>
-              <h6 *ngIf="account.user.age != null" class="card-description text-center">{{account.user.age}} лет</h6>
-              <h6 class="card-description text-center">{{account.user.gender}}</h6>
-              <!--<hr>-->
-            </div>
-            <div class="card-footer">
-              <button (click)="match(account.user)" class="btn btn-block btn-info text-uppercase">Сравнить профили</button>
-              <!--<button (click)="invite(account.user.id)" class="btn btn-block btn-primary text-uppercase">Пригласить к сравнению</button>-->
-            </div>
-          </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <ng-template #testNotPassed>
+        <div class="test-not-passed">
+          <app-test-not-passed></app-test-not-passed>
         </div>
-        <!--<div class="col-lg-3"></div>-->
-      </div>
-      <!--<nav aria-label="..." class="d-flex justify-content-center">-->
-        <!--<ul class="pagination"  *ngIf="pageUserAccount?.content" >-->
-          <!--<li *ngFor="let page of ' '.repeat(pageUserAccount.totalPages).split(''), let i = index "-->
-              <!--[class.active]="i === selectedPage" class="page-item">-->
-            <!--<a class="page-link" (click)="onSelect(i)" >{{i}}</a>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</nav>-->
-      <!-- pagination -->
-      <ul *ngIf="pagination.pages && pagination.pages.length" class="pagination d-flex justify-content-center">
+      </ng-template>
+      <app-return-to-friend-account></app-return-to-friend-account>
+      <div class="content"  *ngIf="isValueCompatibilityTestPassed && isLogin; else testNotPassed">
+        <div *ngFor="let account of pageUserAccount.content; let i = index; let odd=odd;">
+          <div class="row justify-content-center">
+            <div class="col-lg-6 d-flex justify-content-center"> <!--  *ngIf="!odd" -->
+              <div class="card">
+                <div class="card-body">
+                  <div class="gender-icon d-flex justify-content-center">
+                    <img *ngIf="account.user.gender==='FEMALE'" class="avatar center-block img-responsive img-circle img-thumbnail thumb96"
+                         src="assets/images/avatar_female.png" alt="{{account.user.name}}">
+                    <img *ngIf="account.user.gender==='MALE'" class="avatar center-block img-responsive img-circle img-thumbnail thumb96"
+                         src="assets/images/avatar_male.png" alt="{{account.user.name}}">
+                  </div>
+                  <h5 class="card-title text-muted text-uppercase text-center">{{account.user.name}}</h5>
+                  <h6 *ngIf="account.user.age != null" class="card-description text-center">{{account.user.age}} лет</h6>
+                  <!--<h6 class="card-description text-center">{{account.user.gender}}</h6>-->
+                  <!--<hr>-->
+                </div><!-- end card-body -->
+                <div class="card-footer">
+                  <button (click)="match(account.user)" class="btn btn-block btn-info text-uppercase">Сравнить профили</button>
+                  <!--<button (click)="invite(account.user.id)" class="btn btn-block btn-primary text-uppercase">Пригласить к сравнению</button>-->
+                </div>
+              </div><!-- end card -->
+            </div> <!-- end col -->
+        </div><!-- end row -->
+      </div><!-- end ngFor -->
+
+        <ul *ngIf="pagination.pages && pagination.pages.length" class="pagination d-flex justify-content-center">
         <li>
-          <button class="btn btn-link"(click)="setPage(1)" [class.disabled]="pagination.currentPage === 1">First</button>
+          <button class="btn btn-link"(click)="getPageOfUsers(1)" [class.disabled]="pagination.currentPage === 1">First</button>
         </li>
         <li>
-          <button class="btn btn-link" (click)="setPage(pagination.currentPage - 1)" [class.disabled]="pagination.currentPage === 1">Previous</button>
+          <button class="btn btn-link" (click)="getPageOfUsers(pagination.currentPage - 1)" [class.disabled]="pagination.currentPage === 1">Previous</button>
         </li>
         <li *ngFor="let page of pagination.pages; let i= index" [class.active]="page === pagination.currentPage">
-          <button class="btn btn-link" (click)="setPage(page)">{{page}}</button>
+          <button class="btn btn-link" (click)="getPageOfUsers(page)">{{page}}</button>
         </li>
         <li>
-          <button class="btn btn-link" (click)="setPage(pagination.currentPage + 1)" [class.disabled]="pagination.currentPage === pagination.totalPages">Next</button>
+          <button class="btn btn-link" (click)="getPageOfUsers(pagination.currentPage + 1)" [class.disabled]="pagination.currentPage === pagination.totalPages">Next</button>
         </li>
         <li>
-          <button class="btn btn-link" (click)="setPage(pagination.totalPages)" [class.disabled]="pagination.currentPage === pagination.totalPages">Last</button>
+          <button class="btn btn-link" (click)="getPageOfUsers(pagination.totalPages)" [class.disabled]="pagination.currentPage === pagination.totalPages">Last</button>
         </li>
       </ul>
+      </div><!-- end content -->
     </div><!-- End col-10 -->
 
+     <!--ONLINE-ADVERTISING-->
     <div class="col-lg-2">
-      <div class="container-fluid online-advertising">
+      <div class="container-fluid online-advertising  d-flex justify-content-center">
         <app-online-advertising></app-online-advertising>
       </div>
     </div>

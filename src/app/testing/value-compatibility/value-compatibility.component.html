@@ -30,11 +30,13 @@
         </div>
       </label>
     </div>
-    <div class="row buttons justify-content-center" [hidden]="isNotPassed">
+    <div class="save-test" [hidden]="isNotPassed">
       <div class="area answer before">Вы прошли субтест «Жизненные приоритеты». Сохраните данные и пройдите cубтесты "Состояния" и "Личностные качества"</div>
-      <div class="btn-group-vertical" role="group">
-        <button (click)="saveGoals()" type="button" class="btn btn-success">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
-        <button (click)="resetGoals()" type="button" class="btn btn-light btn-sm">Пройти тест снова</button>
+      <div class="row buttons justify-content-center">
+        <div class="btn-group-vertical" role="group">
+          <button (click)="saveGoals()" type="button" class="btn btn-success" [hidden]="isNotPassed">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
+          <button (click)="resetGoals()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>
+        </div>
       </div>
     </div>
   </div>
@@ -71,11 +73,13 @@
         </div>
       </label>
     </div>
-    <div class="row buttons justify-content-center" [hidden]="isNotPassed">
+    <div class="save-test" [hidden]="isNotPassed">
       <div class="area answer before">Вы прошли субтест «Состояния». Сохраните данные и пройдите cубтест "Личностные качества"</div>
-      <div class="btn-group-vertical">
-        <button (click)="saveStates()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
-        <button (click)="resetStates()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>
+      <div class="row buttons justify-content-center">
+        <div class="btn-group-vertical"  role="group">
+          <button (click)="saveStates()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ И ПРОДОЛЖИТЬ</button>
+          <button (click)="resetStates()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>
+        </div>
       </div>
     </div>
   </div>
@@ -113,11 +117,13 @@
         </div>
       </label>
     </div>
-    <div class="row buttons justify-content-center" [hidden]="isNotPassed">
+    <div class="save-test"  [hidden]="isNotPassed">
       <div class="area answer before">Вы прошли субтест «Личностные качества». Сохраните данные.</div>
-      <div class="btn-group-vertical">
-        <button (click)="saveQualities()" type="button" class="btn btn-success btn-lg" [hidden]="isNotPassed">СОХРАНИТЬ</button>
-        <button (click)="resetQualities()" type="button" class="btn btn-light btn-sm" [hidden]="isNotPassed">Пройти тест снова</button>
+      <div class="row buttons justify-content-center" >
+        <div class="btn-group-vertical"  role="group">
+          <button (click)="saveQualities()" type="button" class="btn btn-success btn-lg"  [hidden]="isNotPassed">СОХРАНИТЬ</button>
+          <button (click)="resetQualities()" type="button" class="btn btn-light btn-sm"  [hidden]="isNotPassed">Пройти тест снова</button>
+        </div>
       </div>
     </div>
   </div>

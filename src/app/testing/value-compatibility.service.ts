@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {ValueCompatibilityAnswers} from './value-compatibility/value-compatibility-answers';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
 import {ValueProfileIndividual} from './value-compatibility-profile/value-profile';
 import {User} from '../profile/user';
-import {ValueProfileMatching} from '../matching/match-value-compatibility/match-value-compatibility';
 import {API_URL} from '../utils/config';
 import {UserAccountService} from '../profile/user-account.service';
+import {LogService} from '../common-components/services/log.service';
+import {ComponentName} from '../common-components/services/component-name';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,8 @@ export class ValueCompatibilityService {
   uri = `${API_URL}`;
 
   constructor(private http: HttpClient,
-              private userAccountService: UserAccountService) { }
+              private userAccountService: UserAccountService,
+              private log: LogService) { }
 
   /** GET tests list from the server */
   getTestList(): Observable<ValueCompatibilityAnswers> {
@@ -28,20 +29,23 @@ export class ValueCompatibilityService {
   }
 
   /** save goals to server*/
-  // TODO возвращаю Observable<HttpResponse<ValueCompatibilityAnswers>>, а не  Observable<ValueCompatibilityAnswers> потому, что надо
-  // не только body, но и header ответа, в котором прийдет токен с бекенда (для записи в localStorage)
+  // Return Observable<HttpResponse<ValueCompatibilityAnswers>>, not the  Observable<ValueCompatibilityAnswers>
+  // because not only the body is needed, but also the response header,
+  // in which the token will come from the backend (for recording in localStorage)
   saveGoalArray(goals: ValueCompatibilityAnswers, token: string): Observable<HttpResponse<ValueCompatibilityAnswers>> {
-   console.log('SERVICE saveGoalArray', goals);
+   this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `saveGoalArray(): `, goals);
     let headers: HttpHeaders;
+    let userForMatchingToken = this.userAccountService.getUserForMatchingToken();
     if (token) {
-      console.log('ValueCompatibilityService saveGoalArray: ' + token);
+      this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `saveGoalArray(): isToken: ${token}`);
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
         'Authorization': token});
-    } else if (this.userAccountService.isUserForMatchingToken()) {
+    } else if (userForMatchingToken) {
+      this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `saveGoalArray(): isUserForMatchingToken: ${userForMatchingToken}`);
       headers = new HttpHeaders({ 'Content-Type': 'application/json',
-        'userForMatchingToken': this.userAccountService.getUserForMatchingToken()});
+        'userForMatchingToken': userForMatchingToken});
     } else {
-      console.log('ValueCompatibilityService saveGoalArray: no token' );
+      this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `saveGoalArray(): no tokens`);
       headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     }
 
@@ -55,28 +59,19 @@ export class ValueCompatibilityService {
 
   /** save states to server*/
   saveStateArray(states: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `saveStateArray(): `, states);
     return this.http.post<ValueCompatibilityAnswers>(this.uri + `/test/state`, states);
   }
-  // saveStateArray(states: ValueCompatibilityAnswers): Observable<HttpResponse<ValueCompatibilityAnswers>> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  //       'AUTHORIZATION': localStorage.getItem('token')}),
-  //     observe: 'response' as 'response'
-  //   };
-  //   return this.http.post<ValueCompatibilityAnswers>(this.uri + '/test/state', states, httpOptions);
-  //   // .pipe(
-  //   //     catchError(this.handleError('getTestList', []))
-  //   //   );
-  // }
 
   /** save qualities to server*/
   saveQualityArray(qualities: ValueCompatibilityAnswers): Observable<ValueCompatibilityAnswers> {
+    this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `saveQualityArray(): `, qualities);
     return this.http.post<ValueCompatibilityAnswers>(this.uri + `/test/quality`, qualities);
     }
 
   /** Get value profile for last test for user from server */
   getValueProfile(user: User): Observable<ValueProfileIndividual> {
-    console.log('came to getValueProfile:' + user);
+    this.log.log(ComponentName.VALUE_COMPATIBILITY_SERVICE, `getValueProfile(): `, user);
     return this.http.post<ValueProfileIndividual>(this.uri + `/test/value-profile`, user);
   }
 }

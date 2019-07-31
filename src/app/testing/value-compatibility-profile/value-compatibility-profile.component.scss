@@ -1,141 +1,127 @@
-.container-fluid.value.profile {
-  padding: 2% 0%;
-  margin: 2% 0.5%;
+@import "../../../assets/color.scss";
+
+// Extra small devices (portrait phones, less than 576px)
+.value-profile {
+  margin: 2% 1%;
 }
-
-.container-fluid.online-advertising {
-  margin: 2% 0.5%;
+.online-advertising {
+  margin: 2% 0%;
 }
-
-
-
-
-
-
-
-//// Extra small devices (320px and up)
-//@media (min-width: 320px) and (max-width: 575.98px) {
-//
-//}
-//// Small devices (landscape phones, 576px and up)
-//@media (min-width: 576px) and (max-width: 767.98px) {
-//
-//}
-//// Medium devices (tablets, 768px and up)
-//@media (min-width: 768px) and (max-width: 991.98px) {
-//
-//}
-//// Large devices (desktops, 992px and up)
-//@media (min-width: 992px) and (max-width: 1199.98px) {
-//
-//}
-//// Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) {
-//
-//}
-
-
-
-
-
-
-
-
-
-@media(max-width:1199.98px) {
-  .container-fluid.value.profile,
-  .container-fluid.online-advertising {
-    margin: 5% 0 5% 0;
-  }
+.content, .test-not-passed {
+  margin: 2% 2%;
 }
-@media(max-width:991.98px) {
-  .container-fluid.value.profile,
-  .container-fluid.online-advertising {
-    margin: 5% 0 5% 0;
-  }
-}
-@media(max-width:767.98px){
-  .container-fluid.online-advertising {
-    margin: 3% 0 5% 0;
-  }
-}
-
-.container-fluid.chart.bar {
-  //padding: 0% 5% 3% 5%;
-  //margin: 5% 5% 1% 5%;
-  //position: relative;
-
-  //width: 90%;
-  //height: auto;
-  //height: 100%;
-  min-width: 700px;
+.chart-bar {
+  margin: 1% 1% 1% 1%;
+  min-width: 650px;
   min-height: 300px;
 }
-
-.container.chart {
-  margin: 0%;
-  padding: 0% 0%;
-  position: relative;
-  //min-width: 350px;
-  //max-width: 300px;
-  //min-height: 250px;
-  //max-height: 250px;
-}
-.head {
+.header, .head {
   font-weight: bold;
   text-align: center;
-  margin: 3% 0% 0% 0%;
   text-transform: uppercase;
+}
+.head {
+  margin: 6% 0% 4% 0%;
   font-size: medium;
 }
-
-.container.comment {
-  //padding: 10% 10% 10% 10%;
-  padding: 0% 1%;
-  margin: 1%;
-  //margin-bottom: 40%;
-  //position: relative;
-  position: center;
-  //font-size: 16px;
-  text-align: justify;
+.header {
+  font-size: x-large;
+  margin: 6% 0% 2% 0%;
 }
-
-
-
-
+.comment {
+  padding: 0%;
+  margin: 0%;
+  text-align: justify;
+  font-size: medium;
+}
 li {
   list-style-type: none; /* Прячем исходные маркеры */
 }
-
 li:before {
   content: "• "; /* Сам маркер */
-  //font-weight: 400;
-  //width: 200px;
-  //height: 200px;
-  //border-color: black;
   font-size: 30px;
   line-height: 12px;
-  padding-right: 10px; /* Расстояние от маркера до текста */
+  padding-right: 5px; /* Расстояние от маркера до текста */
+  color: rgba(0, 0, 10, 1);
 }
-
 //Colors from color[] in ValueCompatibilityProfileComponent
 li.li.commentOne:before {
-  color: rgba(255, 179, 186, 1);
+  color: $security-color;
 }
 li.li.commentTwo:before {
-  color: rgba(255,223,186, 1);
+  color: $comfort-color;
 }
 li.li.commentThree:before {
-  color: rgba(255,255,186, 1);
+  color: $achievements-color;
 }
 li.li.commentFour:before {
-  color: rgba(186,255,201, 1);
+  color: $harmonious-relationship-color;
 }
 li.li.commentFive:before {
-  color: rgba(186,225,255, 1);
+  color: $creativity-color;
 }
 li.li.commentSix:before {
-  color: rgba(201, 166, 220, 1);
+  color: $development-color;
 }
 
+// Chart-bar doesn't fit on screens less than 578 px.
+// Therefore, we offer to turn the screen in overlay class.
+@media (orientation: portrait) {
+  .chart-bar { display: none; }
+  .overlay {
+    display: flex;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    align-items: center;
+    height: 150px;
+    background-image: url("../../../assets/images/chart_bar.png");
+    background-size: cover;
+  }
+}
+@media (orientation: landscape) {
+  .chart-bar { display: block; }
+  .overlay { display: none; }
+}
 
+// Small devices (landscape phones, 576px and up)
+@media(min-width: 576px){
+  .chart-bar {
+    display: block;
+  }
+  .overlay {
+    display: none;
+  }
+  .comment {
+    font-size: large;
+  }
+  li:before {
+    padding-right: 10px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media(min-width: 768px){
+  .value-profile {
+    margin: 2% 0 2% 0;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media(min-width: 992px) {
+  .value-profile,
+  .online-advertising {
+    margin: 1% 0 3% 0;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media(min-width: 1200px) {
+  .value-profile,
+  .online-advertising {
+    margin: 1% 0 2% 0;
+  }
+  .header {
+    margin: 2% 0% 1% 0%;
+  }
+}

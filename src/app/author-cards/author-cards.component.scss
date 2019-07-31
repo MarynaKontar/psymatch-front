@@ -1,6 +1,6 @@
 // Extra small devices (less than 576px)
 .card-deck {
-  margin: 11% auto;
+  margin: 8% 11% auto;
   flex-flow: row wrap;
 }
 .card {
@@ -131,7 +131,7 @@ li {
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   .card-deck {
-    margin: 4% auto;
+    margin: 4% auto 8% auto;
   }
   .card {
     width: 400px;
@@ -154,7 +154,7 @@ li {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .card-deck {
-    margin: 2% 1%;
+    margin: 1% 1% 5% 1%;
   }
   .modal-dialog, .modal-content {
     width: 750px;
@@ -170,7 +170,7 @@ li {
     width: 300px;
   }
   ul {
-    list-style-type: circle;
+    list-style-type: unset;
     padding-inline-start: 30px;
   }
 }
@@ -197,7 +197,7 @@ li {
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .card-deck {
-    margin: 0% 1% 1% 0%;
+    margin: 0% 1% 2% 0%;
   }
   .modal-dialog, .modal-content {
     width: 1100px;

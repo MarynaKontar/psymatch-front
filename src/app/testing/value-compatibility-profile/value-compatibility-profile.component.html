@@ -1,104 +1,87 @@
-<div class="container-fluid value profile" >
-
-  <div class="row">
-
-    <ng-template #vcTestStatus>
-      <div class="col-sm-12 col-lg-10 justify-content-center">
-        <app-test-not-passed></app-test-not-passed>
-      </div>
-    </ng-template>
-    <div *ngIf="isValueCompatibilityTestPassed; else vcTestStatus" class="col-sm-12 col-lg-10 justify-content-center" [hidden]="!isValueCompatibilityTestPassed">
-
-      <div class="container value profile content">
-        <app-return-to-friend-account></app-return-to-friend-account>
+<div class="container-fluid value-profile" >
+  <div class="row justify-content-center">
+    <div class="col-lg-10 justify-content-center">
+      <ng-template #testNotPassed>
+        <div class="test-not-passed">
+          <app-test-not-passed></app-test-not-passed>
+        </div>
+      </ng-template>
+      <app-return-to-friend-account></app-return-to-friend-account>
+      <div class="content"  *ngIf="isValueCompatibilityTestPassed && isLogin; else testNotPassed">
         <!--<div class="row d-none d-sm-none d-md-block align-items-center justify-content-center">-->
-        <div class="row align-items-center justify-content-center">
-          <div class="col-12 col-xl-12">
+        <div class="row align-items-center justify-content-end">
+          <div class="col align-self-center justify-content-center">
             <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
-            <div *ngIf="chartBar" class="container-fluid chart bar justify-content-center">
+            <div class="header">Ваш индивидуальный ценностный профиль</div>
+            <div class="container-fluid chart-bar justify-content-center" *ngIf="chartBar">
               <canvas id="canvasBar">{{ chartBar }}</canvas>
             </div>
+            <div class="overlay">Переверните экран, чтобы увидеть график</div>
           </div>
         </div>
-          <app-test-friend-button class="row align-items-center justify-content-center"></app-test-friend-button>
+        <app-test-friend-button class="row align-items-center justify-content-center"></app-test-friend-button>
 
 
         <hr class="d-none d-sm-none d-md-block">
         <div class="row align-items-center">
-          <div class="col-md-6 col-lg-5">
-            <div class="container chart">
-              <canvas id="chartDoughnutSafety">{{ chartDoughnuts[0] }}</canvas>
-              <div class="head">{{ comments[5].head }}</div>
-            </div>
+          <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
+            <div class="header">{{ labels[5] }}</div>
+            <canvas id="chartDoughnutSafety" class="doughnut">{{ chartDoughnuts[0] }}</canvas>
+            <div class="head">{{ comments[5].head }}</div>
           </div>
-          <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="container comment">
-              <p>{{ comments[5].header }}
-                <!--<a data-toggle="collapse" href="#collapseCommentOne" aria-expanded="false" aria-controls="collapseCommentOne"> ... >></a>-->
-              </p>
-              <!--<div class="collapse"  id="collapseCommentOne">-->
+          <div class="col-sm-12 col-md-6 col-lg-7">
+            <div *ngIf="comments" class="comment">
+              <p>{{ comments[5].header }}</p>
               <div *ngFor="let list of comments[5].list;">
                 <li class="li commentOne">{{ list }}</li>
               </div>
-              <!--</div>-->
             </div>
           </div>
         </div>
 
         <hr>
         <div class="row align-items-center">
-          <div class="col-md-6 col-lg-5">
-            <div *ngIf="chartDoughnuts" class="container chart">
-              <canvas id="chartDoughnutComfort">{{ chartDoughnuts[1] }}</canvas>
-              <div class="head">{{ comments[4].head }}</div>
-            </div>
+          <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
+            <div class="header">{{ labels[4] }}</div>
+            <canvas id="chartDoughnutComfort" class="doughnut">{{ chartDoughnuts[1] }}</canvas>
+            <div class="head">{{ comments[4].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="container comment">
-              <p>{{ comments[4].header }}
-                <!--<a data-toggle="collapse" href="#collapseCommentTwo" aria-expanded="false" aria-controls="collapseCommentTwo"> ... >></a>-->
-              </p>
-              <!--<div class="collapse"  id="collapseCommentTwo">-->
+            <div *ngIf="comments" class="comment">
+              <p>{{ comments[4].header }}</p>
               <div *ngFor="let list of comments[4].list">
                 <li class="li commentTwo">{{ list }}</li>
               </div>
-              <!--</div>-->
             </div>
           </div>
         </div>
 
         <hr>
         <div class="row align-items-center">
-          <div class="col-md-6 col-lg-5">
-            <div *ngIf="chartDoughnuts" class="container chart">
-              <canvas id="chartDoughnutAchievements">{{ chartDoughnuts[2] }}</canvas>
-              <div class="head">{{ comments[3].head }}</div>
-            </div>
+          <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
+            <div class="header">{{ labels[3] }}</div>
+            <canvas id="chartDoughnutAchievements"class="doughnut">{{ chartDoughnuts[2] }}</canvas>
+            <div class="head">{{ comments[3].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="container comment">
-              <p>{{ comments[3].header }}
-                <!--<a data-toggle="collapse" href="#collapseCommentThree" aria-expanded="false" aria-controls="collapseCommentThree"> ... >></a>-->
-              </p>
-              <!--<div class="collapse"  id="collapseCommentThree">-->
+            <div *ngIf="comments" class="comment">
+              <p>{{ comments[3].header }}</p>
               <div *ngFor="let list of comments[3].list">
                 <li class="li commentThree">{{ list }}</li>
               </div>
-              <!--</div>-->
             </div>
           </div>
         </div>
 
         <hr>
         <div class="row align-items-center">
-          <div class="col-md-6 col-lg-5">
-            <div *ngIf="chartDoughnuts" class="container chart">
-              <canvas id="chartDoughnutHarmoniousRelationship">{{ chartDoughnuts[3] }}</canvas>
-              <div class="head">{{ comments[2].head }}</div>
-            </div>
+          <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
+            <div class="header">{{ labels[2] }}</div>
+            <canvas id="chartDoughnutHarmoniousRelationship" class="doughnut">{{ chartDoughnuts[3] }}</canvas>
+            <div class="head">{{ comments[2].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="container comment">
+            <div *ngIf="comments" class="comment">
               <p>{{ comments[2].header }}</p>
               <div *ngFor="let list of comments[2].list">
                 <li class="li commentFour">{{ list }}</li>
@@ -109,14 +92,13 @@
 
         <hr>
         <div class="row align-items-center">
-          <div class="col-md-6 col-lg-5">
-            <div *ngIf="chartDoughnuts" class="container chart">
-              <canvas id="chartDoughnutCreativity">{{ chartDoughnuts[4] }}</canvas>
-              <div class="head">{{ comments[1].head }}</div>
-            </div>
+          <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
+            <div class="header">{{ labels[1] }}</div>
+            <canvas id="chartDoughnutCreativity" class="doughnut">{{ chartDoughnuts[4] }}</canvas>
+            <div class="head">{{ comments[1].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="container comment">
+            <div *ngIf="comments" class="comment">
               <p>{{ comments[1].header }}</p>
               <div *ngFor="let list of comments[1].list">
                 <li class="li commentFive">{{ list }}</li>
@@ -127,14 +109,13 @@
 
         <hr>
         <div class="row align-items-center">
-          <div class="col-md-6 col-lg-5">
-            <div *ngIf="chartDoughnuts" class="container chart">
-              <canvas id="chartDoughnutDevelopment">{{ chartDoughnuts[5] }}</canvas>
-              <div class="head">{{ comments[0].head }}</div>
-            </div>
+          <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
+            <div class="header">{{ labels[0] }}</div>
+            <canvas id="chartDoughnutDevelopment" class="doughnut">{{ chartDoughnuts[5] }}</canvas>
+            <div class="head">{{ comments[0].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="container comment">
+            <div *ngIf="comments" class="comment">
               <p>{{ comments[0].header }}</p>
               <div *ngFor="let list of comments[0].list">
                 <li class="li commentSix">{{ list }}</li>
@@ -143,13 +124,16 @@
           </div>
         </div>
         <hr>
-          <app-test-friend-button class="row align-items-center justify-content-center"></app-test-friend-button>
-        </div>
+        <app-test-friend-button class="row align-items-center justify-content-center"></app-test-friend-button>
+      </div>
     </div>
+
+    <!--ONLINE-ADVERTISING-->
     <div class="col-lg-2">
-        <div class="container-fluid online-advertising">
-          <app-online-advertising></app-online-advertising>
-        </div>
+      <div class="container-fluid online-advertising d-flex justify-content-center">
+        <app-online-advertising></app-online-advertising>
+      </div>
+
     </div>
   </div>
 </div>

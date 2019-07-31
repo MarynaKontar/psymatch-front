@@ -74,6 +74,7 @@ export class LoginService {
     localStorage.removeItem('isQualitiesDone');
     localStorage.removeItem('userAccount');
     localStorage.removeItem('userForMatchingToken');
+    localStorage.removeItem('userForMatching');
   }
 
   isLogin() {

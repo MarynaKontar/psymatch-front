@@ -9,8 +9,11 @@ export class LogService {
 
   constructor() { }
 
-  log(componentName: ComponentName, message: string) {
+  log(componentName: ComponentName, message: string, object?: Object) {
     console.log(componentName + ': ' + message);
+    if (object) {
+      console.log(object);
+    }
   }
   error(componentName: ComponentName, error: HttpErrorResponse, message: string) {
     if (error.error instanceof ErrorEvent) {

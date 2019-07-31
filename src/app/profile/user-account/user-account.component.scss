@@ -1,4 +1,6 @@
 @import "../../../assets/form.scss";
+@import "../../../assets/color.scss";
+
 .container-fluid {
   margin: 5% 0;
 }
@@ -12,9 +14,10 @@ button.btn {
 }
 .card {
   border: 0;
+  background-color: inherit;
 }
 .card-header {
-  background-color: #FFFFFF;
+  background-color: inherit;
   border: 0;
   color: black;
   margin-bottom: 0%;

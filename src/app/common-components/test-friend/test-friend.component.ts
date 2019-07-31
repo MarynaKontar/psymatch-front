@@ -46,12 +46,21 @@ export class TestFriendComponent  extends DeactivationLoginRegistrationGuarded i
     this.token = this.loginService.getToken();
     this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
     if (this.token) {
-      this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
-      this.loginService.logout();
-      this.userAccountService.setUserForMatchingToken(this.token);
-      this.router.navigate(['vc-test-instruction']);
+      new Promise((resolve) => {
+        this.retrieveDataResolver = resolve;
+        this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
+        this.loginService.logout();
+        this.userAccountService.setUserForMatchingToken(this.token);
+        this.closeModalConfirm.nativeElement.click();
+        this.router.navigate(['vc-test-instruction']);
+        this.retrieveDataResolver();
+      }).then(() => {
+        location.reload();
+      });
     } else {
       this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN=FALSE`);
+      this.closeModalConfirm.nativeElement.click();
+      // will be go to error page
       this.router.navigate(['vc-test-instruction']);
     }
   }

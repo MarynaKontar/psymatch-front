@@ -1,18 +1,20 @@
+// Extra small devices (portrait phones, less than 576px)
 .container-fluid {
-  margin-top: 5%;
-  margin-bottom: 3%;
-}
-@media(max-width: 575.98px) {
   margin-top: 6%;
+  margin-bottom: 15%;
+  font-size: larger;
+}
+.pass-test {
+  margin: 4% 5% 5% 5%;
+  font-weight: bold;
+  font-size: xx-large;
 }
 .title {
   margin-bottom: 1%;
   text-align: center;
-  font-size: xx-large;
   font-weight: bold;
 }
 .item {
-  text-indent: 2.4em;
   text-align: justify;
 }
 .bold {
@@ -22,19 +24,43 @@
   font-style: italic;
 }
 .img {
-  margin: 1% 0%;
+  margin: 2% 0%;
 }
 .item-title {
   text-align: center;
-  margin-top: 2%;
-  margin-bottom: 0%;
+  margin-top: 3%;
+  margin-bottom: 0.5%;
+}
+ul {
+  padding-left: 1% ;
+  list-style-type: none; /* Прячем исходные маркеры */
 }
 li {
   text-align: justify;
 }
-.pass-test {
-  margin: 4% 5% 5% 5%;
-  //text-align: center;
-  font-weight: bold;
-  font-size: xx-large;
+
+// Small devices (landscape phones, 576px and up)
+@media(min-width: 576px) {
+  .container-fluid {
+    margin-top: 5%;
+    margin-bottom: 3%;
+  }
+  .title {
+    margin-bottom: 1%;
+    font-size: xx-large;
+  }
+}
+
+// Medium, large, extra large devices (tablets, desktops, large desktops, 768px and up)
+@media(min-width: 768px) {
+  .item {
+    text-indent: 2.4em; // отступ первой строки
+  }
+  ul {
+    list-style-type: unset;
+    padding-inline-start: 35px;
+    .item {
+      text-indent: 0;
+    }
+  }
 }

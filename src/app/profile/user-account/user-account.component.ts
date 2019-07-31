@@ -16,6 +16,7 @@ import {ComponentName} from '../../common-components/services/component-name';
 })
 export class UserAccountComponent implements OnInit {
   isLogin;
+  isRegistered;
   retrieveDataResolver;
   userAccount: UserAccount;
   userAvatarLink: string;
@@ -38,7 +39,9 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit() {
     this.isLogin = this.loginService.isLogin();
+    this.isRegistered = this.registrationService.isRegistered();
     this.log.log(ComponentName.USER_ACCOUNT, ` ngOnInit: isLogin: ${this.isLogin}`);
+    this.log.log(ComponentName.USER_ACCOUNT, ` ngOnInit: isRegistered: ${this.isRegistered}`);
     if (this.isLogin) {
       this.userAccount = this.userAccountService.getUserAccount();
       this.oldUser = {name: this.userAccount.user.name,
@@ -80,7 +83,7 @@ export class UserAccountComponent implements OnInit {
           newPassword.reset();
         },
         error => {
-          this.isChangePasswordError = false;
+          this.isChangePasswordError = true;
         }
       );
   }

@@ -1,3 +1,7 @@
+$background-color: whitesmoke;
+
+// TEST-INFO-CARDS,
+// USER-ACCOUNT
 .background-yellow {
   //background-color: rgba(247, 202, 24, 1);//+-
   //background-color: rgb(246,205,139);//-
@@ -11,7 +15,37 @@
   //background-color: rgb(246, 209, 85);
 }
 
+// TEST-BUTTON,
+// PASS-TEST-BUTTON,
+// TEST-FRIEND-BUTTON,
+// TEST-FRIEND, RETURN-TO-FRIEND-ACCOUNT
 $background-button-color: #3f51b5;
+
+// TEST-BUTTON
 $confirm-modal-header-color: #0275d8;
+
+// SENDING-TOKENS
 $copy-invite-friend-button-color: cadetblue;
 //$copy-invite-friend-button-color: teal;
+
+// VALUE-COMPATIBILITY
+$area-question-color: #3b51b5;
+$test-card-header-color : rgba(218, 238, 243, 1);
+$area-answer-color: #05AE0E;
+$test-card-hover-color: #f1f1f2;
+//$test-card-hover-color: darkseagreen;
+//$test-card-hover-color: darkcyan;
+//$test-card-hover-color: mediumaquamarine;
+//$test-card-hover-color: #e0e0e1;
+
+// VALUE-COMPATIBILITY-PROFILE
+$security-color: rgba(255, 179, 186, 1);
+$comfort-color: rgba(255,223,186, 1);
+$achievements-color: rgba(255,255,186, 1);
+$harmonious-relationship-color: rgba(186,255,201, 1);
+$creativity-color: rgba(186,225,255, 1);
+$development-color: rgba(201, 166, 220, 1);
+
+// MATCH-VALUE-COMPATIBILITY
+$rectangle-scale-color: rgba(75,172,198, 1);
+$header-color: #3f51b5;

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   userAccount: UserAccount = new UserAccount();
   readonly APP_NAME = `${APP_NAME}`;
   retrieveDataResolver;
+  retrieveDataResolver1;
   isLoginError;
   returnUrl: string;
   @ViewChild('closeBtn') closeBtn: ElementRef;
@@ -64,7 +65,13 @@ export class LoginComponent implements OnInit {
     // если на страницу логирования перебрасывает с auth.guard
      if (this.returnUrl) {
        this.log.log(ComponentName.LOGIN, ` login(): afterLoginActions(): navigateByUrl: ${this.returnUrl}`);
-       this.router.navigateByUrl(this.returnUrl);
+       new Promise((resolve) => {
+         this.retrieveDataResolver1 = resolve;
+         this.router.navigateByUrl(this.returnUrl);
+         this.retrieveDataResolver1();
+       }).then(() => {
+         location.reload();
+       });
        // написать общий сервис для передачи user name из этого модуля в header.component
      } else {
        if (location.pathname === '/value-profile' ||

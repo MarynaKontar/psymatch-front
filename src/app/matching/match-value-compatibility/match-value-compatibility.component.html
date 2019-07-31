@@ -1,5 +1,5 @@
 <!--Navigation-->
-<nav class="navbar justify-content-center align-items-center fixed-bottom pt-2 pb-4" id="valueCompatibilityReportTab">
+<nav *ngIf="isValueCompatibilityTestPassed && isLogin" class="navbar justify-content-center align-items-center fixed-bottom pt-2 pb-4" id="valueCompatibilityReportTab">
   <a class="nav-link nondecorated" href="match#valueCompatibilityMatches">Отчёт по ценностной совместимости</a>
   <a class="nav-link nondecorated" href="match#valueProfilesForMatching">Интерпретация различий в ценностях</a>
   <a class="nav-link nondecorated" href="match#valueProfilesForMatchingDifferences">Отчёт по различиям в ценностях</a>
@@ -8,31 +8,28 @@
 
 
 
-<div class="container-fluid match" @fade>
-
-  <div class="row">
-
-    <ng-template #testNotPassed>
-      <div class="col-sm-12 col-lg-10">
-        <app-test-not-passed></app-test-not-passed>
-      </div>
-    </ng-template>
-    <div class="col-sm-12 col-lg-10" *ngIf="isValueCompatibilityTestPassed; else testNotPassed"> <!---->
-      <div class="scroll-spy" data-spy="scroll" data-target="#valueCompatibilityReportTab" data-offset="200">
-        <div class="container match content">
-          <div class="row">
-            <div class="col-sm-12 col-lg-12">
-              <div class="match head main">ОТЧЁТ ПО СОВМЕСТИМОСТИ</div>
-
-              <app-return-to-friend-account *ngIf="ifUserForMatchingToken"></app-return-to-friend-account>
+<div class="container-fluid match">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 justify-content-center">
+      <ng-template #testNotPassed>
+        <div class="col-sm-12 col-lg-10 test-not-passed">
+          <app-test-not-passed></app-test-not-passed>
+        </div>
+      </ng-template>
+      <app-return-to-friend-account *ngIf="ifUserForMatchingToken"></app-return-to-friend-account>
+      <div class="scroll-spy content" *ngIf="isValueCompatibilityTestPassed && isLogin; else testNotPassed" data-spy="scroll" data-target="#valueCompatibilityReportTab" data-offset="200">
+        <!--<div class="content"  *ngIf="isValueCompatibilityTestPassed && isLogin; else testNotPassed">-->
+          <div class="row align-items-center justify-content-end">
+            <div class="col align-self-center justify-content-center">
+              <div class="head main">ОТЧЁТ ПО СОВМЕСТИМОСТИ</div>
 
                 <!--Value compatibility report-->
                   <!--Value Compatibility Matches-->
-                  <div *ngIf="matches" id="valueCompatibilityMatches" class="container value-compatibility matches">
+                  <div  class="container value-compatibility-matches" *ngIf="matches" id="valueCompatibilityMatches">
                     <div class="row head">
                       <div class="col-12 col-xl-12">
-                        Отчёт по ценностной совместимости.
-                        Оцениваемый партнёр: <span style="color: black" >{{usersForMatching[0].name}}</span>
+                        Ценностная совместимость.
+                        Оцениваемый партнёр: <span style="color: black" >{{userForMatching.name}}</span>
                       </div>
                     </div>
                     <div class="row header align-items-center"> <!--align-items-center   vertical align -->
@@ -66,7 +63,7 @@
                           </div>
                         </div>
                         <div class="col-md-12 col-xl-5">
-                          <div class="interpretation text">
+                          <div class="interpretation-text">
                             <span class="comment header">{{ aspectComments[i].header }}</span>
                             {{aspectComments[i].foreword}}
                             <span class="accent">{{aspectComments[i].accent}}</span>
@@ -80,21 +77,22 @@
                   <!--End Value Compatibility Matches-->
 
                   <!--Value Profiles For Matching d-none d-sm-block-->
-                  <div *ngIf="valueProfilesForMatching" id="valueProfilesForMatching" class="container-fluid value profile">
+                  <div class="container-fluid value-profile" *ngIf="valueProfilesForMatching" id="valueProfilesForMatching">
                     <!--For figures we need chart.js library (npm install chart.js and see current-weather.component.ts)-->
-                    <div class="match head" >Интерпретация различий в ценностях</div>
-                    <div *ngIf="chartBar" class="container-fluid chart-bar">
+                    <div class="head">Интерпретация различий в ценностях</div>
+                    <div class="container-fluid chart-bar" *ngIf="chartBar">
                       <canvas id="canvasBar">{{ chartBar }}</canvas>
                     </div>
+                    <div class="overlay">Переверните экран, чтобы увидеть график</div>
                   </div>
                   <!--End Value Profiles For Matching-->
 
                   <!--Value Profiles For Matching Differences-->
-                  <div *ngIf="valueProfilesForMatching" id="valueProfilesForMatchingDifferences" class="container values-differences report">
+                  <div class="container values-differences-report" *ngIf="valueProfilesForMatching" id="valueProfilesForMatchingDifferences" >
                     <div class="row head">
                       <div class="col-12 col-xl-12">
                         Отчёт по различиям в ценностях.
-                        Оцениваемый партнёр: <span style="color: black" >{{usersForMatching[0].name}}</span>
+                        Оцениваемый партнёр: <span style="color: black" >{{userForMatching.name}}</span>
                       </div>
                     </div>
                     <div class="row header align-items-center mx-auto">
@@ -125,7 +123,7 @@
                           </div>
                         </div>
                         <div class="col-md-12 col-xl-5">
-                          <div class="interpretation text">
+                          <div class="interpretation-text">
                             {{ scalesComments[0].text[0] }}
                              <span class="accent">{{ scalesComment.text[1] }}</span>
                             {{ scalesComment.text[2] }}
@@ -140,12 +138,13 @@
                 <!--End Value compatibility report-->
             </div><!-- End col-12 -->
           </div><!-- End row -->
-        </div><!-- End container match content -->
+        <!--</div>&lt;!&ndash; End container match content &ndash;&gt;-->
       </div><!-- End scroll-spy -->
     </div><!-- End col-10 -->
 
+    <!--ONLINE-ADVERTISING-->
     <div class="col-lg-2 ">
-      <div class="container-fluid online-advertising">
+      <div class="container-fluid online-advertising d-flex justify-content-center">
         <app-online-advertising></app-online-advertising>
       </div>
     </div>

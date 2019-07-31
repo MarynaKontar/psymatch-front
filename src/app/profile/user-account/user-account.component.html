@@ -18,7 +18,12 @@
       </div>
     </div><!-- end col-md-6 -->
 
-    <div class="col-lg-6 col-xl-5 d-flex justify-content-center">
+    <ng-template #registrationForm>
+      <div class="col-lg-6 col-xl-5 d-flex justify-content-center">
+        <app-registration></app-registration>
+      </div>
+    </ng-template>
+    <div class="col-lg-6 col-xl-5 d-flex justify-content-center" *ngIf="isRegistered; else registrationForm">
       <div class="card">
         <!--UPDATE USER DATA MENU-->
         <h3 class="card-header">Контактная информация</h3>
@@ -112,7 +117,7 @@
         <h3 class="card-header">Изменить пароль</h3>
         <div class="card-body">
           <form class="form">
-            <!--PASSWORD-->
+            <!-- OLD PASSWORD -->
             <div class="form-group">
               <!--<label for="password">Password</label>-->
               <div class="input-group">
@@ -121,7 +126,7 @@
                 </div>
                 <input [(ngModel)]="userAccount.user.password" id="password" name="password" type="password"
                        class="form-control rounded-0"  [minlength]="minPasswordLength"
-                       required placeholder="пароль" #password="ngModel">
+                       required placeholder="старый пароль" #password="ngModel">
               </div>
               <div *ngIf="password.invalid && (password.dirty || password.touched)"
                    class="alert alert-danger">
@@ -129,7 +134,7 @@
               </div>
             </div>
 
-            <!--CONFIRM PASSWORD-->
+            <!--NEW PASSWORD-->
             <div class="form-group">
               <!--<label for="confirm-password">Confirm password</label>-->
               <div class="input-group">
@@ -138,7 +143,7 @@
                 </div>
                 <input (ngModel)="newPassword" id="new-password" name="newPassword" type="password"
                        class="form-control rounded-0"  [minlength]="minPasswordLength"
-                       required placeholder="подтвердите пароль" #newPassword="ngModel">
+                       required placeholder="новый пароль" #newPassword="ngModel">
               </div>
               <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)"
                    class="alert alert-danger">
@@ -146,8 +151,8 @@
               </div>
             </div>
 
-            <!--NAME OR EMAIL ALREADY EXISTS-->
-            <h5 [hidden]="!isChangePasswordError" class="alert alert-danger">Ваш пароль не верный.</h5>
+            <!--PASSWORD IS WRONG-->
+            <h5 *ngIf="isChangePasswordError" class="alert alert-danger">Ваш пароль не верный.</h5>
 
             <!--BUTTON REGISTER-->
             <button (click)="changePassword(password, newPassword)" type="submit"

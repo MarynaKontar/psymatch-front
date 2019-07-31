@@ -1,234 +1,234 @@
-.container-fluid.match, .container-fluid.online-advertising {
-  margin: 4% 1% 5% 1%;
-}
-@media(max-width:991.98px) {
-  .container-fluid.online-advertising {
-    margin: 1% 0 5% 0;
-  }
-  .container-fluid.test-not-passed {
-    margin: 3% 0 0 0;
-  }
-}
-@media(max-width:767.98px){
-  .container-fluid.match {
-    margin: 3% 0 1% 0;
-  }
-  .container-fluid.online-advertising {
-    margin: 1% 0 5% 0;
-  }
-  .container.match.content {
-    margin: 5% 0 0 0;
-    padding: 0;
-  }
-}
-.container {
-  max-width: 1500px;
-}
+@import "../../../assets/color.scss";
 
-
-
-
-
-
-// Extra small devices (320px and up)
-@media (min-width: 320px) and (max-width: 575.98px) {
-
-}
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) and (max-width: 767.98px) {
-
-}
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) and (max-width: 991.98px) {
-
-}
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) {
-
-}
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Extra small devices (portrait phones, less than 576px)
 nav {
+  padding: 2% 0;
   margin: 2% 0;
   background-color: rgba(123, 124, 145, .5);
+  text-align: center;
+  max-width: 100vw;
+}
+nav:active, nav:hover {
+  background-color: rgba(123, 124, 145, 1);
 }
 a.nav-link {
-  font-size: x-large;
+  font-size: medium;
   font-weight: bold;
   color: white;
 }
-@media(max-width:767.98px) {
-  a.nav-link {
-    font-size: medium;
-    margin: 0;
-    padding: 1%;
-  }
+a.nav-link:hover {
+  color: rgba(0,0, 200, 0.3);
 }
-a.nav-link.active {
-  background-color: rgba(123, 124, 145, .5);
+.match {
+  margin: 2% 1% 15% 1%;
 }
-
-.match.head, .row.head, .row.header{
+.online-advertising {
+  margin: 2% 0%;
+}
+.scroll-spy {
+  margin: 0!important;
+}
+.content, .test-not-passed  {
+  margin: 2% 2%;
+}
+.head, .header{
   font-weight: bold;
   text-align: center;
   font-size: larger;
-  margin: 2% 0%;
+  margin: 2% 0% 2% 0%;
 }
-.match.head.main {
-  font-size: xx-large;
-  margin-bottom: 0;
+.head.main {
+  margin-bottom: -6%;
 }
-@media(max-width:767.98px){
-  .match.head.main {
-    font-size: x-large;
-  }
+.container {
+  max-width: 1600px;
 }
-
-.row.head, .match.head {
-  font-size: x-large;
-}
-@media (max-width: 767.98px) {
-  .row.head, .match.head {
-    font-size: large;
-  }
+.value-compatibility-matches,
+.value-profile,
+.values-differences-report {
+  padding-top: 10%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 .row.header {
-  font-size: medium;
-  color: #3f51b5;
+  color: $header-color
 }
-.row.aspect {
+hr {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.aspect {
   text-align: center;
-  //margin: 3% 0%;
 }
 .aspect.label, .scale.label {
   font-weight: bold;
   font-size: x-large;
   text-transform: uppercase;
 }
-//.scale.label {
-  //font-size: larger;
-  //text-align: center;
-//}
-//@media(max-width:768px){
-//  .scale.label {
-//    font-size: x-large;
-//  }
-//}
-
-.container-fluid.chart-bar {
-  //padding: 5% 0 0;
-  min-width: 800px;
-}
-.interpretation.text {
-  text-align: justify;
-  //margin: 1% 5% 0% 5%;
-}
-
-.container.value-compatibility.matches,
-.container-fluid.value.profile,
-.container.values-differences.report {
-  padding-top: 4%;
-  margin: 0;
-}
-@media(max-width:991.98px) {
-  .container-fluid.value.profile,
-  .container.values-differences.report {
-    padding-top: 5%;
-    margin: 1% 0;
-  }
-}
-@media(max-width:767.98px) {
-  .container.value-compatibility.matches,
-  .container-fluid.value.profile,
-  .container.values-differences.report {
-    padding-top: 8%;
-    margin: 0 0;
-  }
-}
-@media(max-width:575.98px) {
-  .container.value-compatibility.matches,
-  .container-fluid.value.profile,
-  .container.values-differences.report {
-    padding-top: 12%;
-    padding-left: 1;
-    padding-right: 1;
-    margin: 1% 0;
-  }
-  .col-sm-12 {
-    padding: 5px;
-  }
-}
-
-.accent, .comment.header {
-  font-weight: bold;
-}
-
-.container.rectangle {
+.rectangle {
   border-radius: 20px;
   text-align: center;
   margin: 3% 0% 5% 0%;  //on bottom margin is larger because of shadow
-  width: 80%;
+  max-width: 300px;
   padding: 5% 0;
-  //box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
+  .head {
+    font-size: small;
+  }
   .level {
     font-size: large;
     text-transform: uppercase;
     font-weight: bold;
   }
-  .head {
-    font-size: small;
-  }
 }
-.container.rectangle.area {
+.rectangle.area {
   color: rgba(248,242,236,1);
   .value {
     font-size: xx-large;
     font-weight: bold;
   }
-  //background: linear-gradient(rgba(155,187,89, 1), rgba(247,150,70, 1));
 }
-.container.rectangle.scale {
-  border: solid rgba(75,172,198, 1);
+.comment, .interpretation-text {
+  padding: 0;
+  margin: 0;
+  text-align: justify;
+  font-size: medium;
+}
+.comment.header, .accent {
+  font-weight: bold;
+}
+.chart-bar {
+  min-width: 800px;
+}
+.values-differences-report {
+  .col-md-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.rectangle.scale {
+  border: solid $rectangle-scale-color 4px;
   background-color: rgba(248,242,236,0.1);
   .icon {
     font-size: 40px;
     font-weight: bold;
   }
-  //background-color: linearGradient;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-hr {
-  background-color: rgba(0, 0, 0, 0.1);
+// Chart-bar doesn't fit on screens less than 578 px.
+// Therefore, we offer to turn the screen in overlay class.
+@media (orientation: portrait) {
+  .chart-bar {
+    display: none;
+  }
+  .overlay {
+    display: flex;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+    align-items: center;
+    height: 280px;
+    background-image: url("../../../assets/images/match_chart_bar.png");
+    background-size: cover;
+    //filter: blur(2px);
+  }
+}
+@media (orientation: landscape) {
+  .chart-bar { display: block; }
+  .overlay { display: none; }
 }
 
-@media(max-width:585px){
-  .container-fluid.match{
-    font-size: 95%;
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  nav {
+    background-color: rgba(123, 124, 145, .8);
+  }
+  a.nav-link {
+    font-size: larger;
+  }
+  .match.content {
+    padding: 0;
+  }
+  .head {
+    font-size: x-large;
+  }
+  .head.main {
+    margin: 2% 0% -5% 0%;
+    font-size: x-large;
+  }
+  .value-compatibility-matches,
+  .value-profile,
+  .values-differences-report {
+    padding-top: 8%;
+  }
+  .rectangle {
+    max-width: 400px;
+    width: 75%;
+  }
+  .comment,
+  .interpretation-text,
+  .aspect.description {
+    font-size: large;
+  }
+  .chart-bar {
+    display: block;
+  }
+  .overlay {
+    display: none;
   }
 }
 
-.scroll-spy {
-  position: relative;
-  //overflow-y: scroll;
-  //height: 100vh;
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  a.nav-link {
+    font-size: x-large;
+  }
+  .match {
+    margin: 2% 0 15% 0;
+  }
+  .head.main {
+    font-size: xx-large;
+    margin-bottom: -6%;
+  }
+  .value-profile,
+  .values-differences-report {
+    padding-top: 5%;
+    //margin: 1% 0;
+  }
+  .aspect.label, .scale.label {
+    font-size: x-large;
+  }
 }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .match,
+  .online-advertising {
+    margin: 1% 0 15% 0;
+  }
+  .head {
+    margin-bottom: 3%;
+  }
+  .head.main {
+    margin-bottom: -4%;
+  }
+  .value-compatibility-matches,
+  .value-profile,
+  .values-differences-report {
+    padding-top: 4%;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .match,
+  .online-advertising {
+    margin: 1% 0 10% 0;
+  }
+}
+
+
+
+
+
 

@@ -35,14 +35,6 @@ const routes: Routes = [
     path: 'about-project',
     component: AboutProjectComponent
   },
-  // {
-  //   path: 'auth',
-  //   loadChildren: () => AuthModule,
-  // },
-  // {
-  //   path: 'auth',
-  //   loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
-  // },
 
   {
     path: 'register',
@@ -92,12 +84,10 @@ const routes: Routes = [
   {
     path: 'match-home',
     component: MatchHomePageComponent,
-    // canDeactivate: [CanDeactivateGuard]
   },
   {
     path: 'match',
     component: MatchValueCompatibilityComponent,
-    // canActivate: [AuthGuard, RegistrationGuard],
     canDeactivate: [CanDeactivateGuard]
   },
   {
@@ -115,10 +105,6 @@ const routes: Routes = [
     path: 'error',
     component: ErrorPageComponent
   },
-  // {
-  //   path: 'card',
-  //   component: CardComponent
-  // },
   {
     path: 'psychological-compatibility-info',
     component: PsychologicalCompatibilityInfoComponent
