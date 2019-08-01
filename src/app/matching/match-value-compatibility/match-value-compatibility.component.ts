@@ -115,7 +115,7 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
   private retrieveValueProfileReportPromise(): Promise<any> {
     this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, ` retrieveValueProfileReportPromise()`);
     return new Promise((resolve) => {
-      this.retrieveDataResolver = resolve;
+      this.retrieveDataResolver1 = resolve;
       this.plotRectangle(this.userForMatching);
     });
   }
@@ -149,7 +149,7 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
         '15px 15px 20px ' + this.valueCompatibilityReportColorsTransparent08[colorNumber]);
       }
     });
-    this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
+    this.retrieveDataResolver1(); // <--- This must be called as soon as the data are ready to be displayed
   }
 
   private plotValueProfilesMatching(userForMatching: User) {

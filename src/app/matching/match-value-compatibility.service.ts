@@ -37,12 +37,12 @@ export class MatchValueCompatibilityService {
 
   /** Match value-compatibility test for two users and save result to server **/
   matchPercent(user: User): Observable<UserMatch> {
-    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `matchPercent()`);
+    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `matchPercent(): user: `, user);
     return this.http.post<UserMatch>(this.uri + `/match/Percent`, user);
   }
 
   getUsersForMatching(): Observable<User[]> {
-    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `getUsersForMatching)`);
+    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `getUsersForMatching()`);
     return this.http.get<User[]>(this.uri + `/match/getUsersForMatching`);
   }
 
