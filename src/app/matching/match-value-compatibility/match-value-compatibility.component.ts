@@ -84,13 +84,17 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
       this.userAccountService.getUserAccount().user.name : ' Вы';
     if (this.isLogin && this.isValueCompatibilityTestPassed) {
       new Promise((resolve) => {
-        this.retrieveDataResolver1 = resolve;
+        this.retrieveDataResolver = resolve;
         this.getUsersForMatching();
-      }).then(() => {
-        this.retrieveValueProfileReportPromise()
+      })
+        .then(() => {
+          new Promise((resolve) => {
+            this.retrieveDataResolver1 = resolve;
+            this.plotRectangle(this.userForMatching);
+          })
           .then(() => {
             this.plotValueProfilesMatching(this.userForMatching); } );
-      });
+        });
     }
   }
 
@@ -103,21 +107,13 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
           this.usersForMatching = data;
           this.userForMatching = this.usersForMatching[0];
           this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): userForMatching: `, this.userForMatching);
-          // this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
+          this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
         });
     } else  { // if there is userForMatching then create array this.usersForMatching with one value
       this.usersForMatching = new Array<User>(this.userForMatching);
+      this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
     }
     this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): usersForMatching: `, this.usersForMatching);
-    this.retrieveDataResolver1(); // <--- This must be called as soon as the data are ready to be displayed
-  }
-
-  private retrieveValueProfileReportPromise(): Promise<any> {
-    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, ` retrieveValueProfileReportPromise()`);
-    return new Promise((resolve) => {
-      this.retrieveDataResolver1 = resolve;
-      this.plotRectangle(this.userForMatching);
-    });
   }
 
   private plotRectangle(userForMatching: User) {

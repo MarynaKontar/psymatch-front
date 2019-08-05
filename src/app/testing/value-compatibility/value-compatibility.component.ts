@@ -88,7 +88,6 @@ export class ValueCompatibilityComponent implements OnInit {
     this.shaffle(this.tests.goal);
     this.shaffle(this.tests.state);
     this.shaffle(this.tests.quality);
-    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: initial test: `, this.tests);
 
     // go to the server to get the initial tests
     // this.valueCompatibilityService.getTestList()
@@ -112,6 +111,8 @@ export class ValueCompatibilityComponent implements OnInit {
     //   }
     //   );
 
+    this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: initial test: `, this.tests);
+    
     // marks active and unactive card-deck for @slide animation
     for (let i = 0; i < 15; i++) {
       if (i === 0) {

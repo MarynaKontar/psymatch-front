@@ -27,10 +27,10 @@
           <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
             <div class="header">{{ labels[5] }}</div>
             <canvas id="chartDoughnutSafety" class="doughnut">{{ chartDoughnuts[0] }}</canvas>
-            <div class="head">{{ comments[5].head }}</div>
+            <div class="head" *ngIf="comments[5]">{{ comments[5].head }}</div>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-7">
-            <div *ngIf="comments" class="comment">
+            <div class="comment" *ngIf="comments[5]">
               <p>{{ comments[5].header }}</p>
               <div *ngFor="let list of comments[5].list;">
                 <li class="li commentOne">{{ list }}</li>
@@ -44,10 +44,10 @@
           <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
             <div class="header">{{ labels[4] }}</div>
             <canvas id="chartDoughnutComfort" class="doughnut">{{ chartDoughnuts[1] }}</canvas>
-            <div class="head">{{ comments[4].head }}</div>
+            <div class="head" *ngIf="comments[4]">{{ comments[4].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="comment">
+            <div class="comment" *ngIf="comments[4]">
               <p>{{ comments[4].header }}</p>
               <div *ngFor="let list of comments[4].list">
                 <li class="li commentTwo">{{ list }}</li>
@@ -61,10 +61,10 @@
           <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
             <div class="header">{{ labels[3] }}</div>
             <canvas id="chartDoughnutAchievements"class="doughnut">{{ chartDoughnuts[2] }}</canvas>
-            <div class="head">{{ comments[3].head }}</div>
+            <div class="head" *ngIf="comments[3]">{{ comments[3].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="comment">
+            <div class="comment" *ngIf="comments[3]">
               <p>{{ comments[3].header }}</p>
               <div *ngFor="let list of comments[3].list">
                 <li class="li commentThree">{{ list }}</li>
@@ -78,10 +78,10 @@
           <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
             <div class="header">{{ labels[2] }}</div>
             <canvas id="chartDoughnutHarmoniousRelationship" class="doughnut">{{ chartDoughnuts[3] }}</canvas>
-            <div class="head">{{ comments[2].head }}</div>
+            <div class="head" *ngIf="comments[2]">{{ comments[2].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="comment">
+            <div class="comment" *ngIf="comments[2]">
               <p>{{ comments[2].header }}</p>
               <div *ngFor="let list of comments[2].list">
                 <li class="li commentFour">{{ list }}</li>
@@ -95,10 +95,10 @@
           <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
             <div class="header">{{ labels[1] }}</div>
             <canvas id="chartDoughnutCreativity" class="doughnut">{{ chartDoughnuts[4] }}</canvas>
-            <div class="head">{{ comments[1].head }}</div>
+            <div class="head"  *ngIf="comments[1]">{{ comments[1].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="comment">
+            <div class="comment"  *ngIf="comments[1]">
               <p>{{ comments[1].header }}</p>
               <div *ngFor="let list of comments[1].list">
                 <li class="li commentFive">{{ list }}</li>
@@ -112,10 +112,10 @@
           <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-0 col-lg-5">
             <div class="header">{{ labels[0] }}</div>
             <canvas id="chartDoughnutDevelopment" class="doughnut">{{ chartDoughnuts[5] }}</canvas>
-            <div class="head">{{ comments[0].head }}</div>
+            <div class="head" *ngIf="comments[0]" >{{ comments[0].head }}</div>
           </div>
           <div class="col-md-6 col-lg-7">
-            <div *ngIf="comments" class="comment">
+            <div class="comment" *ngIf="comments[0]">
               <p>{{ comments[0].header }}</p>
               <div *ngFor="let list of comments[0].list">
                 <li class="li commentSix">{{ list }}</li>

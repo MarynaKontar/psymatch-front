@@ -19,13 +19,14 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   isLogin;
   isValueCompatibilityTestPassed;
   userAccounts: UserAccount[];
+  userForMatchingAccounts: UserAccount[];
   pageUserAccount: PageUserAccount;
   private retrieveDataResolver;
 
   // pagination
   pagination: any = {};
   pagedItems: any[];
-  pageSizeDefault = 3;
+  pageSizeDefault = 8;
 
   constructor(userAccountService: UserAccountService,
               loginService: LoginService,
@@ -46,12 +47,21 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
     this.log.log(ComponentName.MATCH_HOME_PAGE, `ngOnInit: isValueCompatibilityTestPassed: ${this.isValueCompatibilityTestPassed}`);
     if (this.isLogin && this.isValueCompatibilityTestPassed) {
       this.getPageOfUsers(1, this.pageSizeDefault);
+      this.getUsersForMatching();
     }
   }
 
   getPageOfUsers(page: number, pageSize: number = this.pageSizeDefault) {
     this.retrieveGetPageableUsersPromise(page, pageSize)
       .then(() => { this.afterGetPageableUsersActions(page, pageSize); });
+  }
+
+  getUsersForMatching() {
+    this.log.log(ComponentName.MATCH_HOME_PAGE, `getUsersForMatching()`);
+    this.userAccountService.getAllRegisteredAndPassedTestUsersForMatching().subscribe(data => {
+      this.log.log(ComponentName.MATCH_HOME_PAGE, `getUsersForMatching(): `, data);
+      this.userForMatchingAccounts = data;
+    });
   }
 
   public match(user: User): void {
@@ -87,7 +97,7 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
   private getPageableUsers(page: number, size: number)  {
     // your async retrieval data logic goes here
     this.log.log(ComponentName.MATCH_HOME_PAGE, `getPageableUsers(${page}, ${size})`);
-    this.userAccountService.getAll(page, size)
+    this.userAccountService.getAllRegisteredAndPassedTestUsers(page, size)
       .subscribe(data => {
         this.log.log(ComponentName.MATCH_HOME_PAGE, `getPageableUsers(${page}, ${size}): `, data);
         this.pageUserAccount = data;
@@ -104,4 +114,5 @@ export class MatchHomePageComponent extends DeactivationLoginRegistrationGuarded
     this.log.log(ComponentName.MATCH_HOME_PAGE, `afterGetPageableUsersActions(${page}, ${pageSize}): pagination: `, this.pagination);
     this.log.log(ComponentName.MATCH_HOME_PAGE, `afterGetPageableUsersActions(${page}, ${pageSize}): pagedItems: `, this.pagedItems);
   }
+
 }

@@ -1,7 +1,7 @@
+// Extra small devices (portrait phones, less than 576px)
 .modal-content, .card {
   max-width: 400px;
   min-width: 320px;
-  width: 400px;
   border-radius: 3%!important;
   overflow: hidden;
 }
@@ -35,3 +35,10 @@ button.register, button.login {
   border-left: 5px solid red;
 }
 
+// Small, medium, large, extra large devices (landscape phones, tablets, desktops, large desktops, 576px and up)
+@media(min-width: 576px) {
+  .modal-content, .card {
+    width: 400px;
+    min-width: 400px;
+  }
+}

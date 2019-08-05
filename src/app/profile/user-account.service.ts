@@ -32,9 +32,14 @@ export class UserAccountService {
     return this.http.put<UserAccount>(this.uri + `/account`, userAccount);
   }
 
-  getAll(page: number, size: number): Observable<PageUserAccount> {
+  getAllRegisteredAndPassedTestUsersForMatching(): Observable<UserAccount[]> {
+    this.log.log(ComponentName.USER_ACCOUNT_SERVICE, ` getAllRegisteredAndPassedTestUsersForMatching()`);
+    return this.http.get<UserAccount[]>(this.uri + `/account/getAllRegisteredAndPassedTestUsersForMatching`);
+  }
+
+  getAllRegisteredAndPassedTestUsers(page: number, size: number): Observable<PageUserAccount> {
     this.log.log(ComponentName.USER_ACCOUNT_SERVICE, ` getAll(${page}, ${size})`);
-    return this.http.get<PageUserAccount>(this.uri + `/account/getAllUsers` + `?page=` + page + `&size=` + size);
+    return this.http.get<PageUserAccount>(this.uri + `/account/getAllRegisteredAndPassedTestUsers` + `?page=` + page + `&size=` + size);
   }
 
   isUserAccount(): boolean {

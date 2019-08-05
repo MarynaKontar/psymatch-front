@@ -11,9 +11,9 @@
 // add returnToFriendAccount button, method, endpoint (when friends test on one device); add canDeactivate guard, but not work navigate on it;
 //add logServiceand enum for component names and add/replace console.log(...) to service.log(...)
 // collected all auth form scss in one file auth.scss; refactor author-cards, profile, auth, common-components and header scss files: arranged in order and adjusted to the size of all screens, collected button scss in ine file test-button.scss, collected all colosr scss in one file color.scss; add logService methods to auth module, profile module and common-components;
+// made it possible to load the initial view of the tests on the frontend, rather than loading it from the server each time; added the ability to randomly mix tests for each area; refactor value-compatibility, value-compatibility-profile, value-compatibility-test-inctruction, value-compatibility-service, match-home-page, match-value-compatibility-service, match-value-compatibility scss and ts files: arranged in order and adjusted to the size of all screens, add log service; offers to rotate device for devices with width less than 578px on chart-bar container on value-compatibility-profile and match-value-compatibility; on account page view registration page instead of contact information when isn't registered; synchronize retrieving data in match-value-compatibility (nested Promise); add confirm to return to user account (nested confirm) in return-to-friend-account;
 
-// NOT COMMITED made it possible to load the initial view of the tests on the frontend, rather than loading it from the server each time; added the ability to randomly mix tests for each area; refactor value-compatibility, value-compatibility-profile, value-compatibility-test-inctruction, value-compatibility-service, match-home-page, match-value-compatibility-service, match-value-compatibility scss and ts files: arranged in order and adjusted to the size of all screens, add log service; offers to rotate device for devices with width less than 578px on chart-bar container on value-compatibility-profile and match-value-compatibility; on account page view registration page instead of contact information when isn't registered; synchronize retrieving data in match-value-compatibility (nested Promise); add confirm to return to user account (nested confirm) in return-to-friend-account;
-
+// NOT COMMITED add user accounts that was match or was invited with loggin user on match-home-page; add return-to-friend-account on user-account;
 
 
 
@@ -30,10 +30,14 @@
 // + psychological-compatibility-info, why-determine-psychological-compatibility,
 // + test-friend-button, pass-test-button, test-friend, test-not-passed
 // + return-to-friend-account, sending-tokens, error-page, online-advertising
-// + testing
+// + testing, matching
 
 // REFACTOR:
-// matching
+
+
+
+
+
 
 
 

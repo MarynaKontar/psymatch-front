@@ -7,10 +7,12 @@
         </div>
       </ng-template>
       <app-return-to-friend-account></app-return-to-friend-account>
-      <div class="content"  *ngIf="isValueCompatibilityTestPassed && isLogin; else testNotPassed">
-        <div *ngFor="let account of pageUserAccount.content; let i = index; let odd=odd;">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 d-flex justify-content-center"> <!--  *ngIf="!odd" -->
+
+      <!-- ALL USER ACCOUNTS PASSED TEST -->
+      <div class="content" *ngIf="isValueCompatibilityTestPassed && isLogin; else testNotPassed">
+        <div class="row justify-content-center" *ngIf="pageUserAccount">
+          <div *ngFor="let account of pageUserAccount.content; let i = index; let odd=odd;">
+            <div class="col-lg-4 pagebleUserAccounts"> <!--  *ngIf="!odd" -->
               <div class="card">
                 <div class="card-body">
                   <div class="gender-icon d-flex justify-content-center">
@@ -29,27 +31,57 @@
                   <!--<button (click)="invite(account.user.id)" class="btn btn-block btn-primary text-uppercase">Пригласить к сравнению</button>-->
                 </div>
               </div><!-- end card -->
-            </div> <!-- end col -->
+            </div><!-- end col -->
+          </div><!-- end ngFor -->
         </div><!-- end row -->
-      </div><!-- end ngFor -->
 
+        <!-- PAGINATION -->
         <ul *ngIf="pagination.pages && pagination.pages.length" class="pagination d-flex justify-content-center">
-        <li>
-          <button class="btn btn-link"(click)="getPageOfUsers(1)" [class.disabled]="pagination.currentPage === 1">First</button>
-        </li>
-        <li>
-          <button class="btn btn-link" (click)="getPageOfUsers(pagination.currentPage - 1)" [class.disabled]="pagination.currentPage === 1">Previous</button>
-        </li>
-        <li *ngFor="let page of pagination.pages; let i= index" [class.active]="page === pagination.currentPage">
-          <button class="btn btn-link" (click)="getPageOfUsers(page)">{{page}}</button>
-        </li>
-        <li>
-          <button class="btn btn-link" (click)="getPageOfUsers(pagination.currentPage + 1)" [class.disabled]="pagination.currentPage === pagination.totalPages">Next</button>
-        </li>
-        <li>
-          <button class="btn btn-link" (click)="getPageOfUsers(pagination.totalPages)" [class.disabled]="pagination.currentPage === pagination.totalPages">Last</button>
-        </li>
-      </ul>
+          <li>
+            <button class="btn btn-link"(click)="getPageOfUsers(1)" [class.disabled]="pagination.currentPage === 1">First</button>
+          </li>
+          <li>
+            <button class="btn btn-link" (click)="getPageOfUsers(pagination.currentPage - 1)" [class.disabled]="pagination.currentPage === 1">Previous</button>
+          </li>
+          <li *ngFor="let page of pagination.pages; let i= index" [class.active]="page === pagination.currentPage">
+            <button class="btn btn-link" (click)="getPageOfUsers(page)">{{page}}</button>
+          </li>
+          <li>
+            <button class="btn btn-link" (click)="getPageOfUsers(pagination.currentPage + 1)" [class.disabled]="pagination.currentPage === pagination.totalPages">Next</button>
+          </li>
+          <li>
+            <button class="btn btn-link" (click)="getPageOfUsers(pagination.totalPages)" [class.disabled]="pagination.currentPage === pagination.totalPages">Last</button>
+          </li>
+        </ul><!-- end pagination -->
+
+        <!--ALL USER ACCOUNTS THAT WAS MATCH WITH LOGGIN USER-->
+        <div class="userForMatchingAccountsHeader d-flex justify-content-center" *ngIf="pagination.currentPage===1&&userForMatchingAccounts&&userForMatchingAccounts.length!=0">
+          Пользователи, с которыми вы уже сравнивали профиль или которые пригласили вас сравнить профили</div>
+        <div class="row justify-content-center" *ngIf="pagination.currentPage==1">
+          <div *ngFor="let userForMatchingAccount of userForMatchingAccounts; let i = index">
+            <div class="col-lg-4 pagebleUserAccounts"> <!--  *ngIf="!odd" -->
+              <div class="card">
+                <div class="card-body">
+                  <div class="gender-icon d-flex justify-content-center">
+                    <img *ngIf="userForMatchingAccount.user.gender==='FEMALE'" class="avatar center-block img-responsive img-circle img-thumbnail thumb96"
+                         src="assets/images/avatar_female.png" alt="{{userForMatchingAccount.user.name}}">
+                    <img *ngIf="userForMatchingAccount.user.gender==='MALE'" class="avatar center-block img-responsive img-circle img-thumbnail thumb96"
+                         src="assets/images/avatar_male.png" alt="{{userForMatchingAccount.user.name}}">
+                  </div>
+                  <h5 class="card-title text-muted text-uppercase text-center">{{userForMatchingAccount.user.name}}</h5>
+                  <h6 *ngIf="userForMatchingAccount.user.age != null" class="card-description text-center">{{userForMatchingAccount.user.age}} лет</h6>
+                  <!--<h6 class="card-description text-center">{{userForMatchingAccount.user.gender}}</h6>-->
+                  <!--<hr>-->
+                </div><!-- end card-body -->
+                <div class="card-footer">
+                  <button (click)="match(userForMatchingAccount.user)" class="btn btn-block btn-info text-uppercase">Сравнить профили</button>
+                  <!--<button (click)="invite(userForMatchingAccount.user.id)" class="btn btn-block btn-primary text-uppercase">Пригласить к сравнению</button>-->
+                </div>
+              </div><!-- end card -->
+            </div><!-- end col -->
+          </div><!-- end ngFor -->
+        </div><!-- end row -->
+
       </div><!-- end content -->
     </div><!-- End col-10 -->
 
