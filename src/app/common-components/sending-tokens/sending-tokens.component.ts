@@ -33,7 +33,7 @@ export class SendingTokensComponent implements OnInit {
   tooltip_copy = `${TOOLTIP_COPY}`;
 
   private isTokenLinkVisible = false;
-  private isAnonimRegistered;
+  private isIncompleteRegistered;
 
   constructor(@Inject(DOCUMENT) dom: Document,
               private valueCompatibilityService: ValueCompatibilityService,
@@ -48,8 +48,8 @@ export class SendingTokensComponent implements OnInit {
     this.log.log(ComponentName.SENDING_TOKENS, `ngOnInit`);
     this.tokens = this.sendingTokensService.getFriendsTokens();
     this.isTokenLinkVisible = this.loginService.isValueCompatibilityTestPassed() && (this.tokens != null);
-    this.isAnonimRegistered = this.registrationService.isAnonimRegistered();
-    if (this.isAnonimRegistered && this.isTokenLinkVisible) {
+    this.isIncompleteRegistered = this.registrationService.isIncompleteRegistered();
+    if (this.isIncompleteRegistered && this.isTokenLinkVisible) {
       this.log.log(ComponentName.SENDING_TOKENS, `ngOnInit: isTokenLinkVisible: ${this.isTokenLinkVisible}`);
       this.getFriendsLinks();
     } else {

@@ -97,14 +97,14 @@ export class LoginComponent implements OnInit {
           this.log.log(ComponentName.LOGIN, ` login(): loginServer(): userAccount: ${userAccount.body}`);
           this.loginService.setUserAccount(userAccount.body);
           this.saveTokenToLocalStorage(userAccount);
-          this.setIsAnonimRegistered();
+          this.setIsIncompleteRegistered();
           this.setIsRegistered();
           this.isValueCompatibilityTestPassed(userAccount.body);
           this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
           this.retrieveDataResolver();
         },
         error => {
-          this.log.log(ComponentName.LOGIN, ` login(): loginServer(): error: ${error}`);
+          this.log.log(ComponentName.LOGIN, ` login(): loginServer(): error: `, error);
           this.isLoginError = true;
         });
   }
@@ -119,8 +119,8 @@ export class LoginComponent implements OnInit {
     this.closeBtn.nativeElement.click();
   }
 
-  private setIsAnonimRegistered() {
-    this.registrationService.setIsAnonimRegistered(this.userAccount.user);
+  private setIsIncompleteRegistered() {
+    this.registrationService.setIsIncompleteRegistered(this.userAccount.user);
   }
   private saveTokenToLocalStorage(httpResponse: HttpResponse<UserAccount>) {
     this.loginService.saveTokenToLocalStorage(httpResponse);

@@ -10,6 +10,7 @@ export interface ValueCompatibilityAnswers {
 
 export interface AreaItem {
   area: Area;
+  question: string;
   chosenScale: Scale;
   firstScale: Scale;
   secondScale: Scale;
@@ -39,7 +40,6 @@ export interface Scale {
 export interface Area {
   area: string;
   areaName: string;
-  areaQuestion: string;
 }
 
 export enum AreaEnum {
@@ -66,9 +66,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.THREE,
         'scaleHeader': 'ДОСТИЖЕНИЯ',
@@ -89,8 +89,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'GOAL',
         'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ГАРМОНИЧНЫЕ ОТНОШЕНИЯ',
@@ -110,9 +110,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'ЗДОРОВЬЕ',
@@ -132,9 +132,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.TWO,
         'scaleHeader': 'УДОВОЛЬСТВИЯ',
@@ -154,9 +154,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ГАРМОНИЧНЫЕ ОТНОШЕНИЯ',
@@ -176,9 +176,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.THREE,
         'scaleHeader': 'ДОСТИЖЕНИЯ',
@@ -198,9 +198,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'РАЗВИТИЕ',
@@ -220,9 +220,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.TWO,
         'scaleHeader': 'УДОВОЛЬСТВИЯ',
@@ -242,9 +242,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'ТВОРЧЕСТВО',
@@ -264,9 +264,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'ТВОРЧЕСТВО',
@@ -286,9 +286,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ГАРМОНИЧНЫЕ ОТНОШЕНИЯ',
@@ -308,9 +308,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'ЗДОРОВЬЕ',
@@ -330,9 +330,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'ТВОРЧЕСТВО',
@@ -352,9 +352,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'РАЗВИТИЕ',
@@ -374,9 +374,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'GOAL',
-        'areaName': 'Жизненные цели',
-        'areaQuestion': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?'
+        'areaName': 'Жизненные цели'
       },
+      'question': 'Что для вас в жизни более ценно? Что бы вы выбрали в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ГАРМОНИЧНЫЕ ОТНОШЕНИЯ',
@@ -398,9 +398,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'QUALITY',
-        'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
+        'areaName': 'Личностные качества'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'КРЕАТИВНОСТЬ',
@@ -421,8 +421,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ДОБРОЖЕЛАТЕЛЬНОСТЬ',
@@ -443,8 +443,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'КРЕАТИВНОСТЬ',
@@ -465,8 +465,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'МУДРОСТЬ',
@@ -487,8 +487,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.THREE,
         'scaleHeader': 'СИЛА ВОЛИ',
@@ -509,8 +509,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'СТОЙКОСТЬ',
@@ -531,8 +531,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'СТОЙКОСТЬ',
@@ -553,8 +553,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.TWO,
         'scaleHeader': 'ГЕДОНИЗМ',
@@ -575,8 +575,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.TWO,
         'scaleHeader': 'ГЕДОНИЗМ',
@@ -597,8 +597,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'КРЕАТИВНОСТЬ',
@@ -619,8 +619,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ДОБРОЖЕЛАТЕЛЬНОСТЬ',
@@ -640,9 +640,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'QUALITY',
-        'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
+        'areaName': 'Личностные качества'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ДОБРОЖЕЛАТЕЛЬНОСТЬ',
@@ -663,8 +663,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'СТОЙКОСТЬ',
@@ -685,8 +685,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'МУДРОСТЬ',
@@ -707,8 +707,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'QUALITY',
         'areaName': 'Личностные качества',
-        'areaQuestion': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?'
       },
+      'question': 'Какие качества и способности для вас ценнее? Что бы вы стали развивать в себе в первую очередь?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'МУДРОСТЬ',
@@ -731,8 +731,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'ЧУВСТВО БЕЗОПАСНОСТИ',
@@ -753,8 +753,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'ЧУВСТВО БЕЗОПАСНОСТИ',
@@ -775,8 +775,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'УВЛЕЧЕННОСТЬ',
@@ -797,8 +797,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'ЯСНОСТЬ',
@@ -819,8 +819,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.TWO,
         'scaleHeader': 'ДУШЕВНЫЙ И ФИЗИЧЕСКИЙ КОМФОРТ',
@@ -841,8 +841,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'ЯСНОСТЬ',
@@ -863,8 +863,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.FIVE,
         'scaleHeader': 'УВЛЕЧЕННОСТЬ',
@@ -885,8 +885,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ЛЮБОВЬ',
@@ -907,8 +907,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'ЧУВСТВО БЕЗОПАСНОСТИ',
@@ -929,8 +929,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.ONE,
         'scaleHeader': 'ЧУВСТВО БЕЗОПАСНОСТИ',
@@ -951,8 +951,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'ЯСНОСТЬ',
@@ -973,8 +973,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'ЯСНОСТЬ',
@@ -995,8 +995,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.SIX,
         'scaleHeader': 'ЯСНОСТЬ',
@@ -1017,8 +1017,8 @@ export let tests: ValueCompatibilityAnswers = {
       'area': {
         'area': 'STATE',
         'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.TWO,
         'scaleHeader': 'ДУШЕВНЫЙ И ФИЗИЧЕСКИЙ КОМФОРТ',
@@ -1038,9 +1038,9 @@ export let tests: ValueCompatibilityAnswers = {
     {
       'area': {
         'area': 'STATE',
-        'areaName': 'Состояния',
-        'areaQuestion': 'Какое состояние для вас более приятно и привлекательно?'
+        'areaName': 'Состояния'
       },
+      'question': 'Какое состояние для вас более приятно и привлекательно?',
       'firstScale': {
         'scale': ScaleEnum.FOUR,
         'scaleHeader': 'ЛЮБОВЬ',

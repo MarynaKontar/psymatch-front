@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { RegistrationService } from './registration.service';
-import { AnonimRegistrationComponent } from './anonim-registration/anonim-registration.component';
+import { IncompleteRegistrationComponent } from './incomplete-registration/incomplete-registration.component';
 import { SharedModule } from '../../shared/shared.module';
 import { AppRoutingModule } from '../../app-routing.module';
 
@@ -14,8 +14,8 @@ import { AppRoutingModule } from '../../app-routing.module';
     AppRoutingModule,
     SharedModule,
   ],
-  exports: [RegistrationComponent, AnonimRegistrationComponent],
-  declarations: [RegistrationComponent, AnonimRegistrationComponent],
+  exports: [RegistrationComponent, IncompleteRegistrationComponent],
+  declarations: [RegistrationComponent, IncompleteRegistrationComponent],
   providers: [RegistrationService]
 })
 export class RegistrationModule { }

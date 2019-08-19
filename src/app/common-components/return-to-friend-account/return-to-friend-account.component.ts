@@ -8,6 +8,7 @@ import {SendingTokensService} from '../sending-tokens/sending-tokens.service';
 import {ComponentName} from '../services/component-name';
 import {LogService} from '../services/log.service';
 import {APP_NAME} from '../../utils/config';
+import {MatchValueCompatibilityService} from '../../matching/match-value-compatibility.service';
 
 @Component({
   selector: 'app-return-to-friend-account',
@@ -23,10 +24,12 @@ export class ReturnToFriendAccountComponent implements OnInit {
   readonly APP_NAME = `${APP_NAME}`;
   @ViewChild('openModalConfirm') openModalConfirm: ElementRef;
   @ViewChild('closeBtn') closeBtn: ElementRef;
+  private userForMatching: User;
 
   constructor(private loginService: LoginService,
               private registrationService: RegistrationService,
               private userAccountService: UserAccountService,
+              private matchValueCompatibilityService: MatchValueCompatibilityService,
               private sendingTokensService: SendingTokensService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -67,22 +70,25 @@ export class ReturnToFriendAccountComponent implements OnInit {
 
   private returnToFriendAccountServer() {
     this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer()`);
+    this.userForMatching = this.userAccountService.getUserAccount().user;
     this.loginService.returnToFriendAccount()
       .subscribe(userAccount => {
           this.loginService.logout();
           this.loginService.setUserAccount(userAccount.body);
           this.loginService.saveTokenToLocalStorage(userAccount);
           const user: User = userAccount.body.user;
-          this.registrationService.setIsAnonimRegistered(user);
+          this.registrationService.setIsIncompleteRegistered(user);
           this.registrationService.setIsRegistered(user);
           this.loginService.setIsValueCompatibilityTestPassed(userAccount.body);
           this.sendingTokensService.setFriendsTokens(userAccount.body.inviteTokens);
+          this.matchValueCompatibilityService.setUserForMatching(this.userForMatching);
           this.retrieveDataResolver();
         },
         error => {
-          this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer() - error: ${JSON.stringify(error)}`);
+          this.log.log(ComponentName.RETURN_TO_FRIEND_ACCOUNT, `returnToFriendAccountServer() - error: `, error);
           this.isLoginError = true;
         });
+
   }
 
   private afterReturnToFriendAccountActions() {

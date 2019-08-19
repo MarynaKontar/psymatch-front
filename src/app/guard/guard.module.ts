@@ -7,8 +7,8 @@ import { LoginService } from '../auth/authentication/login.service';
     CommonModule,
     LoginService,
   ],
-  // declarations: [RegistrationGuard, AnonimRegistrationGuard, CanDeactivateGuard],
-  // exports: [RegistrationGuard, AnonimRegistrationGuard, CanDeactivateGuard],
+  // declarations: [RegistrationGuard, IncompleteRegistrationGuard, CanDeactivateGuard],
+  // exports: [RegistrationGuard, IncompleteRegistrationGuard, CanDeactivateGuard],
   // providers: [CanDeactivateGuard]
 })
 export class GuardModule { }

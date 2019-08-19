@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   readonly APP_NAME = `${APP_NAME}`;
 
   isRegistered: boolean;
-  isAnonimRegistered: boolean;
+  isIncompleteRegistered: boolean;
   isLogin: boolean;
   isValueCompatibilityTestPassed: boolean;
   account: UserAccount;
@@ -39,22 +39,22 @@ export class HeaderComponent implements OnInit {
     this.isAccountUserName = isUserAccount &&
                              this.account.user !== null &&
                              this.account.user.name !== null;
-    this.isAnonimRegistered = this.registrationService.isAnonimRegistered();
+    this.isIncompleteRegistered = this.registrationService.isIncompleteRegistered();
     this.isValueCompatibilityTestPassed = this.loginService.isValueCompatibilityTestPassed();
 
     this.log.log(ComponentName.HEADER, ` ngOnInit: isLogin: ${this.isLogin}`);
     this.log.log(ComponentName.HEADER, ` ngOnInit: isRegistered: ${this.isRegistered}`);
     this.log.log(ComponentName.HEADER, ` ngOnInit: isAccountUserName: ${this.isAccountUserName}`);
-    this.log.log(ComponentName.HEADER, ` ngOnInit: isAnonimRegistered: ${this.isAnonimRegistered}`);
+    this.log.log(ComponentName.HEADER, ` ngOnInit: isIncompleteRegistered: ${this.isIncompleteRegistered}`);
     this.log.log(ComponentName.HEADER, ` ngOnInit: isValueCompatibilityTestPassed: ${this.isValueCompatibilityTestPassed}`);
 
     this.isAccountVisible = (this.isLogin && this.isRegistered && this.isAccountUserName)
-      || (this.isLogin && this.isAnonimRegistered && this.isAccountUserName)
-      || (this.isLogin && this.isRegistered && this.isAnonimRegistered && this.isAccountUserName);
+      || (this.isLogin && this.isIncompleteRegistered && this.isAccountUserName)
+      || (this.isLogin && this.isRegistered && this.isIncompleteRegistered && this.isAccountUserName);
 
-    this.isAliasAccountVisible = (this.isLogin && this.isAnonimRegistered && !this.isAccountUserName) ||
+    this.isAliasAccountVisible = (this.isLogin && this.isIncompleteRegistered && !this.isAccountUserName) ||
       (this.isLogin && this.isRegistered && !this.isAccountUserName) ||
-      (this.isLogin && this.isRegistered && this.isAnonimRegistered && !this.isAccountUserName);
+      (this.isLogin && this.isRegistered && this.isIncompleteRegistered && !this.isAccountUserName);
 
     this.log.log(ComponentName.HEADER, ` ngOnInit: isAccountVisible: ${this.isAccountVisible}`);
     this.log.log(ComponentName.HEADER, ` ngOnInit: isAliasAccountVisible: ${this.isAliasAccountVisible}`);

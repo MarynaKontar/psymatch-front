@@ -12,14 +12,14 @@ import {PsychologicalCompatibilityInfoComponent} from './psychological-compatibi
 import {UserAccountComponent} from './profile/user-account/user-account.component';
 import {TestFriendComponent} from './common-components/test-friend/test-friend.component';
 import {AuthGuard} from './guard/auth.guard';
-import {AnonimRegistrationGuard} from './guard/anonim-registration.guard';
+import {IncompleteRegistrationGuard} from './guard/incomplete-registration.guard';
 import {CanDeactivateGuard} from './guard/can-deactivate.guard';
 import {MatchHomePageComponent} from './matching/match-home-page/match-home-page.component';
 import {ValueCompatibilityTestInctructionComponent} from './testing/value-compatibility-test-inctruction/value-compatibility-test-inctruction.component';
 import {RegistrationComponent} from './auth/registration/registration/registration.component';
 import {LoginComponent} from './auth/authentication/login/login.component';
 import {LogoutComponent} from './auth/authentication/logout/logout.component';
-import {AnonimRegistrationComponent} from './auth/registration/anonim-registration/anonim-registration.component';
+import {IncompleteRegistrationComponent} from './auth/registration/incomplete-registration/incomplete-registration.component';
 
 const routes: Routes = [
   {
@@ -42,8 +42,8 @@ const routes: Routes = [
   },
 
   {
-    path: 'anonim-registration',
-    component: AnonimRegistrationComponent
+    path: 'incomplete-registration',
+    component: IncompleteRegistrationComponent
   },
 
   {
@@ -78,7 +78,7 @@ const routes: Routes = [
   {
     path: 'value-profile',
     component: ValueCompatibilityProfileComponent,
-    canActivate: [AnonimRegistrationGuard],
+    canActivate: [IncompleteRegistrationGuard],
     canDeactivate: [CanDeactivateGuard]
   },
   {
@@ -93,12 +93,12 @@ const routes: Routes = [
   {
     path: 'tokens',
     component: SendingTokensComponent,
-    canActivate: [AnonimRegistrationGuard]
+    canActivate: [IncompleteRegistrationGuard]
   },
   {
     path: 'test-friend',
     component: TestFriendComponent,
-    canActivate: [AnonimRegistrationGuard],
+    canActivate: [IncompleteRegistrationGuard],
     // canDeactivate: [CanDeactivateGuard]
   },
   {

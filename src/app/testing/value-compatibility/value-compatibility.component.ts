@@ -84,17 +84,17 @@ export class ValueCompatibilityComponent implements OnInit {
 
     // ============GET INITIAL TESTS =================
     // you can not go to the server to get the initial tests
-    this.tests = tests;
-    this.shaffle(this.tests.goal);
-    this.shaffle(this.tests.state);
-    this.shaffle(this.tests.quality);
+    // this.tests = tests;
+    // this.shaffle(this.tests.goal);
+    // this.shaffle(this.tests.state);
+    // this.shaffle(this.tests.quality);
 
     // go to the server to get the initial tests
-    // this.valueCompatibilityService.getTestList()
-    //   .subscribe(data => {
-    //       this.tests = data;
-    //       this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: tests: ${data}`);
-    //
+    this.valueCompatibilityService.getTestList()
+      .subscribe(data => {
+          this.tests = data;
+          this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: tests: ${data}`);
+
     //     // Yura wanted to make colored headlines of cards
     //     // this.tests.goal.forEach(goal => {
     //     //     goal.firstScale.scaleColor = this.setScaleColor(goal.firstScale.scale);
@@ -108,11 +108,11 @@ export class ValueCompatibilityComponent implements OnInit {
     //     //   state.firstScale.scaleColor = this.setScaleColor(state.firstScale.scale);
     //     //   state.secondScale.scaleColor = this.setScaleColor(state.secondScale.scale);
     //     // });
-    //   }
-    //   );
+      }
+      );
 
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: initial test: `, this.tests);
-    
+
     // marks active and unactive card-deck for @slide animation
     for (let i = 0; i < 15; i++) {
       if (i === 0) {

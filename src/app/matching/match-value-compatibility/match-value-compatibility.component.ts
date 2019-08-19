@@ -100,20 +100,23 @@ export class MatchValueCompatibilityComponent extends DeactivationLoginRegistrat
 
   private getUsersForMatching() {
     this.userForMatching = this.matchValueCompatibilityService.getUserForMatching();
-    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): userForMatching: `, this.userForMatching);
+    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): user: `, this.userForMatching);
     if (this.userForMatching === undefined || this.userForMatching === null ) {
-      this.matchValueCompatibilityService.getUsersForMatching()
+      this.matchValueCompatibilityService.getUsersForMatching(this.userAccountService.getUserForMatchingToken())
         .subscribe(data => {
-          this.usersForMatching = data;
+          this.usersForMatching = data.body;
           this.userForMatching = this.usersForMatching[0];
-          this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): userForMatching: `, this.userForMatching);
+          this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): user: `, this.userForMatching);
           this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
+        },
+          error => {
+            // todo if token is expired than send getUsersForMatching(null) again
         });
     } else  { // if there is userForMatching then create array this.usersForMatching with one value
       this.usersForMatching = new Array<User>(this.userForMatching);
       this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
     }
-    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): usersForMatching: `, this.usersForMatching);
+    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY, `getUsersForMatching(): USERS: `, this.usersForMatching);
   }
 
   private plotRectangle(userForMatching: User) {

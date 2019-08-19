@@ -16,25 +16,23 @@ export class RegistrationService {
     private log: LogService) {
   }
 
-// TODO убрать (проверить, чтобы через интерсептор работало)
-  /** POST: add a fully new user or add an anonim user to the server (database) */
-  registerNewUser(user: User): Observable<HttpResponse<UserAccount>> {
-    this.log.log(ComponentName.REGISTRATION_SERVICE, ` registerNewUser(): ${user}`);
+  /** POST: add a fully new user or add registration info to an anonim user to the server (database) */
+  registration(user: User): Observable<HttpResponse<UserAccount>> {
+    this.log.log(ComponentName.REGISTRATION_SERVICE, ` registerNewUser(): `, user);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       observe: 'response' as 'response'
     };
-    // take token (if it is in localStorage) from localstorage (throw token-interceptor) and push it to backend to save new user data(email, password) for that anonim user
     return this.http.post<UserAccount>(this.uri + `/registration`, user, httpOptions);
     // .pipe(
     //   catchError(this.handleError('add', user))
     // ;
   }
 
-  /** POST: register anonim user with a name, age and gender */
-  anonimRegistration(user: User): Observable<User> {
-    this.log.log(ComponentName.REGISTRATION_SERVICE, ` anonimRegistration(): ${user}`);
-    return this.http.post<User>(this.uri + `/user/anonimRegistration`, user);
+  /** POST: incomplete user registration (only name, age and gender) */
+  incompleteRegistration(user: User): Observable<User> {
+    this.log.log(ComponentName.REGISTRATION_SERVICE, ` incompleteRegistration(): `, user);
+    return this.http.post<User>(this.uri + `/user/incompleteRegistration`, user);
   }
 
   isRegistered(): boolean {
@@ -49,18 +47,18 @@ export class RegistrationService {
     localStorage.setItem('isRegistered', (user.name != null && user.email != null) ? 'true' : 'false');
   }
 
-  setIsAnonimRegistered(user: User) {
-    this.log.log(ComponentName.REGISTRATION_SERVICE, ` setIsAnonimRegistered(): ${user}`);
-    localStorage.setItem('isAnonimRegistered', (user.name != null && user.age != null && user.gender != null) ? 'true' : 'false');
+  setIsIncompleteRegistered(user: User) {
+    this.log.log(ComponentName.REGISTRATION_SERVICE, ` setIsIncompleteRegistered(): ${user}`);
+    localStorage.setItem('isIncompleteRegistered', (user.name != null && user.age != null && user.gender != null) ? 'true' : 'false');
   }
 
-  isAnonimRegistered(): boolean {
+  isIncompleteRegistered(): boolean {
     const token = localStorage.getItem('token');
-    const isAnonimRegistered = localStorage.getItem('isAnonimRegistered') === 'true';
-    this.log.log(ComponentName.REGISTRATION_SERVICE, ` isAnonimRegistered(): token: ${token}`);
-    this.log.log(ComponentName.REGISTRATION_SERVICE, ` isAnonimRegistered(): isAnonimRegistered: ${isAnonimRegistered}`);
+    const isIncompleteRegistered = localStorage.getItem('isIncompleteRegistered') === 'true';
+    this.log.log(ComponentName.REGISTRATION_SERVICE, ` isIncompleteRegistered(): token: ${token}`);
+    this.log.log(ComponentName.REGISTRATION_SERVICE, ` isIncompleteRegistered(): isIncompleteRegistered: ${isIncompleteRegistered}`);
     if (token === null) { return false; }
-    if (isAnonimRegistered) { return true; }
+    if (isIncompleteRegistered) { return true; }
     return false;
   }
 

@@ -16,7 +16,7 @@ import {RegistrationComponent} from './registration/registration/registration.co
   exports: [
     // к LoginComponent, LogoutComponent переходим из основного компонента по <app-login> и <app-logout>
     // вызывая открытие модального окна. поэтому их надо экспортировать.
-    // А к AnonimRegistration переходим по routerLink и поэтому его не надо экспортировать.
+    // А к IncompleteRegistration переходим по routerLink и поэтому его не надо экспортировать.
     // К RegistrationComponent тоже переходим везде по routerLink, но в user-account вставляем
     // в шаблон страницу регистрации, поэтому приходится тоже экспортировать
     LoginComponent,

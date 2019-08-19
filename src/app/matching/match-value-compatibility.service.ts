@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User, UserAccount} from '../profile/user';
 import {UserMatch, ValueProfileMatching} from './match-value-compatibility/match-value-compatibility';
@@ -41,9 +41,15 @@ export class MatchValueCompatibilityService {
     return this.http.post<UserMatch>(this.uri + `/match/Percent`, user);
   }
 
-  getUsersForMatching(): Observable<User[]> {
+  getUsersForMatching(userForMatchingToken: string): Observable<HttpResponse<User[]>> {
     this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `getUsersForMatching()`);
-    return this.http.get<User[]>(this.uri + `/match/getUsersForMatching`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'userForMatchingToken': userForMatchingToken}),
+      observe: 'response' as 'response'
+    };
+    return this.http.get<User[]>(this.uri + `/match/getUsersForMatching`, httpOptions);
   }
 
   /** Get value profiles from server for last test for two users: principal and "user" */

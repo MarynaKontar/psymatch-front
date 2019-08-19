@@ -42,14 +42,14 @@ export class DeactivationLoginRegistrationGuarded {
   // CANDEACTIVATE
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER,
-      `canDeactivate: isAnonimRegistered: ${this.registrationService.isAnonimRegistered()}`);
+      `canDeactivate: isIncompleteRegistered: ${this.registrationService.isIncompleteRegistered()}`);
     if (
       !this.loginService.isLogin()
       || (this.loginService.isLogin() && this.registrationService.isRegistered())
       || this.registrationService.isRegistered()
       // на страницах, где применяется этот guard и так будет предлогаться зарегестрироваться, если isUserForMatchingToken(). Топорно, но пока не вижу другого выхода
       || (!this.registrationService.isRegistered() && this.userAccountService.isUserForMatchingToken())
-      // || this.registrationService.isAnonimRegistered()
+      // || this.registrationService.isIncompleteRegistered()
     ) {
       this.log.log(ComponentName.DEACTIVATION_LOGIN_REGISTRATION_GUARDER, `canDeactivate(): true`);
       return true;

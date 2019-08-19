@@ -1,6 +1,6 @@
 // import {RouterModule, Routes} from '@angular/router';
 // import {RegistrationComponent} from './registration/registration/registration.component';
-// import {AnonimRegistrationComponent} from './registration/anonim-registration/anonim-registration.component';
+// import {IncompleteRegistrationComponent} from './registration/incomplete-registration/incomplete-registration.component';
 // import {NgModule} from '@angular/core';
 // import {AuthComponent} from './auth/auth.component';
 // import {LoginComponent} from './authentication/login/login.component';
@@ -16,8 +16,8 @@
 //         component: RegistrationComponent
 //       },
 //       {
-//         path: 'anonim-registration',
-//         component: AnonimRegistrationComponent
+//         path: 'incomplete-registration',
+//         component: IncompleteRegistrationComponent
 //       },
 //       {
 //         path: 'login',

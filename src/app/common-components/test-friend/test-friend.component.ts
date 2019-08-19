@@ -7,6 +7,8 @@ import {RegistrationService} from '../../auth/registration/registration.service'
 import {LogService} from '../services/log.service';
 import {ComponentName} from '../services/component-name';
 import {APP_NAME} from '../../utils/config';
+import {User} from '../../profile/user';
+import {MatchValueCompatibilityService} from '../../matching/match-value-compatibility.service';
 
 @Component({
   selector: 'app-test-friend',
@@ -20,12 +22,14 @@ export class TestFriendComponent  extends DeactivationLoginRegistrationGuarded i
   isDeactivate: Promise<boolean>;
   private retrieveDataResolver;
   private token;
-  constructor(userAccountService: UserAccountService,
-    loginService: LoginService,
-    registrationService: RegistrationService,
-    router: Router,
-    activatedRoute: ActivatedRoute,
-    log: LogService) {
+  private userForMatching: User;
+  constructor(private matchValueCompatibilityService: MatchValueCompatibilityService,
+              userAccountService: UserAccountService,
+              loginService: LoginService,
+              registrationService: RegistrationService,
+              router: Router,
+              activatedRoute: ActivatedRoute,
+              log: LogService) {
     super(loginService, registrationService, userAccountService, router, activatedRoute, log);
   }
 
@@ -44,6 +48,7 @@ export class TestFriendComponent  extends DeactivationLoginRegistrationGuarded i
   goToTestAnotherUser () {
     this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser`);
     this.token = this.loginService.getToken();
+    this.userForMatching = this.userAccountService.getUserAccount().user;
     this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
     if (this.token) {
       new Promise((resolve) => {
@@ -51,6 +56,7 @@ export class TestFriendComponent  extends DeactivationLoginRegistrationGuarded i
         this.log.log(ComponentName.TEST_FRIEND, `testAnotherUser(): goToTestAnotherUser: TOKEN: ${this.token}`);
         this.loginService.logout();
         this.userAccountService.setUserForMatchingToken(this.token);
+        this.matchValueCompatibilityService.setUserForMatching(this.userForMatching);
         this.closeModalConfirm.nativeElement.click();
         this.router.navigate(['vc-test-instruction']);
         this.retrieveDataResolver();

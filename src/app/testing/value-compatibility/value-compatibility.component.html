@@ -7,7 +7,7 @@
     <!--</div>-->
 
     <!--<div class="area header">{{ tests.goal[0].area.areaName }}</div>-->
-    <div *ngIf="isNotPassed" class="area question">{{ tests.goal[0].area.areaQuestion }}</div>
+    <div *ngIf="isNotPassed" class="area question">{{ tests.goal[0].question }}</div>
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.goal; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
@@ -51,7 +51,7 @@
   <!--                                     STATES                                      -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isStatesDone || !isGoalsDone">
     <!--<div class="area header">{{ tests.state[0].area.areaName }}</div>-->
-    <div *ngIf="isNotPassed" class="area question">{{ tests.state[0].area.areaQuestion }}</div>
+    <div *ngIf="isNotPassed" class="area question">{{ tests.state[0].question }}</div>
     <div class="card-deck justify-content-center align-items-center" *ngFor="let test of tests.state; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">
       <label class="card d-flex justify-content-center">
@@ -94,7 +94,7 @@
   <!--                                     QUALITIES                                       -->
   <div *ngIf="tests" class="container-fluid test" @fade [hidden]="isQualitiesDone || !isGoalsDone || !isStatesDone">
     <!--<div class="area header">{{ tests.quality[0].area.areaName }}</div>-->
-    <div class="area question">{{ tests.quality[0].area.areaQuestion }}</div>
+    <div class="area question">{{ tests.quality[0].question }}</div>
     <div class="card-deck justify-content-center align-items-center"
          *ngFor="let test of tests.quality; let i = index"
          [@slide]="itemState[i]" [hidden]="!isActive(i) && isChosen(i)">

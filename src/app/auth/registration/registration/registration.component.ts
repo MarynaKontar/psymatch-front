@@ -55,12 +55,12 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     // SYNCHRONOUS: doing a serial sequence of async tasks with PROMISE, using chaining "then" calls.
     // without Promise, all commands async, and there is can be "navigate" before retrieve data from server
-    this.log.log(ComponentName.REGISTRATION, ` registerUser(): ${this.registeredUser}`);
+    this.log.log(ComponentName.REGISTRATION, ` registerUser(): `, this.registeredUser);
     this.retrieveUserPromise().then(() => { this.afterSaveUserActions(); });
   }
 
   isNew(): boolean {
-    this.log.log(ComponentName.REGISTRATION, ` isNew(): ${!this.registrationService.isRegistered()}`);
+    this.log.log(ComponentName.REGISTRATION, ` isNew(): `, !this.registrationService.isRegistered());
     return !this.registrationService.isRegistered();
   }
 
@@ -69,15 +69,15 @@ export class RegistrationComponent implements OnInit {
     location.reload(); // need to update account user name in header navigation
   }
   private saveUser(): void {
-    this.log.log(ComponentName.REGISTRATION, ` saveUser()`);
-    this.registrationService.registerNewUser(<User> this.registeredUser)
+    this.log.log(ComponentName.REGISTRATION, ` saveUser(): `, this.registeredUser);
+    this.registrationService.registration(<User> this.registeredUser)
       .subscribe(data => {
         if (data.headers.get('AUTHORIZATION') != null) {
           this.log.log(ComponentName.REGISTRATION, ` saveUser(): token: ${data.headers.get('AUTHORIZATION')}`);
           this.loginService.saveTokenToLocalStorage(data);
         }
         this.registrationService.setIsRegistered(data.body.user);
-        this.registrationService.setIsAnonimRegistered(data.body.user);
+        this.registrationService.setIsIncompleteRegistered(data.body.user);
         this.loginService.setIsValueCompatibilityTestPassed(data.body);
         this.registeredUser = data.body.user;
         this.isNeedToBeRegistered = this.isNew();
@@ -86,7 +86,7 @@ export class RegistrationComponent implements OnInit {
         this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
       },
         error => {
-          this.log.log(ComponentName.REGISTRATION, ` saveUser(): error: ${error}`);
+          this.log.log(ComponentName.REGISTRATION, ` saveUser(): error: `, error);
           this.isRegistrationError = true;
         });
   }

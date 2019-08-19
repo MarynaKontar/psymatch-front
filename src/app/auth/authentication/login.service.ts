@@ -65,7 +65,7 @@ export class LoginService {
     // localStorage.clear();
     sessionStorage.clear();
     localStorage.removeItem('token');
-    localStorage.removeItem('isAnonimRegistered');
+    localStorage.removeItem('isIncompleteRegistered');
     localStorage.removeItem('isRegistered');
     localStorage.removeItem('friendsTokens');
     localStorage.removeItem('isValueCompatibilityTestPassed');

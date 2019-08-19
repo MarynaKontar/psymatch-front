@@ -1,11 +1,11 @@
 <!----------MODAL--------->
-<button class="btn btn-primary" id="openModalAnonimRegistration" data-backdrop="static" #openModalAnonimRegistration data-toggle="modal" [hidden]="true" data-target="#anonimRegistration">Ввести имя, пол и возраст</button>
+<button class="btn btn-primary" id="openModalIncompleteRegistration" data-backdrop="static" #openModalIncompleteRegistration data-toggle="modal" [hidden]="true" data-target="#incompleteRegistration">Ввести имя, пол и возраст</button>
 
-<div class="modal fade" id="anonimRegistration" role="dialog" aria-labelledby="anonimRegistrationModalLabel">
+<div class="modal fade" id="incompleteRegistration" role="dialog" aria-labelledby="incompleteRegistrationModalLabel">
   <div class="modal-dialog modal-dialog-centered d-flex justify-content-center" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="anonimRegistrationModalLabel">Для более качественной обработки результатов тестирования, введите свое имя, возраст и пол </h5>
+        <h5 class="modal-title" id="incompleteRegistrationModalLabel">Для более качественной обработки результатов тестирования, введите свое имя, возраст и пол </h5>
       </div>
       <div class="modal-body">
         <!--https://angular.io/guide/form-validation#adding-to-template-driven-forms-->
@@ -18,7 +18,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-user"></i> </span>
               </div>
-              <input [(ngModel)]="registeredUser.name" id="name" name="name" type="text"
+              <input [(ngModel)]="incompleteRegisteredUser.name" id="name" name="name" type="text"
                      class="form-control rounded-0" required placeholder="имя" #name="ngModel" autofocus="autofocus">
             </div>
           </div>
@@ -30,7 +30,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"> <i class="fa fa-age">age</i> </span>
               </div>
-              <input [(ngModel)]="registeredUser.age" name="age" id="age" type="number"
+              <input [(ngModel)]="incompleteRegisteredUser.age" name="age" id="age" type="number"
                      class="form-control" #age="ngModel" required placeholder="возраст">
             </div>
           </div>
@@ -43,14 +43,14 @@
                   <span class="input-group-text"> <i class="fa fa-venus-mars"></i> </span>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" [(ngModel)]="registeredUser.gender" required
+                  <input class="form-check-input" type="radio" [(ngModel)]="incompleteRegisteredUser.gender" required
                          #gender="ngModel" name="gender" id="male" value="MALE" checked="checked">
                   <label class="form-check-label" for="male">
                     Мужской
                   </label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" [(ngModel)]="registeredUser.gender" required
+                  <input class="form-check-input" type="radio" [(ngModel)]="incompleteRegisteredUser.gender" required
                          name="gender" id="female" value="FEMALE">
                   <label class="form-check-label" for="female">
                     Женский
@@ -61,13 +61,12 @@
           </div>
 
           <!--NAME ALREADY EXISTS-->
-          <h5 [hidden]="!isRegistrationError" class="alert alert-danger">Такие имя уже существуют</h5>
+          <h5 [hidden]="!isRegistrationError" class="alert alert-danger">{{registrationError}}</h5>
           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
           <!--<button class="btn btn-default float-left" (click)="close()" data-dismiss="modal" aria-hidden="true">Close</button>-->
 
           <!--BUTTON REGISTER-->
-          <button (click)="saveAnonim()" type="submit"
-                  [disabled]="name.invalid || age.invalid || gender.invalid"
+          <button (click)="saveIncompleteRegisteredUser()" type="submit"
                   class="btn btn-primary float-right">Сохранить</button>
           <a><i class="fa fa-close" data-dismiss="modal" hidden="hidden" #closeBtn></i></a>
         </form>

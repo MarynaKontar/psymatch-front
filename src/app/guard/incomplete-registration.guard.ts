@@ -9,7 +9,7 @@ import { LoginService } from '../auth/authentication/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AnonimRegistrationGuard implements CanActivate {
+export class IncompleteRegistrationGuard implements CanActivate {
   constructor(private registrationService: RegistrationService,
               private loginService: LoginService,
               private router: Router,
@@ -19,14 +19,14 @@ export class AnonimRegistrationGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    // if (this.registrationService.isRegistered() && this.registrationService.isAnonimRegistered()) {
-    if (this.loginService.isValueCompatibilityTestPassed() && !this.registrationService.isAnonimRegistered()) {
-      this.log.log(ComponentName.ANONIM_REGISTRATION_GUARD, `canActivate: isAnonimRegistered=FALSE`);
-      this.log.log(ComponentName.ANONIM_REGISTRATION_GUARD, `canActivate: returnUrl=${state.url}`);
-      this.router.navigate(['anonim-registration'], { queryParams: { returnUrl: state.url }});
+    // if (this.registrationService.isRegistered() && this.registrationService.isIncompleteRegistered()) {
+    if (this.loginService.isValueCompatibilityTestPassed() && !this.registrationService.isIncompleteRegistered()) {
+      this.log.log(ComponentName.INCOMPLETE_REGISTRATION_GUARD, `canActivate: isIncompleteRegistered=FALSE`);
+      this.log.log(ComponentName.INCOMPLETE_REGISTRATION_GUARD, `canActivate: returnUrl=${state.url}`);
+      this.router.navigate(['incomplete-registration'], { queryParams: { returnUrl: state.url }});
       return false;
     } else {
-      this.log.log(ComponentName.ANONIM_REGISTRATION_GUARD, `canActivate: isAnonimRegistered=TRUE`);
+      this.log.log(ComponentName.INCOMPLETE_REGISTRATION_GUARD, `canActivate: isIncompleteRegistered=TRUE`);
       return true;
     }
   }
