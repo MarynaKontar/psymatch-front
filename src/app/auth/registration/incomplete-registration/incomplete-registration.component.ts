@@ -6,7 +6,6 @@ import {LoginService} from '../../authentication/login.service';
 import {UserAccountService} from '../../../profile/user-account.service';
 import {LogService} from '../../../common-components/services/log.service';
 import {ComponentName} from '../../../common-components/services/component-name';
-import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-incomplete-registration',
@@ -80,6 +79,7 @@ export class IncompleteRegistrationComponent implements OnInit {
           this.setIncompleteRegistered();
           this.userAccount = this.userAccountService.getUserAccount();
           this.user1 = this.userAccount.user;
+          this.user1.id = this.incompleteRegisteredUser.id;
           this.user1.name = this.incompleteRegisteredUser.name;
           this.user1.age = this.incompleteRegisteredUser.age;
           this.user1.gender = this.incompleteRegisteredUser.gender;

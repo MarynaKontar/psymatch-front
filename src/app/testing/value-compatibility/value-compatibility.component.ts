@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ValueCompatibilityService} from '../value-compatibility.service';
-import {animationTime, AreaItem, Scale, ScaleEnum, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
+import {animationTime, AreaItem, Scale, tests, ValueCompatibilityAnswers} from './value-compatibility-answers';
 import {FormBuilder} from '@angular/forms';
 import {slide, fade, vanish} from '../../../animations/testing-page-animation';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -12,6 +12,7 @@ import {UserAccountService} from '../../profile/user-account.service';
 import {LogService} from '../../common-components/services/log.service';
 import {STATE_COLOR} from '../../../assets/colorStyle';
 import {ComponentName} from '../../common-components/services/component-name';
+import {User, UserAccount} from '../../profile/user';
 
 
 @Component({
@@ -94,21 +95,7 @@ export class ValueCompatibilityComponent implements OnInit {
       .subscribe(data => {
           this.tests = data;
           this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: tests: ${data}`);
-
-    //     // Yura wanted to make colored headlines of cards
-    //     // this.tests.goal.forEach(goal => {
-    //     //     goal.firstScale.scaleColor = this.setScaleColor(goal.firstScale.scale);
-    //     //     goal.secondScale.scaleColor = this.setScaleColor(goal.secondScale.scale);
-    //     // });
-    //     // this.tests.quality.forEach(quality => {
-    //     //   quality.firstScale.scaleColor = this.setScaleColor(quality.firstScale.scale);
-    //     //   quality.secondScale.scaleColor = this.setScaleColor(quality.secondScale.scale);
-    //     // });
-    //     // this.tests.state.forEach(state => {
-    //     //   state.firstScale.scaleColor = this.setScaleColor(state.firstScale.scale);
-    //     //   state.secondScale.scaleColor = this.setScaleColor(state.secondScale.scale);
-    //     // });
-      }
+          }
       );
 
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` ngOnInit: initial test: `, this.tests);
@@ -133,30 +120,19 @@ export class ValueCompatibilityComponent implements OnInit {
 
   setGoal(i: number, scale: Scale) {
     this.itemState[i] = 'unactive';
-    // We can equate the object or the values. If object - than in reset methods we cann't equate to null,
-    // bacause value in first or second scale will be null too. But equate to null in reset methods isn't necessary.
     this.tests.goal[i].chosenScale = scale;
-    // this.tests.goal[i].chosenScale.scale = scale.scale;
-    // this.tests.goal[i].chosenScale.scaleHeader = scale.scaleHeader;
-    // this.tests.goal[i].chosenScale.scaleDescription = scale.scaleDescription;
     this.setTimeout(i);
   }
 
   setState(i: number, scale: Scale) {
     this.itemState[i] = 'unactive';
     this.tests.state[i].chosenScale = scale;
-    // this.tests.state[i].chosenScale.scale = scale.scale;
-    // this.tests.state[i].chosenScale.scaleHeader = scale.scaleHeader;
-    // this.tests.state[i].chosenScale.scaleDescription = scale.scaleDescription;
     this.setTimeout(i);
   }
 
   setQuality(i: number, scale: Scale) {
     this.itemState[i] = 'unactive';
     this.tests.quality[i].chosenScale = scale;
-    // this.tests.quality[i].chosenScale.scale = scale.scale;
-    // this.tests.quality[i].chosenScale.scaleHeader = scale.scaleHeader;
-    // this.tests.quality[i].chosenScale.scaleDescription = scale.scaleDescription;
     this.setTimeout(i);
   }
 
@@ -182,13 +158,6 @@ export class ValueCompatibilityComponent implements OnInit {
 
   resetGoals() {
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` resetGoals()`);
-    // it is not necessary to equate to null. If you don't, then the new chosen scale will replace the old ones.
-    // This only works if in the setState (setGoal, setQuality) methods we don't equate the object, but the values.
-    // this.tests.goal.forEach(goal => {
-    //   goal.chosenScale.scale = null;
-    //   goal.chosenScale.scaleHeader = null;
-    //   goal.chosenScale.scaleDescription = null;
-    // });
     this.resetItemsAfterSaveAreaArrays();
   }
 
@@ -200,11 +169,6 @@ export class ValueCompatibilityComponent implements OnInit {
 
   resetStates() {
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` resetStates()`);
-    // this.tests.state.forEach(state => {
-    //   state.chosenScale.scale = null;
-    //   state.chosenScale.scaleHeader = null;
-    //   state.chosenScale.scaleDescription = null;
-    // });
     this.resetItemsAfterSaveAreaArrays();
   }
 
@@ -216,11 +180,6 @@ export class ValueCompatibilityComponent implements OnInit {
 
   resetQualities() {
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` resetQualities()`);
-    // this.tests.quality.forEach(quality => {
-    //   quality.chosenScale.scale = null;
-    //   quality.chosenScale.scaleHeader = null;
-    //   quality.chosenScale.scaleDescription = null;
-    // });
     this.resetItemsAfterSaveAreaArrays();
   }
 
@@ -263,6 +222,16 @@ export class ValueCompatibilityComponent implements OnInit {
           localStorage.setItem('token', httpResponse.headers.get('Authorization'));
           localStorage.setItem('isValueCompatibilityTestPassed', httpResponse.body.passed === true ? 'true' : 'false');
           localStorage.setItem('isGoalsDone', 'true');
+
+          // set userId to userAccount if userAccount isn't in localStorage
+          if (!this.userAccountService.isUserAccount()) {
+            const user: User = new User();
+            user.id = httpResponse.body.userId;
+            const userAccount: UserAccount = new UserAccount();
+            userAccount.user = user;
+            this.userAccountService.setUserAccount(userAccount);
+          }
+
           this.isGoalsDone = true;
           this.retrieveDataResolver(); // <--- This must be called as soon as the data are ready to be displayed
         }
@@ -285,7 +254,7 @@ export class ValueCompatibilityComponent implements OnInit {
   private saveStateArray(): void {
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray()`);
     this.valueCompatibilityService.saveStateArray(this.tests).subscribe(data => {
-      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray(): ${data.state}`);
+      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray(): `, data.state);
       localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
       localStorage.setItem('isStatesDone', 'true');
       this.isStatesDone = true;
@@ -312,7 +281,7 @@ export class ValueCompatibilityComponent implements OnInit {
   private saveQualityArray(): void {
     this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveQualityArray()`);
     this.valueCompatibilityService.saveQualityArray(this.tests).subscribe(data => {
-      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveStateArray(): ${data.quality}`);
+      this.log.log(ComponentName.VALUE_COMPATIBILITY, ` saveQualityArray(): `, data.quality);
       localStorage.setItem('isValueCompatibilityTestPassed', data.passed === true ? 'true' : 'false');
       localStorage.setItem('isQualitiesDone', 'true');
       this.isQualitiesDone = true;
@@ -335,33 +304,6 @@ export class ValueCompatibilityComponent implements OnInit {
   private createFriendsTokens() {
     this.sendingTokensService.createFriendsTokens();
   }
-
-  // Yura wanted to make colored headlines of cards
-  // private setScaleColor(scale: ScaleEnum): string {
-  //   switch (scale) {
-  //     case ScaleEnum.ONE: {
-  //       return this.scaleColor[5];
-  //     }
-  //     case ScaleEnum.TWO: {
-  //       return this.scaleColor[4];
-  //     }
-  //     case ScaleEnum.THREE: {
-  //       return this.scaleColor[3];
-  //     }
-  //     case ScaleEnum.FOUR: {
-  //       return this.scaleColor[2];
-  //     }
-  //     case ScaleEnum.FIVE: {
-  //       return this.scaleColor[1];
-  //     }
-  //     case ScaleEnum.SIX: {
-  //       return this.scaleColor[0];
-  //     }
-  //     default: {
-  //       return this.scaleColor[5];
-  //     }
-  //   }
-  // }
 
   // =============== SHAFFLE TEST ARRAYS ==========
   private shaffle( array: AreaItem[] ) {

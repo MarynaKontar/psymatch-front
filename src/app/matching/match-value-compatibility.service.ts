@@ -42,11 +42,14 @@ export class MatchValueCompatibilityService {
   }
 
   getUsersForMatching(userForMatchingToken: string): Observable<HttpResponse<User[]>> {
-    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `getUsersForMatching()`);
-    const httpOptions = {
-      headers: new HttpHeaders({
+    this.log.log(ComponentName.MATCH_VALUE_COMPATIBILITY_SERVICE, `getUsersForMatching(): `, userForMatchingToken);
+    let headers: HttpHeaders = (userForMatchingToken === null) ?
+      new HttpHeaders({'Content-Type': 'application/json'}) :
+      new HttpHeaders({
         'Content-Type': 'application/json',
-        'userForMatchingToken': userForMatchingToken}),
+        'userForMatchingToken': userForMatchingToken});
+    const httpOptions = {
+      headers: headers,
       observe: 'response' as 'response'
     };
     return this.http.get<User[]>(this.uri + `/match/getUsersForMatching`, httpOptions);
