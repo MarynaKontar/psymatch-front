@@ -9,14 +9,14 @@
 // made redirect after login and registration to the previous page(this.router.navigate(['register'], { queryParams: { returnUrl: state.url }});); add tooltip to sending-token;
 // add user names to match: Value Profiles For Matching figure; test-cards: card-body not linked; in header Pass test;
 // add returnToFriendAccount button, method, endpoint (when friends test on one device); add canDeactivate guard, but not work navigate on it;
-//add logServiceand enum for component names and add/replace console.log(...) to service.log(...)
+// add logServiceand enum for component names and add/replace console.log(...) to service.log(...)
 // collected all auth form scss in one file auth.scss; refactor author-cards, profile, auth, common-components and header scss files: arranged in order and adjusted to the size of all screens, collected button scss in ine file test-button.scss, collected all colosr scss in one file color.scss; add logService methods to auth module, profile module and common-components;
 // made it possible to load the initial view of the tests on the frontend, rather than loading it from the server each time; added the ability to randomly mix tests for each area; refactor value-compatibility, value-compatibility-profile, value-compatibility-test-inctruction, value-compatibility-service, match-home-page, match-value-compatibility-service, match-value-compatibility scss and ts files: arranged in order and adjusted to the size of all screens, add log service; offers to rotate device for devices with width less than 578px on chart-bar container on value-compatibility-profile and match-value-compatibility; on account page view registration page instead of contact information when isn't registered; synchronize retrieving data in match-value-compatibility (nested Promise); add confirm to return to user account (nested confirm) in return-to-friend-account;
 
 // add user accounts that was match or was invited with loggin user on match-home-page; add return-to-friend-account on user-account;
 // replace areaQuestion from Area to AreaItem; replace all "anonim" occurrence to "incomplete"; when go to test another user, add to local storage userForMatching item with value of first user; added the ability to receive a userForMatching by userForMatchingToken in match-value-compatibility.component
-// NOT COMMITED fixes bug with incomplete registration (add user id to userAccount item in localStorage); fix bug with getUsersForMatching() headers;
-
+// fixes bug with incomplete registration (add user id to userAccount item in localStorage); fix bug with getUsersForMatching() headers;
+// NOT COMMITED
 
 
 // !!!!!!!!!!!!!!!--BACKEND--!!!!!!!!!!!!!!!!!!!
@@ -27,7 +27,7 @@
 // fix bag when check if passwords are equals in changePassword method
 // adds COMMENT DOC for all controller, util, model/  object, enums, entity, security, dto directories; adds to addNameAgeAndGender(User user) method in UserService checking on null and name or email existing; adds to getUsersForMatching() method in UserAccountService userForMatchingToken for receiving userForMatching by his token; transfer areaQuestion field from AreaDto to ChoiceDto; adds comment doc for TokenServiceImpl, CredentialsServiceImpl
 // adds COMMENT DOC to service directory; fixes bug in match method: when decide if need insert new UserMatchEntity or get already exists in db, i compare date of creation last UserMatchEntity and passDate of ValueCompatibilityEntity of both users. Bug is that i compate not sutiable date view; replace addUserForMatching(userForMatchingToken, principal) from saveChoice to saveFirstPartOfTests; replace "if" to "switch" in getMatchForMatchMethod method in UserMatchServiceImpl;
-// NOT COMMITED
+// NOT COMMITED adds skeleton for unit tests for controllers and services; change mongo version for docker (version over 4.0 has transactional for collections); tests getUserAccount method
 
 
 
